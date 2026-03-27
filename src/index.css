@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* ========================================
+   CHARACTER ENGINE — DAW DARK THEME
+   ======================================== */
+
+@theme {
+  /* Background palette */
+  --color-ce-body: #0d0d1a;
+  --color-ce-panel: #141428;
+  --color-ce-panel-alt: #1a1a2e;
+  --color-ce-surface: #16213e;
+  --color-ce-border: #2a2a4a;
+  --color-ce-border-subtle: #1a1a3a;
+
+  /* Text palette */
+  --color-ce-text: #c8c8d4;
+  --color-ce-text-muted: #6b6b80;
+  --color-ce-text-bright: #eeeef2;
+
+  /* Emotion colors */
+  --color-emotion-joy: #f0b232;
+  --color-emotion-sadness: #3b6cbf;
+  --color-emotion-anger: #dc3545;
+  --color-emotion-fear: #7b42c8;
+  --color-emotion-disgust: #6b8e23;
+  --color-emotion-surprise: #00c8d4;
+  --color-emotion-trust: #2aad8e;
+  --color-emotion-anticipation: #e08a2e;
+
+  /* Accent / UI */
+  --color-ce-accent: #aa3bff;
+  --color-ce-accent-dim: rgba(170, 59, 255, 0.3);
+  --color-ce-edit-glow: rgba(255, 60, 60, 0.15);
+  --color-ce-mute: #555568;
+  --color-ce-solo: #c8a832;
+
+  /* Influence bar gradient stops */
+  --color-influence-low: #2aad8e;
+  --color-influence-mid: #e0a832;
+  --color-influence-high: #dc3545;
+}
+
+/* Global base styles */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background: var(--color-ce-body);
+  color: var(--color-ce-text);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Monospace readouts */
+.font-mono-readout {
+  font-family: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Custom scrollbar for DAW feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ce-panel);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ce-border);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-ce-mute);
+}
