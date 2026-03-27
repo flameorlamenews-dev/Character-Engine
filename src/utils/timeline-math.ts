@@ -2,7 +2,7 @@
 export const BASE_CHAPTER_WIDTH = 160;
 
 /** Height of a single emotion lane in pixels */
-export const LANE_HEIGHT = 64;
+export const LANE_HEIGHT = 72;
 
 /** Max score value */
 export const MAX_SCORE = 75;
@@ -12,18 +12,15 @@ export function chapterToX(chapterIndex: number, zoom: number): number {
   return chapterIndex * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/** Get the x position for a specific point within a chapter */
-export function sceneToX(chapterIndex: number, scenePosition: number, zoom: number): number {
-  const chapterStart = chapterToX(chapterIndex, zoom);
-  return chapterStart + scenePosition * BASE_CHAPTER_WIDTH * zoom;
+/** Get the x position for the midpoint of a chapter */
+export function chapterMidX(chapterIndex: number, zoom: number): number {
+  return chapterToX(chapterIndex, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
 }
 
 /** Convert a score (0-75) to a Y position within a lane (0 = top = max, laneHeight = bottom = 0) */
 export function scoreToY(score: number, laneHeight: number = LANE_HEIGHT): number {
   const clamped = Math.max(0, Math.min(MAX_SCORE, score));
-  // Invert: higher scores are higher on screen (lower Y)
-  // Leave 4px padding top and bottom
-  const padding = 4;
+  const padding = 6;
   const usableHeight = laneHeight - padding * 2;
   return padding + usableHeight * (1 - clamped / MAX_SCORE);
 }
@@ -33,54 +30,148 @@ export function getTimelineWidth(chapterCount: number, zoom: number): number {
   return chapterCount * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/** Generate SVG path data for a surge peak with decay */
-export function surgePath(
-  chapterIndex: number,
-  scenePosition: number,
-  baselineScore: number,
-  peakIntensity: number,
-  decayRate: number,
-  duration: number,
-  zoom: number,
-  laneHeight: number = LANE_HEIGHT
-): string {
-  const xStart = sceneToX(chapterIndex, Math.max(0, scenePosition - duration * 0.2), zoom);
-  const xPeak = sceneToX(chapterIndex, scenePosition, zoom);
-  const xEnd = sceneToX(chapterIndex, Math.min(1, scenePosition + duration), zoom);
-
-  const yBase = scoreToY(baselineScore, laneHeight);
-  const yPeak = scoreToY(peakIntensity, laneHeight);
-
-  // Rise
-  const cp1x = xStart + (xPeak - xStart) * 0.3;
-  const cp2x = xStart + (xPeak - xStart) * 0.7;
-  // Decay — decayRate controls how quickly the curve drops back (higher = steeper drop)
-  const cp3x = xPeak + (xEnd - xPeak) * (0.1 + decayRate * 0.3);
-  const cp4x = xPeak + (xEnd - xPeak) * (0.4 + decayRate * 0.2);
-
-  return [
-    `M ${xStart} ${yBase}`,
-    `C ${cp1x} ${yBase} ${cp2x} ${yPeak} ${xPeak} ${yPeak}`,
-    `C ${cp3x} ${yPeak} ${cp4x} ${yBase} ${xEnd} ${yBase}`,
-  ].join(' ');
+/**
+ * Build a continuous line path for an emotion across all chapters.
+ * Each chapter has a value from the driftLine. Surges create peaks within chapters.
+ * Returns an array of {x, y} points that form one continuous waveform.
+ */
+export interface TimelinePoint {
+  x: number;
+  y: number;
+  chapterIndex: number;
+  isSurgePeak?: boolean;
+  surgeId?: string;
 }
 
-/** Generate SVG path for a filled area under the surge */
-export function surgeAreaPath(
-  chapterIndex: number,
-  scenePosition: number,
-  baselineScore: number,
-  peakIntensity: number,
-  decayRate: number,
-  duration: number,
+export function buildContinuousLine(
+  driftLine: number[],
+  surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number; id: string }[],
+  silenceBlocks: [number, number][],
   zoom: number,
   laneHeight: number = LANE_HEIGHT
-): string {
-  const xStart = sceneToX(chapterIndex, Math.max(0, scenePosition - duration * 0.2), zoom);
-  const xEnd = sceneToX(chapterIndex, Math.min(1, scenePosition + duration), zoom);
-  const yBase = scoreToY(baselineScore, laneHeight);
+): TimelinePoint[] {
+  const points: TimelinePoint[] = [];
+  const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
 
-  const line = surgePath(chapterIndex, scenePosition, baselineScore, peakIntensity, decayRate, duration, zoom, laneHeight);
+  // Create a set of silent chapters for quick lookup
+  const silentChapters = new Set<number>();
+  for (const [start, end] of silenceBlocks) {
+    for (let i = start; i <= end; i++) {
+      silentChapters.add(i);
+    }
+  }
 
-  return `${line} L ${xEnd} ${yBase} L ${xStart} ${yBase} Z`;
+  // Sort surges by position
+  const sortedSurges = [...surges].sort((a, b) => {
+    if (a.chapterIndex !== b.chapterIndex) return a.chapterIndex - b.chapterIndex;
+    return a.scenePosition - b.scenePosition;
+  });
+
+  for (let ch = 0; ch < driftLine.length; ch++) {
+    const baseValue = driftLine[ch];
+    const chapterStartX = chapterToX(ch, zoom);
+
+    if (silentChapters.has(ch)) {
+      // Silent chapter — no points (gap in the line)
+      continue;
+    }
+
+    // Get surges in this chapter
+    const chapterSurges = sortedSurges.filter((s) => s.chapterIndex === ch);
+
+    if (chapterSurges.length === 0) {
+      // No surges — just the baseline drift value at chapter start and end
+      points.push({
+        x: chapterStartX,
+        y: scoreToY(baseValue, laneHeight),
+        chapterIndex: ch,
+      });
+      points.push({
+        x: chapterStartX + chapterWidth,
+        y: scoreToY(baseValue, laneHeight),
+        chapterIndex: ch,
+      });
+    } else {
+      // Has surges — create rise and fall points
+      // Start of chapter at baseline
+      points.push({
+        x: chapterStartX,
+        y: scoreToY(baseValue, laneHeight),
+        chapterIndex: ch,
+      });
+
+      for (const surge of chapterSurges) {
+        const surgeX = chapterStartX + surge.scenePosition * chapterWidth;
+        const riseStartX = surgeX - surge.duration * 0.3 * chapterWidth;
+        const decayEndX = surgeX + surge.duration * 0.7 * chapterWidth;
+
+        // Point before the rise (at baseline)
+        points.push({
+          x: Math.max(chapterStartX, riseStartX),
+          y: scoreToY(baseValue, laneHeight),
+          chapterIndex: ch,
+        });
+
+        // Peak point
+        points.push({
+          x: surgeX,
+          y: scoreToY(surge.peakIntensity, laneHeight),
+          chapterIndex: ch,
+          isSurgePeak: true,
+          surgeId: surge.id,
+        });
+
+        // Return to baseline after decay
+        points.push({
+          x: Math.min(chapterStartX + chapterWidth, decayEndX),
+          y: scoreToY(baseValue, laneHeight),
+          chapterIndex: ch,
+        });
+      }
+
+      // End of chapter at baseline
+      points.push({
+        x: chapterStartX + chapterWidth,
+        y: scoreToY(baseValue, laneHeight),
+        chapterIndex: ch,
+      });
+    }
+  }
+
+  return points;
+}
+
+/** Convert points to a smooth SVG path using cardinal spline-like curves */
+export function pointsToSmoothPath(points: TimelinePoint[]): string {
+  if (points.length === 0) return '';
+  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+
+    // Use smooth curves for surge peaks, straight segments for flat baseline
+    if (curr.isSurgePeak || prev.isSurgePeak) {
+      // Bezier curve for smooth peaks
+      const cpx = (prev.x + curr.x) / 2;
+      d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+    } else {
+      d += ` L ${curr.x} ${curr.y}`;
+    }
+  }
+
+  return d;
+}
+
+/** Convert points to a filled area path (closed, going down to lane bottom) */
+export function pointsToFilledPath(points: TimelinePoint[], laneHeight: number = LANE_HEIGHT): string {
+  if (points.length < 2) return '';
+
+  const linePath = pointsToSmoothPath(points);
+  const lastPoint = points[points.length - 1];
+  const firstPoint = points[0];
+
+  return `${linePath} L ${lastPoint.x} ${laneHeight} L ${firstPoint.x} ${laneHeight} Z`;
 }

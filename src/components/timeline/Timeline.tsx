@@ -1,17 +1,18 @@
 import { useRef } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { useInspector } from '../../context/InspectorContext';
-import { EMOTION_LIST, EMOTION_COLORS, EMOTION_LABELS } from '../../theme/colors';
+import { EMOTION_LIST, EMOTION_COLORS, EMOTION_COLORS_BRIGHT, EMOTION_LABELS } from '../../theme/colors';
+import type { EmotionType } from '../../theme/colors';
 import {
   getTimelineWidth,
   chapterToX,
-  scoreToY,
-  sceneToX,
-  surgePath,
-  surgeAreaPath,
   BASE_CHAPTER_WIDTH,
   LANE_HEIGHT,
+  buildContinuousLine,
+  pointsToSmoothPath,
+  pointsToFilledPath,
 } from '../../utils/timeline-math';
+import type { Surge } from '../../types/emotions';
 
 interface TimelineProps {
   mutedTracks: Set<string>;
@@ -31,6 +32,14 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
     return !mutedTracks.has(e);
   });
   const totalLaneHeight = visibleEmotions.length * LANE_HEIGHT;
+
+  // Build a lookup from surge ID to full Surge object
+  const surgeMap = new Map<string, Surge>();
+  for (const timeline of character.emotionTimelines) {
+    for (const surge of timeline.surges) {
+      surgeMap.set(surge.id, surge);
+    }
+  }
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-ce-body">
@@ -53,26 +62,20 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
                     x={x + w / 2}
                     y={rulerHeight - 8}
                     textAnchor="middle"
-                    fill={ch.characterPresent ? '#c8c8d4' : '#6b6b80'}
+                    fill={ch.characterPresent ? '#c8c8d4' : '#555568'}
                     fontSize={10}
                     fontFamily="'JetBrains Mono', monospace"
                   >
-                    {i + 1}
+                    Ch.{i + 1}
                   </text>
                   {!ch.characterPresent && (
-                    <rect
-                      x={x}
-                      y={rulerHeight - 3}
-                      width={w}
-                      height={3}
-                      fill="#6b6b80"
-                      opacity={0.3}
-                    />
+                    <rect x={x} y={rulerHeight - 3} width={w} height={3} fill="#555568" opacity={0.3} />
                   )}
                 </g>
               );
             })}
-            <line x1={0} y1={rulerHeight} x2={totalWidth} y2={rulerHeight} stroke="#2a2a4a" strokeWidth={1} />
+            {/* Final ruler border */}
+            <line x1={0} y1={rulerHeight} x2={totalWidth} y2={rulerHeight} stroke="#3a3a5a" strokeWidth={1.5} />
           </g>
 
           {/* Emotion Lanes */}
@@ -81,30 +84,42 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
             if (!timeline) return null;
 
             const color = EMOTION_COLORS[emotion];
+            const brightColor = EMOTION_COLORS_BRIGHT[emotion];
             const yOffset = rulerHeight + laneIndex * LANE_HEIGHT;
+
+            // Build the continuous line for this emotion
+            const linePoints = buildContinuousLine(
+              timeline.driftLine,
+              timeline.surges.map((s) => ({
+                chapterIndex: s.chapterIndex,
+                scenePosition: s.scenePosition,
+                peakIntensity: s.peakIntensity,
+                duration: s.duration,
+                id: s.id,
+              })),
+              timeline.silenceBlocks,
+              zoomLevel,
+              LANE_HEIGHT
+            );
+
+            const linePath = pointsToSmoothPath(linePoints);
+            const filledPath = pointsToFilledPath(linePoints, LANE_HEIGHT);
+
+            // Get surge peak points for clickable dots
+            const peakPoints = linePoints.filter((p) => p.isSurgePeak);
 
             return (
               <g key={emotion} transform={`translate(0, ${yOffset})`}>
-                {/* Lane background */}
+                {/* Lane background — alternating */}
                 <rect
                   x={0}
                   y={0}
                   width={totalWidth}
                   height={LANE_HEIGHT}
-                  fill={laneIndex % 2 === 0 ? '#0f0f22' : '#111130'}
+                  fill={laneIndex % 2 === 0 ? '#0d0d1e' : '#10102a'}
                 />
 
-                {/* Lane border */}
-                <line
-                  x1={0}
-                  y1={LANE_HEIGHT}
-                  x2={totalWidth}
-                  y2={LANE_HEIGHT}
-                  stroke="#1a1a3a"
-                  strokeWidth={0.5}
-                />
-
-                {/* Silence blocks */}
+                {/* Silence blocks (greyed out) */}
                 {timeline.silenceBlocks.map(([start, end], si) => {
                   const sx = chapterToX(start, zoomLevel);
                   const ex = chapterToX(end + 1, zoomLevel);
@@ -115,100 +130,104 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
                       y={0}
                       width={ex - sx}
                       height={LANE_HEIGHT}
-                      fill="#2a2a4a"
-                      opacity={0.2}
+                      fill="#1a1a2e"
+                      opacity={0.5}
                     />
                   );
                 })}
 
-                {/* Baseline line */}
-                <line
-                  x1={0}
-                  y1={scoreToY(timeline.baseline, LANE_HEIGHT)}
-                  x2={totalWidth}
-                  y2={scoreToY(timeline.baseline, LANE_HEIGHT)}
-                  stroke={color}
-                  strokeWidth={1}
-                  strokeDasharray="4 4"
-                  opacity={0.35}
-                />
+                {/* Chapter grid lines within lane */}
+                {book.chapters.map((_, i) => (
+                  <line
+                    key={i}
+                    x1={chapterToX(i, zoomLevel)}
+                    y1={0}
+                    x2={chapterToX(i, zoomLevel)}
+                    y2={LANE_HEIGHT}
+                    stroke="#1e1e3a"
+                    strokeWidth={0.5}
+                  />
+                ))}
 
-                {/* Drift line */}
-                {timeline.driftLine.length > 1 && (
-                  <polyline
-                    points={timeline.driftLine
-                      .map((val, ci) => {
-                        const x = chapterToX(ci, zoomLevel) + (BASE_CHAPTER_WIDTH * zoomLevel) / 2;
-                        const y = scoreToY(val, LANE_HEIGHT);
-                        return `${x},${y}`;
-                      })
-                      .join(' ')}
-                    fill="none"
-                    stroke="white"
-                    strokeWidth={1}
-                    strokeDasharray="2 3"
-                    opacity={0.2}
+                {/* Filled area under the line */}
+                {filledPath && (
+                  <path
+                    d={filledPath}
+                    fill={`url(#fill-${emotion})`}
                   />
                 )}
 
-                {/* Surge peaks */}
-                {timeline.surges.map((surge) => {
-                  const baseline = timeline.driftLine[surge.chapterIndex] ?? timeline.baseline;
-                  const isSelected = selectedSurge?.id === surge.id;
+                {/* The continuous emotion line */}
+                {linePath && (
+                  <path
+                    d={linePath}
+                    fill="none"
+                    stroke={color}
+                    strokeWidth={2}
+                    strokeLinejoin="round"
+                    strokeLinecap="round"
+                  />
+                )}
+
+                {/* Surge peak dots (clickable) */}
+                {peakPoints.map((point) => {
+                  const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
+                  const isSelected = selectedSurge?.id === point.surgeId;
 
                   return (
-                    <g key={surge.id}>
-                      {/* Filled area */}
-                      <path
-                        d={surgeAreaPath(
-                          surge.chapterIndex,
-                          surge.scenePosition,
-                          baseline,
-                          surge.peakIntensity,
-                          surge.decayRate,
-                          surge.duration,
-                          zoomLevel,
-                          LANE_HEIGHT
-                        )}
-                        fill={color}
-                        opacity={0.15}
-                      />
-                      {/* Surge curve */}
-                      <path
-                        d={surgePath(
-                          surge.chapterIndex,
-                          surge.scenePosition,
-                          baseline,
-                          surge.peakIntensity,
-                          surge.decayRate,
-                          surge.duration,
-                          zoomLevel,
-                          LANE_HEIGHT
-                        )}
-                        fill="none"
-                        stroke={color}
-                        strokeWidth={isSelected ? 2.5 : 1.5}
-                        opacity={isSelected ? 1 : 0.8}
-                      />
-                      {/* Peak dot (clickable) */}
+                    <g key={point.surgeId}>
+                      {/* Glow ring on selected */}
+                      {isSelected && (
+                        <circle
+                          cx={point.x}
+                          cy={point.y}
+                          r={10}
+                          fill="none"
+                          stroke={brightColor}
+                          strokeWidth={1}
+                          opacity={0.4}
+                        />
+                      )}
                       <circle
-                        cx={sceneToX(surge.chapterIndex, surge.scenePosition, zoomLevel)}
-                        cy={scoreToY(surge.peakIntensity, LANE_HEIGHT)}
-                        r={isSelected ? 5 : 4}
-                        fill={isSelected ? '#fff' : color}
-                        stroke={isSelected ? color : '#fff'}
-                        strokeWidth={isSelected ? 2 : 1}
-                        className="cursor-pointer hover:r-[6]"
-                        style={{ filter: isSelected ? `drop-shadow(0 0 6px ${color})` : 'none' }}
-                        onClick={() => selectSurge(isSelected ? null : surge)}
+                        cx={point.x}
+                        cy={point.y}
+                        r={isSelected ? 6 : 4}
+                        fill={isSelected ? brightColor : color}
+                        stroke="#0d0d1a"
+                        strokeWidth={1.5}
+                        className="cursor-pointer"
+                        style={{
+                          filter: isSelected ? `drop-shadow(0 0 8px ${brightColor})` : 'none',
+                        }}
+                        onClick={() => {
+                          if (surge) selectSurge(isSelected ? null : surge);
+                        }}
                       >
                         <title>
-                          {EMOTION_LABELS[emotion]} surge: {surge.peakIntensity}/75
+                          {EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75
                         </title>
                       </circle>
                     </g>
                   );
                 })}
+
+                {/* SOLID BOTTOM BORDER — divider between tracks */}
+                <line
+                  x1={0}
+                  y1={LANE_HEIGHT}
+                  x2={totalWidth}
+                  y2={LANE_HEIGHT}
+                  stroke="#3a3a5a"
+                  strokeWidth={1.5}
+                />
+
+                {/* Gradient definition for this emotion's fill */}
+                <defs>
+                  <linearGradient id={`fill-${emotion}`} x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor={color} stopOpacity={0.25} />
+                    <stop offset="100%" stopColor={color} stopOpacity={0.02} />
+                  </linearGradient>
+                </defs>
               </g>
             );
           })}
