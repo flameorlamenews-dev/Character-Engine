@@ -44,7 +44,6 @@ export function surgePath(
   zoom: number,
   laneHeight: number = LANE_HEIGHT
 ): string {
-  const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
   const xStart = sceneToX(chapterIndex, Math.max(0, scenePosition - duration * 0.2), zoom);
   const xPeak = sceneToX(chapterIndex, scenePosition, zoom);
   const xEnd = sceneToX(chapterIndex, Math.min(1, scenePosition + duration), zoom);
@@ -55,9 +54,9 @@ export function surgePath(
   // Rise
   const cp1x = xStart + (xPeak - xStart) * 0.3;
   const cp2x = xStart + (xPeak - xStart) * 0.7;
-  // Decay
-  const cp3x = xPeak + (xEnd - xPeak) * 0.2;
-  const cp4x = xPeak + (xEnd - xPeak) * 0.6;
+  // Decay — decayRate controls how quickly the curve drops back (higher = steeper drop)
+  const cp3x = xPeak + (xEnd - xPeak) * (0.1 + decayRate * 0.3);
+  const cp4x = xPeak + (xEnd - xPeak) * (0.4 + decayRate * 0.2);
 
   return [
     `M ${xStart} ${yBase}`,

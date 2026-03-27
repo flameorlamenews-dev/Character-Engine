@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { EMOTION_LIST, EMOTION_LABELS, EMOTION_COLORS } from '../../theme/colors';
 import { Fader } from './Fader';

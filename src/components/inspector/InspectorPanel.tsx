@@ -22,10 +22,6 @@ export function InspectorPanel() {
 
   const chapter = session.book.chapters[selectedSurge.chapterIndex];
 
-  // Find trait modifiers from character data
-  const timeline = session.character.emotionTimelines.find(
-    (t) => t.emotionType === selectedSurge.emotionType
-  );
 
   const triggerLevelColors: Record<string, string> = {
     low: '#2aad8e',

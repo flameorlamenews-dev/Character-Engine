@@ -85,7 +85,7 @@ export function PlayerLayout() {
               />
             ))}
             {/* Axis lines */}
-            {radarPoints.map((p, i) => (
+            {radarPoints.map((_, i) => (
               <line
                 key={i}
                 x1={radarCenter}
