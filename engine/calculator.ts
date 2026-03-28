@@ -27,6 +27,71 @@ const RED_ZONE_DECAY_RATE = 0.65;
 const TRIGGERED_CARRY_DECAY = 0.25;
 
 /**
+ * Ambient emotion inference: when a chapter has intense events,
+ * certain emotions fire at a base level even if not explicitly mapped.
+ * This models the "atmosphere" of a chapter — high-stakes events
+ * create surprise, anticipation, and fear as ambient background.
+ */
+function inferAmbientEmotions(
+  stimulants: ExtractedStimulant[],
+  deltas: Record<EmotionType, number>,
+  triggered: Set<EmotionType>,
+  breakdown: string[]
+) {
+  if (stimulants.length === 0) return;
+
+  // Average trigger intensity of this chapter
+  const avgTrigger = stimulants.reduce((sum, s) => {
+    const t = calculateTriggerMultiplier(s.stakes, s.immediacy, s.certainty);
+    return sum + t.multiplier;
+  }, 0) / stimulants.length;
+
+  // If chapter has high average intensity (>=0.6) and surprise wasn't explicitly triggered
+  if (avgTrigger >= 0.6 && !triggered.has('surprise')) {
+    const ambient = avgTrigger * 15;
+    deltas.surprise += ambient;
+    triggered.add('surprise');
+    breakdown.push(`  Ambient surprise: avg_trigger(${avgTrigger.toFixed(2)}) × 15 = +${ambient.toFixed(1)}`);
+  }
+
+  // If chapter has ANY extreme event (>=0.85), anticipation and fear get ambient boost
+  const hasExtreme = stimulants.some(s => {
+    const t = calculateTriggerMultiplier(s.stakes, s.immediacy, s.certainty);
+    return t.multiplier >= 0.85;
+  });
+
+  if (hasExtreme) {
+    if (!triggered.has('anticipation')) {
+      const ambient = avgTrigger * 10;
+      deltas.anticipation += ambient;
+      triggered.add('anticipation');
+      breakdown.push(`  Ambient anticipation: extreme event detected → +${ambient.toFixed(1)}`);
+    }
+    if (!triggered.has('fear')) {
+      const ambient = avgTrigger * 12;
+      deltas.fear += ambient;
+      triggered.add('fear');
+      breakdown.push(`  Ambient fear: extreme event detected → +${ambient.toFixed(1)}`);
+    }
+  }
+
+  // If chapter has positive events (success, reward, connection), add ambient joy/trust
+  const hasPositive = stimulants.some(s => ['success', 'reward', 'connection'].includes(s.eventType));
+  if (hasPositive) {
+    if (!triggered.has('joy')) {
+      deltas.joy += 8;
+      triggered.add('joy');
+      breakdown.push(`  Ambient joy: positive event detected → +8`);
+    }
+    if (!triggered.has('trust')) {
+      deltas.trust += 6;
+      triggered.add('trust');
+      breakdown.push(`  Ambient trust: positive event detected → +6`);
+    }
+  }
+}
+
+/**
  * Run the full emotional engine for a character across all chapters.
  */
 export function calculateEmotions(
@@ -128,6 +193,9 @@ export function calculateEmotions(
       }
     }
 
+    // Step 7a: Infer ambient emotions from chapter intensity
+    inferAmbientEmotions(chapterStimulants, deltas, triggeredEmotions, breakdown);
+
     // Step 7b: Apply suppression
     const suppressionLog = applySuppression(currentEmotions, deltas);
     if (suppressionLog.length > 0) {
@@ -146,7 +214,7 @@ export function calculateEmotions(
       // Emotion value = weighted blend of carry-over + current chapter events
       // carry_weight: how much of previous value persists (0.30 = 30%)
       // current_weight: how much current chapter events dominate (0.70 = 70%)
-      const CARRY_WEIGHT = 0.20;
+      const CARRY_WEIGHT = 0.25;
       const carryValue = prevValue * CARRY_WEIGHT;
 
       if (!triggeredEmotions.has(e) && deltas[e] <= 0) {
