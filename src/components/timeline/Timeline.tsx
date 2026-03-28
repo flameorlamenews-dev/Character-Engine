@@ -9,6 +9,7 @@ import {
   BASE_CHAPTER_WIDTH,
   LANE_HEIGHT,
   buildContinuousLine,
+  splitIntoSegments,
   pointsToSharpPath,
   pointsToFilledPath,
 } from '../../utils/timeline-math';
@@ -125,9 +126,10 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
               LANE_HEIGHT
             );
 
-            // Sharp angular rendering for collapsed view
-            const sharpLinePath = pointsToSharpPath(linePoints);
-            const sharpFilledPath = pointsToFilledPath(linePoints, LANE_HEIGHT, true);
+            // Split into segments (gaps where character absent)
+            const segments = splitIntoSegments(linePoints, timeline.silenceBlocks);
+            const sharpLinePaths = segments.map((seg) => pointsToSharpPath(seg));
+            const sharpFilledPaths = segments.map((seg) => pointsToFilledPath(seg, LANE_HEIGHT, true));
             const peakPoints = linePoints.filter((p) => p.isSurgePeak);
 
             return (
@@ -152,13 +154,15 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                     <line key={i} x1={chapterToX(i, zoomLevel)} y1={0} x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT} stroke="#1e1e3a" strokeWidth={0.5} />
                   ))}
 
-                  {/* Filled area — sharp */}
-                  {sharpFilledPath && <path d={sharpFilledPath} fill={`url(#fill-${emotion})`} />}
+                  {/* Filled areas — one per segment, gaps between */}
+                  {sharpFilledPaths.map((fp, i) => fp && (
+                    <path key={`fill-${i}`} d={fp} fill={`url(#fill-${emotion})`} />
+                  ))}
 
-                  {/* Continuous sharp line — real emotion data, EKG heartbeat style */}
-                  {sharpLinePath && (
-                    <path d={sharpLinePath} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
-                  )}
+                  {/* Sharp lines — one per segment, gaps between */}
+                  {sharpLinePaths.map((sp, i) => sp && (
+                    <path key={`line-${i}`} d={sp} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
+                  ))}
 
                   {/* Surge peak dots (clickable) */}
                   {peakPoints.map((point) => {

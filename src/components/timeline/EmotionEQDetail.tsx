@@ -27,56 +27,129 @@ function posToX(chapterPos: number, zoom: number): number {
 }
 
 /**
- * Build a smooth flowing curve through the drift line values.
- * One point per chapter at the midpoint, connected with smooth bezier curves.
+ * Build a smooth flowing curve through drift + surge values.
+ * Drift = one point per chapter midpoint. Surges = extra points for peaks.
+ * Silent chapters create gaps (returns multiple path strings).
  */
-function buildSmoothDriftPath(
+function buildSmoothPaths(
   driftLine: number[],
+  surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number }[],
+  silenceBlocks: [number, number][],
   zoom: number,
   totalWidth: number,
   laneHeight: number
-): string {
-  if (driftLine.length === 0) return '';
+): string[] {
+  if (driftLine.length === 0) return [];
 
-  const points: { x: number; y: number }[] = [];
+  const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
 
-  for (let i = 0; i < driftLine.length; i++) {
-    const x = chapterToX(i, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
-    const y = scoreToY(driftLine[i], laneHeight);
-    points.push({ x, y });
+  // Silent chapter set
+  const silentChapters = new Set<number>();
+  for (const [start, end] of silenceBlocks) {
+    for (let i = start; i <= end; i++) silentChapters.add(i);
   }
 
-  // Start at left edge at first value
-  let d = `M 0 ${scoreToY(driftLine[0], laneHeight)}`;
+  // Sort surges
+  const sortedSurges = [...surges].sort((a, b) => {
+    if (a.chapterIndex !== b.chapterIndex) return a.chapterIndex - b.chapterIndex;
+    return a.scenePosition - b.scenePosition;
+  });
 
-  // Smooth curve to first point
-  d += ` C ${points[0].x / 2} ${scoreToY(driftLine[0], laneHeight)} ${points[0].x / 2} ${points[0].y} ${points[0].x} ${points[0].y}`;
+  // Build points per chapter, grouping into segments separated by gaps
+  const segments: { x: number; y: number }[][] = [];
+  let currentSeg: { x: number; y: number }[] = [];
 
-  // Smooth curves between all points
-  for (let i = 1; i < points.length; i++) {
-    const prev = points[i - 1];
-    const curr = points[i];
-    const cpx = (prev.x + curr.x) / 2;
-    d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+  for (let ch = 0; ch < driftLine.length; ch++) {
+    if (silentChapters.has(ch)) {
+      if (currentSeg.length > 0) {
+        segments.push(currentSeg);
+        currentSeg = [];
+      }
+      continue;
+    }
+
+    const baseY = scoreToY(driftLine[ch], laneHeight);
+    const chStart = chapterToX(ch, zoom);
+    const chMid = chStart + chapterWidth / 2;
+
+    // Get surges for this chapter
+    const chSurges = sortedSurges.filter((s) => s.chapterIndex === ch);
+
+    if (chSurges.length === 0) {
+      // Just the drift point at chapter midpoint
+      currentSeg.push({ x: chMid, y: baseY });
+    } else {
+      // Add drift point at chapter start area
+      currentSeg.push({ x: chStart + chapterWidth * 0.15, y: baseY });
+
+      for (const surge of chSurges) {
+        const surgeX = chStart + surge.scenePosition * chapterWidth;
+        // Pre-surge baseline
+        const preX = surgeX - surge.duration * 0.2 * chapterWidth;
+        if (preX > chStart + chapterWidth * 0.15) {
+          currentSeg.push({ x: preX, y: baseY });
+        }
+        // Surge peak
+        currentSeg.push({ x: surgeX, y: scoreToY(surge.peakIntensity, laneHeight) });
+        // Post-surge baseline
+        const postX = surgeX + surge.duration * 0.5 * chapterWidth;
+        currentSeg.push({ x: Math.min(postX, chStart + chapterWidth * 0.85), y: baseY });
+      }
+
+      // Drift point at chapter end area
+      currentSeg.push({ x: chStart + chapterWidth * 0.85, y: baseY });
+    }
   }
+  if (currentSeg.length > 0) segments.push(currentSeg);
 
-  // Extend to right edge
-  const last = points[points.length - 1];
-  d += ` C ${(last.x + totalWidth) / 2} ${last.y} ${(last.x + totalWidth) / 2} ${last.y} ${totalWidth} ${last.y}`;
+  // Render each segment as a smooth bezier path
+  return segments.map((points) => {
+    if (points.length === 0) return '';
+    if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
 
-  return d;
+    // Extend to edges for first/last segments
+    const first = points[0];
+    const last = points[points.length - 1];
+
+    let d = `M ${Math.max(0, first.x - chapterWidth * 0.3)} ${first.y}`;
+    // Smooth to first point
+    d += ` C ${first.x - chapterWidth * 0.15} ${first.y} ${first.x - chapterWidth * 0.05} ${first.y} ${first.x} ${first.y}`;
+
+    // Smooth curves between all points
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const cpx = (prev.x + curr.x) / 2;
+      d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+    }
+
+    // Extend to right edge
+    d += ` C ${last.x + chapterWidth * 0.05} ${last.y} ${last.x + chapterWidth * 0.15} ${last.y} ${Math.min(totalWidth, last.x + chapterWidth * 0.3)} ${last.y}`;
+
+    return d;
+  });
 }
 
-/** Build a filled version of the smooth drift path */
-function buildSmoothDriftFilledPath(
+/** Build filled versions of smooth paths */
+function buildSmoothFilledPaths(
   driftLine: number[],
+  surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number }[],
+  silenceBlocks: [number, number][],
   zoom: number,
   totalWidth: number,
   laneHeight: number
-): string {
-  const linePath = buildSmoothDriftPath(driftLine, zoom, totalWidth, laneHeight);
-  if (!linePath) return '';
-  return `${linePath} L ${totalWidth} ${laneHeight} L 0 ${laneHeight} Z`;
+): string[] {
+  const paths = buildSmoothPaths(driftLine, surges, silenceBlocks, zoom, totalWidth, laneHeight);
+  return paths.map((p) => {
+    if (!p) return '';
+    // Extract first and last x from the path
+    const coords = p.match(/[\d.]+/g);
+    if (!coords || coords.length < 4) return '';
+    const firstX = parseFloat(coords[0]);
+    const lastCoords = p.split(/[CML]\s*/).filter(Boolean).pop()?.trim().split(/\s+/);
+    const lastX = lastCoords ? parseFloat(lastCoords[lastCoords.length - 2] || lastCoords[0]) : totalWidth;
+    return `${p} L ${lastX} ${laneHeight} L ${firstX} ${laneHeight} Z`;
+  });
 }
 
 export function EmotionEQDetail({
@@ -90,9 +163,15 @@ export function EmotionEQDetail({
   const color = EMOTION_COLORS[emotion];
   const brightColor = EMOTION_COLORS_BRIGHT[emotion];
 
-  // Build smooth flowing curve from drift line values
-  const smoothPath = buildSmoothDriftPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
-  const smoothFilledPath = buildSmoothDriftFilledPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
+  // Build smooth flowing curve from drift + surge values (same data as collapsed)
+  const surgeData = timeline.surges.map((s) => ({
+    chapterIndex: s.chapterIndex,
+    scenePosition: s.scenePosition,
+    peakIntensity: s.peakIntensity,
+    duration: s.duration,
+  }));
+  const smoothPaths = buildSmoothPaths(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
+  const smoothFilledPaths = buildSmoothFilledPaths(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
 
   // Sort trait points
   const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
@@ -151,15 +230,23 @@ export function EmotionEQDetail({
         );
       })}
 
-      {/* Filled area under curve */}
-      {smoothFilledPath && (
-        <path d={smoothFilledPath} fill={color} opacity={0.1} />
-      )}
+      {/* Silence blocks — greyed */}
+      {timeline.silenceBlocks.map(([start, end], si) => {
+        const sx = chapterToX(start, zoomLevel);
+        const ex = chapterToX(end + 1, zoomLevel);
+        return <rect key={`sil-${si}`} x={sx} y={0} width={ex - sx} height={EQ_DETAIL_HEIGHT} fill="#1a1a2e" opacity={0.4} />;
+      })}
 
-      {/* Smooth flowing emotion curve */}
-      {smoothPath && (
+      {/* Filled areas — one per segment, gaps between */}
+      {smoothFilledPaths.map((fp, i) => fp && (
+        <path key={`fill-${i}`} d={fp} fill={color} opacity={0.1} />
+      ))}
+
+      {/* Smooth curves — one per segment, gaps between */}
+      {smoothPaths.map((sp, i) => sp && (
         <path
-          d={smoothPath}
+          key={`line-${i}`}
+          d={sp}
           fill="none"
           stroke={color}
           strokeWidth={2.5}
@@ -167,7 +254,7 @@ export function EmotionEQDetail({
           strokeLinecap="round"
           style={{ filter: `drop-shadow(0 0 4px ${color}44)` }}
         />
-      )}
+      ))}
 
       {/* Trait control points overlaid on the curve */}
       {sorted.map((point) => {

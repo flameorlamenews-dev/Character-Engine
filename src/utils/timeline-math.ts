@@ -141,6 +141,49 @@ export function buildContinuousLine(
   return points;
 }
 
+/**
+ * Split a flat array of TimelinePoints into segments wherever there's a
+ * gap in chapter indices (i.e. silent chapters that were skipped).
+ */
+export function splitIntoSegments(
+  points: TimelinePoint[],
+  silenceBlocks: [number, number][]
+): TimelinePoint[][] {
+  if (points.length === 0) return [];
+
+  const silentChapters = new Set<number>();
+  for (const [start, end] of silenceBlocks) {
+    for (let i = start; i <= end; i++) silentChapters.add(i);
+  }
+
+  const segments: TimelinePoint[][] = [];
+  let current: TimelinePoint[] = [];
+
+  for (let i = 0; i < points.length; i++) {
+    const point = points[i];
+
+    // Check if there's a silent chapter between the previous point and this one
+    if (current.length > 0) {
+      const prevCh = current[current.length - 1].chapterIndex;
+      const currCh = point.chapterIndex;
+      // If we jumped over a silent chapter, start a new segment
+      let gapFound = false;
+      for (let ch = prevCh + 1; ch <= currCh; ch++) {
+        if (silentChapters.has(ch)) { gapFound = true; break; }
+      }
+      if (gapFound && prevCh !== currCh) {
+        segments.push(current);
+        current = [];
+      }
+    }
+
+    current.push(point);
+  }
+
+  if (current.length > 0) segments.push(current);
+  return segments;
+}
+
 /** Convert points to a smooth SVG path using bezier curves */
 export function pointsToSmoothPath(points: TimelinePoint[]): string {
   if (points.length === 0) return '';
