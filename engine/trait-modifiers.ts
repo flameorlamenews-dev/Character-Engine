@@ -38,7 +38,7 @@ export const TRAIT_MODIFIER_TABLE: TraitModifierEntry[] = [
   { traitKey: 'guiltSensitivity', emotion: 'sadness', strength: 0.3, reason: 'High guilt = sadness from moral self-judgment' },
 
   // Risk appetite dampens fear (brave = less fear)
-  { traitKey: 'riskAppetite', emotion: 'fear', strength: -0.3, reason: 'High risk appetite = fear hits less hard' },
+  { traitKey: 'riskAppetite', emotion: 'fear', strength: -0.15, reason: 'High risk appetite = slightly less fear (but being harmed still terrifies)' },
 
   // Stubbornness amplifies anger (won't let go)
   { traitKey: 'stubbornness', emotion: 'anger', strength: 0.15, reason: 'Stubborn = anger persists, won\'t release' },

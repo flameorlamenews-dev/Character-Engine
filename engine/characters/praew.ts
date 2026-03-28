@@ -3,14 +3,14 @@ import type { CharacterProfile } from '../types';
 export const profile: CharacterProfile = {
   name: 'Praew',
   emotionalBaseline: {
-    joy: 32,
-    sadness: 40,
-    anger: 32,
-    fear: 27,
-    disgust: 31,
-    surprise: 23,
-    trust: 36,
-    anticipation: 32,
+    joy: 30,
+    sadness: 25,
+    anger: 22,
+    fear: 40,
+    disgust: 28,
+    surprise: 25,
+    trust: 30,
+    anticipation: 28,
   },
   temperament: {
     patience: 25,

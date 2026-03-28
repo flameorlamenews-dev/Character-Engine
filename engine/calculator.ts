@@ -173,11 +173,32 @@ export function calculateEmotions(
         breakdown.push(`    Modified delta: ${rawDelta.toFixed(2)} × (1 + ${traitMod.totalModifier.toFixed(3)}) = ${modifiedDelta.toFixed(2)}`);
 
         // Step 6: Subject & source multipliers
-        const finalDelta = modifiedDelta * subjectMult * sourceMult;
-        breakdown.push(`    Final delta: ${modifiedDelta.toFixed(2)} × ${subjectMult} × ${sourceMult} = ${finalDelta.toFixed(2)}`);
+        let finalDelta = modifiedDelta * subjectMult * sourceMult;
 
-        // Cap per-stimulant delta at 40 (no single event should max an emotion alone)
-        const cappedDelta = Math.min(40, Math.abs(finalDelta)) * Math.sign(finalDelta);
+        // Step 6b: Domain amplifier — certain domains amplify specific emotions
+        const domainAmps: Record<string, Partial<Record<EmotionType, number>>> = {
+          safety: { fear: 1.6, anger: 1.2 },
+          morality: { disgust: 2.0, anger: 1.3 },
+          belonging: { sadness: 1.3, trust: 1.3 },
+          attachment: { sadness: 1.4, trust: 1.3 },
+          autonomy: { anger: 1.4, fear: 1.3 },
+          status: { anger: 1.2, sadness: 1.1 },
+          competence: { sadness: 1.1, fear: 1.1 },
+          future_security: { fear: 1.3, anticipation: 1.3 },
+        };
+        const domainAmpBase = domainAmps[stim.domain]?.[targetEmotion];
+        // Domain amp only kicks in at High+ triggers, and scales with trigger level
+        const domainAmp = domainAmpBase && trigger.multiplier >= 0.85
+          ? 1 + (domainAmpBase - 1) * trigger.multiplier
+          : undefined;
+        if (domainAmp && domainAmp > 1) {
+          finalDelta *= domainAmp;
+          breakdown.push(`    Domain amp: ${stim.domain} → ${targetEmotion} ×${domainAmp.toFixed(2)} (only at High+ trigger)`);
+        }
+        breakdown.push(`    Final delta: ${modifiedDelta.toFixed(2)} × ${subjectMult} × ${sourceMult}${domainAmp ? ' × ' + domainAmp : ''} = ${finalDelta.toFixed(2)}`);
+
+        // Cap per-stimulant delta at 50
+        const cappedDelta = Math.min(50, Math.abs(finalDelta)) * Math.sign(finalDelta);
         if (Math.abs(cappedDelta) < Math.abs(finalDelta)) {
           breakdown.push(`    Capped: ${finalDelta.toFixed(2)} → ${cappedDelta.toFixed(2)} (max 40 per stimulant)`);
         }
@@ -195,6 +216,23 @@ export function calculateEmotions(
 
     // Step 7a: Infer ambient emotions from chapter intensity
     inferAmbientEmotions(chapterStimulants, deltas, triggeredEmotions, breakdown);
+
+    // Step 7a2: Normalize chapter deltas — diminishing returns for stacking
+    // But ONLY compress when average trigger is below Extreme
+    // Extreme chapters should be allowed to hit hard
+    const avgTriggerLevel = chapterStimulants.length > 0
+      ? chapterStimulants.reduce((sum, s) => sum + s.stakes + s.immediacy + s.certainty, 0) / chapterStimulants.length
+      : 0;
+    const compressionThreshold = avgTriggerLevel >= 7 ? 75 : 55; // no compression for extreme chapters
+
+    for (const e of ALL_EMOTIONS) {
+      const raw = deltas[e];
+      if (raw > compressionThreshold) {
+        const compressed = compressionThreshold + Math.sqrt(raw - compressionThreshold) * 4;
+        breakdown.push(`  Compression: ${e} raw=${raw.toFixed(1)} → compressed=${compressed.toFixed(1)} (threshold=${compressionThreshold})`);
+        deltas[e] = compressed;
+      }
+    }
 
     // Step 7b: Apply suppression
     const suppressionLog = applySuppression(currentEmotions, deltas);
@@ -214,7 +252,23 @@ export function calculateEmotions(
       // Emotion value = weighted blend of carry-over + current chapter events
       // carry_weight: how much of previous value persists (0.30 = 30%)
       // current_weight: how much current chapter events dominate (0.70 = 70%)
-      const CARRY_WEIGHT = 0.25;
+      // Carry-over depends on whether the emotion was reinforced
+      // If reinforced this chapter: keep 35% of previous + new deltas
+      // If NOT reinforced: keep only 15% (fades fast without reinforcement)
+      // Carry depends on trigger, intensity, AND emotion type
+      // Sadness and anger are volatile — they fade faster
+      // Fear persists more (anxiety lingers)
+      const emotionCarryBase: Partial<Record<EmotionType, number>> = {
+        sadness: 0.08,  // volatile — fades fast unless reinforced
+        anger: 0.15,    // volatile
+        fear: 0.25,     // persistent — anxiety lingers
+        disgust: 0.12,  // fades relatively fast
+      };
+      const baseCarry = triggeredEmotions.has(e)
+        ? (emotionCarryBase[e] ?? 0.20)
+        : 0.02;
+      const intensityPenalty = prevValue > 50 ? 0.5 : prevValue > 30 ? 0.7 : 1.0;
+      const CARRY_WEIGHT = baseCarry * intensityPenalty;
       const carryValue = prevValue * CARRY_WEIGHT;
 
       if (!triggeredEmotions.has(e) && deltas[e] <= 0) {
