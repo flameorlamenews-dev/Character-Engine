@@ -142,12 +142,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                   {/* Highlight if expanded */}
                   {isExpanded && <rect x={0} y={0} width={totalWidth} height={LANE_HEIGHT} fill={color} opacity={0.04} />}
 
-                  {/* Silence blocks */}
-                  {timeline.silenceBlocks.map(([start, end], si) => {
-                    const sx = chapterToX(start, zoomLevel);
-                    const ex = chapterToX(end + 1, zoomLevel);
-                    return <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.5} />;
-                  })}
+                  {/* Silence blocks — keep lane color, no dark overlay */}
 
                   {/* Chapter grid */}
                   {book.chapters.map((_, i) => (
@@ -163,6 +158,19 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                   {sharpLinePaths.map((sp, i) => sp && (
                     <path key={`line-${i}`} d={sp} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
                   ))}
+
+                  {/* Start/end dots for each segment — like a studio session clip */}
+                  {segments.map((seg, i) => {
+                    if (seg.length === 0) return null;
+                    const first = seg[0];
+                    const last = seg[seg.length - 1];
+                    return (
+                      <g key={`endpoints-${i}`}>
+                        <circle cx={first.x} cy={first.y} r={4} fill={color} stroke="#0d0d1a" strokeWidth={1.5} />
+                        <circle cx={last.x} cy={last.y} r={4} fill={color} stroke="#0d0d1a" strokeWidth={1.5} />
+                      </g>
+                    );
+                  })}
 
                   {/* Surge peak dots (clickable) */}
                   {peakPoints.map((point) => {
