@@ -1,19 +1,17 @@
 import { useRef } from 'react';
 import { useSession } from '../../context/SessionContext';
-import { useInspector } from '../../context/InspectorContext';
-import { EMOTION_LIST, EMOTION_COLORS, EMOTION_COLORS_BRIGHT, EMOTION_LABELS } from '../../theme/colors';
+import { EMOTION_LIST, EMOTION_COLORS } from '../../theme/colors';
 import type { EmotionType } from '../../theme/colors';
 import {
   getTimelineWidth,
   chapterToX,
   BASE_CHAPTER_WIDTH,
   LANE_HEIGHT,
-  buildContinuousLine,
+  buildTraitEQLine,
   pointsToSharpPath,
   pointsToFilledPath,
 } from '../../utils/timeline-math';
 import { EmotionEQDetail, EQ_DETAIL_HEIGHT } from './EmotionEQDetail';
-import type { Surge } from '../../types/emotions';
 import type { TraitEQPoint } from '../../types/trait-eq';
 
 interface TimelineProps {
@@ -27,7 +25,6 @@ interface TimelineProps {
 
 export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, expandedTrack, traitEQData }: TimelineProps) {
   const { session } = useSession();
-  const { selectedSurge, selectSurge } = useInspector();
   const { book, character, zoomLevel } = session;
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -49,14 +46,6 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
     }
   }
   const totalHeight = rulerHeight + totalLaneHeight;
-
-  // Surge lookup
-  const surgeMap = new Map<string, Surge>();
-  for (const timeline of character.emotionTimelines) {
-    for (const surge of timeline.surges) {
-      surgeMap.set(surge.id, surge);
-    }
-  }
 
   // Playhead X
   const playheadX = chapterToX(Math.floor(playheadPosition), zoomLevel)
@@ -107,27 +96,16 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
             if (!timeline) return null;
 
             const color = EMOTION_COLORS[emotion];
-            const brightColor = EMOTION_COLORS_BRIGHT[emotion];
             const laneIndex = visibleEmotions.indexOf(emotion);
 
-            // Build continuous line points — SAME DATA for both views
-            const surgeData = timeline.surges.map((s) => ({
-              chapterIndex: s.chapterIndex,
-              scenePosition: s.scenePosition,
-              peakIntensity: s.peakIntensity,
-              duration: s.duration,
-              id: s.id,
-            }));
-
-            const linePoints = buildContinuousLine(
-              timeline.driftLine, surgeData, timeline.silenceBlocks,
-              zoomLevel, LANE_HEIGHT
-            );
+            // Build collapsed line from SAME trait EQ data as the dropdown
+            // This ensures collapsed and expanded show the same rises and falls
+            const emotionTraits = traitEQData[emotion] ?? [];
+            const eqLinePoints = buildTraitEQLine(emotionTraits, totalWidth, zoomLevel, LANE_HEIGHT);
 
             // Collapsed view: sharp/angular heartbeat style
-            const sharpLinePath = pointsToSharpPath(linePoints);
-            const sharpFilledPath = pointsToFilledPath(linePoints, LANE_HEIGHT, true);
-            const peakPoints = linePoints.filter((p) => p.isSurgePeak);
+            const sharpLinePath = pointsToSharpPath(eqLinePoints);
+            const sharpFilledPath = pointsToFilledPath(eqLinePoints, LANE_HEIGHT, true);
 
             return (
               <g key={emotion} transform={`translate(0, ${yOffset})`}>
@@ -158,28 +136,6 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                   {sharpLinePath && (
                     <path d={sharpLinePath} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
                   )}
-
-                  {/* Surge peak markers (small dots, no trait info) */}
-                  {peakPoints.map((point) => {
-                    const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
-                    const isSelected = selectedSurge?.id === point.surgeId;
-                    return (
-                      <g key={point.surgeId}>
-                        {isSelected && (
-                          <circle cx={point.x} cy={point.y} r={8} fill="none" stroke={brightColor} strokeWidth={1} opacity={0.4} />
-                        )}
-                        <circle
-                          cx={point.x} cy={point.y} r={isSelected ? 5 : 3}
-                          fill={isSelected ? brightColor : color} stroke="#0d0d1a" strokeWidth={1}
-                          className="cursor-pointer"
-                          style={{ filter: isSelected ? `drop-shadow(0 0 6px ${brightColor})` : 'none' }}
-                          onClick={(e) => { e.stopPropagation(); if (surge) selectSurge(isSelected ? null : surge); }}
-                        >
-                          <title>{EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75</title>
-                        </circle>
-                      </g>
-                    );
-                  })}
 
                   {/* Bottom border */}
                   <line x1={0} y1={LANE_HEIGHT} x2={totalWidth} y2={LANE_HEIGHT} stroke="#3a3a5a" strokeWidth={isExpanded ? 0.5 : 1.5} />

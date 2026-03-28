@@ -182,3 +182,41 @@ export function pointsToFilledPath(points: TimelinePoint[], laneHeight: number =
 
   return `${linePath} L ${lastPoint.x} ${laneHeight} L ${firstPoint.x} ${laneHeight} Z`;
 }
+
+/**
+ * Build a line from trait EQ boost/cut data — same shape as the EQ dropdown curve.
+ * This maps the trait boost/cut values onto a vertical center line within the lane.
+ * The center of the lane = zero boost/cut.
+ * Positive boost = line goes up. Negative cut = line goes down.
+ */
+export function buildTraitEQLine(
+  traitPoints: { chapterPosition: number; boostCut: number }[],
+  totalWidth: number,
+  zoom: number,
+  laneHeight: number = LANE_HEIGHT
+): TimelinePoint[] {
+  const centerY = laneHeight / 2;
+  const maxRange = (laneHeight / 2) - 6; // leave padding
+  const maxBoost = 37; // max boost/cut value
+
+  const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
+
+  const points: TimelinePoint[] = [];
+
+  // Start at center (zero)
+  points.push({ x: 0, y: centerY, chapterIndex: 0 });
+
+  // Each trait point
+  for (const point of sorted) {
+    const x = chapterToX(Math.floor(point.chapterPosition), zoom)
+      + (point.chapterPosition - Math.floor(point.chapterPosition)) * BASE_CHAPTER_WIDTH * zoom;
+    const clamped = Math.max(-maxBoost, Math.min(maxBoost, point.boostCut));
+    const y = centerY - (clamped / maxBoost) * maxRange;
+    points.push({ x, y, chapterIndex: Math.floor(point.chapterPosition) });
+  }
+
+  // End at center (zero)
+  points.push({ x: totalWidth, y: centerY, chapterIndex: 0 });
+
+  return points;
+}
