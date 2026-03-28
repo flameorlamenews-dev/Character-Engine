@@ -1,5 +1,6 @@
 import type { Character } from '../types/session';
 import type { Book } from '../types/session';
+import type { EmotionTraitEQ } from '../types/trait-eq';
 
 export const mockBook: Book = {
   id: 'book-1',
@@ -379,5 +380,63 @@ export const mockCharacter: Character = {
     { name: 'habitFormation', label: 'Habit Formation', value: 52 },
     { name: 'maskStrength', label: 'Mask Strength', value: 45 },
     { name: 'impressionSusceptibility', label: 'Impression Susceptibility', value: 32 },
+  ],
+};
+
+/**
+ * Trait EQ modifiers per emotion for Kaladin.
+ * Each point is a trait that boosts or cuts this emotion's response.
+ * chapterPosition = where in the story this trait has peak effect.
+ * boostCut = how much it pushes the line up (+) or down (-).
+ */
+export const mockTraitEQ: EmotionTraitEQ = {
+  anger: [
+    { id: 'anger-loyalty', traitName: 'loyalty', label: 'Loyalty', chapterPosition: 1.5, boostCut: 12, traitScore: 68 },
+    { id: 'anger-confrontational', traitName: 'confrontationalTendency', label: 'Confrontational', chapterPosition: 3, boostCut: 18, traitScore: 55 },
+    { id: 'anger-moralRigidity', traitName: 'moralRigidity', label: 'Moral Rigidity', chapterPosition: 4.5, boostCut: 22, traitScore: 68 },
+    { id: 'anger-containment', traitName: 'emotionalContainment', label: 'Containment', chapterPosition: 6, boostCut: -15, traitScore: 28 },
+    { id: 'anger-empathy', traitName: 'empathyBaseline', label: 'Empathy', chapterPosition: 7, boostCut: 10, traitScore: 62 },
+    { id: 'anger-patience', traitName: 'patience', label: 'Patience', chapterPosition: 8.5, boostCut: -8, traitScore: 38 },
+  ],
+  sadness: [
+    { id: 'sad-guilt', traitName: 'guiltSensitivity', label: 'Guilt', chapterPosition: 1, boostCut: 25, traitScore: 72 },
+    { id: 'sad-empathy', traitName: 'empathyBaseline', label: 'Empathy', chapterPosition: 3, boostCut: 15, traitScore: 62 },
+    { id: 'sad-containment', traitName: 'emotionalContainment', label: 'Containment', chapterPosition: 4.5, boostCut: -10, traitScore: 28 },
+    { id: 'sad-stubbornness', traitName: 'stubbornness', label: 'Stubbornness', chapterPosition: 6.5, boostCut: -12, traitScore: 65 },
+    { id: 'sad-compassion', traitName: 'compassion', label: 'Compassion', chapterPosition: 8, boostCut: 18, traitScore: 60 },
+  ],
+  fear: [
+    { id: 'fear-bravery', traitName: 'riskAppetite', label: 'Risk Appetite', chapterPosition: 2, boostCut: -20, traitScore: 60 },
+    { id: 'fear-shame', traitName: 'shameSensitivity', label: 'Shame Sens.', chapterPosition: 4, boostCut: 14, traitScore: 48 },
+    { id: 'fear-containment', traitName: 'emotionalContainment', label: 'Containment', chapterPosition: 5.5, boostCut: -8, traitScore: 28 },
+    { id: 'fear-pride', traitName: 'prideSensitivity', label: 'Pride', chapterPosition: 7.5, boostCut: -16, traitScore: 52 },
+  ],
+  joy: [
+    { id: 'joy-warmth', traitName: 'warmth', label: 'Warmth', chapterPosition: 2, boostCut: 10, traitScore: 40 },
+    { id: 'joy-reservedness', traitName: 'reservedness', label: 'Reservedness', chapterPosition: 4, boostCut: -18, traitScore: 55 },
+    { id: 'joy-containment', traitName: 'emotionalContainment', label: 'Containment', chapterPosition: 6, boostCut: -12, traitScore: 28 },
+    { id: 'joy-compassion', traitName: 'compassion', label: 'Compassion', chapterPosition: 8, boostCut: 14, traitScore: 60 },
+  ],
+  trust: [
+    { id: 'trust-skepticism', traitName: 'skepticism', label: 'Skepticism', chapterPosition: 1.5, boostCut: -22, traitScore: 58 },
+    { id: 'trust-loyalty', traitName: 'loyalty', label: 'Loyalty', chapterPosition: 4, boostCut: 20, traitScore: 68 },
+    { id: 'trust-warmth', traitName: 'warmth', label: 'Warmth', chapterPosition: 6.5, boostCut: 12, traitScore: 40 },
+    { id: 'trust-pride', traitName: 'prideSensitivity', label: 'Pride', chapterPosition: 8, boostCut: -8, traitScore: 52 },
+  ],
+  disgust: [
+    { id: 'disgust-moral', traitName: 'moralRigidity', label: 'Moral Rigidity', chapterPosition: 2.5, boostCut: 20, traitScore: 68 },
+    { id: 'disgust-empathy', traitName: 'empathyBaseline', label: 'Empathy', chapterPosition: 5, boostCut: 12, traitScore: 62 },
+    { id: 'disgust-agree', traitName: 'agreeableness', label: 'Agreeableness', chapterPosition: 7.5, boostCut: -10, traitScore: 30 },
+  ],
+  surprise: [
+    { id: 'surprise-curiosity', traitName: 'curiosity', label: 'Curiosity', chapterPosition: 3, boostCut: 10, traitScore: 35 },
+    { id: 'surprise-adaptability', traitName: 'adaptabilityVsRigidity', label: 'Adaptability', chapterPosition: 6, boostCut: -8, traitScore: 40 },
+    { id: 'surprise-openness', traitName: 'openness', label: 'Openness', chapterPosition: 8, boostCut: 6, traitScore: 35 },
+  ],
+  anticipation: [
+    { id: 'antic-impulsive', traitName: 'impulsiveness', label: 'Impulsiveness', chapterPosition: 2, boostCut: 14, traitScore: 42 },
+    { id: 'antic-risk', traitName: 'riskAppetite', label: 'Risk Appetite', chapterPosition: 5, boostCut: 16, traitScore: 60 },
+    { id: 'antic-patience', traitName: 'patience', label: 'Patience', chapterPosition: 7, boostCut: -10, traitScore: 38 },
+    { id: 'antic-stubborn', traitName: 'stubbornness', label: 'Stubbornness', chapterPosition: 8.5, boostCut: 8, traitScore: 65 },
   ],
 };

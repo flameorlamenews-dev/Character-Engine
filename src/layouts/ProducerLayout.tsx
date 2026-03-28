@@ -5,8 +5,8 @@ import { Timeline } from '../components/timeline/Timeline';
 import { InspectorPanel } from '../components/inspector/InspectorPanel';
 import { EffectsRack } from '../components/effects-rack/EffectsRack';
 import { useSession } from '../context/SessionContext';
+import { mockTraitEQ } from '../data/mock-character';
 
-/** Playback speed: how many chapter-units per second */
 const PLAYBACK_SPEED = 0.15;
 
 export function ProducerLayout() {
@@ -15,12 +15,12 @@ export function ProducerLayout() {
   const [soloTrack, setSoloTrack] = useState<string | null>(null);
   const [playheadPosition, setPlayheadPosition] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [expandedTrack, setExpandedTrack] = useState<string | null>(null);
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
 
   const totalChapters = session.book.chapters.length;
 
-  // Animation loop for playhead movement
   useEffect(() => {
     if (!isPlaying) {
       lastTimeRef.current = null;
@@ -35,8 +35,7 @@ export function ProducerLayout() {
       if (lastTimeRef.current === null) {
         lastTimeRef.current = timestamp;
       }
-
-      const delta = (timestamp - lastTimeRef.current) / 1000; // seconds
+      const delta = (timestamp - lastTimeRef.current) / 1000;
       lastTimeRef.current = timestamp;
 
       setPlayheadPosition((prev) => {
@@ -52,33 +51,18 @@ export function ProducerLayout() {
     };
 
     animationRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
+    return () => { if (animationRef.current) cancelAnimationFrame(animationRef.current); };
   }, [isPlaying, totalChapters]);
 
   const handlePlay = useCallback(() => setIsPlaying(true), []);
   const handlePause = useCallback(() => setIsPlaying(false), []);
-  const handleStop = useCallback(() => {
-    setIsPlaying(false);
-    setPlayheadPosition(0);
-  }, []);
-
-  const handleSeek = useCallback((position: number) => {
-    setPlayheadPosition(position);
-  }, []);
+  const handleStop = useCallback(() => { setIsPlaying(false); setPlayheadPosition(0); }, []);
+  const handleSeek = useCallback((position: number) => setPlayheadPosition(position), []);
 
   const handleToggleMute = useCallback((emotion: string) => {
     setMutedTracks((prev) => {
       const next = new Set(prev);
-      if (next.has(emotion)) {
-        next.delete(emotion);
-      } else {
-        next.add(emotion);
-      }
+      if (next.has(emotion)) next.delete(emotion); else next.add(emotion);
       return next;
     });
   }, []);
@@ -87,9 +71,12 @@ export function ProducerLayout() {
     setSoloTrack((prev) => (prev === emotion ? null : emotion));
   }, []);
 
+  const handleToggleExpand = useCallback((emotion: string | null) => {
+    setExpandedTrack(emotion);
+  }, []);
+
   return (
     <div className="flex flex-col h-screen">
-      {/* Top Bar with transport controls */}
       <TopBar
         isPlaying={isPlaying}
         playheadPosition={playheadPosition}
@@ -98,7 +85,6 @@ export function ProducerLayout() {
         onStop={handleStop}
       />
 
-      {/* Main content */}
       <div className="flex flex-1 overflow-hidden">
         <ChannelRack
           mutedTracks={mutedTracks}
@@ -106,17 +92,20 @@ export function ProducerLayout() {
           onToggleMute={handleToggleMute}
           onToggleSolo={handleToggleSolo}
           playheadPosition={playheadPosition}
+          expandedTrack={expandedTrack}
+          onToggleExpand={handleToggleExpand}
         />
         <Timeline
           mutedTracks={mutedTracks}
           soloTrack={soloTrack}
           playheadPosition={playheadPosition}
           onSeek={handleSeek}
+          expandedTrack={expandedTrack}
+          traitEQData={mockTraitEQ}
         />
         <EffectsRack />
       </div>
 
-      {/* Bottom Inspector */}
       <InspectorPanel />
     </div>
   );

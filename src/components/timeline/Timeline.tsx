@@ -12,18 +12,22 @@ import {
   pointsToSmoothPath,
   pointsToFilledPath,
 } from '../../utils/timeline-math';
+import { EmotionEQDetail, EQ_DETAIL_HEIGHT } from './EmotionEQDetail';
 import type { Surge } from '../../types/emotions';
+import type { TraitEQPoint } from '../../types/trait-eq';
 
 interface TimelineProps {
   mutedTracks: Set<string>;
   soloTrack: string | null;
-  /** Fractional chapter position of the playhead (e.g. 2.5) */
   playheadPosition: number;
-  /** Called when user clicks on the timeline to set playhead */
   onSeek: (position: number) => void;
+  /** Which emotion track is expanded to show EQ detail */
+  expandedTrack: string | null;
+  /** Trait EQ data for the expanded track */
+  traitEQData: Record<string, TraitEQPoint[]>;
 }
 
-export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: TimelineProps) {
+export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, expandedTrack, traitEQData }: TimelineProps) {
   const { session } = useSession();
   const { selectedSurge, selectSurge } = useInspector();
   const { book, character, zoomLevel } = session;
@@ -35,10 +39,20 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: T
     if (soloTrack) return e === soloTrack;
     return !mutedTracks.has(e);
   });
-  const totalLaneHeight = visibleEmotions.length * LANE_HEIGHT;
+
+  // Calculate total height: normal lanes + expanded EQ detail if any
+  let totalLaneHeight = 0;
+  const laneOffsets: { emotion: EmotionType; yOffset: number; isExpanded: boolean }[] = [];
+  for (const emotion of visibleEmotions) {
+    laneOffsets.push({ emotion, yOffset: rulerHeight + totalLaneHeight, isExpanded: emotion === expandedTrack });
+    totalLaneHeight += LANE_HEIGHT;
+    if (emotion === expandedTrack) {
+      totalLaneHeight += EQ_DETAIL_HEIGHT;
+    }
+  }
   const totalHeight = rulerHeight + totalLaneHeight;
 
-  // Build a lookup from surge ID to full Surge object
+  // Surge lookup
   const surgeMap = new Map<string, Surge>();
   for (const timeline of character.emotionTimelines) {
     for (const surge of timeline.surges) {
@@ -46,11 +60,10 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: T
     }
   }
 
-  // Calculate playhead X position
+  // Playhead X
   const playheadX = chapterToX(Math.floor(playheadPosition), zoomLevel)
     + (playheadPosition - Math.floor(playheadPosition)) * BASE_CHAPTER_WIDTH * zoomLevel;
 
-  // Handle click on timeline to seek
   const handleTimelineClick = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
@@ -79,12 +92,10 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: T
                 <g key={i}>
                   <line x1={x} y1={0} x2={x} y2={rulerHeight} stroke="#2a2a4a" strokeWidth={1} />
                   <text
-                    x={x + w / 2}
-                    y={rulerHeight - 8}
+                    x={x + w / 2} y={rulerHeight - 8}
                     textAnchor="middle"
                     fill={ch.characterPresent ? '#c8c8d4' : '#555568'}
-                    fontSize={10}
-                    fontFamily="'JetBrains Mono', monospace"
+                    fontSize={10} fontFamily="'JetBrains Mono', monospace"
                   >
                     Ch.{i + 1}
                   </text>
@@ -94,20 +105,19 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: T
                 </g>
               );
             })}
-            {/* Ruler bottom border */}
             <line x1={0} y1={rulerHeight} x2={totalWidth} y2={rulerHeight} stroke="#3a3a5a" strokeWidth={1.5} />
           </g>
 
           {/* Emotion Lanes */}
-          {visibleEmotions.map((emotion, laneIndex) => {
+          {laneOffsets.map(({ emotion, yOffset, isExpanded }) => {
             const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
             if (!timeline) return null;
 
             const color = EMOTION_COLORS[emotion];
             const brightColor = EMOTION_COLORS_BRIGHT[emotion];
-            const yOffset = rulerHeight + laneIndex * LANE_HEIGHT;
+            const laneIndex = visibleEmotions.indexOf(emotion);
 
-            // Build the continuous line
+            // Build continuous line
             const linePoints = buildContinuousLine(
               timeline.driftLine,
               timeline.surges.map((s) => ({
@@ -121,116 +131,104 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: T
               zoomLevel,
               LANE_HEIGHT
             );
-
             const linePath = pointsToSmoothPath(linePoints);
             const filledPath = pointsToFilledPath(linePoints, LANE_HEIGHT);
-
-            // Surge peak points
             const peakPoints = linePoints.filter((p) => p.isSurgePeak);
 
             return (
               <g key={emotion} transform={`translate(0, ${yOffset})`}>
-                {/* Lane background */}
-                <rect
-                  x={0} y={0} width={totalWidth} height={LANE_HEIGHT}
-                  fill={laneIndex % 2 === 0 ? '#0d0d1e' : '#10102a'}
-                />
-
-                {/* Silence blocks */}
-                {timeline.silenceBlocks.map(([start, end], si) => {
-                  const sx = chapterToX(start, zoomLevel);
-                  const ex = chapterToX(end + 1, zoomLevel);
-                  return (
-                    <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.5} />
-                  );
-                })}
-
-                {/* Chapter grid lines */}
-                {book.chapters.map((_, i) => (
-                  <line
-                    key={i}
-                    x1={chapterToX(i, zoomLevel)} y1={0}
-                    x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT}
-                    stroke="#1e1e3a" strokeWidth={0.5}
+                {/* Normal lane */}
+                <g>
+                  {/* Background */}
+                  <rect
+                    x={0} y={0} width={totalWidth} height={LANE_HEIGHT}
+                    fill={laneIndex % 2 === 0 ? '#0d0d1e' : '#10102a'}
                   />
-                ))}
 
-                {/* Filled area */}
-                {filledPath && (
-                  <path d={filledPath} fill={`url(#fill-${emotion})`} />
+                  {/* Highlight if expanded */}
+                  {isExpanded && (
+                    <rect
+                      x={0} y={0} width={totalWidth} height={LANE_HEIGHT}
+                      fill={color} opacity={0.04}
+                    />
+                  )}
+
+                  {/* Silence blocks */}
+                  {timeline.silenceBlocks.map(([start, end], si) => {
+                    const sx = chapterToX(start, zoomLevel);
+                    const ex = chapterToX(end + 1, zoomLevel);
+                    return <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.5} />;
+                  })}
+
+                  {/* Chapter grid */}
+                  {book.chapters.map((_, i) => (
+                    <line key={i} x1={chapterToX(i, zoomLevel)} y1={0} x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT} stroke="#1e1e3a" strokeWidth={0.5} />
+                  ))}
+
+                  {/* Filled area */}
+                  {filledPath && <path d={filledPath} fill={`url(#fill-${emotion})`} />}
+
+                  {/* Continuous line */}
+                  {linePath && (
+                    <path d={linePath} fill="none" stroke={color} strokeWidth={2} strokeLinejoin="round" strokeLinecap="round" />
+                  )}
+
+                  {/* Surge peak dots */}
+                  {peakPoints.map((point) => {
+                    const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
+                    const isSelected = selectedSurge?.id === point.surgeId;
+                    return (
+                      <g key={point.surgeId}>
+                        {isSelected && (
+                          <circle cx={point.x} cy={point.y} r={10} fill="none" stroke={brightColor} strokeWidth={1} opacity={0.4} />
+                        )}
+                        <circle
+                          cx={point.x} cy={point.y} r={isSelected ? 6 : 4}
+                          fill={isSelected ? brightColor : color} stroke="#0d0d1a" strokeWidth={1.5}
+                          className="cursor-pointer"
+                          style={{ filter: isSelected ? `drop-shadow(0 0 8px ${brightColor})` : 'none' }}
+                          onClick={(e) => { e.stopPropagation(); if (surge) selectSurge(isSelected ? null : surge); }}
+                        >
+                          <title>{EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75</title>
+                        </circle>
+                      </g>
+                    );
+                  })}
+
+                  {/* Bottom border */}
+                  <line x1={0} y1={LANE_HEIGHT} x2={totalWidth} y2={LANE_HEIGHT} stroke="#3a3a5a" strokeWidth={isExpanded ? 0.5 : 1.5} />
+
+                  {/* Gradient def */}
+                  <defs>
+                    <linearGradient id={`fill-${emotion}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor={color} stopOpacity={0.25} />
+                      <stop offset="100%" stopColor={color} stopOpacity={0.02} />
+                    </linearGradient>
+                  </defs>
+                </g>
+
+                {/* EQ Detail Panel — expanded below the normal lane */}
+                {isExpanded && (
+                  <g transform={`translate(0, ${LANE_HEIGHT})`}>
+                    <EmotionEQDetail
+                      emotion={emotion}
+                      timeline={timeline}
+                      traitPoints={traitEQData[emotion] ?? []}
+                      totalChapters={book.chapters.length}
+                      zoomLevel={zoomLevel}
+                      totalWidth={totalWidth}
+                    />
+                  </g>
                 )}
-
-                {/* Continuous emotion line */}
-                {linePath && (
-                  <path
-                    d={linePath} fill="none" stroke={color} strokeWidth={2}
-                    strokeLinejoin="round" strokeLinecap="round"
-                  />
-                )}
-
-                {/* Surge peak dots */}
-                {peakPoints.map((point) => {
-                  const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
-                  const isSelected = selectedSurge?.id === point.surgeId;
-                  return (
-                    <g key={point.surgeId}>
-                      {isSelected && (
-                        <circle cx={point.x} cy={point.y} r={10} fill="none" stroke={brightColor} strokeWidth={1} opacity={0.4} />
-                      )}
-                      <circle
-                        cx={point.x} cy={point.y}
-                        r={isSelected ? 6 : 4}
-                        fill={isSelected ? brightColor : color}
-                        stroke="#0d0d1a" strokeWidth={1.5}
-                        className="cursor-pointer"
-                        style={{ filter: isSelected ? `drop-shadow(0 0 8px ${brightColor})` : 'none' }}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          if (surge) selectSurge(isSelected ? null : surge);
-                        }}
-                      >
-                        <title>{EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75</title>
-                      </circle>
-                    </g>
-                  );
-                })}
-
-                {/* SOLID bottom border */}
-                <line x1={0} y1={LANE_HEIGHT} x2={totalWidth} y2={LANE_HEIGHT} stroke="#3a3a5a" strokeWidth={1.5} />
-
-                {/* Gradient def */}
-                <defs>
-                  <linearGradient id={`fill-${emotion}`} x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor={color} stopOpacity={0.25} />
-                    <stop offset="100%" stopColor={color} stopOpacity={0.02} />
-                  </linearGradient>
-                </defs>
               </g>
             );
           })}
 
-          {/* ========= PLAYHEAD ========= */}
+          {/* PLAYHEAD */}
           <g>
-            {/* Playhead line — full height vertical white line */}
-            <line
-              x1={playheadX} y1={0}
-              x2={playheadX} y2={totalHeight}
-              stroke="white" strokeWidth={1.5} opacity={0.85}
-              style={{ pointerEvents: 'none' }}
-            />
-            {/* Playhead top triangle marker */}
-            <polygon
-              points={`${playheadX - 5},0 ${playheadX + 5},0 ${playheadX},8`}
-              fill="white" opacity={0.9}
-              style={{ pointerEvents: 'none' }}
-            />
-            {/* Subtle glow on the playhead */}
-            <line
-              x1={playheadX} y1={0}
-              x2={playheadX} y2={totalHeight}
-              stroke="white" strokeWidth={6} opacity={0.06}
-              style={{ pointerEvents: 'none' }}
-            />
+            <line x1={playheadX} y1={0} x2={playheadX} y2={totalHeight} stroke="white" strokeWidth={1.5} opacity={0.85} style={{ pointerEvents: 'none' }} />
+            <polygon points={`${playheadX - 5},0 ${playheadX + 5},0 ${playheadX},8`} fill="white" opacity={0.9} style={{ pointerEvents: 'none' }} />
+            <line x1={playheadX} y1={0} x2={playheadX} y2={totalHeight} stroke="white" strokeWidth={6} opacity={0.06} style={{ pointerEvents: 'none' }} />
           </g>
         </svg>
       </div>
