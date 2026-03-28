@@ -6,6 +6,7 @@ import { InspectorPanel } from '../components/inspector/InspectorPanel';
 import { EffectsRack } from '../components/effects-rack/EffectsRack';
 import { useSession } from '../context/SessionContext';
 import { mockTraitEQ } from '../data/mock-character';
+import { mockInfluenceData } from '../data/mock-influence';
 
 const PLAYBACK_SPEED = 0.15;
 
@@ -103,7 +104,7 @@ export function ProducerLayout() {
           expandedTrack={expandedTrack}
           traitEQData={mockTraitEQ}
         />
-        <EffectsRack />
+        <EffectsRack influenceData={mockInfluenceData} />
       </div>
 
       <InspectorPanel />
