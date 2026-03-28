@@ -6,9 +6,6 @@ import {
   chapterToX,
   scoreToY,
   BASE_CHAPTER_WIDTH,
-  buildContinuousLine,
-  pointsToSmoothPath,
-  pointsToFilledPath,
 } from '../../utils/timeline-math';
 
 interface EmotionEQDetailProps {
@@ -29,6 +26,59 @@ function posToX(chapterPos: number, zoom: number): number {
     (chapterPos - Math.floor(chapterPos)) * BASE_CHAPTER_WIDTH * zoom;
 }
 
+/**
+ * Build a smooth flowing curve through the drift line values.
+ * One point per chapter at the midpoint, connected with smooth bezier curves.
+ */
+function buildSmoothDriftPath(
+  driftLine: number[],
+  zoom: number,
+  totalWidth: number,
+  laneHeight: number
+): string {
+  if (driftLine.length === 0) return '';
+
+  const points: { x: number; y: number }[] = [];
+
+  for (let i = 0; i < driftLine.length; i++) {
+    const x = chapterToX(i, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
+    const y = scoreToY(driftLine[i], laneHeight);
+    points.push({ x, y });
+  }
+
+  // Start at left edge at first value
+  let d = `M 0 ${scoreToY(driftLine[0], laneHeight)}`;
+
+  // Smooth curve to first point
+  d += ` C ${points[0].x / 2} ${scoreToY(driftLine[0], laneHeight)} ${points[0].x / 2} ${points[0].y} ${points[0].x} ${points[0].y}`;
+
+  // Smooth curves between all points
+  for (let i = 1; i < points.length; i++) {
+    const prev = points[i - 1];
+    const curr = points[i];
+    const cpx = (prev.x + curr.x) / 2;
+    d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+  }
+
+  // Extend to right edge
+  const last = points[points.length - 1];
+  d += ` C ${(last.x + totalWidth) / 2} ${last.y} ${(last.x + totalWidth) / 2} ${last.y} ${totalWidth} ${last.y}`;
+
+  return d;
+}
+
+/** Build a filled version of the smooth drift path */
+function buildSmoothDriftFilledPath(
+  driftLine: number[],
+  zoom: number,
+  totalWidth: number,
+  laneHeight: number
+): string {
+  const linePath = buildSmoothDriftPath(driftLine, zoom, totalWidth, laneHeight);
+  if (!linePath) return '';
+  return `${linePath} L ${totalWidth} ${laneHeight} L 0 ${laneHeight} Z`;
+}
+
 export function EmotionEQDetail({
   emotion,
   timeline,
@@ -40,29 +90,14 @@ export function EmotionEQDetail({
   const color = EMOTION_COLORS[emotion];
   const brightColor = EMOTION_COLORS_BRIGHT[emotion];
 
-  // Build the SAME emotion data as the collapsed view, but at EQ_DETAIL_HEIGHT for more vertical resolution
-  const linePoints = buildContinuousLine(
-    timeline.driftLine,
-    timeline.surges.map((s) => ({
-      chapterIndex: s.chapterIndex,
-      scenePosition: s.scenePosition,
-      peakIntensity: s.peakIntensity,
-      duration: s.duration,
-      id: s.id,
-    })),
-    timeline.silenceBlocks,
-    zoomLevel,
-    EQ_DETAIL_HEIGHT
-  );
-
-  // Smooth rendering for the expanded view
-  const smoothPath = pointsToSmoothPath(linePoints);
-  const smoothFilledPath = pointsToFilledPath(linePoints, EQ_DETAIL_HEIGHT, false);
+  // Build smooth flowing curve from drift line values
+  const smoothPath = buildSmoothDriftPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
+  const smoothFilledPath = buildSmoothDriftFilledPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
 
   // Sort trait points
   const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
 
-  // For each trait point, find the Y on the emotion line at that chapter position
+  // Get the Y position on the curve at a chapter position
   function getEmotionYAtChapter(chapterPos: number): number {
     const chIdx = Math.floor(chapterPos);
     const frac = chapterPos - chIdx;
@@ -80,7 +115,7 @@ export function EmotionEQDetail({
       {/* Background */}
       <rect x={0} y={0} width={totalWidth} height={EQ_DETAIL_HEIGHT} fill="#0a0a18" />
 
-      {/* Horizontal grid lines with score labels */}
+      {/* Horizontal grid lines */}
       {gridScores.map((score) => {
         const y = scoreToY(score, EQ_DETAIL_HEIGHT);
         const isTierBoundary = score === 25 || score === 50;
@@ -92,11 +127,8 @@ export function EmotionEQDetail({
               strokeWidth={isTierBoundary ? 1 : 0.5}
               strokeDasharray={isTierBoundary ? '6 4' : '3 4'}
             />
-            <text
-              x={4} y={y - 3}
-              fill="#555568" fontSize={8}
-              fontFamily="'JetBrains Mono', monospace"
-            >
+            <text x={4} y={y - 3} fill="#555568" fontSize={8}
+              fontFamily="'JetBrains Mono', monospace">
               {score}
             </text>
           </g>
@@ -119,12 +151,12 @@ export function EmotionEQDetail({
         );
       })}
 
-      {/* Filled area under the smooth emotion curve */}
+      {/* Filled area under curve */}
       {smoothFilledPath && (
         <path d={smoothFilledPath} fill={color} opacity={0.1} />
       )}
 
-      {/* The smooth emotion curve — SAME data as collapsed, but smooth */}
+      {/* Smooth flowing emotion curve */}
       {smoothPath && (
         <path
           d={smoothPath}
@@ -137,19 +169,17 @@ export function EmotionEQDetail({
         />
       )}
 
-      {/* Trait control points overlaid ON the emotion curve */}
+      {/* Trait control points overlaid on the curve */}
       {sorted.map((point) => {
         const x = posToX(point.chapterPosition, zoomLevel);
-        // Place the trait point ON the emotion line
         const lineY = getEmotionYAtChapter(point.chapterPosition);
-        // Offset vertically to show influence direction
         const offsetY = -(point.boostCut / 37) * 40;
         const pointY = lineY + offsetY;
         const isBoost = point.boostCut > 0;
 
         return (
           <g key={point.id}>
-            {/* Connection line from emotion curve to the trait point */}
+            {/* Connection line from curve to trait point */}
             <line
               x1={x} y1={lineY} x2={x} y2={pointY}
               stroke={isBoost ? '#2aad8e' : '#dc3545'} strokeWidth={1} opacity={0.4}
@@ -162,7 +192,7 @@ export function EmotionEQDetail({
             {/* Outer glow ring */}
             <circle cx={x} cy={pointY} r={12} fill="none" stroke={color} strokeWidth={1} opacity={0.15} />
 
-            {/* Main control point circle */}
+            {/* Main control point */}
             <circle
               cx={x} cy={pointY} r={7}
               fill="#0a0a18" stroke={brightColor} strokeWidth={2}
@@ -183,7 +213,7 @@ export function EmotionEQDetail({
               </text>
             </g>
 
-            {/* Boost/cut value badge */}
+            {/* Boost/cut badge */}
             <g transform={`translate(${x + 14}, ${pointY - 6})`}>
               <rect x={-2} y={-6} width={24} height={12} rx={2}
                 fill={isBoost ? '#2aad8e22' : '#dc354522'}
@@ -207,7 +237,7 @@ export function EmotionEQDetail({
       </text>
       <text x={8} y={26} fill="#555568" fontSize={8}
         fontFamily="'JetBrains Mono', monospace">
-        Same emotion curve with trait modifiers shown
+        Smooth emotion curve with trait modifiers
       </text>
 
       {/* Borders */}
