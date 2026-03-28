@@ -50,7 +50,7 @@ export const SUPPRESSION_RULES: SuppressionRule[] = [
 ];
 
 /** Threshold: suppression only kicks in when dominant emotion is above this */
-const SUPPRESSION_THRESHOLD = 40;
+const SUPPRESSION_THRESHOLD = 50;
 
 /**
  * Apply suppression to emotion deltas based on current emotion values.

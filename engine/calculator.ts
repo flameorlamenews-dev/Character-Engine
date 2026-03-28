@@ -19,10 +19,12 @@ import { EVENT_EMOTION_MAP, SUBJECT_MULTIPLIER, SOURCE_MULTIPLIER, calculateTrig
 import { calculateTraitModifier } from './trait-modifiers';
 import { applySuppression } from './suppression';
 
-/** Decay rate: 12% per chapter for untriggered emotions */
-const DECAY_RATE = 0.12;
-/** Faster decay for red zone (above 75): 20% per chapter */
-const RED_ZONE_DECAY_RATE = 0.20;
+/** Decay rate: 50% per chapter for untriggered emotions — emotions fade fast if not reinforced */
+const DECAY_RATE = 0.50;
+/** Faster decay for red zone (above 75): 65% per chapter */
+const RED_ZONE_DECAY_RATE = 0.65;
+/** Even triggered emotions decay partially — carry-over dampening */
+const TRIGGERED_CARRY_DECAY = 0.25;
 
 /**
  * Run the full emotional engine for a character across all chapters.
@@ -109,12 +111,18 @@ export function calculateEmotions(
         const finalDelta = modifiedDelta * subjectMult * sourceMult;
         breakdown.push(`    Final delta: ${modifiedDelta.toFixed(2)} × ${subjectMult} × ${sourceMult} = ${finalDelta.toFixed(2)}`);
 
+        // Cap per-stimulant delta at 40 (no single event should max an emotion alone)
+        const cappedDelta = Math.min(40, Math.abs(finalDelta)) * Math.sign(finalDelta);
+        if (Math.abs(cappedDelta) < Math.abs(finalDelta)) {
+          breakdown.push(`    Capped: ${finalDelta.toFixed(2)} → ${cappedDelta.toFixed(2)} (max 40 per stimulant)`);
+        }
+
         // Apply (collapse = negative)
         if (isCollapse) {
-          deltas[targetEmotion] -= Math.abs(finalDelta);
-          breakdown.push(`    → Trust COLLAPSED by -${Math.abs(finalDelta).toFixed(2)}`);
+          deltas[targetEmotion] -= Math.abs(cappedDelta);
+          breakdown.push(`    → Trust COLLAPSED by -${Math.abs(cappedDelta).toFixed(2)}`);
         } else {
-          deltas[targetEmotion] += finalDelta;
+          deltas[targetEmotion] += cappedDelta;
           triggeredEmotions.add(targetEmotion);
         }
       }
@@ -135,16 +143,22 @@ export function calculateEmotions(
       const prevValue = currentEmotions[e];
       let newValue = prevValue + deltas[e];
 
-      // Decay: if emotion was NOT triggered this chapter, decay toward zero
+      // Emotion value = weighted blend of carry-over + current chapter events
+      // carry_weight: how much of previous value persists (0.30 = 30%)
+      // current_weight: how much current chapter events dominate (0.70 = 70%)
+      const CARRY_WEIGHT = 0.20;
+      const carryValue = prevValue * CARRY_WEIGHT;
+
       if (!triggeredEmotions.has(e) && deltas[e] <= 0) {
-        const decayRate = prevValue > 75 ? RED_ZONE_DECAY_RATE : DECAY_RATE;
-        const decay = decayRate * prevValue;
-        newValue -= decay;
-        if (decay > 0.01) {
-          breakdown.push(`    ${e}: ${prevValue.toFixed(1)} + delta(${deltas[e].toFixed(2)}) - decay(${decay.toFixed(2)}) = ${newValue.toFixed(2)}`);
+        // Not triggered: carry-over decays, plus any negative deltas (suppression)
+        newValue = carryValue + deltas[e];
+        if (prevValue > 0.5) {
+          breakdown.push(`    ${e}: carry(${prevValue.toFixed(1)} × ${CARRY_WEIGHT}) + delta(${deltas[e].toFixed(2)}) = ${newValue.toFixed(2)}`);
         }
-      } else if (deltas[e] !== 0) {
-        breakdown.push(`    ${e}: ${prevValue.toFixed(1)} + delta(${deltas[e].toFixed(2)}) = ${newValue.toFixed(2)}`);
+      } else {
+        // Triggered: carry-over + new deltas
+        newValue = carryValue + deltas[e];
+        breakdown.push(`    ${e}: carry(${prevValue.toFixed(1)} × ${CARRY_WEIGHT}) + delta(${deltas[e].toFixed(2)}) = ${newValue.toFixed(2)}`);
       }
 
       // VU value: 0-100 (can exceed 75)

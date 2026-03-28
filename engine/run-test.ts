@@ -7,6 +7,8 @@ import { calculateEmotions } from './calculator';
 import { ALL_EMOTIONS, type CharacterProfile, type ExtractedStimulant, type ChapterEmotionState } from './types';
 import * as fs from 'fs';
 import * as path from 'path';
+import { fileURLToPath } from 'url';
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const TOTAL_CHAPTERS = 19; // Prologue + Ch1-18
 
