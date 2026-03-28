@@ -63,9 +63,9 @@ export function EffectsRack({ influenceData }: EffectsRackProps) {
     setOpenSection((prev) => (prev === section ? null : section));
   };
 
-  // Filter lingering emotions visible at current chapter
+  // Filter lingering emotions active at current chapter (intensity > 0)
   const visibleLingeringEmotions = influenceData.lingeringEmotions.filter(
-    (le) => le.referencedInChapters.some((ch) => ch <= currentChapter)
+    (le) => (le.intensityByChapter[currentChapter] ?? 0) > 0
   );
 
   // Filter desires revealed by current chapter
@@ -155,7 +155,18 @@ export function EffectsRack({ influenceData }: EffectsRackProps) {
             ) : (
               visibleLingeringEmotions.map((le) => {
                 const emotionColor = EMOTION_COLORS[le.emotionType];
-                const refs = le.referencedInChapters.filter((ch) => ch <= currentChapter).length;
+                const currentIntensity = le.intensityByChapter[currentChapter] ?? 0;
+                const growthEventsToNow = le.growthEvents.filter((ge) => ge.chapter <= currentChapter);
+                const typeIcons: Record<string, string> = {
+                  memory: '💭',
+                  refelt: '🔁',
+                  behavior_change: '⚡',
+                };
+                const typeLabels: Record<string, string> = {
+                  memory: 'Memory',
+                  refelt: 'Re-felt',
+                  behavior_change: 'Behavior',
+                };
                 return (
                   <div key={le.id} className="bg-ce-body/50 rounded px-2 py-1.5">
                     <div className="flex items-center gap-1.5">
@@ -163,10 +174,34 @@ export function EffectsRack({ influenceData }: EffectsRackProps) {
                       <span className="text-[10px] text-ce-text-bright font-semibold leading-tight">{le.label}</span>
                     </div>
                     <p className="text-[9px] text-ce-text-muted mt-0.5 leading-tight">{le.event}</p>
-                    <div className="flex items-center justify-between mt-1">
-                      <span className="text-[8px] text-ce-text-muted">Referenced {refs}x</span>
-                    </div>
-                    <ItemSlider value={le.intensity} color={emotionColor} />
+                    <ItemSlider value={currentIntensity} color={emotionColor} />
+
+                    {/* Growth event log */}
+                    {growthEventsToNow.length > 0 && (
+                      <div className="mt-1.5 space-y-1 border-t border-ce-border-subtle pt-1.5">
+                        <span className="text-[8px] uppercase tracking-widest text-ce-text-muted">Accumulation</span>
+                        {growthEventsToNow.map((ge, gi) => (
+                          <div key={gi} className="flex items-start gap-1">
+                            <span className="text-[9px] shrink-0">{typeIcons[ge.type]}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1">
+                                <span className="text-[8px] text-ce-text-muted">Ch.{ge.chapter + 1}</span>
+                                <span className="text-[8px] px-1 rounded"
+                                  style={{
+                                    color: emotionColor,
+                                    background: emotionColor + '15',
+                                  }}
+                                >{typeLabels[ge.type]}</span>
+                                <span className="text-[8px] font-mono-readout" style={{ color: '#dc3545' }}>
+                                  +{ge.intensityDelta}
+                                </span>
+                              </div>
+                              <p className="text-[8px] text-ce-text-muted leading-tight truncate">{ge.description}</p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               })

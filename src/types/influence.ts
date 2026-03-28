@@ -10,7 +10,23 @@ export interface TraitEntry {
   effect: string;
 }
 
-/** A lingering emotional response toward a specific event */
+/** What caused a lingering emotion to grow in weight */
+export interface LingeringEmotionEvent {
+  chapter: number;
+  /** memory = character thinks about it, refelt = emotion hits again, behavior_change = alters how they act */
+  type: 'memory' | 'refelt' | 'behavior_change';
+  description: string;
+  /** How much this event added to the accumulated weight */
+  intensityDelta: number;
+}
+
+/**
+ * A lingering emotional response toward a specific event.
+ * Not the event itself, not the emotion alone — the combination.
+ * Measures accumulated emotional weight: how loud is this reverb still playing?
+ * Grows when: character thinks about it, re-feels it, or it changes their behavior.
+ * Can fuel both action AND inaction. Higher = more present, more distorting.
+ */
 export interface LingeringEmotion {
   id: string;
   /** The emotion + event combo, e.g. "Guilt toward Tien's death" */
@@ -19,10 +35,10 @@ export interface LingeringEmotion {
   emotionType: EmotionType;
   /** The specific event/scene this is tied to */
   event: string;
-  /** How strongly this emotional response is still active (0-75) */
-  intensity: Score75;
-  /** Which chapters this gets referenced in */
-  referencedInChapters: number[];
+  /** Per-chapter cumulative intensity (0-75). Index = chapter index. 0 = not yet active. */
+  intensityByChapter: number[];
+  /** What caused each growth in intensity */
+  growthEvents: LingeringEmotionEvent[];
 }
 
 /** A desire that actively drives the character's behavior */
