@@ -32,7 +32,7 @@ export const profile: CharacterProfile = {
     guiltSensitivity: 55,
     justificationTendency: 55,
   },
-  presentInChapters: [1, 2, 3, 10, 11, 14, 15, 17],
+  presentInChapters: [1, 2, 3],
   reasoning: {
     'emotionalBaseline.joy': 'Low joy sensitivity. Asher\'s rare moments of lightness are subdued: his "easy confidence more subdued than usual" after passing the test (Ch1). As a child, he smiled at Praew and Haldric\'s boldness about his father (Ch3). Joy is muted by the weight he carries.',
     'emotionalBaseline.sadness': 'Moderate sadness sensitivity. He feels the weight of betraying his friends: "I\'m sorry, Haldric. Praew" (Ch2 internal). He looked "torn" before choosing the stones over Haldric (Ch1). His sadness manifests as quiet withdrawal rather than tears.',
