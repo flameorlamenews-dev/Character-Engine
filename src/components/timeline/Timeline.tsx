@@ -17,9 +17,13 @@ import type { Surge } from '../../types/emotions';
 interface TimelineProps {
   mutedTracks: Set<string>;
   soloTrack: string | null;
+  /** Fractional chapter position of the playhead (e.g. 2.5) */
+  playheadPosition: number;
+  /** Called when user clicks on the timeline to set playhead */
+  onSeek: (position: number) => void;
 }
 
-export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
+export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek }: TimelineProps) {
   const { session } = useSession();
   const { selectedSurge, selectSurge } = useInspector();
   const { book, character, zoomLevel } = session;
@@ -32,6 +36,7 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
     return !mutedTracks.has(e);
   });
   const totalLaneHeight = visibleEmotions.length * LANE_HEIGHT;
+  const totalHeight = rulerHeight + totalLaneHeight;
 
   // Build a lookup from surge ID to full Surge object
   const surgeMap = new Map<string, Surge>();
@@ -41,13 +46,28 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
     }
   }
 
+  // Calculate playhead X position
+  const playheadX = chapterToX(Math.floor(playheadPosition), zoomLevel)
+    + (playheadPosition - Math.floor(playheadPosition)) * BASE_CHAPTER_WIDTH * zoomLevel;
+
+  // Handle click on timeline to seek
+  const handleTimelineClick = (e: React.MouseEvent<SVGSVGElement>) => {
+    const svg = e.currentTarget;
+    const rect = svg.getBoundingClientRect();
+    const x = e.clientX - rect.left + (scrollRef.current?.scrollLeft ?? 0);
+    const chapterWidth = BASE_CHAPTER_WIDTH * zoomLevel;
+    const position = Math.max(0, Math.min(book.chapters.length - 0.01, x / chapterWidth));
+    onSeek(position);
+  };
+
   return (
     <div className="flex-1 flex flex-col overflow-hidden bg-ce-body">
       <div ref={scrollRef} className="flex-1 overflow-auto">
         <svg
           width={totalWidth}
-          height={rulerHeight + totalLaneHeight}
+          height={totalHeight}
           className="block"
+          onClick={handleTimelineClick}
         >
           {/* Chapter Ruler */}
           <g>
@@ -74,7 +94,7 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
                 </g>
               );
             })}
-            {/* Final ruler border */}
+            {/* Ruler bottom border */}
             <line x1={0} y1={rulerHeight} x2={totalWidth} y2={rulerHeight} stroke="#3a3a5a" strokeWidth={1.5} />
           </g>
 
@@ -87,7 +107,7 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
             const brightColor = EMOTION_COLORS_BRIGHT[emotion];
             const yOffset = rulerHeight + laneIndex * LANE_HEIGHT;
 
-            // Build the continuous line for this emotion
+            // Build the continuous line
             const linePoints = buildContinuousLine(
               timeline.driftLine,
               timeline.surges.map((s) => ({
@@ -105,123 +125,80 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
             const linePath = pointsToSmoothPath(linePoints);
             const filledPath = pointsToFilledPath(linePoints, LANE_HEIGHT);
 
-            // Get surge peak points for clickable dots
+            // Surge peak points
             const peakPoints = linePoints.filter((p) => p.isSurgePeak);
 
             return (
               <g key={emotion} transform={`translate(0, ${yOffset})`}>
-                {/* Lane background — alternating */}
+                {/* Lane background */}
                 <rect
-                  x={0}
-                  y={0}
-                  width={totalWidth}
-                  height={LANE_HEIGHT}
+                  x={0} y={0} width={totalWidth} height={LANE_HEIGHT}
                   fill={laneIndex % 2 === 0 ? '#0d0d1e' : '#10102a'}
                 />
 
-                {/* Silence blocks (greyed out) */}
+                {/* Silence blocks */}
                 {timeline.silenceBlocks.map(([start, end], si) => {
                   const sx = chapterToX(start, zoomLevel);
                   const ex = chapterToX(end + 1, zoomLevel);
                   return (
-                    <rect
-                      key={si}
-                      x={sx}
-                      y={0}
-                      width={ex - sx}
-                      height={LANE_HEIGHT}
-                      fill="#1a1a2e"
-                      opacity={0.5}
-                    />
+                    <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.5} />
                   );
                 })}
 
-                {/* Chapter grid lines within lane */}
+                {/* Chapter grid lines */}
                 {book.chapters.map((_, i) => (
                   <line
                     key={i}
-                    x1={chapterToX(i, zoomLevel)}
-                    y1={0}
-                    x2={chapterToX(i, zoomLevel)}
-                    y2={LANE_HEIGHT}
-                    stroke="#1e1e3a"
-                    strokeWidth={0.5}
+                    x1={chapterToX(i, zoomLevel)} y1={0}
+                    x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT}
+                    stroke="#1e1e3a" strokeWidth={0.5}
                   />
                 ))}
 
-                {/* Filled area under the line */}
+                {/* Filled area */}
                 {filledPath && (
-                  <path
-                    d={filledPath}
-                    fill={`url(#fill-${emotion})`}
-                  />
+                  <path d={filledPath} fill={`url(#fill-${emotion})`} />
                 )}
 
-                {/* The continuous emotion line */}
+                {/* Continuous emotion line */}
                 {linePath && (
                   <path
-                    d={linePath}
-                    fill="none"
-                    stroke={color}
-                    strokeWidth={2}
-                    strokeLinejoin="round"
-                    strokeLinecap="round"
+                    d={linePath} fill="none" stroke={color} strokeWidth={2}
+                    strokeLinejoin="round" strokeLinecap="round"
                   />
                 )}
 
-                {/* Surge peak dots (clickable) */}
+                {/* Surge peak dots */}
                 {peakPoints.map((point) => {
                   const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
                   const isSelected = selectedSurge?.id === point.surgeId;
-
                   return (
                     <g key={point.surgeId}>
-                      {/* Glow ring on selected */}
                       {isSelected && (
-                        <circle
-                          cx={point.x}
-                          cy={point.y}
-                          r={10}
-                          fill="none"
-                          stroke={brightColor}
-                          strokeWidth={1}
-                          opacity={0.4}
-                        />
+                        <circle cx={point.x} cy={point.y} r={10} fill="none" stroke={brightColor} strokeWidth={1} opacity={0.4} />
                       )}
                       <circle
-                        cx={point.x}
-                        cy={point.y}
+                        cx={point.x} cy={point.y}
                         r={isSelected ? 6 : 4}
                         fill={isSelected ? brightColor : color}
-                        stroke="#0d0d1a"
-                        strokeWidth={1.5}
+                        stroke="#0d0d1a" strokeWidth={1.5}
                         className="cursor-pointer"
-                        style={{
-                          filter: isSelected ? `drop-shadow(0 0 8px ${brightColor})` : 'none',
-                        }}
-                        onClick={() => {
+                        style={{ filter: isSelected ? `drop-shadow(0 0 8px ${brightColor})` : 'none' }}
+                        onClick={(e) => {
+                          e.stopPropagation();
                           if (surge) selectSurge(isSelected ? null : surge);
                         }}
                       >
-                        <title>
-                          {EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75
-                        </title>
+                        <title>{EMOTION_LABELS[emotion as EmotionType]} surge: {surge?.peakIntensity}/75</title>
                       </circle>
                     </g>
                   );
                 })}
 
-                {/* SOLID BOTTOM BORDER — divider between tracks */}
-                <line
-                  x1={0}
-                  y1={LANE_HEIGHT}
-                  x2={totalWidth}
-                  y2={LANE_HEIGHT}
-                  stroke="#3a3a5a"
-                  strokeWidth={1.5}
-                />
+                {/* SOLID bottom border */}
+                <line x1={0} y1={LANE_HEIGHT} x2={totalWidth} y2={LANE_HEIGHT} stroke="#3a3a5a" strokeWidth={1.5} />
 
-                {/* Gradient definition for this emotion's fill */}
+                {/* Gradient def */}
                 <defs>
                   <linearGradient id={`fill-${emotion}`} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stopColor={color} stopOpacity={0.25} />
@@ -231,6 +208,30 @@ export function Timeline({ mutedTracks, soloTrack }: TimelineProps) {
               </g>
             );
           })}
+
+          {/* ========= PLAYHEAD ========= */}
+          <g>
+            {/* Playhead line — full height vertical white line */}
+            <line
+              x1={playheadX} y1={0}
+              x2={playheadX} y2={totalHeight}
+              stroke="white" strokeWidth={1.5} opacity={0.85}
+              style={{ pointerEvents: 'none' }}
+            />
+            {/* Playhead top triangle marker */}
+            <polygon
+              points={`${playheadX - 5},0 ${playheadX + 5},0 ${playheadX},8`}
+              fill="white" opacity={0.9}
+              style={{ pointerEvents: 'none' }}
+            />
+            {/* Subtle glow on the playhead */}
+            <line
+              x1={playheadX} y1={0}
+              x2={playheadX} y2={totalHeight}
+              stroke="white" strokeWidth={6} opacity={0.06}
+              style={{ pointerEvents: 'none' }}
+            />
+          </g>
         </svg>
       </div>
     </div>

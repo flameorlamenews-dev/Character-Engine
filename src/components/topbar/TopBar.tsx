@@ -1,13 +1,21 @@
 import { useSession } from '../../context/SessionContext';
 
-export function TopBar() {
+interface TopBarProps {
+  isPlaying?: boolean;
+  playheadPosition?: number;
+  onPlay?: () => void;
+  onPause?: () => void;
+  onStop?: () => void;
+}
+
+export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPause, onStop }: TopBarProps) {
   const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode } = useSession();
   const { book, character, currentChapter, zoomLevel, viewMode, editMode } = session;
 
   const chapter = book.chapters[currentChapter];
 
   return (
-    <div className="flex items-center gap-4 px-4 h-14 bg-ce-panel-alt border-b border-ce-border shrink-0">
+    <div className="flex items-center gap-3 px-4 h-14 bg-ce-panel-alt border-b border-ce-border shrink-0">
       {/* Book + Character */}
       <div className="flex items-center gap-3 min-w-0">
         <div
@@ -20,7 +28,55 @@ export function TopBar() {
         </div>
       </div>
 
-      {/* Divider */}
+      <div className="w-px h-8 bg-ce-border" />
+
+      {/* Transport Controls — Play/Pause/Stop */}
+      <div className="flex items-center gap-1">
+        {/* Stop / Reset to start */}
+        <button
+          onClick={onStop ?? undefined}
+          className="w-7 h-7 flex items-center justify-center rounded bg-ce-panel border border-ce-border hover:bg-ce-surface text-ce-text-muted hover:text-ce-text transition-colors"
+          title="Stop"
+        >
+          <svg width="10" height="10" viewBox="0 0 10 10">
+            <rect x="1" y="1" width="8" height="8" fill="currentColor" rx="1" />
+          </svg>
+        </button>
+
+        {/* Play/Pause */}
+        <button
+          onClick={isPlaying ? (onPause ?? undefined) : (onPlay ?? undefined)}
+          className={`w-8 h-8 flex items-center justify-center rounded border transition-all ${
+            isPlaying
+              ? 'bg-red-900/30 border-red-500/40 text-red-400 shadow-[0_0_8px_rgba(255,60,60,0.15)]'
+              : 'bg-ce-panel border-ce-border text-ce-text-muted hover:text-ce-text hover:bg-ce-surface'
+          }`}
+          title={isPlaying ? 'Pause' : 'Play'}
+        >
+          {isPlaying ? (
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <rect x="1" y="1" width="3.5" height="10" fill="currentColor" rx="0.5" />
+              <rect x="7.5" y="1" width="3.5" height="10" fill="currentColor" rx="0.5" />
+            </svg>
+          ) : (
+            <svg width="12" height="12" viewBox="0 0 12 12">
+              <polygon points="2,1 11,6 2,11" fill="currentColor" />
+            </svg>
+          )}
+        </button>
+      </div>
+
+      {/* Playhead position readout */}
+      <div className="font-mono-readout text-[10px] text-ce-text-muted bg-ce-panel px-2 py-1 rounded border border-ce-border">
+        <span className="text-ce-text-bright">
+          {Math.floor(playheadPosition) + 1}
+        </span>
+        <span className="text-ce-text-muted">.</span>
+        <span className="text-ce-text">
+          {Math.round((playheadPosition % 1) * 100).toString().padStart(2, '0')}
+        </span>
+      </div>
+
       <div className="w-px h-8 bg-ce-border" />
 
       {/* Chapter Transport */}
@@ -31,7 +87,7 @@ export function TopBar() {
         >
           &#9664;
         </button>
-        <div className="font-mono-readout text-sm text-ce-text-bright bg-ce-panel px-3 py-1 rounded border border-ce-border min-w-[120px] text-center">
+        <div className="font-mono-readout text-sm text-ce-text-bright bg-ce-panel px-3 py-1 rounded border border-ce-border min-w-[100px] text-center">
           Ch. {currentChapter + 1} / {book.chapters.length}
         </div>
         <button
@@ -40,10 +96,9 @@ export function TopBar() {
         >
           &#9654;
         </button>
-        <span className="text-xs text-ce-text-muted truncate max-w-[140px]">{chapter?.title}</span>
+        <span className="text-xs text-ce-text-muted truncate max-w-[120px]">{chapter?.title}</span>
       </div>
 
-      {/* Spacer */}
       <div className="flex-1" />
 
       {/* Zoom */}
@@ -61,10 +116,9 @@ export function TopBar() {
         <span className="font-mono-readout text-xs text-ce-text-muted w-8">{zoomLevel.toFixed(1)}x</span>
       </div>
 
-      {/* Divider */}
       <div className="w-px h-8 bg-ce-border" />
 
-      {/* Edit Mode Toggle */}
+      {/* Edit Mode */}
       <button
         onClick={() => setEditMode(!editMode)}
         className={`px-3 py-1 rounded text-xs font-semibold transition-all ${
