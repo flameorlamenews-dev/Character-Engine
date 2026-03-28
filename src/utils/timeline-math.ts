@@ -141,7 +141,7 @@ export function buildContinuousLine(
   return points;
 }
 
-/** Convert points to a smooth SVG path using cardinal spline-like curves */
+/** Convert points to a smooth SVG path using bezier curves */
 export function pointsToSmoothPath(points: TimelinePoint[]): string {
   if (points.length === 0) return '';
   if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
@@ -151,25 +151,32 @@ export function pointsToSmoothPath(points: TimelinePoint[]): string {
   for (let i = 1; i < points.length; i++) {
     const prev = points[i - 1];
     const curr = points[i];
+    const cpx = (prev.x + curr.x) / 2;
+    d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+  }
 
-    // Use smooth curves for surge peaks, straight segments for flat baseline
-    if (curr.isSurgePeak || prev.isSurgePeak) {
-      // Bezier curve for smooth peaks
-      const cpx = (prev.x + curr.x) / 2;
-      d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
-    } else {
-      d += ` L ${curr.x} ${curr.y}`;
-    }
+  return d;
+}
+
+/** Convert points to a sharp/angular SVG path — straight lines, EKG/heartbeat style */
+export function pointsToSharpPath(points: TimelinePoint[]): string {
+  if (points.length === 0) return '';
+  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+
+  let d = `M ${points[0].x} ${points[0].y}`;
+
+  for (let i = 1; i < points.length; i++) {
+    d += ` L ${points[i].x} ${points[i].y}`;
   }
 
   return d;
 }
 
 /** Convert points to a filled area path (closed, going down to lane bottom) */
-export function pointsToFilledPath(points: TimelinePoint[], laneHeight: number = LANE_HEIGHT): string {
+export function pointsToFilledPath(points: TimelinePoint[], laneHeight: number = LANE_HEIGHT, sharp: boolean = false): string {
   if (points.length < 2) return '';
 
-  const linePath = pointsToSmoothPath(points);
+  const linePath = sharp ? pointsToSharpPath(points) : pointsToSmoothPath(points);
   const lastPoint = points[points.length - 1];
   const firstPoint = points[0];
 
