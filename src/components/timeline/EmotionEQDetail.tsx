@@ -6,6 +6,9 @@ import {
   chapterToX,
   scoreToY,
   BASE_CHAPTER_WIDTH,
+  buildContinuousSegments,
+  segmentsToSmoothPaths,
+  segmentToFilledPath,
 } from '../../utils/timeline-math';
 
 interface EmotionEQDetailProps {
@@ -26,59 +29,6 @@ function posToX(chapterPos: number, zoom: number): number {
     (chapterPos - Math.floor(chapterPos)) * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/**
- * Build a smooth flowing curve through the drift line values.
- * One point per chapter at the midpoint, connected with smooth bezier curves.
- */
-function buildSmoothDriftPath(
-  driftLine: number[],
-  zoom: number,
-  totalWidth: number,
-  laneHeight: number
-): string {
-  if (driftLine.length === 0) return '';
-
-  const points: { x: number; y: number }[] = [];
-
-  for (let i = 0; i < driftLine.length; i++) {
-    const x = chapterToX(i, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
-    const y = scoreToY(driftLine[i], laneHeight);
-    points.push({ x, y });
-  }
-
-  // Start at left edge at first value
-  let d = `M 0 ${scoreToY(driftLine[0], laneHeight)}`;
-
-  // Smooth curve to first point
-  d += ` C ${points[0].x / 2} ${scoreToY(driftLine[0], laneHeight)} ${points[0].x / 2} ${points[0].y} ${points[0].x} ${points[0].y}`;
-
-  // Smooth curves between all points
-  for (let i = 1; i < points.length; i++) {
-    const prev = points[i - 1];
-    const curr = points[i];
-    const cpx = (prev.x + curr.x) / 2;
-    d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
-  }
-
-  // Extend to right edge
-  const last = points[points.length - 1];
-  d += ` C ${(last.x + totalWidth) / 2} ${last.y} ${(last.x + totalWidth) / 2} ${last.y} ${totalWidth} ${last.y}`;
-
-  return d;
-}
-
-/** Build a filled version of the smooth drift path */
-function buildSmoothDriftFilledPath(
-  driftLine: number[],
-  zoom: number,
-  totalWidth: number,
-  laneHeight: number
-): string {
-  const linePath = buildSmoothDriftPath(driftLine, zoom, totalWidth, laneHeight);
-  if (!linePath) return '';
-  return `${linePath} L ${totalWidth} ${laneHeight} L 0 ${laneHeight} Z`;
-}
-
 export function EmotionEQDetail({
   emotion,
   timeline,
@@ -90,9 +40,24 @@ export function EmotionEQDetail({
   const color = EMOTION_COLORS[emotion];
   const brightColor = EMOTION_COLORS_BRIGHT[emotion];
 
-  // Build smooth flowing curve from drift line values
-  const smoothPath = buildSmoothDriftPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
-  const smoothFilledPath = buildSmoothDriftFilledPath(timeline.driftLine, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
+  // Build the EXACT SAME segments as the collapsed view — same data, same gaps
+  const segments = buildContinuousSegments(
+    timeline.driftLine,
+    timeline.surges.map((s) => ({
+      chapterIndex: s.chapterIndex,
+      scenePosition: s.scenePosition,
+      peakIntensity: s.peakIntensity,
+      duration: s.duration,
+      id: s.id,
+    })),
+    timeline.silenceBlocks,
+    zoomLevel,
+    EQ_DETAIL_HEIGHT  // Taller for more detail
+  );
+
+  // Smooth rendering — same data, smooth curves
+  const smoothPaths = segmentsToSmoothPaths(segments);
+  const filledPaths = segments.map((seg) => segmentToFilledPath(seg, EQ_DETAIL_HEIGHT, false));
 
   // Sort trait points
   const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
@@ -107,7 +72,6 @@ export function EmotionEQDetail({
     return scoreToY(interpolated, EQ_DETAIL_HEIGHT);
   }
 
-  // Score grid lines
   const gridScores = [0, 15, 25, 37, 50, 62, 75];
 
   return (
@@ -135,7 +99,7 @@ export function EmotionEQDetail({
         );
       })}
 
-      {/* Tier zone labels */}
+      {/* Tier labels */}
       <text x={totalWidth - 40} y={scoreToY(12, EQ_DETAIL_HEIGHT)} fill="#2aad8e" fontSize={8} opacity={0.4}
         fontFamily="'JetBrains Mono', monospace">LOW</text>
       <text x={totalWidth - 40} y={scoreToY(37, EQ_DETAIL_HEIGHT)} fill="#e0a832" fontSize={8} opacity={0.4}
@@ -143,23 +107,28 @@ export function EmotionEQDetail({
       <text x={totalWidth - 44} y={scoreToY(62, EQ_DETAIL_HEIGHT)} fill="#dc3545" fontSize={8} opacity={0.4}
         fontFamily="'JetBrains Mono', monospace">HIGH</text>
 
-      {/* Vertical chapter grid lines */}
-      {Array.from({ length: totalChapters }, (_, i) => {
-        const x = chapterToX(i, zoomLevel);
-        return (
-          <line key={i} x1={x} y1={0} x2={x} y2={EQ_DETAIL_HEIGHT} stroke="#1a1a30" strokeWidth={0.5} />
-        );
+      {/* Silence blocks — greyed */}
+      {timeline.silenceBlocks.map(([start, end], si) => {
+        const sx = chapterToX(start, zoomLevel);
+        const ex = chapterToX(end + 1, zoomLevel);
+        return <rect key={si} x={sx} y={0} width={ex - sx} height={EQ_DETAIL_HEIGHT} fill="#1a1a2e" opacity={0.4} />;
       })}
 
-      {/* Filled area under curve */}
-      {smoothFilledPath && (
-        <path d={smoothFilledPath} fill={color} opacity={0.1} />
-      )}
+      {/* Vertical chapter grid */}
+      {Array.from({ length: totalChapters }, (_, i) => (
+        <line key={i} x1={chapterToX(i, zoomLevel)} y1={0} x2={chapterToX(i, zoomLevel)} y2={EQ_DETAIL_HEIGHT} stroke="#1a1a30" strokeWidth={0.5} />
+      ))}
 
-      {/* Smooth flowing emotion curve */}
-      {smoothPath && (
+      {/* Filled areas — one per segment, gaps between */}
+      {filledPaths.map((fp, i) => fp && (
+        <path key={`fill-${i}`} d={fp} fill={color} opacity={0.1} />
+      ))}
+
+      {/* Smooth curves — one per segment, gaps between */}
+      {smoothPaths.map((sp, i) => sp && (
         <path
-          d={smoothPath}
+          key={`line-${i}`}
+          d={sp}
           fill="none"
           stroke={color}
           strokeWidth={2.5}
@@ -167,7 +136,7 @@ export function EmotionEQDetail({
           strokeLinecap="round"
           style={{ filter: `drop-shadow(0 0 4px ${color}44)` }}
         />
-      )}
+      ))}
 
       {/* Trait control points overlaid on the curve */}
       {sorted.map((point) => {
@@ -179,20 +148,16 @@ export function EmotionEQDetail({
 
         return (
           <g key={point.id}>
-            {/* Connection line from curve to trait point */}
             <line
               x1={x} y1={lineY} x2={x} y2={pointY}
               stroke={isBoost ? '#2aad8e' : '#dc3545'} strokeWidth={1} opacity={0.4}
               strokeDasharray="2 2"
             />
 
-            {/* Dot on the emotion line */}
             <circle cx={x} cy={lineY} r={3} fill={color} stroke="#0a0a18" strokeWidth={1} />
 
-            {/* Outer glow ring */}
             <circle cx={x} cy={pointY} r={12} fill="none" stroke={color} strokeWidth={1} opacity={0.15} />
 
-            {/* Main control point */}
             <circle
               cx={x} cy={pointY} r={7}
               fill="#0a0a18" stroke={brightColor} strokeWidth={2}
@@ -200,10 +165,8 @@ export function EmotionEQDetail({
               style={{ filter: `drop-shadow(0 0 6px ${color}66)` }}
             />
 
-            {/* Inner dot */}
             <circle cx={x} cy={pointY} r={3} fill={brightColor} />
 
-            {/* Label */}
             <g transform={`translate(${x}, ${isBoost ? pointY - 18 : pointY + 22})`}>
               <rect x={-28} y={-8} width={56} height={16} rx={3}
                 fill="#0d0d1a" stroke={color} strokeWidth={0.5} opacity={0.9} />
@@ -213,7 +176,6 @@ export function EmotionEQDetail({
               </text>
             </g>
 
-            {/* Boost/cut badge */}
             <g transform={`translate(${x + 14}, ${pointY - 6})`}>
               <rect x={-2} y={-6} width={24} height={12} rx={2}
                 fill={isBoost ? '#2aad8e22' : '#dc354522'}
@@ -237,7 +199,7 @@ export function EmotionEQDetail({
       </text>
       <text x={8} y={26} fill="#555568" fontSize={8}
         fontFamily="'JetBrains Mono', monospace">
-        Smooth emotion curve with trait modifiers
+        Same data as collapsed — smooth with trait modifiers
       </text>
 
       {/* Borders */}

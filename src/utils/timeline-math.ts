@@ -7,17 +7,14 @@ export const LANE_HEIGHT = 72;
 /** Max score value */
 export const MAX_SCORE = 75;
 
-/** Get the x position for a chapter index at a given zoom level */
 export function chapterToX(chapterIndex: number, zoom: number): number {
   return chapterIndex * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/** Get the x position for the midpoint of a chapter */
 export function chapterMidX(chapterIndex: number, zoom: number): number {
   return chapterToX(chapterIndex, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
 }
 
-/** Convert a score (0-75) to a Y position within a lane (0 = top = max, laneHeight = bottom = 0) */
 export function scoreToY(score: number, laneHeight: number = LANE_HEIGHT): number {
   const clamped = Math.max(0, Math.min(MAX_SCORE, score));
   const padding = 6;
@@ -25,16 +22,10 @@ export function scoreToY(score: number, laneHeight: number = LANE_HEIGHT): numbe
   return padding + usableHeight * (1 - clamped / MAX_SCORE);
 }
 
-/** Get total timeline width based on chapter count and zoom */
 export function getTimelineWidth(chapterCount: number, zoom: number): number {
   return chapterCount * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/**
- * Build a continuous line path for an emotion across all chapters.
- * Each chapter has a value from the driftLine. Surges create peaks within chapters.
- * Returns an array of {x, y} points that form one continuous waveform.
- */
 export interface TimelinePoint {
   x: number;
   y: number;
@@ -43,17 +34,23 @@ export interface TimelinePoint {
   surgeId?: string;
 }
 
-export function buildContinuousLine(
+/** A segment of points — one continuous section between gaps */
+export type PointSegment = TimelinePoint[];
+
+/**
+ * Build points for an emotion across all chapters.
+ * Returns SEGMENTS — each segment is a continuous run of points
+ * separated by gaps where the character doesn't appear.
+ */
+export function buildContinuousSegments(
   driftLine: number[],
   surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number; id: string }[],
   silenceBlocks: [number, number][],
   zoom: number,
   laneHeight: number = LANE_HEIGHT
-): TimelinePoint[] {
-  const points: TimelinePoint[] = [];
+): PointSegment[] {
   const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
 
-  // Create a set of silent chapters for quick lookup
   const silentChapters = new Set<number>();
   for (const [start, end] of silenceBlocks) {
     for (let i = start; i <= end; i++) {
@@ -61,40 +58,41 @@ export function buildContinuousLine(
     }
   }
 
-  // Sort surges by position
   const sortedSurges = [...surges].sort((a, b) => {
     if (a.chapterIndex !== b.chapterIndex) return a.chapterIndex - b.chapterIndex;
     return a.scenePosition - b.scenePosition;
   });
 
-  for (let ch = 0; ch < driftLine.length; ch++) {
-    const baseValue = driftLine[ch];
-    const chapterStartX = chapterToX(ch, zoom);
+  const segments: PointSegment[] = [];
+  let currentSegment: TimelinePoint[] = [];
 
+  for (let ch = 0; ch < driftLine.length; ch++) {
     if (silentChapters.has(ch)) {
-      // Silent chapter — no points (gap in the line)
+      // Gap — save current segment if it has points, start a new one
+      if (currentSegment.length > 0) {
+        segments.push(currentSegment);
+        currentSegment = [];
+      }
       continue;
     }
 
-    // Get surges in this chapter
+    const baseValue = driftLine[ch];
+    const chapterStartX = chapterToX(ch, zoom);
     const chapterSurges = sortedSurges.filter((s) => s.chapterIndex === ch);
 
     if (chapterSurges.length === 0) {
-      // No surges — just the baseline drift value at chapter start and end
-      points.push({
+      currentSegment.push({
         x: chapterStartX,
         y: scoreToY(baseValue, laneHeight),
         chapterIndex: ch,
       });
-      points.push({
+      currentSegment.push({
         x: chapterStartX + chapterWidth,
         y: scoreToY(baseValue, laneHeight),
         chapterIndex: ch,
       });
     } else {
-      // Has surges — create rise and fall points
-      // Start of chapter at baseline
-      points.push({
+      currentSegment.push({
         x: chapterStartX,
         y: scoreToY(baseValue, laneHeight),
         chapterIndex: ch,
@@ -105,15 +103,13 @@ export function buildContinuousLine(
         const riseStartX = surgeX - surge.duration * 0.3 * chapterWidth;
         const decayEndX = surgeX + surge.duration * 0.7 * chapterWidth;
 
-        // Point before the rise (at baseline)
-        points.push({
+        currentSegment.push({
           x: Math.max(chapterStartX, riseStartX),
           y: scoreToY(baseValue, laneHeight),
           chapterIndex: ch,
         });
 
-        // Peak point
-        points.push({
+        currentSegment.push({
           x: surgeX,
           y: scoreToY(surge.peakIntensity, laneHeight),
           chapterIndex: ch,
@@ -121,16 +117,14 @@ export function buildContinuousLine(
           surgeId: surge.id,
         });
 
-        // Return to baseline after decay
-        points.push({
+        currentSegment.push({
           x: Math.min(chapterStartX + chapterWidth, decayEndX),
           y: scoreToY(baseValue, laneHeight),
           chapterIndex: ch,
         });
       }
 
-      // End of chapter at baseline
-      points.push({
+      currentSegment.push({
         x: chapterStartX + chapterWidth,
         y: scoreToY(baseValue, laneHeight),
         chapterIndex: ch,
@@ -138,85 +132,55 @@ export function buildContinuousLine(
     }
   }
 
-  return points;
-}
-
-/** Convert points to a smooth SVG path using bezier curves */
-export function pointsToSmoothPath(points: TimelinePoint[]): string {
-  if (points.length === 0) return '';
-  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
-
-  let d = `M ${points[0].x} ${points[0].y}`;
-
-  for (let i = 1; i < points.length; i++) {
-    const prev = points[i - 1];
-    const curr = points[i];
-    const cpx = (prev.x + curr.x) / 2;
-    d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+  // Don't forget the last segment
+  if (currentSegment.length > 0) {
+    segments.push(currentSegment);
   }
 
-  return d;
+  return segments;
 }
 
-/** Convert points to a sharp/angular SVG path — straight lines, EKG/heartbeat style */
-export function pointsToSharpPath(points: TimelinePoint[]): string {
-  if (points.length === 0) return '';
-  if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
-
-  let d = `M ${points[0].x} ${points[0].y}`;
-
-  for (let i = 1; i < points.length; i++) {
-    d += ` L ${points[i].x} ${points[i].y}`;
-  }
-
-  return d;
+/** Render segments as sharp SVG paths (one path per segment = gaps between) */
+export function segmentsToSharpPaths(segments: PointSegment[]): string[] {
+  return segments.map((points) => {
+    if (points.length === 0) return '';
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      d += ` L ${points[i].x} ${points[i].y}`;
+    }
+    return d;
+  });
 }
 
-/** Convert points to a filled area path (closed, going down to lane bottom) */
-export function pointsToFilledPath(points: TimelinePoint[], laneHeight: number = LANE_HEIGHT, sharp: boolean = false): string {
+/** Render segments as smooth SVG paths (one path per segment = gaps between) */
+export function segmentsToSmoothPaths(segments: PointSegment[]): string[] {
+  return segments.map((points) => {
+    if (points.length === 0) return '';
+    if (points.length === 1) return `M ${points[0].x} ${points[0].y}`;
+
+    let d = `M ${points[0].x} ${points[0].y}`;
+    for (let i = 1; i < points.length; i++) {
+      const prev = points[i - 1];
+      const curr = points[i];
+      const cpx = (prev.x + curr.x) / 2;
+      d += ` C ${cpx} ${prev.y} ${cpx} ${curr.y} ${curr.x} ${curr.y}`;
+    }
+    return d;
+  });
+}
+
+/** Render a segment as a filled area path */
+export function segmentToFilledPath(points: TimelinePoint[], laneHeight: number, sharp: boolean): string {
   if (points.length < 2) return '';
-
-  const linePath = sharp ? pointsToSharpPath(points) : pointsToSmoothPath(points);
-  const lastPoint = points[points.length - 1];
-  const firstPoint = points[0];
-
-  return `${linePath} L ${lastPoint.x} ${laneHeight} L ${firstPoint.x} ${laneHeight} Z`;
+  const linePath = sharp
+    ? segmentsToSharpPaths([points])[0]
+    : segmentsToSmoothPaths([points])[0];
+  const last = points[points.length - 1];
+  const first = points[0];
+  return `${linePath} L ${last.x} ${laneHeight} L ${first.x} ${laneHeight} Z`;
 }
 
-/**
- * Build a line from trait EQ boost/cut data — same shape as the EQ dropdown curve.
- * This maps the trait boost/cut values onto a vertical center line within the lane.
- * The center of the lane = zero boost/cut.
- * Positive boost = line goes up. Negative cut = line goes down.
- */
-export function buildTraitEQLine(
-  traitPoints: { chapterPosition: number; boostCut: number }[],
-  totalWidth: number,
-  zoom: number,
-  laneHeight: number = LANE_HEIGHT
-): TimelinePoint[] {
-  const centerY = laneHeight / 2;
-  const maxRange = (laneHeight / 2) - 6; // leave padding
-  const maxBoost = 37; // max boost/cut value
-
-  const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
-
-  const points: TimelinePoint[] = [];
-
-  // Start at center (zero)
-  points.push({ x: 0, y: centerY, chapterIndex: 0 });
-
-  // Each trait point
-  for (const point of sorted) {
-    const x = chapterToX(Math.floor(point.chapterPosition), zoom)
-      + (point.chapterPosition - Math.floor(point.chapterPosition)) * BASE_CHAPTER_WIDTH * zoom;
-    const clamped = Math.max(-maxBoost, Math.min(maxBoost, point.boostCut));
-    const y = centerY - (clamped / maxBoost) * maxRange;
-    points.push({ x, y, chapterIndex: Math.floor(point.chapterPosition) });
-  }
-
-  // End at center (zero)
-  points.push({ x: totalWidth, y: centerY, chapterIndex: 0 });
-
-  return points;
+/** Get all surge peak points from all segments */
+export function getAllPeakPoints(segments: PointSegment[]): TimelinePoint[] {
+  return segments.flatMap((seg) => seg.filter((p) => p.isSurgePeak));
 }
