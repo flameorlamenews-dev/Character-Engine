@@ -8,10 +8,9 @@ import {
   chapterToX,
   BASE_CHAPTER_WIDTH,
   LANE_HEIGHT,
-  buildContinuousSegments,
-  segmentsToSharpPaths,
-  segmentToFilledPath,
-  getAllPeakPoints,
+  buildContinuousLine,
+  pointsToSharpPath,
+  pointsToFilledPath,
 } from '../../utils/timeline-math';
 import { EmotionEQDetail, EQ_DETAIL_HEIGHT } from './EmotionEQDetail';
 import type { Surge } from '../../types/emotions';
@@ -39,6 +38,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
     return !mutedTracks.has(e);
   });
 
+  // Calculate total height with expanded lanes
   let totalLaneHeight = 0;
   const laneOffsets: { emotion: EmotionType; yOffset: number; isExpanded: boolean }[] = [];
   for (const emotion of visibleEmotions) {
@@ -110,8 +110,8 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
             const brightColor = EMOTION_COLORS_BRIGHT[emotion];
             const laneIndex = visibleEmotions.indexOf(emotion);
 
-            // Build segments from real emotion data — gaps where character is absent
-            const segments = buildContinuousSegments(
+            // Build from REAL emotion drift + surge data
+            const linePoints = buildContinuousLine(
               timeline.driftLine,
               timeline.surges.map((s) => ({
                 chapterIndex: s.chapterIndex,
@@ -125,23 +125,26 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
               LANE_HEIGHT
             );
 
-            const sharpPaths = segmentsToSharpPaths(segments);
-            const filledPaths = segments.map((seg) => segmentToFilledPath(seg, LANE_HEIGHT, true));
-            const peakPoints = getAllPeakPoints(segments);
+            // Sharp angular rendering for collapsed view
+            const sharpLinePath = pointsToSharpPath(linePoints);
+            const sharpFilledPath = pointsToFilledPath(linePoints, LANE_HEIGHT, true);
+            const peakPoints = linePoints.filter((p) => p.isSurgePeak);
 
             return (
               <g key={emotion} transform={`translate(0, ${yOffset})`}>
+                {/* Normal collapsed lane */}
                 <g>
                   {/* Background */}
                   <rect x={0} y={0} width={totalWidth} height={LANE_HEIGHT} fill={laneIndex % 2 === 0 ? '#0d0d1e' : '#10102a'} />
 
+                  {/* Highlight if expanded */}
                   {isExpanded && <rect x={0} y={0} width={totalWidth} height={LANE_HEIGHT} fill={color} opacity={0.04} />}
 
-                  {/* Silence blocks — greyed out */}
+                  {/* Silence blocks */}
                   {timeline.silenceBlocks.map(([start, end], si) => {
                     const sx = chapterToX(start, zoomLevel);
                     const ex = chapterToX(end + 1, zoomLevel);
-                    return <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.6} />;
+                    return <rect key={si} x={sx} y={0} width={ex - sx} height={LANE_HEIGHT} fill="#1a1a2e" opacity={0.5} />;
                   })}
 
                   {/* Chapter grid */}
@@ -149,17 +152,15 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                     <line key={i} x1={chapterToX(i, zoomLevel)} y1={0} x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT} stroke="#1e1e3a" strokeWidth={0.5} />
                   ))}
 
-                  {/* Filled areas — one per segment, gaps between */}
-                  {filledPaths.map((fp, i) => fp && (
-                    <path key={`fill-${i}`} d={fp} fill={`url(#fill-${emotion})`} />
-                  ))}
+                  {/* Filled area — sharp */}
+                  {sharpFilledPath && <path d={sharpFilledPath} fill={`url(#fill-${emotion})`} />}
 
-                  {/* Sharp lines — one per segment, gaps between */}
-                  {sharpPaths.map((sp, i) => sp && (
-                    <path key={`line-${i}`} d={sp} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
-                  ))}
+                  {/* Continuous sharp line — real emotion data, EKG heartbeat style */}
+                  {sharpLinePath && (
+                    <path d={sharpLinePath} fill="none" stroke={color} strokeWidth={1.5} strokeLinejoin="miter" strokeLinecap="butt" />
+                  )}
 
-                  {/* Surge peak dots */}
+                  {/* Surge peak dots (clickable) */}
                   {peakPoints.map((point) => {
                     const surge = point.surgeId ? surgeMap.get(point.surgeId) : null;
                     const isSelected = selectedSurge?.id === point.surgeId;
@@ -192,7 +193,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                   </defs>
                 </g>
 
-                {/* EQ Detail — expanded */}
+                {/* EQ Detail — expanded, shows trait influence curves */}
                 {isExpanded && (
                   <g transform={`translate(0, ${LANE_HEIGHT})`}>
                     <EmotionEQDetail
