@@ -3,42 +3,52 @@ import type { AIEmotionGuess } from '../types';
 export const guesses: AIEmotionGuess[] = [
   {
     chapterIndex: 0,
-    emotions: { joy: 0, sadness: 25, anger: 0, fear: 0, disgust: 0, surprise: 75, trust: 25, anticipation: 25 },
-    reasoning: "Prologue is Godric's POV. He fights Boltrax alone, gets his ribs shattered and nearly dies. Then an 8-year-old boy (Srevlis) appears and drives the beast away with impossible mastery. Godric is overwhelmed with awe/surprise. The boy's parting words ('Do you think you're the only victim?') haunt him deeply — sparking a sadness and self-reflection that reshapes his purpose. He ends the chapter with renewed resolve, trust in the cause, and anticipation of what this means for the future."
+    emotions: { joy: 0, sadness: 20, anger: 10, fear: 15, disgust: 0, surprise: 45, trust: 15, anticipation: 20 },
+    reasoning: "Ten stimulants across a dense prologue. Facing Boltrax alone (danger_cue, safety, stakes 3) and suppressing fear (threat, competence) — his high riskAppetite (70) and low fear baseline (13) mean fear is present but managed. Getting struck and dropping his spear (harm + failure, stakes 3) produces self-directed anger at the rookie mistake. Srevlis appearing and fighting impossibly (two surprise_reveals, stakes 3 and 2) — this is genuinely shocking even for an unflappable veteran, making surprise the dominant emotion. Being dragged inside (constraint, autonomy) adds frustration. Srevlis's rejection of his offer (rejection, belonging) and the humiliation of being outfought by a child (humiliation, competence) produce sadness and shame — but his containment (70) keeps them moderate. Srevlis's haunting words (reminder_cue, morality) and finding renewed purpose (moral_cue, morality) close the chapter with anticipation and budding trust in a new mission. Surprise peaks as the chapter's defining emotion."
   },
   {
     chapterIndex: 4,
-    emotions: { joy: 0, sadness: 0, anger: 25, fear: 0, disgust: 25, surprise: 0, trust: 0, anticipation: 25 },
-    reasoning: "Godric appears as 'Professor Stone' / 'Stone Face,' Praew's drill instructor. He is gruff, emotionless, and pushes his students hard with squats and lectures. He shows mild anger/disgust at their weakness and complaints but also delivers an inspiring speech about second chances. He reveals nothing personal. Mild anticipation — he's evaluating who has potential."
+    emotions: { joy: 0, sadness: 0, anger: 0, fear: 0, disgust: 0, surprise: 0, trust: 0, anticipation: 10 },
+    reasoning: "Two low-stakes stimulants. Praew calling him 'Stone Face' (insult, status, stakes 0) — zero stakes, and he adopts it himself, so no real emotional impact. Confronting recruits about failure and channeling second chances (moral_cue, morality, stakes 1) is low-intensity teaching mode. His containment and gruffness suppress everything. Barely any anticipation as he evaluates the new class. This is Godric on autopilot."
+  },
+  {
+    chapterIndex: 6,
+    emotions: { joy: 0, sadness: 0, anger: 10, fear: 0, disgust: 0, surprise: 0, trust: 0, anticipation: 0 },
+    reasoning: "Single stimulant: Mai reveals his identity against his wishes (surprise_reveal, autonomy, stakes 1). Low stakes but it violates his preference for anonymity. Mild anger at Mai for overriding his choice. His containment and low prideSensitivity (35) keep this nearly flat. Not truly surprised — he knows Mai is unpredictable."
   },
   {
     chapterIndex: 8,
-    emotions: { joy: 0, sadness: 0, anger: 25, fear: 0, disgust: 25, surprise: 0, trust: 0, anticipation: 25 },
-    reasoning: "Godric teaches about stone durability and reverse crumbling, reveals his three territory marks (Boltrax wing on his back, Tarnox horns, and beast jaw), showing vulnerability beneath his gruffness. He snaps at students who romanticize getting marked. He also overhears Praew and Wannii arguing about the investigation and delivers a veiled warning: 'Dangerous habit, letting stones slip. It's not uncommon for one to end up missing.' Anger at students' naivety, disgust at their recklessness, anticipation — he's clearly monitoring the situation."
+    emotions: { joy: 0, sadness: 0, anger: 15, fear: 0, disgust: 15, surprise: 0, trust: 0, anticipation: 15 },
+    reasoning: "Three stimulants. Revealing territory marks (reminder_cue, competence, stakes 1) — showing scars is deliberate, not emotional for him. Snapping at hero-worshipping students (moral_cue, morality, stakes 1) — disgust at their naivety about death and mild anger. Warning Praew and Wannii about dangerous investigations (danger_cue, safety, stakes 2) — protective instinct kicks in as anticipation; he's watching the situation develop. Everything is low-stakes, contained, and professional."
   },
   {
     chapterIndex: 9,
-    emotions: { joy: 0, sadness: 0, anger: 75, fear: 25, disgust: 50, surprise: 0, trust: 0, anticipation: 0 },
-    reasoning: "Godric storms into The Prime's office and has a furious confrontation — shouting 'What are you bolting doing?!' and 'DOING TO THEM?!' and 'IF I FIND OUT YOU—' before storming out with fists clenched. His hair is unkempt, collar misaligned. He is consumed by rage at The Prime, with deep disgust at what he's discovered, and fear about what is happening to 'them' (likely the students/people being embedded)."
+    emotions: { joy: 0, sadness: 0, anger: 50, fear: 15, disgust: 35, surprise: 0, trust: 0, anticipation: 0 },
+    reasoning: "Three stimulants centered on confrontation with The Prime. Unusual agitation in class (obstacle, autonomy, stakes 2) shows the turmoil is bleeding through containment. The furious confrontation itself (injustice, morality, stakes 3) — shouting about what The Prime is 'doing to them' — anger is dominant, fueled by his high confrontationalTendency (65) and moral disgust. Storming out with clenched fists (failure, autonomy, stakes 2) — the confrontation failed to resolve anything, compounding anger and adding disgust. Fear is mild — he's beginning to grasp the scope of what's happening. His containment holds but is visibly strained."
   },
   {
     chapterIndex: 13,
-    emotions: { joy: 0, sadness: 0, anger: 50, fear: 0, disgust: 50, surprise: 0, trust: 0, anticipation: 25 },
-    reasoning: "Godric confronts Mai in the training hall, calling her out for telling Praew about the Fourth Floor. He reveals Mai's dark past title 'Madman Godric, the Deadly Scientist' was his own — and threatens her. Mai stabs him through the foot with a dagger. He kicks her across the hall without flinching. He calls after Praew with cryptic words about 'Zephyr's Blade.' Anger at Mai for endangering Praew, disgust at being reminded of his own past ('the Deadly Scientist'), anticipation — he knows events are spiraling."
+    emotions: { joy: 0, sadness: 15, anger: 35, fear: 10, disgust: 25, surprise: 0, trust: 0, anticipation: 20 },
+    reasoning: "Five stimulants. Mai calling him 'Madman Godric, the Deadly Scientist' (insult, status, stakes 2) hits his shameSensitivity (45) — anger and disgust at his past being dredged up. His threatening response (reminder_cue, morality, stakes 2) shows the shame is active. Praew saying he 'was' one of her heroes in past tense (rejection, belonging, stakes 1) — low stakes but stings, producing mild sadness. Mai stabbing his foot (harm, safety, stakes 2) — pain but no emotional spike from a veteran. Missing students (loss, morality, stakes 3) — this is the heaviest stimulus; his protective drive and empathy (50) create real concern. Fear about what's happened to them, anger at the authority responsible, anticipation as he resolves to search the Fourth Floor."
+  },
+  {
+    chapterIndex: 15,
+    emotions: { joy: 0, sadness: 0, anger: 10, fear: 0, disgust: 10, surprise: 0, trust: 0, anticipation: 0 },
+    reasoning: "Single low-stakes stimulant: finding falsified medical records covering up his fight with Mai (harm, safety, stakes 1). The cover-up suggests institutional deception. Mild anger and disgust at the system, but stakes 1 and immediacy 1 mean this barely registers for a man focused on larger concerns."
   },
   {
     chapterIndex: 16,
-    emotions: { joy: 0, sadness: 50, anger: 50, fear: 25, disgust: 50, surprise: 0, trust: 0, anticipation: 50 },
-    reasoning: "Godric tells Haldric he searched the Fourth Floor for the missing students and heard screaming from below it. He reveals the person in a coma was 'the deadliest person in the city' (Mai). He fights Haldric briefly — catching a surged ForceStone bare-handed and bouncing it back. He then admits he didn't take the girls and has been trying to find them. Sadness at the situation with his students, anger at The Prime, disgust at what's happening, fear about the Fifth Floor, anticipation — he agrees to help rescue Praew."
+    emotions: { joy: 0, sadness: 25, anger: 30, fear: 20, disgust: 30, surprise: 15, trust: 0, anticipation: 30 },
+    reasoning: "Three stimulants. Hearing screaming from below the Fourth Floor (danger_cue, morality, stakes 3) — confirms his worst suspicions about the missing students, producing anger, disgust, and fear. Mai being put in a coma by an unknown attacker (surprise_reveal, safety, stakes 2, certainty 1) — genuinely unexpected, creating surprise and unease. Haldric confronting him with a surged stone (threat, safety, stakes 1) — low stakes for Godric; he catches it casually. Sadness at what's being done to people, anger at The Prime's regime, disgust at the moral horror, anticipation as he commits to the rescue. Fear is moderate — he's a man with riskAppetite 70 heading toward danger."
   },
   {
     chapterIndex: 17,
-    emotions: { joy: 0, sadness: 50, anger: 25, fear: 25, disgust: 50, surprise: 0, trust: 25, anticipation: 50 },
-    reasoning: "Godric sees The Prime's recorrection chamber with Praew strapped to the slab, a BoltStone embedded in her chest. He sees the bodies (Junya and the scientist). He coordinates with Haldric to create a distraction. He tells Haldric to confess nothing and that he will take Praew to the surface and another city. He says 'Goodbye, brother' to The Prime — revealing their familial bond while severing it. Plans to capture an Echo of Praew's parents' voices. Deep sadness (losing his brother, seeing students dead), disgust (at what Arthur has done), trust in Haldric, anticipation of the escape plan, fear of what comes next."
+    emotions: { joy: 0, sadness: 45, anger: 45, fear: 10, disgust: 50, surprise: 25, trust: 15, anticipation: 30 },
+    reasoning: "Three stimulants, all stakes 3 and devastating. Seeing Praew on the slab with an embedded stone (injustice, morality, stakes 3) — disgust peaks as the atrocity is confirmed firsthand. Two dead bodies including his student Junya (loss, morality, stakes 3) — profound sadness and anger at his brother's crimes. Recognizing Wannii and Jorpen among the masked Embedded warriors (betrayal, morality, stakes 3) — his own students turned into weapons. This is surprising even to him, adding shock. Sadness and anger compete as dominant. Disgust at the system that did this. Trust in Haldric as they coordinate the rescue. Anticipation for the escape plan. Fear is contained by his riskAppetite — he's resolved to act, not flee. Even with containment (70), the moral horror pushes emotions higher than usual."
   },
   {
     chapterIndex: 18,
-    emotions: { joy: 0, sadness: 50, anger: 25, fear: 50, disgust: 0, surprise: 0, trust: 25, anticipation: 0 },
-    reasoning: "Godric fights six Embedded warriors alone to buy Praew time to escape. He kills four — including beheading Jorpen and Wannii (his own former students, now mind-controlled). He uses Praew's EchoStone recording of The Prime's voice to freeze the warriors, then executes them. Renwick slashes his throat. He surges himself to stay alive, destroys Renwick's mouth with a force blast. Bleeding out, he staggers through the gate to the surface, drives his spear into the ground, and his vision dims. He is at peace but overwhelmed — fear of death, profound sadness at killing his students and likely dying, trust that Praew will carry on his legacy. He quotes Srevlis's line: 'Do you think you're the only victim?' — coming full circle from the Prologue."
+    emotions: { joy: 0, sadness: 50, anger: 25, fear: 30, disgust: 15, surprise: 0, trust: 30, anticipation: 0 },
+    reasoning: "Eleven stimulants in Godric's final chapter. Saying goodbye to his brother (separation, attachment, stakes 3) — deep sadness at severing the familial bond. The Prime's death threat (threat, safety, stakes 3) — fear registers but doesn't dominate; he's already committed. Praew quoting his book back to him (connection, morality, stakes 2) — a moment of warmth and validation; trust surges as his life's purpose is affirmed. Facing six Embedded warriors alone (danger_cue, safety, stakes 3) — his riskAppetite (70) handles this; fear is present but controlled. Decapitating Wannii and Jorpen (moral_cue, morality, stakes 3) and praying for them (loss, morality, stakes 3) — these are the heaviest emotional blows; sadness peaks. Renwick slashing his throat (harm, stakes 3), shattered ribs (harm, stakes 3), collapsing at the gate (loss, stakes 3) — physical destruction but emotional acceptance. Worry about Praew's compassion (moral_cue, morality) and his 'greatest shame' (reminder_cue, morality, stakes 3) add moral weight. Reflecting on shared weakness with his brother (reminder_cue, morality) brings final sadness. Sadness dominates as the man dies having done his duty. Trust in Praew to carry on. Fear of death is real but contained. Anger has burned out — only grief and acceptance remain. Anticipation is zero; his story ends here."
   },
 ];

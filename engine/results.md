@@ -1,6 +1,6 @@
 # Character Engine — Calculator Results
 
-Generated: 2026-03-28T06:38:46.278Z
+Generated: 2026-03-28T07:15:28.650Z
 
 
 ## Praew
@@ -10,25 +10,25 @@ Generated: 2026-03-28T06:38:46.278Z
 ```
 Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 --------------------------------------------------------------------------
- 0 |      0 |     20 |      6 |      3 |      0 |     13 |      0 |      9
- 1 |      0 |    75! |    75! |      9 |     27 |      0 |      0 |      0
- 2 |      0 |     68 |     54 |     11 |     11 |      5 |      0 |      0
- 3 |      0 |     17 |     13 |      3 |      3 |      1 |      0 |      0
- 4 |      0 |     64 |     33 |     15 |     11 |      0 |      6 |      0
- 5 |      0 |     42 |     27 |      8 |     13 |      6 |      0 |      0
- 6 |      0 |     40 |     48 |     16 |     10 |     10 |      0 |      0
- 7 |      0 |     48 |     49 |     21 |     28 |      4 |      0 |      2
- 8 |      0 |     52 |     32 |     19 |      7 |      5 |      0 |      0
- 9 |      8 |     13 |     10 |     11 |      2 |     14 |     12 |      9
-10 |     25 |      3 |      3 |     13 |      0 |     16 |      9 |      5
-11 |      6 |      1 |      1 |      3 |      0 |      4 |      2 |      1
-12 |      2 |     48 |     20 |      6 |      7 |     12 |      1 |      5
-13 |      0 |    75! |    75! |     13 |     11 |      4 |      0 |      0
-14 |      0 |     75 |     75 |     13 |     11 |      4 |      0 |      0
-15 |      0 |    75! |     68 |     10 |      3 |      0 |      0 |      0
-16 |      0 |    75! |     59 |     10 |      9 |      0 |      0 |      0
-17 |      0 |     33 |     38 |      4 |      2 |     11 |      9 |      3
-18 |      0 |     71 |     53 |     11 |     16 |      5 |      2 |      0
+ 0 |      9 |      0 |      0 |      0 |      0 |      1 |      4 |      2
+ 1 |      0 |    75! |     50 |     30 |     21 |     13 |      0 |      0
+ 2 |      0 |     57 |     26 |     25 |      6 |      6 |      0 |      0
+ 3 |      0 |      1 |      1 |      1 |      0 |      0 |      0 |      0
+ 4 |      3 |     27 |     10 |     21 |      7 |      4 |      3 |      4
+ 5 |      0 |     13 |      9 |     14 |      7 |      4 |      0 |      3
+ 6 |      0 |     13 |     29 |     56 |     19 |      9 |      0 |      2
+ 7 |      0 |     15 |     23 |     38 |     21 |     24 |      0 |     10
+ 8 |      0 |     47 |     15 |     35 |      0 |     11 |      0 |      0
+ 9 |     25 |      1 |      2 |      9 |      0 |      8 |     22 |     14
+10 |     19 |      0 |      0 |      0 |      0 |      4 |      9 |      7
+11 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
+12 |      0 |     33 |     22 |     14 |     21 |     20 |      0 |      6
+13 |      0 |     45 |     60 |     62 |     13 |     30 |      0 |      0
+14 |      0 |     45 |     60 |     62 |     13 |     30 |      0 |      0
+15 |      0 |    75! |     47 |     51 |     36 |      0 |      0 |      0
+16 |      0 |     67 |     40 |     53 |     11 |     21 |      0 |      0
+17 |      0 |      8 |     19 |     29 |      0 |      5 |      0 |      3
+18 |      0 |     54 |     40 |     47 |     15 |      8 |      0 |      0
 ```
 
 ### Calculation Breakdown
@@ -39,67 +39,64 @@ Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 Stimulants this chapter: 1
 
   Stimulant: "Praew reads the story of Srevlis and feels her heart race with excitement and emotional attachment to the tale that raised her."
-    Event: reminder_cue | Subject: self | Source: world_caused | Domain: attachment
-    Trigger: stakes=0 imm=3 cert=3 → total=6 → High (×0.85)
+    Event: reward | Subject: self | Source: world_caused | Domain: attachment
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    sadness: base=40 × trig=0.85 × weight=0.5 → raw=17.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+    joy: base=30 × trig=0.75 × weight=0.5 → raw=11.25
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 17.00 × (1 + 0.720) = 29.24
-    Final delta: 29.24 × 1 × 0.7 = 20.47
-    fear: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 11.25 × (1 + 0.100) = 12.38
+    Final delta: 12.38 × 1 × 0.7 = 8.66
+    trust: base=30 × trig=0.75 × weight=0.25 → raw=5.63
+    Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 6.88 × (1 + -0.360) = 4.41
-    Final delta: 4.41 × 1 × 0.7 = 3.08
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.453):
+    Modified delta: 5.63 × (1 + -0.100) = 5.06
+    Final delta: 5.06 × 1 × 0.7 = 3.54
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
+    Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 1 × 0.7 = 5.53
-  Ambient surprise: avg_trigger(0.85) × 15 = +12.8
-  Ambient anticipation: extreme event detected → +8.5
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 1 × 0.7 = 2.40
+    surprise: base=25 × trig=0.75 × weight=0.1 → raw=1.88
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 1.88 × (1 + -0.143) = 1.61
+    Final delta: 1.61 × 1 × 0.7 = 1.12
 
   Emotion updates:
-    sadness: carry(0.0 × 0.25) + delta(20.47) = 20.47
-    anger: carry(0.0 × 0.25) + delta(5.53) = 5.53
-    fear: carry(0.0 × 0.25) + delta(3.08) = 3.08
-    surprise: carry(0.0 × 0.25) + delta(12.75) = 12.75
-    anticipation: carry(0.0 × 0.25) + delta(8.50) = 8.50
+    joy: carry(0.0 × 0.2) + delta(8.66) = 8.66
+    surprise: carry(0.0 × 0.2) + delta(1.12) = 1.12
+    trust: carry(0.0 × 0.2) + delta(3.54) = 3.54
+    anticipation: carry(0.0 × 0.2) + delta(2.40) = 2.40
 
 === Chapter 1 ===
 Stimulants this chapter: 9
 
   Stimulant: "Praew closes the book for the last time as part of a pact with her friends, saying goodbye to the story that raised her."
     Event: separation | Subject: self | Source: self_caused | Domain: attachment
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=40 × trig=0.85 × weight=0.6 → raw=20.40
+    sadness: base=25 × trig=0.75 × weight=0.5 → raw=9.38
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 20.40 × (1 + 0.720) = 35.09
-    Final delta: 35.09 × 1 × 1.1 = 38.60
-    fear: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 9.38 × (1 + 0.720) = 16.13
+    Final delta: 16.13 × 1 × 1.1 = 17.74
+    fear: base=40 × trig=0.75 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 4.59 × (1 + -0.360) = 2.94
-    Final delta: 2.94 × 1 × 1.1 = 3.23
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.230) = 5.78
+    Final delta: 5.78 × 1 × 1.1 = 6.35
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -107,159 +104,189 @@ Stimulants this chapter: 9
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 1 × 1.1 = 8.70
-
-  Stimulant: "Praew feels tense and anxious in the waiting hall before the Hunter Test, doubting herself and spiraling with negative thoughts."
-    Event: threat | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=1 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 1 × 1.1 = 11.31
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 1 × 1.1 = 8.70
-    anticipation: base=32 × trig=0.85 × weight=0.1 → raw=2.72
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 2.72 × (1 + 0.087) = 2.96
-    Final delta: 2.96 × 1 × 1.1 = 3.25
-
-  Stimulant: "Praew catches herself using her height and gender as excuses and angrily refuses to accept them as reasons for potential failure."
-    Event: moral_cue | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    disgust: base=31 × trig=0.85 × weight=0.4 → raw=10.54
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.54 × (1 + 0.140) = 12.02
-    Final delta: 12.02 × 1 × 1.1 = 13.22
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.453) = 11.86
-    Final delta: 11.86 × 1 × 1.1 = 13.05
-    sadness: base=40 × trig=0.85 × weight=0.3 → raw=10.20
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.20 × (1 + 0.720) = 17.54
-    Final delta: 17.54 × 1 × 1.1 = 19.30
-
-  Stimulant: "Renwick mocks Praew for being emotional about the book and says women should not be Hunters."
-    Event: insult | Subject: self | Source: enemy_caused | Domain: status
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    anger: base=32 × trig=0.85 × weight=0.6 → raw=16.32
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 16.32 × (1 + 0.453) = 23.72
-    Final delta: 23.72 × 1 × 0.8 = 18.97
-    disgust: base=31 × trig=0.85 × weight=0.2 → raw=5.27
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.27 × (1 + 0.140) = 6.01
-    Final delta: 6.01 × 1 × 0.8 = 4.81
-    sadness: base=40 × trig=0.85 × weight=0.2 → raw=6.80
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.80 × (1 + 0.720) = 11.70
-    Final delta: 11.70 × 1 × 0.8 = 9.36
-
-  Stimulant: "Haldric and Asher perform their triangle hand gesture and recite their bond phrase, giving Praew reassurance before her test."
-    Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    trust: base=36 × trig=1 × weight=0.5 → raw=18.00
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 18.00 × (1 + -0.100) = 16.20
-    Final delta: 16.20 × 0.8 × 1.3 = 16.85
-    joy: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + 0.100) = 10.56
-    Final delta: 10.56 × 0.8 × 1.3 = 10.98
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + 0.087) = 6.95
-    Final delta: 6.95 × 0.8 × 1.3 = 7.23
-
-  Stimulant: "During the knowledge exam, a mysterious red-glowing stone overwhelms Praew with alien emotions: alarm, fear, hatred, longing, sadness, and defiance."
-    Event: surprise_reveal | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    surprise: base=23 × trig=0.85 × weight=0.7 → raw=13.69
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 1 × 1.1 = 3.96
+    surprise: base=25 × trig=0.75 × weight=0.1 → raw=1.88
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 13.69 × (1 + -0.143) = 11.72
-    Final delta: 11.72 × 1 × 0.7 = 8.21
-    fear: base=27 × trig=0.85 × weight=0.15 → raw=3.44
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 1.88 × (1 + -0.143) = 1.61
+    Final delta: 1.61 × 1 × 1.1 = 1.77
+
+  Stimulant: "Praew feels tense and anxious in the waiting hall before the Hunter Test, doubting herself and spiraling with negative thoughts."
+    Event: threat | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=2 imm=3 cert=1 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    fear: base=40 × trig=0.75 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 3.44 × (1 + -0.360) = 2.20
-    Final delta: 2.20 × 1 × 0.7 = 1.54
-    anticipation: base=32 × trig=0.85 × weight=0.15 → raw=4.08
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.230) = 16.17
+    Final delta: 16.17 × 1 × 1.1 = 17.79
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 1 × 1.1 = 3.96
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.08 × (1 + 0.087) = 4.43
-    Final delta: 4.43 × 1 × 0.7 = 3.10
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 1 × 1.1 = 3.77
+
+  Stimulant: "Praew catches herself using her height and gender as excuses and angrily refuses to accept them as reasons for potential failure."
+    Event: moral_cue | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    disgust: base=28 × trig=0.75 × weight=0.35 → raw=7.35
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 7.35 × (1 + 0.140) = 8.38
+    Final delta: 8.38 × 1 × 1.1 = 9.22
+    anger: base=22 × trig=0.75 × weight=0.25 → raw=4.13
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 4.13 × (1 + 0.453) = 6.00
+    Final delta: 6.00 × 1 × 1.1 = 6.59
+    sadness: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.75 × (1 + 0.720) = 6.45
+    Final delta: 6.45 × 1 × 1.1 = 7.10
+    surprise: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.75 × (1 + -0.143) = 3.21
+    Final delta: 3.21 × 1 × 1.1 = 3.53
+
+  Stimulant: "Renwick mocks Praew for being emotional about the book and says women should not be Hunters."
+    Event: insult | Subject: self | Source: enemy_caused | Domain: status
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    anger: base=22 × trig=0.75 × weight=0.5 → raw=8.25
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 8.25 × (1 + 0.453) = 11.99
+    Final delta: 11.99 × 1 × 0.8 = 9.59
+    disgust: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 4.20 × (1 + 0.140) = 4.79
+    Final delta: 4.79 × 1 × 0.8 = 3.83
+    sadness: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 2.81 × (1 + 0.720) = 4.84
+    Final delta: 4.84 × 1 × 0.8 = 3.87
+    surprise: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 2.81 × (1 + -0.143) = 2.41
+    Final delta: 2.41 × 1 × 0.8 = 1.93
+
+  Stimulant: "Haldric and Asher perform their triangle hand gesture and recite their bond phrase, giving Praew reassurance before her test."
+    Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    trust: base=30 × trig=1.2 × weight=0.4 → raw=14.40
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 14.40 × (1 + -0.100) = 12.96
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 12.96 × 0.85 × 1.3 × 1.36 = 19.48
+    joy: base=30 × trig=1.2 × weight=0.3 → raw=10.80
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 10.80 × (1 + 0.100) = 11.88
+    Final delta: 11.88 × 0.85 × 1.3 = 13.13
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 0.85 × 1.3 = 8.07
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.85 × 1.3 = 2.84
+
+  Stimulant: "During the knowledge exam, a mysterious red-glowing stone overwhelms Praew with alien emotions: alarm, fear, hatred, longing, sadness, and defiance."
+    Event: surprise_reveal | Subject: self | Source: world_caused | Domain: safety
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    surprise: base=25 × trig=0.75 × weight=0.6 → raw=11.25
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 11.25 × (1 + -0.143) = 9.64
+    Final delta: 9.64 × 1 × 0.7 = 6.75
+    fear: base=40 × trig=0.75 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.230) = 4.62
+    Final delta: 4.62 × 1 × 0.7 = 3.23
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 4.20 × (1 + 0.087) = 4.56
+    Final delta: 4.56 × 1 × 0.7 = 3.19
 
   Stimulant: "Praew watches Asher abandon Haldric during the practical test, choosing to take both stones instead of helping his friend."
     Event: betrayal | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 0.8 × 1.3 = 28.62
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 15.48 × 0.85 × 1.3 × 1.36 = 23.26
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -267,29 +294,38 @@ Stimulants this chapter: 9
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 0.8 × 1.3 = 14.51
-    trust (COLLAPSE): base=36 × trig=1 × weight=0.3 → raw=10.80
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Final delta: 9.59 × 0.85 × 1.3 = 10.60
+    trust (COLLAPSE): base=30 × trig=1.2 × weight=0.25 → raw=9.00
     Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.100) = 9.72
-    Final delta: 9.72 × 0.8 × 1.3 = 10.11
-    → Trust COLLAPSED by -10.11
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 8.10 × 0.85 × 1.3 × 1.36 = 12.17
+    → Trust COLLAPSED by -12.17
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 0.85 × 1.3 = 5.68
 
   Stimulant: "Renwick sexually harasses Praew during the practical test, causing her to hesitate and stumble, losing the competition."
     Event: humiliation | Subject: self | Source: enemy_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 1 × 0.8 = 22.02
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 15.48 × 1 × 0.8 × 1.12 = 13.87
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -297,491 +333,570 @@ Stimulants this chapter: 9
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 0.8 = 11.16
-    disgust: base=31 × trig=1 × weight=0.3 → raw=9.30
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 9.59 × 1 × 0.8 × 1.24 = 9.52
+    disgust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for disgust (total: +0.140):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.30 × (1 + 0.140) = 10.60
-    Final delta: 10.60 × 1 × 0.8 = 8.48
+    Modified delta: 8.40 × (1 + 0.140) = 9.58
+    Final delta: 9.58 × 1 × 0.8 = 7.66
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 0.8 = 4.11
 
   Stimulant: "Praew fails the Hunter Test permanently with no second chances, losing her lifelong dream."
     Event: failure | Subject: self | Source: enemy_caused | Domain: future_security
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.5 → raw=20.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 20.00 × (1 + 0.720) = 34.40
-    Final delta: 34.40 × 1 × 0.8 = 27.52
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.360) = 5.18
-    Final delta: 5.18 × 1 × 0.8 = 4.15
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 1 × 0.8 = 7.44
-
-  Suppression applied:
-  Suppression: anger(88.1) suppresses joy by -41.26 (50% of anger delta)
-  Suppression: anger(88.1) suppresses trust by -24.76 (30% of anger delta)
-  Suppression: anger(88.1) suppresses fear by -12.38 (15% of anger delta)
-  Suppression: sadness(165.9) suppresses joy by -87.25 (60% of sadness delta)
-  Suppression: sadness(165.9) suppresses anticipation by -43.62 (30% of sadness delta)
-  Suppression: sadness(165.9) suppresses surprise by -29.08 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-117.53) = -117.53
-    sadness: carry(20.5 × 0.25) + delta(145.41) = 150.53
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(5.5 × 0.25) + delta(82.53) = 83.91
-    *** anger in RED ZONE: VU=83.9 (track capped at 75) ***
-    fear: carry(3.1 × 0.25) + delta(7.85) = 8.62
-    disgust: carry(0.0 × 0.25) + delta(26.51) = 26.51
-    surprise: carry(12.8 × 0.25) + delta(-20.88) = -17.69
-    trust: carry(0.0 × 0.25) + delta(-18.02) = -18.02
-    anticipation: carry(8.5 × 0.25) + delta(-30.03) = -27.91
-
-=== Chapter 2 ===
-Stimulants this chapter: 4
-
-  Stimulant: "Praew is assigned to Special Forces under the constable, an unexpectedly good position that surprises her."
-    Event: success | Subject: self | Source: authority_caused | Domain: future_security
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    joy: base=32 × trig=1 × weight=0.7 → raw=22.40
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 22.40 × (1 + 0.100) = 24.64
-    Final delta: 24.64 × 1 × 1 = 24.64
-    trust: base=36 × trig=1 × weight=0.2 → raw=7.20
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 7.20 × (1 + -0.100) = 6.48
-    Final delta: 6.48 × 1 × 1 = 6.48
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + 0.087) = 3.48
-    Final delta: 3.48 × 1 × 1 = 3.48
-
-  Stimulant: "Praew watches Haldric shake with rage as Asher is named Beast Hunter, feeling the tension between her friends."
-    Event: danger_cue | Subject: friend | Source: authority_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.360) = 12.10
-    Final delta: 12.10 × 0.8 × 1 = 9.68
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + 0.087) = 6.95
-    Final delta: 6.95 × 0.8 × 1 = 5.56
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 0.8 × 1 = 3.72
-
-  Stimulant: "Asher leaves without saying goodbye or apologizing, turning his back on Praew and Haldric."
-    Event: rejection | Subject: self | Source: ally_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=1 × weight=0.6 → raw=24.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 24.00 × (1 + 0.720) = 41.28
-    Final delta: 41.28 × 1 × 1.3 = 53.66
-    Capped: 53.66 → 40.00 (max 40 per stimulant)
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 1 × 1.3 = 12.09
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 1 × 1.3 = 4.49
-
-  Stimulant: "Renwick makes a vulgar parting comment telling Praew to keep his bed warm, humiliating her publicly."
-    Event: insult | Subject: self | Source: enemy_caused | Domain: status
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    anger: base=32 × trig=0.85 × weight=0.6 → raw=16.32
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 16.32 × (1 + 0.453) = 23.72
-    Final delta: 23.72 × 1 × 0.8 = 18.97
-    disgust: base=31 × trig=0.85 × weight=0.2 → raw=5.27
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.27 × (1 + 0.140) = 6.01
-    Final delta: 6.01 × 1 × 0.8 = 4.81
-    sadness: base=40 × trig=0.85 × weight=0.2 → raw=6.80
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.80 × (1 + 0.720) = 11.70
-    Final delta: 11.70 × 1 × 0.8 = 9.36
-  Ambient surprise: avg_trigger(0.96) × 15 = +14.4
-
-  Suppression applied:
-  Suppression: anger(109.8) suppresses joy by -17.39 (50% of anger delta)
-  Suppression: anger(109.8) suppresses trust by -10.44 (30% of anger delta)
-  Suppression: anger(109.8) suppresses fear by -5.22 (15% of anger delta)
-  Suppression: sadness(124.4) suppresses joy by -29.61 (60% of sadness delta)
-  Suppression: sadness(124.4) suppresses anticipation by -14.81 (30% of sadness delta)
-  Suppression: sadness(124.4) suppresses surprise by -9.87 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-22.37) = -22.37
-    sadness: carry(75.0 × 0.25) + delta(49.36) = 68.11
-    anger: carry(75.0 × 0.25) + delta(34.79) = 53.54
-    fear: carry(8.6 × 0.25) + delta(8.95) = 11.11
-    disgust: carry(26.5 × 0.25) + delta(4.81) = 11.43
-    surprise: carry(0.0 × 0.25) + delta(4.57) = 4.57
-    trust: carry(0.0 × 0.25) + delta(-3.96) = -3.96
-    anticipation: carry(0.0 × 0.25) + delta(-5.77) = -5.77
-
-=== Chapter 3 ===
-Stimulants this chapter: 0
-
-  Emotion updates:
-    sadness: carry(68.1 × 0.25) + delta(0.00) = 17.03
-    anger: carry(53.5 × 0.25) + delta(0.00) = 13.38
-    fear: carry(11.1 × 0.25) + delta(0.00) = 2.78
-    disgust: carry(11.4 × 0.25) + delta(0.00) = 2.86
-    surprise: carry(4.6 × 0.25) + delta(0.00) = 1.14
-
-=== Chapter 4 ===
-Stimulants this chapter: 4
-
-  Stimulant: "Praew accidentally calls her drill instructor 'Stone Face' out loud, embarrassing herself in front of the class."
-    Event: humiliation | Subject: self | Source: self_caused | Domain: status
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=40 × trig=0.85 × weight=0.4 → raw=13.60
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.60 × (1 + 0.720) = 23.39
-    Final delta: 23.39 × 1 × 1.1 = 25.73
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.453) = 11.86
-    Final delta: 11.86 × 1 × 1.1 = 13.05
-    disgust: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.90 × (1 + 0.140) = 9.01
-    Final delta: 9.01 × 1 × 1.1 = 9.91
-
-  Stimulant: "Professor Stone tells the recruits they were given a second chance and could still go to the surface, reigniting Praew's buried hope."
-    Event: reward | Subject: self | Source: authority_caused | Domain: future_security
-    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    joy: base=32 × trig=0.6 × weight=0.6 → raw=11.52
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 11.52 × (1 + 0.100) = 12.67
-    Final delta: 12.67 × 1 × 1 = 12.67
-    trust: base=36 × trig=0.6 × weight=0.3 → raw=6.48
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 6.48 × (1 + -0.100) = 5.83
-    Final delta: 5.83 × 1 × 1 = 5.83
-    anticipation: base=32 × trig=0.6 × weight=0.1 → raw=1.92
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 1.92 × (1 + 0.087) = 2.09
-    Final delta: 2.09 × 1 × 1 = 2.09
-
-  Stimulant: "Praew worries about her parents' declining health and reduced rations, realizing the food shortage is worsening for them."
-    Event: threat | Subject: family | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 0.9 × 1 = 9.25
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 0.9 × 1 = 7.12
-    anticipation: base=32 × trig=0.85 × weight=0.1 → raw=2.72
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 2.72 × (1 + 0.087) = 2.96
-    Final delta: 2.96 × 0.9 × 1 = 2.66
-
-  Stimulant: "Praew kneels on her bed and traces the carved words from her parents, feeling grateful for their sacrifices."
-    Event: reminder_cue | Subject: family | Source: ally_caused | Domain: attachment
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=0.85 × weight=0.5 → raw=17.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 17.00 × (1 + 0.720) = 29.24
-    Final delta: 29.24 × 0.9 × 1.3 = 34.21
-    fear: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 6.88 × (1 + -0.360) = 4.41
-    Final delta: 4.41 × 0.9 × 1.3 = 5.16
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 0.9 × 1.3 = 9.25
-  Ambient surprise: avg_trigger(0.79) × 15 = +11.8
-
-  Suppression applied:
-  Suppression: sadness(77.0) suppresses joy by -35.97 (60% of sadness delta)
-  Suppression: sadness(77.0) suppresses anticipation by -17.98 (30% of sadness delta)
-  Suppression: sadness(77.0) suppresses surprise by -11.99 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-23.29) = -23.29
-    sadness: carry(17.0 × 0.25) + delta(59.94) = 64.20
-    anger: carry(13.4 × 0.25) + delta(29.41) = 32.76
-    fear: carry(2.8 × 0.25) + delta(14.41) = 15.10
-    disgust: carry(2.9 × 0.25) + delta(9.91) = 10.63
-    surprise: carry(1.1 × 0.25) + delta(-0.18) = 0.11
-    trust: carry(0.0 × 0.25) + delta(5.83) = 5.83
-    anticipation: carry(0.0 × 0.25) + delta(-13.24) = -13.24
-
-=== Chapter 5 ===
-Stimulants this chapter: 2
-
-  Stimulant: "Praew reads the terrifying silent course test rules including water crossing with BoltStones and wonders if this is a death sentence."
-    Event: threat | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=0.6 × weight=0.7 → raw=11.34
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 11.34 × (1 + -0.360) = 7.26
-    Final delta: 7.26 × 1 × 1 = 7.26
-    anger: base=32 × trig=0.6 × weight=0.2 → raw=3.84
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.84 × (1 + 0.453) = 5.58
-    Final delta: 5.58 × 1 × 1 = 5.58
-    anticipation: base=32 × trig=0.6 × weight=0.1 → raw=1.92
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 1.92 × (1 + 0.087) = 2.09
-    Final delta: 2.09 × 1 × 1 = 2.09
-
-  Stimulant: "Praew trips and falls during the silent movement practice in front of her classmates, who barely contain their laughter."
-    Event: humiliation | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=40 × trig=0.85 × weight=0.4 → raw=13.60
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.60 × (1 + 0.720) = 23.39
-    Final delta: 23.39 × 1 × 1.1 = 25.73
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.453) = 11.86
-    Final delta: 11.86 × 1 × 1.1 = 13.05
-    disgust: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.90 × (1 + 0.140) = 9.01
-    Final delta: 9.01 × 1 × 1.1 = 9.91
-  Ambient surprise: avg_trigger(0.72) × 15 = +10.9
-
-  Suppression applied:
-  Suppression: anger(51.4) suppresses joy by -9.31 (50% of anger delta)
-  Suppression: anger(51.4) suppresses trust by -5.59 (30% of anger delta)
-  Suppression: anger(51.4) suppresses fear by -2.79 (15% of anger delta)
-  Suppression: sadness(89.9) suppresses joy by -15.44 (60% of sadness delta)
-  Suppression: sadness(89.9) suppresses anticipation by -7.72 (30% of sadness delta)
-  Suppression: sadness(89.9) suppresses surprise by -5.15 (20% of sadness delta)
-
-  Emotion updates:
-    sadness: carry(64.2 × 0.25) + delta(25.73) = 41.78
-    anger: carry(32.8 × 0.25) + delta(18.63) = 26.82
-    fear: carry(15.1 × 0.25) + delta(4.46) = 8.24
-    disgust: carry(10.6 × 0.25) + delta(9.91) = 12.57
-    surprise: carry(0.1 × 0.25) + delta(5.73) = 5.76
-    trust: carry(5.8 × 0.25) + delta(-5.59) = -4.13
-    anticipation: carry(0.0 × 0.25) + delta(-5.63) = -5.63
-
-=== Chapter 6 ===
-Stimulants this chapter: 4
-
-  Stimulant: "Mai Azadi poisons the entire class with needles through their ears as an opening lesson in assassination."
-    Event: danger_cue | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.360) = 12.10
-    Final delta: 12.10 × 1 × 1 = 12.10
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + 0.087) = 6.95
-    Final delta: 6.95 × 1 × 1 = 6.95
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 1 × 1 = 4.65
-
-  Stimulant: "Praew is ordered to kill a bound, begging man and refuses, choosing death over murder."
-    Event: moral_cue | Subject: principle | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: principle → ×0.5
-    Source mult: authority_caused → ×1
-    disgust: base=31 × trig=1 × weight=0.4 → raw=12.40
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.40 × (1 + 0.140) = 14.14
-    Final delta: 14.14 × 0.5 × 1 = 7.07
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 0.5 × 1 = 6.98
-    sadness: base=40 × trig=1 × weight=0.3 → raw=12.00
+    sadness: base=25 × trig=1.2 × weight=0.4 → raw=12.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
     Modified delta: 12.00 × (1 + 0.720) = 20.64
-    Final delta: 20.64 × 0.5 × 1 = 10.32
+    Final delta: 20.64 × 1 × 0.8 = 16.51
+    fear: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.00 × (1 + -0.230) = 9.24
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 9.24 × 1 × 0.8 × 1.36 = 10.05
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Final delta: 7.67 × 1 × 0.8 = 6.14
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 0.8 = 3.08
+  Tone adjustment: negative chapter dampens joy: 13.1 × 0.4 = 5.3
+  Tone adjustment: negative chapter dampens trust: 7.3 × 0.4 = 2.9
+  Tone adjustment: negative chapter dampens anticipation: 15.0 × 0.4 = 6.0
+  Compression: sadness raw=82.3 → compressed=85.8 (threshold=75)
+
+  Suppression applied:
+  Suppression: anger(50.4) suppresses joy by -25.18 (50% of anger delta)
+  Suppression: anger(50.4) suppresses trust by -15.11 (30% of anger delta)
+  Suppression: anger(50.4) suppresses fear by -7.55 (15% of anger delta)
+  Suppression: sadness(85.8) suppresses joy by -51.51 (60% of sadness delta)
+  Suppression: sadness(85.8) suppresses anticipation by -25.75 (30% of sadness delta)
+  Suppression: sadness(85.8) suppresses surprise by -17.17 (20% of sadness delta)
+
+  Emotion updates:
+    joy: carry(8.7 × 0.2) + delta(-71.43) = -69.70
+    sadness: carry(0.0 × 0.08) + delta(85.84) = 85.84
+    *** sadness in RED ZONE: VU=85.8 (track capped at 75) ***
+    anger: carry(0.0 × 0.08) + delta(50.35) = 50.35
+    fear: carry(0.0 × 0.25) + delta(29.87) = 29.87
+    disgust: carry(0.0 × 0.12) + delta(20.71) = 20.71
+    surprise: carry(1.1 × 0.2) + delta(12.52) = 12.75
+    trust: carry(3.5 × 0.2) + delta(-12.18) = -11.48
+    anticipation: carry(2.4 × 0.2) + delta(-19.74) = -19.26
+
+=== Chapter 2 ===
+Stimulants this chapter: 4
+
+  Stimulant: "Praew is assigned to Special Forces under the constable, an unexpectedly good position that surprises her."
+    Event: success | Subject: self | Source: authority_caused | Domain: future_security
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    joy: base=30 × trig=1.2 × weight=0.5 → raw=18.00
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 18.00 × (1 + 0.100) = 19.80
+    Final delta: 19.80 × 1 × 1 = 19.80
+    trust: base=30 × trig=1.2 × weight=0.2 → raw=7.20
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Final delta: 6.48 × 1 × 1 = 6.48
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 5.04 × (1 + 0.087) = 5.48
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 5.48 × 1 × 1 × 1.36 = 7.45
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1 = 3.85
+
+  Stimulant: "Praew watches Haldric shake with rage as Asher is named Beast Hunter, feeling the tension between her friends."
+    Event: danger_cue | Subject: friend | Source: authority_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=1.2 × weight=0.45 → raw=21.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.60 × (1 + -0.230) = 16.63
+    Final delta: 16.63 × 0.85 × 1 = 14.14
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 8.40 × (1 + 0.087) = 9.13
+    Final delta: 9.13 × 0.85 × 1 = 7.76
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Final delta: 5.76 × 0.85 × 1 = 4.89
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 0.85 × 1 = 3.28
+
+  Stimulant: "Asher leaves without saying goodbye or apologizing, turning his back on Praew and Haldric."
+    Event: rejection | Subject: self | Source: ally_caused | Domain: attachment
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: ally_caused → ×1.3
+    sadness: base=25 × trig=1.2 × weight=0.5 → raw=15.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 15.00 × (1 + 0.720) = 25.80
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 25.80 × 1 × 1.3 × 1.48 = 49.64
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Final delta: 7.67 × 1 × 1.3 = 9.98
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Final delta: 5.54 × 1 × 1.3 = 7.21
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1.3 = 5.01
+
+  Stimulant: "Renwick makes a vulgar parting comment telling Praew to keep his bed warm, humiliating her publicly."
+    Event: insult | Subject: self | Source: enemy_caused | Domain: status
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    anger: base=22 × trig=0.75 × weight=0.5 → raw=8.25
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 8.25 × (1 + 0.453) = 11.99
+    Final delta: 11.99 × 1 × 0.8 = 9.59
+    disgust: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 4.20 × (1 + 0.140) = 4.79
+    Final delta: 4.79 × 1 × 0.8 = 3.83
+    sadness: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 2.81 × (1 + 0.720) = 4.84
+    Final delta: 4.84 × 1 × 0.8 = 3.87
+    surprise: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 2.81 × (1 + -0.143) = 2.41
+    Final delta: 2.41 × 1 × 0.8 = 1.93
+  Tone adjustment: negative chapter dampens joy: 19.8 × 0.4 = 7.9
+  Tone adjustment: negative chapter dampens trust: 6.5 × 0.4 = 2.6
+  Tone adjustment: negative chapter dampens anticipation: 15.2 × 0.4 = 6.1
+
+  Suppression applied:
+  Suppression: anger(74.8) suppresses joy by -12.23 (50% of anger delta)
+  Suppression: anger(74.8) suppresses trust by -7.34 (30% of anger delta)
+  Suppression: anger(74.8) suppresses fear by -3.67 (15% of anger delta)
+  Suppression: sadness(128.5) suppresses joy by -32.11 (60% of sadness delta)
+  Suppression: sadness(128.5) suppresses anticipation by -16.05 (30% of sadness delta)
+  Suppression: sadness(128.5) suppresses surprise by -10.70 (20% of sadness delta)
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(-36.42) = -36.42
+    sadness: carry(75.0 × 0.04) + delta(53.51) = 56.51
+    anger: carry(50.4 × 0.04) + delta(24.46) = 26.47
+    fear: carry(29.9 × 0.25) + delta(17.68) = 25.14
+    disgust: carry(20.7 × 0.12) + delta(3.83) = 6.32
+    surprise: carry(12.7 × 0.2) + delta(3.37) = 5.92
+    trust: carry(0.0 × 0.2) + delta(-4.75) = -4.75
+    anticipation: carry(0.0 × 0.2) + delta(-9.97) = -9.97
+
+=== Chapter 3 ===
+Stimulants this chapter: 0
+
+  Emotion updates:
+    sadness: carry(56.5 × 0.01) + delta(0.00) = 0.57
+    anger: carry(26.5 × 0.02) + delta(0.00) = 0.53
+    fear: carry(25.1 × 0.02) + delta(0.00) = 0.50
+    disgust: carry(6.3 × 0.02) + delta(0.00) = 0.13
+    surprise: carry(5.9 × 0.02) + delta(0.00) = 0.12
+
+=== Chapter 4 ===
+Stimulants this chapter: 4
+
+  Stimulant: "Praew accidentally calls her drill instructor 'Stone Face' out loud, embarrassing herself in front of the class."
+    Event: humiliation | Subject: self | Source: self_caused | Domain: status
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=25 × trig=0.75 × weight=0.3 → raw=5.63
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 5.63 × (1 + 0.720) = 9.68
+    Final delta: 9.68 × 1 × 1.1 = 10.64
+    anger: base=22 × trig=0.75 × weight=0.25 → raw=4.13
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 4.13 × (1 + 0.453) = 6.00
+    Final delta: 6.00 × 1 × 1.1 = 6.59
+    disgust: base=28 × trig=0.75 × weight=0.25 → raw=5.25
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 5.25 × (1 + 0.140) = 5.99
+    Final delta: 5.99 × 1 × 1.1 = 6.58
+    surprise: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.75 × (1 + -0.143) = 3.21
+    Final delta: 3.21 × 1 × 1.1 = 3.53
+
+  Stimulant: "Professor Stone tells the recruits they were given a second chance and could still go to the surface, reigniting Praew's buried hope."
+    Event: reward | Subject: self | Source: authority_caused | Domain: future_security
+    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.4)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    joy: base=30 × trig=0.4 × weight=0.5 → raw=6.00
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 6.00 × (1 + 0.100) = 6.60
+    Final delta: 6.60 × 1 × 1 = 6.60
+    trust: base=30 × trig=0.4 × weight=0.25 → raw=3.00
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 3.00 × (1 + -0.100) = 2.70
+    Final delta: 2.70 × 1 × 1 = 2.70
+    anticipation: base=28 × trig=0.4 × weight=0.15 → raw=1.68
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 1.68 × (1 + 0.087) = 1.83
+    Final delta: 1.83 × 1 × 1 = 1.83
+    surprise: base=25 × trig=0.4 × weight=0.1 → raw=1.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 1.00 × (1 + -0.143) = 0.86
+    Final delta: 0.86 × 1 × 1 = 0.86
+
+  Stimulant: "Praew worries about her parents' declining health and reduced rations, realizing the food shortage is worsening for them."
+    Event: threat | Subject: family | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=0.75 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.230) = 16.17
+    Final delta: 16.17 × 0.95 × 1 = 15.36
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 0.95 × 1 = 3.42
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 0.95 × 1 = 3.25
+
+  Stimulant: "Praew kneels on her bed and traces the carved words from her parents, feeling grateful for their sacrifices."
+    Event: reminder_cue | Subject: family | Source: ally_caused | Domain: attachment
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: ally_caused → ×1.3
+    sadness: base=25 × trig=0.75 × weight=0.4 → raw=7.50
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 7.50 × (1 + 0.720) = 12.90
+    Final delta: 12.90 × 0.95 × 1.3 = 15.93
+    fear: base=40 × trig=0.75 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.230) = 4.62
+    Final delta: 4.62 × 0.95 × 1.3 = 5.71
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 4.20 × (1 + 0.087) = 4.56
+    Final delta: 4.56 × 0.95 × 1.3 = 5.64
+    trust: base=30 × trig=0.75 × weight=0.2 → raw=4.50
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 4.50 × (1 + -0.100) = 4.05
+    Final delta: 4.05 × 0.95 × 1.3 = 5.00
+  Tone adjustment: negative chapter dampens joy: 6.6 × 0.4 = 2.6
+  Tone adjustment: negative chapter dampens trust: 7.7 × 0.4 = 3.1
+  Tone adjustment: negative chapter dampens anticipation: 10.7 × 0.4 = 4.3
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(2.64) = 2.64
+    sadness: carry(0.6 × 0.08) + delta(26.57) = 26.62
+    anger: carry(0.5 × 0.08) + delta(10.01) = 10.05
+    fear: carry(0.5 × 0.25) + delta(21.07) = 21.19
+    disgust: carry(0.1 × 0.12) + delta(6.58) = 6.60
+    surprise: carry(0.1 × 0.2) + delta(4.39) = 4.41
+    trust: carry(0.0 × 0.2) + delta(3.08) = 3.08
+    anticipation: carry(0.0 × 0.2) + delta(4.29) = 4.29
+
+=== Chapter 5 ===
+Stimulants this chapter: 2
+
+  Stimulant: "Praew reads the terrifying silent course test rules including water crossing with BoltStones and wonders if this is a death sentence."
+    Event: threat | Subject: self | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.4)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=0.4 × weight=0.7 → raw=11.20
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 11.20 × (1 + -0.230) = 8.62
+    Final delta: 8.62 × 1 × 1 = 8.62
+    anger: base=22 × trig=0.4 × weight=0.15 → raw=1.32
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 1.32 × (1 + 0.453) = 1.92
+    Final delta: 1.92 × 1 × 1 = 1.92
+    anticipation: base=28 × trig=0.4 × weight=0.15 → raw=1.68
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 1.68 × (1 + 0.087) = 1.83
+    Final delta: 1.83 × 1 × 1 = 1.83
+
+  Stimulant: "Praew trips and falls during the silent movement practice in front of her classmates, who barely contain their laughter."
+    Event: humiliation | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=25 × trig=0.75 × weight=0.3 → raw=5.63
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 5.63 × (1 + 0.720) = 9.68
+    Final delta: 9.68 × 1 × 1.1 = 10.64
+    anger: base=22 × trig=0.75 × weight=0.25 → raw=4.13
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 4.13 × (1 + 0.453) = 6.00
+    Final delta: 6.00 × 1 × 1.1 = 6.59
+    disgust: base=28 × trig=0.75 × weight=0.25 → raw=5.25
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 5.25 × (1 + 0.140) = 5.99
+    Final delta: 5.99 × 1 × 1.1 = 6.58
+    surprise: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.75 × (1 + -0.143) = 3.21
+    Final delta: 3.21 × 1 × 1.1 = 3.53
+
+  Emotion updates:
+    joy: carry(2.6 × 0.02) + delta(0.00) = 0.05
+    sadness: carry(26.6 × 0.08) + delta(10.64) = 12.77
+    anger: carry(10.1 × 0.08) + delta(8.51) = 9.32
+    fear: carry(21.2 × 0.25) + delta(8.62) = 13.92
+    disgust: carry(6.6 × 0.12) + delta(6.58) = 7.38
+    surprise: carry(4.4 × 0.2) + delta(3.53) = 4.42
+    trust: carry(3.1 × 0.02) + delta(0.00) = 0.06
+    anticipation: carry(4.3 × 0.2) + delta(1.83) = 2.68
+
+=== Chapter 6 ===
+Stimulants this chapter: 4
+
+  Stimulant: "Mai Azadi poisons the entire class with needles through their ears as an opening lesson in assassination."
+    Event: danger_cue | Subject: self | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=1.2 × weight=0.45 → raw=21.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.60 × (1 + -0.230) = 16.63
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 16.63 × 1 × 1 × 1.7200000000000002 = 28.61
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 8.40 × (1 + 0.087) = 9.13
+    Final delta: 9.13 × 1 × 1 = 9.13
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 5.76 × 1 × 1 × 1.24 = 7.14
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1 = 3.85
+
+  Stimulant: "Praew is ordered to kill a bound, begging man and refuses, choosing death over murder."
+    Event: moral_cue | Subject: principle | Source: authority_caused | Domain: morality
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: principle → ×0.6
+    Source mult: authority_caused → ×1
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 11.76 × (1 + 0.140) = 13.41
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 13.41 × 0.6 × 1 × 2.2 = 17.70
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 9.59 × 0.6 × 1 × 1.36 = 7.83
+    sadness: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 6.00 × (1 + 0.720) = 10.32
+    Final delta: 10.32 × 0.6 × 1 = 6.19
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 0.6 × 1 = 3.08
 
   Stimulant: "Mai slits the bound man's throat in front of Praew, spraying blood on her face."
     Event: harm | Subject: stranger | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.5 → raw=13.50
-    Trait modifiers for fear (total: -0.360):
+    fear: base=40 × trig=1.2 × weight=0.6 → raw=28.80
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 13.50 × (1 + -0.360) = 8.64
-    Final delta: 8.64 × 0.3 × 1 = 2.59
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 28.80 × (1 + -0.230) = 22.18
+    Final delta: 22.18 × 0.4 × 1 = 8.87
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -789,23 +904,37 @@ Stimulants this chapter: 4
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 0.3 × 1 = 4.19
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.67 × 0.4 × 1 × 1.36 = 4.17
+    sadness: base=25 × trig=1.2 × weight=0.1 → raw=3.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 0.3 × 1 = 4.13
+    Modified delta: 3.00 × (1 + 0.720) = 5.16
+    Final delta: 5.16 × 0.4 × 1 = 2.06
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.4 × 1 = 1.03
 
   Stimulant: "Mai fails Praew from Ghost Operations class, meaning she must now pass both remaining classes or face reassignment."
     Event: constraint | Subject: self | Source: ally_caused | Domain: future_security
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    fear: base=40 × trig=0.75 × weight=0.5 → raw=15.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 15.00 × (1 + -0.230) = 11.55
+    Final delta: 11.55 × 1 × 1.3 = 15.02
+    anger: base=22 × trig=0.75 × weight=0.3 → raw=4.95
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -813,55 +942,51 @@ Stimulants this chapter: 4
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 13.60 × (1 + 0.453) = 19.77
-    Final delta: 19.77 × 1 × 1.3 = 25.69
-    fear: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 6.88 × (1 + -0.360) = 4.41
-    Final delta: 4.41 × 1 × 1.3 = 5.73
-    sadness: base=40 × trig=0.85 × weight=0.2 → raw=6.80
+    Modified delta: 4.95 × (1 + 0.453) = 7.19
+    Final delta: 7.19 × 1 × 1.3 = 9.35
+    sadness: base=25 × trig=0.75 × weight=0.1 → raw=1.88
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.80 × (1 + 0.720) = 11.70
-    Final delta: 11.70 × 1 × 1.3 = 15.20
-  Ambient surprise: avg_trigger(0.96) × 15 = +14.4
+    Modified delta: 1.88 × (1 + 0.720) = 3.23
+    Final delta: 3.23 × 1 × 1.3 = 4.19
+    anticipation: base=28 × trig=0.75 × weight=0.1 → raw=2.10
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 2.10 × (1 + 0.087) = 2.28
+    Final delta: 2.28 × 1 × 1.3 = 2.97
 
   Suppression applied:
-  Suppression: anger(68.3) suppresses joy by -20.75 (50% of anger delta)
-  Suppression: anger(68.3) suppresses trust by -12.45 (30% of anger delta)
-  Suppression: anger(68.3) suppresses fear by -6.23 (15% of anger delta)
-  Suppression: sadness(71.4) suppresses joy by -17.79 (60% of sadness delta)
-  Suppression: sadness(71.4) suppresses anticipation by -8.90 (30% of sadness delta)
-  Suppression: sadness(71.4) suppresses surprise by -5.93 (20% of sadness delta)
+  Suppression: fear(66.4) suppresses joy by -21.00 (40% of fear delta)
+  Suppression: fear(66.4) suppresses trust by -15.75 (30% of fear delta)
+  Suppression: fear(66.4) suppresses anticipation by -10.50 (20% of fear delta)
 
   Emotion updates:
-    sadness: carry(41.8 × 0.25) + delta(29.65) = 40.10
-    anger: carry(26.8 × 0.25) + delta(41.51) = 48.21
-    fear: carry(8.2 × 0.25) + delta(14.19) = 16.25
-    disgust: carry(12.6 × 0.25) + delta(7.07) = 10.21
-    surprise: carry(5.8 × 0.25) + delta(8.51) = 9.95
-    anticipation: carry(0.0 × 0.25) + delta(-1.94) = -1.94
+    sadness: carry(12.8 × 0.08) + delta(12.45) = 13.47
+    anger: carry(9.3 × 0.08) + delta(28.49) = 29.24
+    fear: carry(13.9 × 0.25) + delta(52.49) = 55.97
+    disgust: carry(7.4 × 0.12) + delta(17.70) = 18.58
+    surprise: carry(4.4 × 0.2) + delta(7.97) = 8.85
+    anticipation: carry(2.7 × 0.2) + delta(1.60) = 2.13
 
 === Chapter 7 ===
 Stimulants this chapter: 5
 
   Stimulant: "Junya tells Praew about her parents' suspicious disappearance from the mines, pulling Praew into a dangerous investigation."
     Event: moral_cue | Subject: friend | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    disgust: base=31 × trig=0.85 × weight=0.4 → raw=10.54
+    disgust: base=28 × trig=0.75 × weight=0.35 → raw=7.35
     Trait modifiers for disgust (total: +0.140):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.54 × (1 + 0.140) = 12.02
-    Final delta: 12.02 × 0.8 × 1.3 = 12.50
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 7.35 × (1 + 0.140) = 8.38
+    Final delta: 8.38 × 0.85 × 1.3 = 9.26
+    anger: base=22 × trig=0.75 × weight=0.25 → raw=4.13
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -869,162 +994,183 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.453) = 11.86
-    Final delta: 11.86 × 0.8 × 1.3 = 12.33
-    sadness: base=40 × trig=0.85 × weight=0.3 → raw=10.20
+    Modified delta: 4.13 × (1 + 0.453) = 6.00
+    Final delta: 6.00 × 0.85 × 1.3 = 6.62
+    sadness: base=25 × trig=0.75 × weight=0.2 → raw=3.75
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.20 × (1 + 0.720) = 17.54
-    Final delta: 17.54 × 0.8 × 1.3 = 18.25
-
-  Stimulant: "Praew notices her own parents growing weaker and too tired to fuss over her, realizing the food shortage is taking a toll."
-    Event: threat | Subject: family | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 0.9 × 1 = 9.25
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 0.9 × 1 = 7.12
-    anticipation: base=32 × trig=0.85 × weight=0.1 → raw=2.72
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 2.72 × (1 + 0.087) = 2.96
-    Final delta: 2.96 × 0.9 × 1 = 2.66
-
-  Stimulant: "Mai Azadi appears at Praew's home uninvited, sitting with her parents while armed with a dagger, terrifying Praew."
-    Event: danger_cue | Subject: family | Source: ally_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: ally_caused → ×1.3
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 0.9 × 1.3 = 12.03
-    anticipation: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 5.44 × (1 + 0.087) = 5.91
-    Final delta: 5.91 × 0.9 × 1.3 = 6.92
-    anger: base=32 × trig=0.85 × weight=0.1 → raw=2.72
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 2.72 × (1 + 0.453) = 3.95
-    Final delta: 3.95 × 0.9 × 1.3 = 4.63
-
-  Stimulant: "Praew harshly rejects Mai's friendship and calls her a psychopathic murderer, later feeling deep guilt about it."
-    Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    disgust: base=31 × trig=0.85 × weight=0.4 → raw=10.54
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.54 × (1 + 0.140) = 12.02
-    Final delta: 12.02 × 1 × 1.1 = 13.22
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.453) = 11.86
-    Final delta: 11.86 × 1 × 1.1 = 13.05
-    sadness: base=40 × trig=0.85 × weight=0.3 → raw=10.20
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.20 × (1 + 0.720) = 17.54
-    Final delta: 17.54 × 1 × 1.1 = 19.30
-
-  Stimulant: "Mai reveals the bound man was a cannibal who murdered and ate his wife and daughter, shattering Praew's moral certainty."
-    Event: surprise_reveal | Subject: principle | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: principle → ×0.5
-    Source mult: ally_caused → ×1.3
-    surprise: base=23 × trig=1 × weight=0.7 → raw=16.10
+    Modified delta: 3.75 × (1 + 0.720) = 6.45
+    Final delta: 6.45 × 0.85 × 1.3 = 7.13
+    surprise: base=25 × trig=0.75 × weight=0.2 → raw=3.75
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 16.10 × (1 + -0.143) = 13.79
-    Final delta: 13.79 × 0.5 × 1.3 = 8.97
-    fear: base=27 × trig=1 × weight=0.15 → raw=4.05
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 3.75 × (1 + -0.143) = 3.21
+    Final delta: 3.21 × 0.85 × 1.3 = 3.55
+
+  Stimulant: "Praew notices her own parents growing weaker and too tired to fuss over her, realizing the food shortage is taking a toll."
+    Event: threat | Subject: family | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=0.75 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 4.05 × (1 + -0.360) = 2.59
-    Final delta: 2.59 × 0.5 × 1.3 = 1.68
-    anticipation: base=32 × trig=1 × weight=0.15 → raw=4.80
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.230) = 16.17
+    Final delta: 16.17 × 0.95 × 1 = 15.36
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 0.95 × 1 = 3.42
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.80 × (1 + 0.087) = 5.22
-    Final delta: 5.22 × 0.5 × 1.3 = 3.39
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 0.95 × 1 = 3.25
+
+  Stimulant: "Mai Azadi appears at Praew's home uninvited, sitting with her parents while armed with a dagger, terrifying Praew."
+    Event: danger_cue | Subject: family | Source: ally_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: ally_caused → ×1.3
+    fear: base=40 × trig=0.75 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.230) = 10.39
+    Final delta: 10.39 × 0.95 × 1.3 = 12.84
+    anticipation: base=28 × trig=0.75 × weight=0.25 → raw=5.25
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 5.25 × (1 + 0.087) = 5.71
+    Final delta: 5.71 × 0.95 × 1.3 = 7.05
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 0.95 × 1.3 = 4.44
+    surprise: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 2.81 × (1 + -0.143) = 2.41
+    Final delta: 2.41 × 0.95 × 1.3 = 2.98
+
+  Stimulant: "Praew harshly rejects Mai's friendship and calls her a psychopathic murderer, later feeling deep guilt about it."
+    Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    disgust: base=28 × trig=0.75 × weight=0.35 → raw=7.35
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 7.35 × (1 + 0.140) = 8.38
+    Final delta: 8.38 × 1 × 1.1 = 9.22
+    anger: base=22 × trig=0.75 × weight=0.25 → raw=4.13
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 4.13 × (1 + 0.453) = 6.00
+    Final delta: 6.00 × 1 × 1.1 = 6.59
+    sadness: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.75 × (1 + 0.720) = 6.45
+    Final delta: 6.45 × 1 × 1.1 = 7.10
+    surprise: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.75 × (1 + -0.143) = 3.21
+    Final delta: 3.21 × 1 × 1.1 = 3.53
+
+  Stimulant: "Mai reveals the bound man was a cannibal who murdered and ate his wife and daughter, shattering Praew's moral certainty."
+    Event: surprise_reveal | Subject: principle | Source: ally_caused | Domain: morality
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: principle → ×0.6
+    Source mult: ally_caused → ×1.3
+    surprise: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 18.00 × (1 + -0.143) = 15.42
+    Final delta: 15.42 × 0.6 × 1.3 = 12.03
+    fear: base=40 × trig=1.2 × weight=0.2 → raw=9.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.60 × (1 + -0.230) = 7.39
+    Final delta: 7.39 × 0.6 × 1.3 = 5.77
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 0.6 × 1.3 = 5.70
 
   Suppression applied:
-  Suppression: anger(85.3) suppresses joy by -18.56 (50% of anger delta)
-  Suppression: anger(85.3) suppresses trust by -11.14 (30% of anger delta)
-  Suppression: anger(85.3) suppresses fear by -5.57 (15% of anger delta)
-  Suppression: sadness(77.6) suppresses joy by -22.53 (60% of sadness delta)
-  Suppression: sadness(77.6) suppresses anticipation by -11.26 (30% of sadness delta)
-  Suppression: sadness(77.6) suppresses surprise by -7.51 (20% of sadness delta)
+  Suppression: anger(50.3) suppresses joy by -10.54 (50% of anger delta)
+  Suppression: anger(50.3) suppresses trust by -6.32 (30% of anger delta)
+  Suppression: anger(50.3) suppresses fear by -3.16 (15% of anger delta)
+  Suppression: fear(86.8) suppresses joy by -12.32 (40% of fear delta)
+  Suppression: fear(86.8) suppresses trust by -9.24 (30% of fear delta)
+  Suppression: fear(86.8) suppresses anticipation by -6.16 (20% of fear delta)
 
   Emotion updates:
-    sadness: carry(40.1 × 0.25) + delta(37.54) = 47.57
-    anger: carry(48.2 × 0.25) + delta(37.12) = 49.17
-    fear: carry(16.3 × 0.25) + delta(17.40) = 21.46
-    disgust: carry(10.2 × 0.25) + delta(25.71) = 28.27
-    surprise: carry(9.9 × 0.25) + delta(1.46) = 3.94
-    anticipation: carry(0.0 × 0.25) + delta(1.70) = 1.70
+    sadness: carry(13.5 × 0.08) + delta(14.22) = 15.30
+    anger: carry(29.2 × 0.08) + delta(21.08) = 23.42
+    fear: carry(56.0 × 0.125) + delta(30.80) = 37.80
+    disgust: carry(18.6 × 0.12) + delta(18.48) = 20.71
+    surprise: carry(8.9 × 0.2) + delta(22.09) = 23.86
+    anticipation: carry(2.1 × 0.2) + delta(9.83) = 10.26
 
 === Chapter 8 ===
 Stimulants this chapter: 3
 
   Stimulant: "Wannii confronts Praew for endangering Junya by sharing her investigation with someone in the Prime's office."
     Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=1 × weight=0.6 → raw=24.00
+    sadness: base=25 × trig=1.2 × weight=0.5 → raw=15.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 24.00 × (1 + 0.720) = 41.28
-    Final delta: 41.28 × 1 × 1.3 = 53.66
-    Capped: 53.66 → 40.00 (max 40 per stimulant)
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+    Modified delta: 15.00 × (1 + 0.720) = 25.80
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 25.80 × 1 × 1.3 × 1.36 = 45.61
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1032,52 +1178,59 @@ Stimulants this chapter: 3
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 1 × 1.3 = 12.09
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Final delta: 7.67 × 1 × 1.3 = 9.98
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 1 × 1.3 = 4.49
-
-  Stimulant: "Wannii reveals she deliberately failed the Hunter test to stay with Junya, making Praew realize the depth of their bond and her own recklessness."
-    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: morality
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    surprise: base=23 × trig=0.85 × weight=0.7 → raw=13.69
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Final delta: 5.54 × 1 × 1.3 = 7.21
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 13.69 × (1 + -0.143) = 11.72
-    Final delta: 11.72 × 0.8 × 1.3 = 12.19
-    fear: base=27 × trig=0.85 × weight=0.15 → raw=3.44
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1.3 = 5.01
+
+  Stimulant: "Wannii reveals she deliberately failed the Hunter test to stay with Junya, making Praew realize the depth of their bond and her own recklessness."
+    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: morality
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    surprise: base=25 × trig=0.75 × weight=0.6 → raw=11.25
+    Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 3.44 × (1 + -0.360) = 2.20
-    Final delta: 2.20 × 0.8 × 1.3 = 2.29
-    anticipation: base=32 × trig=0.85 × weight=0.15 → raw=4.08
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 11.25 × (1 + -0.143) = 9.64
+    Final delta: 9.64 × 0.85 × 1.3 = 10.65
+    fear: base=40 × trig=0.75 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.230) = 4.62
+    Final delta: 4.62 × 0.85 × 1.3 = 5.11
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.08 × (1 + 0.087) = 4.43
-    Final delta: 4.43 × 0.8 × 1.3 = 4.61
+    Modified delta: 4.20 × (1 + 0.087) = 4.56
+    Final delta: 4.56 × 0.85 × 1.3 = 5.04
 
   Stimulant: "Godric catches Praew and Wannii arguing about classified matters near a government facility and ominously warns about people going missing."
     Event: threat | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
+    fear: base=40 × trig=0.75 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 1 × 1 = 10.28
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.230) = 16.17
+    Final delta: 16.17 × 1 × 1 = 16.17
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1085,75 +1238,113 @@ Stimulants this chapter: 3
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.453) = 7.91
-    Final delta: 7.91 × 1 × 1 = 7.91
-    anticipation: base=32 × trig=0.85 × weight=0.1 → raw=2.72
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 1 × 1 = 3.60
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 2.72 × (1 + 0.087) = 2.96
-    Final delta: 2.96 × 1 × 1 = 2.96
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 1 × 1 = 3.42
 
   Suppression applied:
-  Suppression: anger(69.2) suppresses joy by -10.00 (50% of anger delta)
-  Suppression: anger(69.2) suppresses trust by -6.00 (30% of anger delta)
-  Suppression: anger(69.2) suppresses fear by -3.00 (15% of anger delta)
-  Suppression: sadness(87.6) suppresses joy by -24.00 (60% of sadness delta)
-  Suppression: sadness(87.6) suppresses anticipation by -12.00 (30% of sadness delta)
-  Suppression: sadness(87.6) suppresses surprise by -8.00 (20% of sadness delta)
+  Suppression: sadness(60.9) suppresses joy by -27.37 (60% of sadness delta)
+  Suppression: sadness(60.9) suppresses anticipation by -13.68 (30% of sadness delta)
+  Suppression: sadness(60.9) suppresses surprise by -9.12 (20% of sadness delta)
+  Suppression: fear(66.3) suppresses joy by -11.39 (40% of fear delta)
+  Suppression: fear(66.3) suppresses trust by -8.54 (30% of fear delta)
+  Suppression: fear(66.3) suppresses anticipation by -5.70 (20% of fear delta)
 
   Emotion updates:
-    sadness: carry(47.6 × 0.25) + delta(40.00) = 51.89
-    anger: carry(49.2 × 0.25) + delta(20.00) = 32.29
-    fear: carry(21.5 × 0.25) + delta(14.07) = 19.43
-    disgust: carry(28.3 × 0.25) + delta(0.00) = 7.07
-    surprise: carry(3.9 × 0.25) + delta(4.19) = 5.18
-    anticipation: carry(1.7 × 0.25) + delta(-4.43) = -4.01
+    sadness: carry(15.3 × 0.08) + delta(45.61) = 46.84
+    anger: carry(23.4 × 0.08) + delta(13.57) = 15.45
+    fear: carry(37.8 × 0.175) + delta(28.48) = 35.10
+    disgust: carry(20.7 × 0.02) + delta(0.00) = 0.41
+    surprise: carry(23.9 × 0.2) + delta(6.54) = 11.31
+    anticipation: carry(10.3 × 0.2) + delta(-10.91) = -8.86
 
 === Chapter 9 ===
-Stimulants this chapter: 2
+Stimulants this chapter: 3
 
   Stimulant: "Praew apologizes to Mai and they reconcile, forming a genuine friendship with agreed-upon boundaries."
     Event: connection | Subject: friend | Source: self_caused | Domain: belonging
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    trust: base=36 × trig=0.85 × weight=0.5 → raw=15.30
+    trust: base=30 × trig=1.2 × weight=0.4 → raw=14.40
     Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 15.30 × (1 + -0.100) = 13.77
-    Final delta: 13.77 × 0.8 × 1.1 = 12.12
-    joy: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 14.40 × (1 + -0.100) = 12.96
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 12.96 × 0.85 × 1.1 × 1.36 = 16.48
+    joy: base=30 × trig=1.2 × weight=0.3 → raw=10.80
     Trait modifiers for joy (total: +0.100):
   empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 8.16 × (1 + 0.100) = 8.98
-    Final delta: 8.98 × 0.8 × 1.1 = 7.90
-    anticipation: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+    Modified delta: 10.80 × (1 + 0.100) = 11.88
+    Final delta: 11.88 × 0.85 × 1.1 = 11.11
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 5.44 × (1 + 0.087) = 5.91
-    Final delta: 5.91 × 0.8 × 1.1 = 5.20
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 0.85 × 1.1 = 6.83
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.85 × 1.1 = 2.40
+
+  Stimulant: "Mai and Praew laugh together and train, building real trust and warmth for the first time."
+    Event: reward | Subject: friend | Source: ally_caused | Domain: belonging
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    joy: base=30 × trig=0.75 × weight=0.5 → raw=11.25
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 11.25 × (1 + 0.100) = 12.38
+    Final delta: 12.38 × 0.85 × 1.3 = 13.67
+    trust: base=30 × trig=0.75 × weight=0.25 → raw=5.63
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 5.63 × (1 + -0.100) = 5.06
+    Final delta: 5.06 × 0.85 × 1.3 = 5.59
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 0.85 × 1.3 = 3.78
+    surprise: base=25 × trig=0.75 × weight=0.1 → raw=1.88
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 1.88 × (1 + -0.143) = 1.61
+    Final delta: 1.61 × 0.85 × 1.3 = 1.77
 
   Stimulant: "Praew learns Junya and Wannii are missing after failing to show up to class, realizing they may have acted on their dangerous plan."
     Event: danger_cue | Subject: friend | Source: world_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: world_caused → ×0.7
-    fear: base=27 × trig=0.85 × weight=0.7 → raw=16.06
-    Trait modifiers for fear (total: -0.360):
+    fear: base=40 × trig=0.75 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 16.06 × (1 + -0.360) = 10.28
-    Final delta: 10.28 × 0.8 × 0.7 = 5.76
-    anticipation: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.230) = 10.39
+    Final delta: 10.39 × 0.85 × 0.7 = 6.19
+    anticipation: base=28 × trig=0.75 × weight=0.25 → raw=5.25
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 5.44 × (1 + 0.087) = 5.91
-    Final delta: 5.91 × 0.8 × 0.7 = 3.31
-    anger: base=32 × trig=0.85 × weight=0.1 → raw=2.72
+    Modified delta: 5.25 × (1 + 0.087) = 5.71
+    Final delta: 5.71 × 0.85 × 0.7 = 3.39
+    anger: base=22 × trig=0.75 × weight=0.15 → raw=2.48
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1161,79 +1352,87 @@ Stimulants this chapter: 2
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 2.72 × (1 + 0.453) = 3.95
-    Final delta: 3.95 × 0.8 × 0.7 = 2.21
-  Ambient surprise: avg_trigger(0.85) × 15 = +12.8
+    Modified delta: 2.48 × (1 + 0.453) = 3.60
+    Final delta: 3.60 × 0.85 × 0.7 = 2.14
+    surprise: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 2.81 × (1 + -0.143) = 2.41
+    Final delta: 2.41 × 0.85 × 0.7 = 1.43
+  Tone adjustment: positive chapter dampens anger: 2.1 × 0.4 = 0.9
+  Tone adjustment: positive chapter dampens fear: 6.2 × 0.4 = 2.5
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(7.90) = 7.90
-    sadness: carry(51.9 × 0.25) + delta(0.00) = 12.97
-    anger: carry(32.3 × 0.25) + delta(2.21) = 10.29
-    fear: carry(19.4 × 0.25) + delta(5.76) = 10.62
-    disgust: carry(7.1 × 0.25) + delta(0.00) = 1.77
-    surprise: carry(5.2 × 0.25) + delta(12.75) = 14.04
-    trust: carry(0.0 × 0.25) + delta(12.12) = 12.12
-    anticipation: carry(0.0 × 0.25) + delta(8.51) = 8.51
+    joy: carry(0.0 × 0.2) + delta(24.78) = 24.78
+    sadness: carry(46.8 × 0.013999999999999999) + delta(0.00) = 0.66
+    anger: carry(15.4 × 0.08) + delta(0.86) = 2.09
+    fear: carry(35.1 × 0.175) + delta(2.47) = 8.62
+    surprise: carry(11.3 × 0.2) + delta(5.61) = 7.87
+    trust: carry(0.0 × 0.2) + delta(22.07) = 22.07
+    anticipation: carry(0.0 × 0.2) + delta(14.00) = 14.00
 
 === Chapter 10 ===
 Stimulants this chapter: 1
 
   Stimulant: "Praew teases Haldric's grandparents into thinking they are dating, creating a cover story for their secret meetings."
     Event: success | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=0 imm=3 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=0 imm=3 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    joy: base=32 × trig=0.85 × weight=0.7 → raw=19.04
+    joy: base=30 × trig=0.75 × weight=0.5 → raw=11.25
     Trait modifiers for joy (total: +0.100):
   empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 19.04 × (1 + 0.100) = 20.94
-    Final delta: 20.94 × 1 × 1.1 = 23.04
-    trust: base=36 × trig=0.85 × weight=0.2 → raw=6.12
+    Modified delta: 11.25 × (1 + 0.100) = 12.38
+    Final delta: 12.38 × 1 × 1.1 = 13.61
+    trust: base=30 × trig=0.75 × weight=0.2 → raw=4.50
     Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 6.12 × (1 + -0.100) = 5.51
-    Final delta: 5.51 × 1 × 1.1 = 6.06
-    anticipation: base=32 × trig=0.85 × weight=0.1 → raw=2.72
+    Modified delta: 4.50 × (1 + -0.100) = 4.05
+    Final delta: 4.05 × 1 × 1.1 = 4.46
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 2.72 × (1 + 0.087) = 2.96
-    Final delta: 2.96 × 1 × 1.1 = 3.25
-  Ambient surprise: avg_trigger(0.85) × 15 = +12.8
-  Ambient fear: extreme event detected → +10.2
+    Modified delta: 3.15 × (1 + 0.087) = 3.42
+    Final delta: 3.42 × 1 × 1.1 = 3.77
+    surprise: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 2.81 × (1 + -0.143) = 2.41
+    Final delta: 2.41 × 1 × 1.1 = 2.65
 
   Emotion updates:
-    joy: carry(7.9 × 0.25) + delta(23.04) = 25.01
-    sadness: carry(13.0 × 0.25) + delta(0.00) = 3.24
-    anger: carry(10.3 × 0.25) + delta(0.00) = 2.57
-    fear: carry(10.6 × 0.25) + delta(10.20) = 12.85
-    disgust: carry(1.8 × 0.25) + delta(0.00) = 0.44
-    surprise: carry(14.0 × 0.25) + delta(12.75) = 16.26
-    trust: carry(12.1 × 0.25) + delta(6.06) = 9.09
-    anticipation: carry(8.5 × 0.25) + delta(3.25) = 5.38
+    joy: carry(24.8 × 0.2) + delta(13.61) = 18.57
+    sadness: carry(0.7 × 0.02) + delta(0.00) = 0.01
+    anger: carry(2.1 × 0.02) + delta(0.00) = 0.04
+    fear: carry(8.6 × 0.02) + delta(0.00) = 0.17
+    surprise: carry(7.9 × 0.2) + delta(2.65) = 4.22
+    trust: carry(22.1 × 0.2) + delta(4.46) = 8.87
+    anticipation: carry(14.0 × 0.2) + delta(3.77) = 6.57
 
 === Chapter 11 ===
 Stimulants this chapter: 0
 
   Emotion updates:
-    joy: carry(25.0 × 0.25) + delta(0.00) = 6.25
-    sadness: carry(3.2 × 0.25) + delta(0.00) = 0.81
-    anger: carry(2.6 × 0.25) + delta(0.00) = 0.64
-    fear: carry(12.9 × 0.25) + delta(0.00) = 3.21
-    surprise: carry(16.3 × 0.25) + delta(0.00) = 4.07
-    trust: carry(9.1 × 0.25) + delta(0.00) = 2.27
-    anticipation: carry(5.4 × 0.25) + delta(0.00) = 1.34
+    joy: carry(18.6 × 0.02) + delta(0.00) = 0.37
+    surprise: carry(4.2 × 0.02) + delta(0.00) = 0.08
+    trust: carry(8.9 × 0.02) + delta(0.00) = 0.18
+    anticipation: carry(6.6 × 0.02) + delta(0.00) = 0.13
 
 === Chapter 12 ===
 Stimulants this chapter: 3
 
   Stimulant: "Praew witnesses the Fourth Floor: enslaved people being whipped, children eating raw Ratrods, and horrific conditions."
     Event: injustice | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    anger: base=32 × trig=1 × weight=0.5 → raw=16.00
+    anger: base=22 × trig=1.2 × weight=0.4 → raw=10.56
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1241,68 +1440,78 @@ Stimulants this chapter: 3
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 16.00 × (1 + 0.453) = 23.25
-    Final delta: 23.25 × 0.7 × 1 = 16.28
-    disgust: base=31 × trig=1 × weight=0.3 → raw=9.30
+    Modified delta: 10.56 × (1 + 0.453) = 15.35
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 15.35 × 0.85 × 1 × 1.36 = 17.74
+    disgust: base=28 × trig=1.2 × weight=0.3 → raw=10.08
     Trait modifiers for disgust (total: +0.140):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.30 × (1 + 0.140) = 10.60
-    Final delta: 10.60 × 0.7 × 1 = 7.42
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
+    Modified delta: 10.08 × (1 + 0.140) = 11.49
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 11.49 × 0.85 × 1 × 2.2 = 21.49
+    sadness: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 0.7 × 1 = 9.63
-
-  Stimulant: "Praew recognizes her missing classmate Jorpen working as an enforcer-slave in the Fourth Floor identification program."
-    Event: surprise_reveal | Subject: friend | Source: authority_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: authority_caused → ×1
-    surprise: base=23 × trig=1 × weight=0.7 → raw=16.10
+    Modified delta: 4.50 × (1 + 0.720) = 7.74
+    Final delta: 7.74 × 0.85 × 1 = 6.58
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 16.10 × (1 + -0.143) = 13.79
-    Final delta: 13.79 × 0.8 × 1 = 11.03
-    fear: base=27 × trig=1 × weight=0.15 → raw=4.05
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 0.85 × 1 = 3.28
+
+  Stimulant: "Praew recognizes her missing classmate Jorpen working as an enforcer-slave in the Fourth Floor identification program."
+    Event: surprise_reveal | Subject: friend | Source: authority_caused | Domain: morality
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: authority_caused → ×1
+    surprise: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 4.05 × (1 + -0.360) = 2.59
-    Final delta: 2.59 × 0.8 × 1 = 2.07
-    anticipation: base=32 × trig=1 × weight=0.15 → raw=4.80
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 18.00 × (1 + -0.143) = 15.42
+    Final delta: 15.42 × 0.85 × 1 = 13.11
+    fear: base=40 × trig=1.2 × weight=0.2 → raw=9.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.60 × (1 + -0.230) = 7.39
+    Final delta: 7.39 × 0.85 × 1 = 6.28
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: +0.087):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.80 × (1 + 0.087) = 5.22
-    Final delta: 5.22 × 0.8 × 1 = 4.17
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 0.85 × 1 = 6.21
 
   Stimulant: "Note reveals that Junya's parents were likely murdered for discovering the Fourth Floor, and that Junya and Wannii may also be dead."
     Event: loss | Subject: friend | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: authority_caused → ×1
-    sadness: base=40 × trig=1 × weight=0.7 → raw=28.00
+    sadness: base=25 × trig=1.2 × weight=0.6 → raw=18.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 28.00 × (1 + 0.720) = 48.16
-    Final delta: 48.16 × 0.8 × 1 = 38.53
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 18.00 × (1 + 0.720) = 30.96
+    Final delta: 30.96 × 0.85 × 1 = 26.32
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 0.8 × 1 = 2.76
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 5.54 × 0.85 × 1 × 1.7200000000000002 = 8.11
+    anger: base=22 × trig=1.2 × weight=0.1 → raw=2.64
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1310,36 +1519,43 @@ Stimulants this chapter: 3
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 0.8 × 1 = 3.72
+    Modified delta: 2.64 × (1 + 0.453) = 3.84
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.84 × 0.85 × 1 × 1.24 = 4.04
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 0.85 × 1 = 3.28
 
   Emotion updates:
-    joy: carry(6.3 × 0.25) + delta(0.00) = 1.56
-    sadness: carry(0.8 × 0.25) + delta(48.16) = 48.36
-    anger: carry(0.6 × 0.25) + delta(20.00) = 20.16
-    fear: carry(3.2 × 0.25) + delta(4.84) = 5.64
-    disgust: carry(0.1 × 0.25) + delta(7.42) = 7.45
-    surprise: carry(4.1 × 0.25) + delta(11.03) = 12.05
-    trust: carry(2.3 × 0.25) + delta(0.00) = 0.57
-    anticipation: carry(1.3 × 0.25) + delta(4.17) = 4.51
+    sadness: carry(0.0 × 0.08) + delta(32.90) = 32.90
+    anger: carry(0.0 × 0.08) + delta(21.79) = 21.79
+    fear: carry(0.0 × 0.25) + delta(14.39) = 14.39
+    disgust: carry(0.0 × 0.12) + delta(21.49) = 21.49
+    surprise: carry(0.1 × 0.2) + delta(19.66) = 19.68
+    anticipation: carry(0.1 × 0.2) + delta(6.21) = 6.23
 
 === Chapter 13 ===
 Stimulants this chapter: 5
 
   Stimulant: "Haldric grabs Praew's wrist with inhuman strength, hurting her and revealing he has been hiding his acclimation from her."
     Event: betrayal | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 1 × 1.3 = 35.78
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 15.48 × 1 × 1.3 × 1.36 = 27.37
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1347,88 +1563,29 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 1.3 = 18.14
-    trust (COLLAPSE): base=36 × trig=1 × weight=0.3 → raw=10.80
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Final delta: 9.59 × 1 × 1.3 = 12.47
+    trust (COLLAPSE): base=30 × trig=1.2 × weight=0.25 → raw=9.00
     Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.100) = 9.72
-    Final delta: 9.72 × 1 × 1.3 = 12.64
-    → Trust COLLAPSED by -12.64
-
-  Stimulant: "Haldric cruelly tells Praew she is not as smart as she pretends to be and that she belongs in Special Forces, not Administration."
-    Event: insult | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    anger: base=32 × trig=1 × weight=0.6 → raw=19.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 19.20 × (1 + 0.453) = 27.90
-    Final delta: 27.90 × 1 × 1.3 = 36.28
-    disgust: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.20 × (1 + 0.140) = 7.07
-    Final delta: 7.07 × 1 × 1.3 = 9.19
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 1 × 1.3 = 17.89
-
-  Stimulant: "Mai reveals she was born on the Fourth Floor, her family was destroyed, and she does not age, deepening the bond and shocking Praew."
-    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    surprise: base=23 × trig=1 × weight=0.7 → raw=16.10
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 8.10 × 1 × 1.3 × 1.36 = 14.32
+    → Trust COLLAPSED by -14.32
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 16.10 × (1 + -0.143) = 13.79
-    Final delta: 13.79 × 0.8 × 1.3 = 14.34
-    fear: base=27 × trig=1 × weight=0.15 → raw=4.05
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 4.05 × (1 + -0.360) = 2.59
-    Final delta: 2.59 × 0.8 × 1.3 = 2.70
-    anticipation: base=32 × trig=1 × weight=0.15 → raw=4.80
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.80 × (1 + 0.087) = 5.22
-    Final delta: 5.22 × 0.8 × 1.3 = 5.42
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 1.3 = 6.68
 
-  Stimulant: "Godric arrives and threatens Mai; Mai stabs his foot and tells Praew to run, forcing Praew to flee in fear for both their lives."
-    Event: danger_cue | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+  Stimulant: "Haldric cruelly tells Praew she is not as smart as she pretends to be and that she belongs in Special Forces, not Administration."
+    Event: insult | Subject: self | Source: ally_caused | Domain: status
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.360) = 12.10
-    Final delta: 12.10 × 1 × 1 = 12.10
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + 0.087) = 6.95
-    Final delta: 6.95 × 1 × 1 = 6.95
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+    Source mult: ally_caused → ×1.3
+    anger: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1436,71 +1593,171 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 1 × 1 = 4.65
-
-  Stimulant: "A mysterious attacker intercepts Praew just before she reaches Haldric's home, and she is captured."
-    Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    fear: base=27 × trig=1 × weight=0.5 → raw=13.50
-    Trait modifiers for fear (total: -0.360):
+    Modified delta: 13.20 × (1 + 0.453) = 19.18
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 19.18 × 1 × 1.3 × 1.24 = 30.92
+    disgust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for disgust (total: +0.140):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 13.50 × (1 + -0.360) = 8.64
-    Final delta: 8.64 × 1 × 0.8 = 6.91
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 0.8 = 11.16
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 6.72 × (1 + 0.140) = 7.66
+    Final delta: 7.66 × 1 × 1.3 = 9.96
+    sadness: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 1 × 0.8 = 11.01
+    Modified delta: 4.50 × (1 + 0.720) = 7.74
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 7.74 × 1 × 1.3 × 1.12 = 11.27
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1.3 = 5.01
+
+  Stimulant: "Mai reveals she was born on the Fourth Floor, her family was destroyed, and she does not age, deepening the bond and shocking Praew."
+    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: attachment
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    surprise: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 18.00 × (1 + -0.143) = 15.42
+    Final delta: 15.42 × 0.85 × 1.3 = 17.04
+    fear: base=40 × trig=1.2 × weight=0.2 → raw=9.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.60 × (1 + -0.230) = 7.39
+    Final delta: 7.39 × 0.85 × 1.3 = 8.17
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 0.85 × 1.3 = 8.07
+
+  Stimulant: "Godric arrives and threatens Mai; Mai stabs his foot and tells Praew to run, forcing Praew to flee in fear for both their lives."
+    Event: danger_cue | Subject: self | Source: authority_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=1.2 × weight=0.45 → raw=21.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.60 × (1 + -0.230) = 16.63
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 16.63 × 1 × 1 × 1.7200000000000002 = 28.61
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 8.40 × (1 + 0.087) = 9.13
+    Final delta: 9.13 × 1 × 1 = 9.13
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 5.76 × 1 × 1 × 1.24 = 7.14
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1 = 3.85
+
+  Stimulant: "A mysterious attacker intercepts Praew just before she reaches Haldric's home, and she is captured."
+    Event: harm | Subject: self | Source: enemy_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    fear: base=40 × trig=1.2 × weight=0.6 → raw=28.80
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 28.80 × (1 + -0.230) = 22.18
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 22.18 × 1 × 0.8 × 1.7200000000000002 = 30.51
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.67 × 1 × 0.8 × 1.24 = 7.61
+    sadness: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.00 × (1 + 0.720) = 5.16
+    Final delta: 5.16 × 1 × 0.8 = 4.13
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 1 × 0.8 = 2.06
 
   Suppression applied:
-  Suppression: anger(90.4) suppresses joy by -35.11 (50% of anger delta)
-  Suppression: anger(90.4) suppresses trust by -21.07 (30% of anger delta)
-  Suppression: anger(90.4) suppresses fear by -10.53 (15% of anger delta)
-  Suppression: sadness(113.0) suppresses joy by -38.80 (60% of sadness delta)
-  Suppression: sadness(113.0) suppresses anticipation by -19.40 (30% of sadness delta)
-  Suppression: sadness(113.0) suppresses surprise by -12.93 (20% of sadness delta)
+  Suppression: anger(79.9) suppresses joy by -29.07 (50% of anger delta)
+  Suppression: anger(79.9) suppresses trust by -17.44 (30% of anger delta)
+  Suppression: anger(79.9) suppresses fear by -8.72 (15% of anger delta)
+  Suppression: sadness(75.7) suppresses joy by -25.66 (60% of sadness delta)
+  Suppression: sadness(75.7) suppresses anticipation by -12.83 (30% of sadness delta)
+  Suppression: sadness(75.7) suppresses surprise by -8.55 (20% of sadness delta)
+  Suppression: fear(73.0) suppresses joy by -23.43 (40% of fear delta)
+  Suppression: fear(73.0) suppresses trust by -17.57 (30% of fear delta)
+  Suppression: fear(73.0) suppresses anticipation by -11.71 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(1.6 × 0.25) + delta(-73.92) = -73.52
-    sadness: carry(48.4 × 0.25) + delta(64.67) = 76.76
-    *** sadness in RED ZONE: VU=76.8 (track capped at 75) ***
-    anger: carry(20.2 × 0.25) + delta(70.23) = 75.26
-    *** anger in RED ZONE: VU=75.3 (track capped at 75) ***
-    fear: carry(5.6 × 0.25) + delta(11.17) = 12.58
-    disgust: carry(7.4 × 0.25) + delta(9.19) = 11.05
-    surprise: carry(12.1 × 0.25) + delta(1.41) = 4.42
-    trust: carry(0.6 × 0.25) + delta(-33.70) = -33.56
-    anticipation: carry(4.5 × 0.25) + delta(-7.02) = -5.90
+    sadness: carry(32.9 × 0.055999999999999994) + delta(42.77) = 44.61
+    anger: carry(21.8 × 0.08) + delta(58.14) = 59.89
+    fear: carry(14.4 × 0.25) + delta(58.57) = 62.17
+    disgust: carry(21.5 × 0.12) + delta(9.96) = 12.54
+    surprise: carry(19.7 × 0.2) + delta(26.09) = 30.03
+    anticipation: carry(6.2 × 0.2) + delta(-7.35) = -6.10
 
 === Chapter 14 ===
 Character NOT PRESENT — values frozen, no line drawn
 
 === Chapter 15 ===
-Stimulants this chapter: 5
+Stimulants this chapter: 6
 
   Stimulant: "Praew wakes up imprisoned in a narrow, abrasive cell with no way out, struggling to breathe."
     Event: constraint | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    anger: base=32 × trig=1 × weight=0.5 → raw=16.00
+    fear: base=40 × trig=1.2 × weight=0.5 → raw=24.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 24.00 × (1 + -0.230) = 18.48
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 18.48 × 1 × 0.8 × 1.7200000000000002 = 25.43
+    anger: base=22 × trig=1.2 × weight=0.3 → raw=7.92
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1508,37 +1765,38 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 16.00 × (1 + 0.453) = 23.25
-    Final delta: 23.25 × 1 × 0.8 = 18.60
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.360) = 5.18
-    Final delta: 5.18 × 1 × 0.8 = 4.15
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
+    Modified delta: 7.92 × (1 + 0.453) = 11.51
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 11.51 × 1 × 0.8 × 1.24 = 11.42
+    sadness: base=25 × trig=1.2 × weight=0.1 → raw=3.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 1 × 0.8 = 11.01
+    Modified delta: 3.00 × (1 + 0.720) = 5.16
+    Final delta: 5.16 × 1 × 0.8 = 4.13
+    anticipation: base=28 × trig=1.2 × weight=0.1 → raw=3.36
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 3.36 × (1 + 0.087) = 3.65
+    Final delta: 3.65 × 1 × 0.8 = 2.92
 
   Stimulant: "Renwick reveals himself as her captor and jailer, having feigned being a fellow prisoner to manipulate her emotions."
     Event: betrayal | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 1 × 0.8 = 22.02
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Final delta: 15.48 × 1 × 0.8 = 12.38
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -1546,514 +1804,36 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 0.8 = 11.16
-    trust (COLLAPSE): base=36 × trig=1 × weight=0.3 → raw=10.80
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 9.59 × 1 × 0.8 × 1.24 = 9.52
+    trust (COLLAPSE): base=30 × trig=1.2 × weight=0.25 → raw=9.00
     Trait modifiers for trust (total: -0.100):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.100) = 9.72
-    Final delta: 9.72 × 1 × 0.8 = 7.78
-    → Trust COLLAPSED by -7.78
-
-  Stimulant: "Praew discovers Wannii's burnt, bloated corpse in her shared cell with Junya."
-    Event: loss | Subject: friend | Source: enemy_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.7 → raw=28.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 28.00 × (1 + 0.720) = 48.16
-    Final delta: 48.16 × 0.8 × 0.8 = 30.82
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 0.8 × 0.8 = 2.21
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 0.8 × 0.8 = 2.98
-
-  Stimulant: "Junya is dragged away screaming by the guard while Praew fails to hold onto her, losing her grip on Junya's bracelet."
-    Event: separation | Subject: friend | Source: enemy_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.6 → raw=24.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 24.00 × (1 + 0.720) = 41.28
-    Final delta: 41.28 × 0.8 × 0.8 = 26.42
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 0.8 × 0.8 = 2.21
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 0.8 × 0.8 = 5.95
-
-  Stimulant: "Praew accepts she cannot save her friends and puts on Junya's bracelet as a reminder of her failure to protect them."
-    Event: failure | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=40 × trig=1 × weight=0.5 → raw=20.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 20.00 × (1 + 0.720) = 34.40
-    Final delta: 34.40 × 1 × 1.1 = 37.84
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.360) = 5.18
-    Final delta: 5.18 × 1 × 1.1 = 5.70
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 1 × 1.1 = 10.23
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient anticipation: extreme event detected → +10.0
-
-  Suppression applied:
-  Suppression: anger(123.9) suppresses joy by -24.46 (50% of anger delta)
-  Suppression: anger(123.9) suppresses trust by -14.68 (30% of anger delta)
-  Suppression: anger(123.9) suppresses fear by -7.34 (15% of anger delta)
-  Suppression: sadness(203.1) suppresses joy by -76.86 (60% of sadness delta)
-  Suppression: sadness(203.1) suppresses anticipation by -38.43 (30% of sadness delta)
-  Suppression: sadness(203.1) suppresses surprise by -25.62 (20% of sadness delta)
-
-  Emotion updates:
-    sadness: carry(75.0 × 0.25) + delta(128.11) = 146.86
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(75.0 × 0.25) + delta(48.93) = 67.68
-    fear: carry(12.6 × 0.25) + delta(6.93) = 10.08
-    disgust: carry(11.1 × 0.25) + delta(0.00) = 2.76
-    surprise: carry(4.4 × 0.25) + delta(-10.62) = -9.52
-    anticipation: carry(0.0 × 0.25) + delta(-28.43) = -28.43
-
-=== Chapter 16 ===
-Stimulants this chapter: 6
-
-  Stimulant: "Praew sees Junya dead on a stone slab with a Sifaralith embedded in her skull."
-    Event: loss | Subject: friend | Source: enemy_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.7 → raw=28.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 28.00 × (1 + 0.720) = 48.16
-    Final delta: 48.16 × 0.8 × 0.8 = 30.82
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 0.8 × 0.8 = 2.21
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 0.8 × 0.8 = 2.98
-
-  Stimulant: "The scientist grabs Praew's hair and invades her personal space while she is strapped down, making her feel violated and powerless."
-    Event: humiliation | Subject: self | Source: enemy_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 1 × 0.8 = 22.02
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 0.8 = 11.16
-    disgust: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for disgust (total: +0.140):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.30 × (1 + 0.140) = 10.60
-    Final delta: 10.60 × 1 × 0.8 = 8.48
-
-  Stimulant: "The Prime Archon kills the scientist but then reveals he will not release Praew and instead begins the embedding process."
-    Event: betrayal | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    sadness: base=40 × trig=1 × weight=0.4 → raw=16.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.00 × (1 + 0.720) = 27.52
-    Final delta: 27.52 × 1 × 1 = 27.52
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 1 = 13.95
-    trust (COLLAPSE): base=36 × trig=1 × weight=0.3 → raw=10.80
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.100) = 9.72
-    Final delta: 9.72 × 1 × 1 = 9.72
-    → Trust COLLAPSED by -9.72
-
-  Stimulant: "The Prime slams a Mythical BoltStone into Praew's chest, causing agonizing pain as electricity tears through her body."
-    Event: harm | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.5 → raw=13.50
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 13.50 × (1 + -0.360) = 8.64
-    Final delta: 8.64 × 1 × 1 = 8.64
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 1 = 13.95
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 1 × 1 = 13.76
-
-  Stimulant: "Praew realizes the Hunter Test was actually a screening to find people compatible with rare stones, reframing her entire life."
-    Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    surprise: base=23 × trig=1 × weight=0.7 → raw=16.10
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 0.8 = 6.48
+    → Trust COLLAPSED by -6.48
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for surprise (total: -0.143):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
   impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
-    Modified delta: 16.10 × (1 + -0.143) = 13.79
-    Final delta: 13.79 × 1 × 1 = 13.79
-    fear: base=27 × trig=1 × weight=0.15 → raw=4.05
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 4.05 × (1 + -0.360) = 2.59
-    Final delta: 2.59 × 1 × 1 = 2.59
-    anticipation: base=32 × trig=1 × weight=0.15 → raw=4.80
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 4.80 × (1 + 0.087) = 5.22
-    Final delta: 5.22 × 1 × 1 = 5.22
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 0.8 = 4.11
 
-  Stimulant: "Praew survives the Mythical BoltStone embedding by figuring out the trigger is sound and silently enduring the agony."
-    Event: success | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    joy: base=32 × trig=1 × weight=0.7 → raw=22.40
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 22.40 × (1 + 0.100) = 24.64
-    Final delta: 24.64 × 1 × 1.1 = 27.10
-    trust: base=36 × trig=1 × weight=0.2 → raw=7.20
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 7.20 × (1 + -0.100) = 6.48
-    Final delta: 6.48 × 1 × 1.1 = 7.13
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + 0.087) = 3.48
-    Final delta: 3.48 × 1 × 1.1 = 3.83
-
-  Suppression applied:
-  Suppression: anger(109.7) suppresses joy by -21.02 (50% of anger delta)
-  Suppression: anger(109.7) suppresses trust by -12.61 (30% of anger delta)
-  Suppression: anger(109.7) suppresses fear by -6.31 (15% of anger delta)
-  Suppression: sadness(169.1) suppresses joy by -56.47 (60% of sadness delta)
-  Suppression: sadness(169.1) suppresses anticipation by -28.24 (30% of sadness delta)
-  Suppression: sadness(169.1) suppresses surprise by -18.82 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-50.39) = -50.39
-    sadness: carry(75.0 × 0.25) + delta(94.12) = 112.87
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(67.7 × 0.25) + delta(42.04) = 58.96
-    fear: carry(10.1 × 0.25) + delta(7.14) = 9.66
-    disgust: carry(2.8 × 0.25) + delta(8.48) = 9.17
-    surprise: carry(0.0 × 0.25) + delta(-5.03) = -5.03
-    trust: carry(0.0 × 0.25) + delta(-15.20) = -15.20
-    anticipation: carry(0.0 × 0.25) + delta(-19.19) = -19.19
-
-=== Chapter 17 ===
-Stimulants this chapter: 2
-
-  Stimulant: "The Prime begins the BoltStone recorrection program on Praew, using pulses to make her mind impressionable against her will."
-    Event: constraint | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    anger: base=32 × trig=1 × weight=0.5 → raw=16.00
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 16.00 × (1 + 0.453) = 23.25
-    Final delta: 23.25 × 1 × 1 = 23.25
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.360) = 5.18
-    Final delta: 5.18 × 1 × 1 = 5.18
-    sadness: base=40 × trig=1 × weight=0.2 → raw=8.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.00 × (1 + 0.720) = 13.76
-    Final delta: 13.76 × 1 × 1 = 13.76
-
-  Stimulant: "Praew experiences a vision of her parents telling her to leave the city and go on her adventure, giving her emotional comfort."
-    Event: connection | Subject: family | Source: ally_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: ally_caused → ×1.3
-    trust: base=36 × trig=0.85 × weight=0.5 → raw=15.30
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 15.30 × (1 + -0.100) = 13.77
-    Final delta: 13.77 × 0.9 × 1.3 = 16.11
-    joy: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 8.16 × (1 + 0.100) = 8.98
-    Final delta: 8.98 × 0.9 × 1.3 = 10.50
-    anticipation: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 5.44 × (1 + 0.087) = 5.91
-    Final delta: 5.91 × 0.9 × 1.3 = 6.92
-  Ambient surprise: avg_trigger(0.93) × 15 = +13.9
-
-  Suppression applied:
-  Suppression: anger(82.2) suppresses joy by -11.63 (50% of anger delta)
-  Suppression: anger(82.2) suppresses trust by -6.98 (30% of anger delta)
-  Suppression: anger(82.2) suppresses fear by -3.49 (15% of anger delta)
-  Suppression: sadness(88.8) suppresses joy by -8.26 (60% of sadness delta)
-  Suppression: sadness(88.8) suppresses anticipation by -4.13 (30% of sadness delta)
-  Suppression: sadness(88.8) suppresses surprise by -2.75 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-9.38) = -9.38
-    sadness: carry(75.0 × 0.25) + delta(13.76) = 32.51
-    anger: carry(59.0 × 0.25) + delta(23.25) = 37.99
-    fear: carry(9.7 × 0.25) + delta(1.70) = 4.11
-    disgust: carry(9.2 × 0.25) + delta(0.00) = 2.29
-    surprise: carry(0.0 × 0.25) + delta(11.12) = 11.12
-    trust: carry(0.0 × 0.25) + delta(9.13) = 9.13
-    anticipation: carry(0.0 × 0.25) + delta(2.79) = 2.79
-
-=== Chapter 18 ===
-Stimulants this chapter: 5
-
-  Stimulant: "Praew wakes to find Godric has rescued her from The Prime and is taking her to the surface to escape."
-    Event: reward | Subject: self | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    joy: base=32 × trig=1 × weight=0.6 → raw=19.20
-    Trait modifiers for joy (total: +0.100):
-  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 19.20 × (1 + 0.100) = 21.12
-    Final delta: 21.12 × 1 × 1.3 = 27.46
-    trust: base=36 × trig=1 × weight=0.3 → raw=10.80
-    Trait modifiers for trust (total: -0.100):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.100) = 9.72
-    Final delta: 9.72 × 1 × 1.3 = 12.64
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + 0.087) = 3.48
-    Final delta: 3.48 × 1 × 1.3 = 4.52
-
-  Stimulant: "Renwick and six Embedded warriors block the final gate to the surface, threatening to end her escape."
-    Event: obstacle | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
+  Stimulant: "Praew discovers Wannii's burnt, bloated corpse — the sight and smell overwhelm her with physical revulsion."
+    Event: disgust_cue | Subject: friend | Source: enemy_caused | Domain: morality
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: enemy_caused → ×0.8
-    anger: base=32 × trig=1 × weight=0.4 → raw=12.80
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 12.80 × (1 + 0.453) = 18.60
-    Final delta: 18.60 × 1 × 0.8 = 14.88
-    anticipation: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 9.60 × (1 + 0.087) = 10.43
-    Final delta: 10.43 × 1 × 0.8 = 8.35
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.360) = 5.18
-    Final delta: 5.18 × 1 × 0.8 = 4.15
-
-  Stimulant: "Godric sacrifices himself to hold back the warriors so Praew can escape, and she realizes she may never see her hero again."
-    Event: separation | Subject: friend | Source: ally_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    sadness: base=40 × trig=1 × weight=0.6 → raw=24.00
-    Trait modifiers for sadness (total: +0.720):
-  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
-    Modified delta: 24.00 × (1 + 0.720) = 41.28
-    Final delta: 41.28 × 0.8 × 1.3 = 42.93
-    Capped: 42.93 → 40.00 (max 40 per stimulant)
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.360) = 3.46
-    Final delta: 3.46 × 0.8 × 1.3 = 3.59
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.453) = 9.30
-    Final delta: 9.30 × 0.8 × 1.3 = 9.67
-
-  Stimulant: "Praew runs across the deadly surface alone, triggering dangerous stones and suffering electricity from her own BoltStone, nearly dying."
-    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.360):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  riskAppetite(65/75 × -0.3) = -0.260 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.360) = 12.10
-    Final delta: 12.10 × 1 × 0.7 = 8.47
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: +0.087):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + 0.087) = 6.95
-    Final delta: 6.95 × 1 × 0.7 = 4.87
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anger (total: +0.453):
-  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
-  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
-  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
-  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
-  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.453) = 4.65
-    Final delta: 4.65 × 1 × 0.7 = 3.26
-
-  Stimulant: "Praew accepts her likely death on the surface with a smile, finding peace in dying free rather than as a prisoner."
-    Event: moral_cue | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    disgust: base=31 × trig=1 × weight=0.4 → raw=12.40
+    disgust: base=28 × trig=1.2 × weight=0.6 → raw=20.16
     Trait modifiers for disgust (total: +0.140):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.40 × (1 + 0.140) = 14.14
-    Final delta: 14.14 × 1 × 1.1 = 15.55
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 20.16 × (1 + 0.140) = 22.98
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 22.98 × 0.85 × 0.8 × 2.2 = 34.38
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for anger (total: +0.453):
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
   confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
@@ -2061,9 +1841,105 @@ Stimulants this chapter: 5
   patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
   impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
   moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.453) = 13.95
-    Final delta: 13.95 × 1 × 1.1 = 15.35
-    sadness: base=40 × trig=1 × weight=0.3 → raw=12.00
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 5.76 × 0.85 × 0.8 × 1.36 = 5.32
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Final delta: 5.54 × 0.85 × 0.8 = 3.77
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.85 × 0.8 = 1.75
+
+  Stimulant: "Praew realizes Wannii is dead — her friend is gone forever."
+    Event: loss | Subject: friend | Source: enemy_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: enemy_caused → ×0.8
+    sadness: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 18.00 × (1 + 0.720) = 30.96
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 30.96 × 0.85 × 0.8 × 1.48 = 31.16
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Final delta: 5.54 × 0.85 × 0.8 = 3.77
+    anger: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.64 × (1 + 0.453) = 3.84
+    Final delta: 3.84 × 0.85 × 0.8 = 2.61
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 0.85 × 0.8 = 2.62
+
+  Stimulant: "Junya is dragged away screaming by the guard while Praew fails to hold onto her, losing her grip on Junya's bracelet."
+    Event: separation | Subject: friend | Source: enemy_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: enemy_caused → ×0.8
+    sadness: base=25 × trig=1.2 × weight=0.5 → raw=15.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 15.00 × (1 + 0.720) = 25.80
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 25.80 × 0.85 × 0.8 × 1.48 = 25.97
+    fear: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.00 × (1 + -0.230) = 9.24
+    Final delta: 9.24 × 0.85 × 0.8 = 6.28
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Final delta: 5.76 × 0.85 × 0.8 = 3.91
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.85 × 0.8 = 1.75
+
+  Stimulant: "Praew accepts she cannot save her friends and puts on Junya's bracelet as a reminder of her failure to protect them."
+    Event: failure | Subject: self | Source: self_caused | Domain: morality
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=25 × trig=1.2 × weight=0.4 → raw=12.00
     Trait modifiers for sadness (total: +0.720):
   empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
   emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
@@ -2071,25 +1947,582 @@ Stimulants this chapter: 5
   guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
     Modified delta: 12.00 × (1 + 0.720) = 20.64
     Final delta: 20.64 × 1 × 1.1 = 22.70
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
+    fear: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.00 × (1 + -0.230) = 9.24
+    Final delta: 9.24 × 1 × 1.1 = 10.16
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.67 × 1 × 1.1 × 1.36 = 11.48
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1.1 = 4.24
+  Compression: sadness raw=96.3 → compressed=93.5 (threshold=75)
 
   Suppression applied:
-  Suppression: anger(81.2) suppresses joy by -21.58 (50% of anger delta)
-  Suppression: anger(81.2) suppresses trust by -12.95 (30% of anger delta)
-  Suppression: anger(81.2) suppresses fear by -6.47 (15% of anger delta)
-  Suppression: sadness(95.2) suppresses joy by -37.62 (60% of sadness delta)
-  Suppression: sadness(95.2) suppresses anticipation by -18.81 (30% of sadness delta)
-  Suppression: sadness(95.2) suppresses surprise by -12.54 (20% of sadness delta)
+  Suppression: anger(104.1) suppresses joy by -22.13 (50% of anger delta)
+  Suppression: anger(104.1) suppresses trust by -13.28 (30% of anger delta)
+  Suppression: anger(104.1) suppresses fear by -6.64 (15% of anger delta)
+  Suppression: sadness(138.1) suppresses joy by -56.09 (60% of sadness delta)
+  Suppression: sadness(138.1) suppresses anticipation by -28.04 (30% of sadness delta)
+  Suppression: sadness(138.1) suppresses surprise by -18.70 (20% of sadness delta)
+  Suppression: fear(104.9) suppresses joy by -17.11 (40% of fear delta)
+  Suppression: fear(104.9) suppresses trust by -12.83 (30% of fear delta)
+  Suppression: fear(104.9) suppresses anticipation by -8.56 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-31.75) = -31.75
-    sadness: carry(32.5 × 0.25) + delta(62.70) = 70.83
-    anger: carry(38.0 × 0.25) + delta(43.16) = 52.66
-    fear: carry(4.1 × 0.25) + delta(9.73) = 10.76
-    disgust: carry(2.3 × 0.25) + delta(15.55) = 16.12
-    surprise: carry(11.1 × 0.25) + delta(2.46) = 5.24
-    trust: carry(9.1 × 0.25) + delta(-0.31) = 1.97
-    anticipation: carry(2.8 × 0.25) + delta(-1.08) = -0.38
+    sadness: carry(44.6 × 0.055999999999999994) + delta(93.48) = 95.98
+    *** sadness in RED ZONE: VU=96.0 (track capped at 75) ***
+    anger: carry(59.9 × 0.04) + delta(44.26) = 46.65
+    fear: carry(62.2 × 0.125) + delta(42.78) = 50.55
+    disgust: carry(12.5 × 0.12) + delta(34.38) = 35.89
+    surprise: carry(30.0 × 0.13999999999999999) + delta(-4.23) = -0.02
+    anticipation: carry(0.0 × 0.2) + delta(-33.68) = -33.68
+
+=== Chapter 16 ===
+Stimulants this chapter: 6
+
+  Stimulant: "Praew sees Junya dead on a stone slab with a Sifaralith embedded in her skull."
+    Event: loss | Subject: friend | Source: enemy_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: enemy_caused → ×0.8
+    sadness: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 18.00 × (1 + 0.720) = 30.96
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 30.96 × 0.85 × 0.8 × 1.48 = 31.16
+    fear: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.20 × (1 + -0.230) = 5.54
+    Final delta: 5.54 × 0.85 × 0.8 = 3.77
+    anger: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 2.64 × (1 + 0.453) = 3.84
+    Final delta: 3.84 × 0.85 × 0.8 = 2.61
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 0.85 × 0.8 = 2.62
+
+  Stimulant: "The scientist grabs Praew's hair and invades her personal space while she is strapped down, making her feel violated and powerless."
+    Event: humiliation | Subject: self | Source: enemy_caused | Domain: autonomy
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Final delta: 15.48 × 1 × 0.8 = 12.38
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 9.59 × 1 × 0.8 × 1.48 = 11.36
+    disgust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 8.40 × (1 + 0.140) = 9.58
+    Final delta: 9.58 × 1 × 0.8 = 7.66
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 0.8 = 4.11
+
+  Stimulant: "The Prime Archon kills the scientist but then reveals he will not release Praew and instead begins the embedding process."
+    Event: betrayal | Subject: self | Source: authority_caused | Domain: autonomy
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    sadness: base=25 × trig=1.2 × weight=0.3 → raw=9.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 9.00 × (1 + 0.720) = 15.48
+    Final delta: 15.48 × 1 × 1 = 15.48
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 9.59 × 1 × 1 × 1.48 = 14.20
+    trust (COLLAPSE): base=30 × trig=1.2 × weight=0.25 → raw=9.00
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 1 = 8.10
+    → Trust COLLAPSED by -8.10
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 1 = 5.14
+
+  Stimulant: "The Prime slams a Mythical BoltStone into Praew's chest, causing agonizing pain as electricity tears through her body."
+    Event: harm | Subject: self | Source: authority_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=1.2 × weight=0.6 → raw=28.80
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 28.80 × (1 + -0.230) = 22.18
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 22.18 × 1 × 1 × 1.7200000000000002 = 38.14
+    anger: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 5.28 × (1 + 0.453) = 7.67
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.67 × 1 × 1 × 1.24 = 9.52
+    sadness: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.00 × (1 + 0.720) = 5.16
+    Final delta: 5.16 × 1 × 1 = 5.16
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 1 × 1 = 2.57
+
+  Stimulant: "Praew realizes the Hunter Test was actually a screening to find people compatible with rare stones, reframing her entire life."
+    Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: autonomy
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    surprise: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 18.00 × (1 + -0.143) = 15.42
+    Final delta: 15.42 × 1 × 1 = 15.42
+    fear: base=40 × trig=1.2 × weight=0.2 → raw=9.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.60 × (1 + -0.230) = 7.39
+    Domain amp: autonomy → fear ×1.36 (only at High+ trigger)
+    Final delta: 7.39 × 1 × 1 × 1.36 = 10.05
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + 0.087) = 7.30
+    Final delta: 7.30 × 1 × 1 = 7.30
+
+  Stimulant: "Praew survives the Mythical BoltStone embedding by figuring out the trigger is sound and silently enduring the agony."
+    Event: success | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    joy: base=30 × trig=1.2 × weight=0.5 → raw=18.00
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 18.00 × (1 + 0.100) = 19.80
+    Final delta: 19.80 × 1 × 1.1 = 21.78
+    trust: base=30 × trig=1.2 × weight=0.2 → raw=7.20
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Final delta: 6.48 × 1 × 1.1 = 7.13
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 5.04 × (1 + 0.087) = 5.48
+    Final delta: 5.48 × 1 × 1.1 = 6.02
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 1.1 = 4.24
+  Tone adjustment: negative chapter dampens joy: 21.8 × 0.4 = 8.7
+  Tone adjustment: negative chapter dampens anticipation: 13.3 × 0.4 = 5.3
+
+  Suppression applied:
+  Suppression: anger(84.3) suppresses joy by -18.84 (50% of anger delta)
+  Suppression: anger(84.3) suppresses trust by -11.30 (30% of anger delta)
+  Suppression: anger(84.3) suppresses fear by -5.65 (15% of anger delta)
+  Suppression: sadness(139.2) suppresses joy by -38.51 (60% of sadness delta)
+  Suppression: sadness(139.2) suppresses anticipation by -19.25 (30% of sadness delta)
+  Suppression: sadness(139.2) suppresses surprise by -12.84 (20% of sadness delta)
+  Suppression: fear(96.9) suppresses joy by -18.53 (40% of fear delta)
+  Suppression: fear(96.9) suppresses trust by -13.89 (30% of fear delta)
+  Suppression: fear(96.9) suppresses anticipation by -9.26 (20% of fear delta)
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(-67.16) = -67.16
+    sadness: carry(75.0 × 0.04) + delta(64.18) = 67.18
+    anger: carry(46.7 × 0.055999999999999994) + delta(37.68) = 40.29
+    fear: carry(50.5 × 0.125) + delta(46.31) = 52.63
+    disgust: carry(35.9 × 0.08399999999999999) + delta(7.66) = 10.68
+    surprise: carry(0.0 × 0.2) + delta(21.27) = 21.27
+    trust: carry(0.0 × 0.2) + delta(-26.17) = -26.17
+    anticipation: carry(0.0 × 0.2) + delta(-23.19) = -23.19
+
+=== Chapter 17 ===
+Stimulants this chapter: 2
+
+  Stimulant: "The Prime begins the BoltStone recorrection program on Praew, using pulses to make her mind impressionable against her will."
+    Event: constraint | Subject: self | Source: authority_caused | Domain: autonomy
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=40 × trig=1.2 × weight=0.5 → raw=24.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 24.00 × (1 + -0.230) = 18.48
+    Domain amp: autonomy → fear ×1.36 (only at High+ trigger)
+    Final delta: 18.48 × 1 × 1 × 1.36 = 25.13
+    anger: base=22 × trig=1.2 × weight=0.3 → raw=7.92
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 7.92 × (1 + 0.453) = 11.51
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 11.51 × 1 × 1 × 1.48 = 17.04
+    sadness: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.00 × (1 + 0.720) = 5.16
+    Final delta: 5.16 × 1 × 1 = 5.16
+    anticipation: base=28 × trig=1.2 × weight=0.1 → raw=3.36
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 3.36 × (1 + 0.087) = 3.65
+    Final delta: 3.65 × 1 × 1 = 3.65
+
+  Stimulant: "Praew experiences a vision of her parents telling her to leave the city and go on her adventure, giving her emotional comfort."
+    Event: connection | Subject: family | Source: ally_caused | Domain: attachment
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: ally_caused → ×1.3
+    trust: base=30 × trig=0.75 × weight=0.4 → raw=9.00
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 0.95 × 1.3 = 10.00
+    joy: base=30 × trig=0.75 × weight=0.3 → raw=6.75
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 6.75 × (1 + 0.100) = 7.43
+    Final delta: 7.43 × 0.95 × 1.3 = 9.17
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 4.20 × (1 + 0.087) = 4.56
+    Final delta: 4.56 × 0.95 × 1.3 = 5.64
+    surprise: base=25 × trig=0.75 × weight=0.1 → raw=1.88
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 1.88 × (1 + -0.143) = 1.61
+    Final delta: 1.61 × 0.95 × 1.3 = 1.98
+
+  Suppression applied:
+  Suppression: anger(57.3) suppresses joy by -8.52 (50% of anger delta)
+  Suppression: anger(57.3) suppresses trust by -5.11 (30% of anger delta)
+  Suppression: anger(57.3) suppresses fear by -2.56 (15% of anger delta)
+  Suppression: sadness(72.3) suppresses joy by -3.10 (60% of sadness delta)
+  Suppression: sadness(72.3) suppresses anticipation by -1.55 (30% of sadness delta)
+  Suppression: sadness(72.3) suppresses surprise by -1.03 (20% of sadness delta)
+  Suppression: fear(75.2) suppresses joy by -9.03 (40% of fear delta)
+  Suppression: fear(75.2) suppresses trust by -6.77 (30% of fear delta)
+  Suppression: fear(75.2) suppresses anticipation by -4.52 (20% of fear delta)
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(-11.47) = -11.47
+    sadness: carry(67.2 × 0.04) + delta(5.16) = 7.85
+    anger: carry(40.3 × 0.055999999999999994) + delta(17.04) = 19.29
+    fear: carry(52.6 × 0.125) + delta(22.58) = 29.16
+    disgust: carry(10.7 × 0.02) + delta(0.00) = 0.21
+    surprise: carry(21.3 × 0.2) + delta(0.95) = 5.21
+    trust: carry(0.0 × 0.2) + delta(-1.88) = -1.88
+    anticipation: carry(0.0 × 0.2) + delta(3.22) = 3.22
+
+=== Chapter 18 ===
+Stimulants this chapter: 5
+
+  Stimulant: "Praew wakes to find Godric has rescued her from The Prime and is taking her to the surface to escape."
+    Event: reward | Subject: self | Source: ally_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: ally_caused → ×1.3
+    joy: base=30 × trig=1.2 × weight=0.5 → raw=18.00
+    Trait modifiers for joy (total: +0.100):
+  empathyBaseline(75/75 × 0.2) = +0.200 [Empathic joy — shares in others' happiness]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 18.00 × (1 + 0.100) = 19.80
+    Final delta: 19.80 × 1 × 1.3 = 25.74
+    trust: base=30 × trig=1.2 × weight=0.25 → raw=9.00
+    Trait modifiers for trust (total: -0.100):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 1.3 = 10.53
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 5.04 × (1 + 0.087) = 5.48
+    Final delta: 5.48 × 1 × 1.3 = 7.12
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 1 × 1.3 = 3.34
+
+  Stimulant: "Renwick and six Embedded warriors block the final gate to the surface, threatening to end her escape."
+    Event: obstacle | Subject: self | Source: enemy_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    anger: base=22 × trig=1.2 × weight=0.3 → raw=7.92
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 7.92 × (1 + 0.453) = 11.51
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 11.51 × 1 × 0.8 × 1.24 = 11.42
+    fear: base=40 × trig=1.2 × weight=0.3 → raw=14.40
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 14.40 × (1 + -0.230) = 11.09
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 11.09 × 1 × 0.8 × 1.7200000000000002 = 15.26
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 8.40 × (1 + 0.087) = 9.13
+    Final delta: 9.13 × 1 × 0.8 = 7.30
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 0.8 = 3.08
+
+  Stimulant: "Godric sacrifices himself to hold back the warriors so Praew can escape, and she realizes she may never see her hero again."
+    Event: separation | Subject: friend | Source: ally_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    sadness: base=25 × trig=1.2 × weight=0.5 → raw=15.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 15.00 × (1 + 0.720) = 25.80
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 25.80 × 0.85 × 1.3 × 1.48 = 42.19
+    fear: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.00 × (1 + -0.230) = 9.24
+    Final delta: 9.24 × 0.85 × 1.3 = 10.21
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Final delta: 5.76 × 0.85 × 1.3 = 6.36
+    surprise: base=25 × trig=1.2 × weight=0.1 → raw=3.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 3.00 × (1 + -0.143) = 2.57
+    Final delta: 2.57 × 0.85 × 1.3 = 2.84
+
+  Stimulant: "Praew runs across the deadly surface alone, triggering dangerous stones and suffering electricity from her own BoltStone, nearly dying."
+    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    fear: base=40 × trig=1.2 × weight=0.45 → raw=21.60
+    Trait modifiers for fear (total: -0.230):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  riskAppetite(65/75 × -0.15) = -0.130 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.60 × (1 + -0.230) = 16.63
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 16.63 × 1 × 0.7 × 1.7200000000000002 = 20.02
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for anticipation (total: +0.087):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  curiosity(70/75 × 0.2) = +0.187 [Curious = heightened anticipation for new info]
+    Modified delta: 8.40 × (1 + 0.087) = 9.13
+    Final delta: 9.13 × 1 × 0.7 = 6.39
+    anger: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 3.96 × (1 + 0.453) = 5.76
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 5.76 × 1 × 0.7 × 1.24 = 5.00
+    surprise: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 4.50 × (1 + -0.143) = 3.85
+    Final delta: 3.85 × 1 × 0.7 = 2.70
+
+  Stimulant: "Praew accepts her likely death on the surface with a smile, finding peace in dying free rather than as a prisoner."
+    Event: moral_cue | Subject: self | Source: self_caused | Domain: autonomy
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
+    Trait modifiers for disgust (total: +0.140):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  moralRigidity(60/75 × 0.3) = +0.240 [Rigid morals = stronger moral disgust]
+    Modified delta: 11.76 × (1 + 0.140) = 13.41
+    Final delta: 13.41 × 1 × 1.1 = 14.75
+    anger: base=22 × trig=1.2 × weight=0.25 → raw=6.60
+    Trait modifiers for anger (total: +0.453):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  confrontationalTendency(60/75 × 0.3) = +0.240 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(50/75 × 0.2) = +0.133 [Sensitive pride = anger when status/competence challenged]
+  patience(25/75 × -0.2) = -0.067 [Patient = slower to anger]
+  impulsiveness(65/75 × 0.1) = +0.087 [Impulsive = anger flares quickly]
+  moralRigidity(60/75 × 0.2) = +0.160 [Rigid morals = anger at injustice]
+    Modified delta: 6.60 × (1 + 0.453) = 9.59
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 9.59 × 1 × 1.1 × 1.48 = 15.62
+    sadness: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for sadness (total: +0.720):
+  empathyBaseline(75/75 × 0.4) = +0.400 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  shameSensitivity(40/75 × 0.3) = +0.160 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(65/75 × 0.3) = +0.260 [High guilt = sadness from moral self-judgment]
+    Modified delta: 6.00 × (1 + 0.720) = 10.32
+    Final delta: 10.32 × 1 × 1.1 = 11.35
+    surprise: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for surprise (total: -0.143):
+  emotionalContainment(25/75 × -0.3) = -0.100 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(65/75 × -0.2) = -0.173 [Adaptable = recovers from surprise faster]
+  impulsiveness(65/75 × 0.15) = +0.130 [Impulsive = reacts more to surprises]
+    Modified delta: 6.00 × (1 + -0.143) = 5.14
+    Final delta: 5.14 × 1 × 1.1 = 5.65
+
+  Suppression applied:
+  Suppression: anger(57.7) suppresses joy by -19.19 (50% of anger delta)
+  Suppression: anger(57.7) suppresses trust by -11.52 (30% of anger delta)
+  Suppression: anger(57.7) suppresses fear by -5.76 (15% of anger delta)
+  Suppression: sadness(61.4) suppresses joy by -32.13 (60% of sadness delta)
+  Suppression: sadness(61.4) suppresses anticipation by -16.06 (30% of sadness delta)
+  Suppression: sadness(61.4) suppresses surprise by -10.71 (20% of sadness delta)
+  Suppression: fear(68.9) suppresses joy by -15.89 (40% of fear delta)
+  Suppression: fear(68.9) suppresses trust by -11.92 (30% of fear delta)
+  Suppression: fear(68.9) suppresses anticipation by -7.95 (20% of fear delta)
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(-41.48) = -41.48
+    sadness: carry(7.8 × 0.08) + delta(53.55) = 54.17
+    anger: carry(19.3 × 0.08) + delta(38.39) = 39.93
+    fear: carry(29.2 × 0.25) + delta(39.73) = 47.02
+    disgust: carry(0.2 × 0.12) + delta(14.75) = 14.77
+    surprise: carry(5.2 × 0.2) + delta(6.91) = 7.95
+    trust: carry(0.0 × 0.2) + delta(-12.91) = -12.91
+    anticipation: carry(3.2 × 0.2) + delta(-3.20) = -2.55
 ```
 
 ### Profile Reasoning
@@ -2128,24 +2561,24 @@ Stimulants this chapter: 5
 Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 --------------------------------------------------------------------------
  0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
- 1 |      5 |     32 |     50 |     11 |     10 |     14 |      0 |      5
- 2 |      0 |     60 |    75! |      0 |     13 |      8 |      0 |      0
- 3 |      0 |     15 |     19 |      0 |      3 |      2 |      0 |      0
- 4 |      0 |     15 |     19 |      0 |      3 |      2 |      0 |      0
- 5 |      0 |     15 |     19 |      0 |      3 |      2 |      0 |      0
- 6 |      0 |     15 |     19 |      0 |      3 |      2 |      0 |      0
- 7 |      0 |     23 |     43 |      4 |     21 |     13 |      0 |      9
- 8 |      0 |      6 |     17 |      9 |      5 |     16 |      0 |      9
- 9 |      3 |     37 |     22 |      9 |      1 |      7 |      7 |      6
-10 |     13 |      9 |     41 |     16 |      0 |     17 |      5 |     24
-11 |      2 |     55 |     61 |      3 |     33 |      6 |     18 |     10
-12 |      0 |     34 |     74 |      0 |     30 |     12 |      0 |      5
-13 |      0 |     50 |     61 |     12 |     18 |      6 |      0 |      0
-14 |      6 |     13 |     28 |     19 |      4 |      9 |      4 |     15
-15 |      0 |     42 |     41 |     11 |     16 |      1 |      0 |      0
-16 |      0 |     10 |     10 |      6 |      4 |     18 |      0 |      8
-17 |      0 |     75 |     62 |      7 |     16 |      5 |      0 |      0
-18 |      0 |     52 |     44 |      9 |      4 |     10 |      0 |      0
+ 1 |      2 |     30 |     43 |     13 |      8 |     10 |      0 |      2
+ 2 |      0 |     55 |     65 |     13 |      9 |      0 |      0 |      0
+ 3 |      0 |      1 |      1 |      0 |      0 |      0 |      0 |      0
+ 4 |      0 |      1 |      1 |      0 |      0 |      0 |      0 |      0
+ 5 |      0 |      1 |      1 |      0 |      0 |      0 |      0 |      0
+ 6 |      0 |      1 |      1 |      0 |      0 |      0 |      0 |      0
+ 7 |      0 |     10 |     22 |      0 |     11 |      5 |      0 |      0
+ 8 |      0 |      0 |      5 |     16 |      0 |     17 |      0 |     10
+ 9 |      3 |     18 |      8 |     10 |      0 |      9 |      7 |      8
+10 |     11 |      0 |     32 |     45 |      0 |     13 |      2 |     22
+11 |     45 |      0 |     14 |      0 |     14 |     42 |     27 |     37
+12 |      0 |     15 |     57 |      0 |     26 |     16 |      0 |     11
+13 |      0 |     41 |     42 |     37 |      9 |     17 |      0 |      3
+14 |      0 |      1 |     14 |     26 |      0 |     20 |      0 |      5
+15 |      0 |     31 |     37 |     25 |     22 |     24 |      0 |     11
+16 |      0 |      0 |      1 |     18 |      0 |     29 |      0 |     14
+17 |      0 |     66 |     58 |     24 |     22 |      6 |      0 |      0
+18 |      0 |     35 |     15 |     31 |      0 |      0 |     15 |      2
 ```
 
 ### Calculation Breakdown
@@ -2160,41 +2593,49 @@ Stimulants this chapter: 3
 
   Stimulant: "Haldric performs the triangle hand gesture with Praew and Asher, reaffirming their unbreakable bond before the test."
     Event: connection | Subject: friend | Source: self_caused | Domain: belonging
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    trust: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    trust: base=28 × trig=0.75 × weight=0.4 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 13.60 × (1 + -0.160) = 11.42
-    Final delta: 11.42 × 0.8 × 1.1 = 10.05
-    joy: base=22 × trig=0.85 × weight=0.3 → raw=5.61
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 0.85 × 1.1 = 6.60
+    joy: base=22 × trig=0.75 × weight=0.3 → raw=4.95
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 5.61 × (1 + -0.013) = 5.54
-    Final delta: 5.54 × 0.8 × 1.1 = 4.87
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 4.95 × (1 + -0.013) = 4.88
+    Final delta: 4.88 × 0.85 × 1.1 = 4.57
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.027) = 5.13
-    Final delta: 5.13 × 0.8 × 1.1 = 4.51
+    Modified delta: 4.20 × (1 + -0.027) = 4.09
+    Final delta: 4.09 × 0.85 × 1.1 = 3.82
+    surprise: base=22 × trig=0.75 × weight=0.1 → raw=1.65
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 1.65 × (1 + -0.170) = 1.37
+    Final delta: 1.37 × 0.85 × 1.1 = 1.28
 
   Stimulant: "Asher hesitates and then abandons Haldric dangling over a pit during the practical test, choosing to take both stones."
     Event: betrayal | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=27 × trig=1 × weight=0.4 → raw=10.80
+    sadness: base=22 × trig=1.2 × weight=0.3 → raw=7.92
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.80 × (1 + 0.633) = 17.64
-    Final delta: 17.64 × 1 × 1.3 = 22.93
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 7.92 × (1 + 0.633) = 12.94
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 12.94 × 1 × 1.3 × 1.36 = 22.87
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2202,21 +2643,29 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.3 = 21.75
-    trust (COLLAPSE): base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Final delta: 13.06 × 1 × 1.3 = 16.97
+    trust (COLLAPSE): base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.160) = 8.06
-    Final delta: 8.06 × 1 × 1.3 = 10.48
-    → Trust COLLAPSED by -10.48
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 7.06 × 1 × 1.3 × 1.36 = 12.48
+    → Trust COLLAPSED by -12.48
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.3 = 5.70
 
   Stimulant: "Haldric screams that it's not fair as the Hunter dismisses his protest, leaving him shaking with barely contained rage."
     Event: injustice | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=1 × weight=0.5 → raw=20.50
+    anger: base=32 × trig=1.2 × weight=0.4 → raw=15.36
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2224,44 +2673,61 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 20.50 × (1 + 0.360) = 27.88
-    Final delta: 27.88 × 1 × 1 = 27.88
-    disgust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 15.36 × (1 + 0.360) = 20.89
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 20.89 × 1 × 1 × 1.24 = 25.90
+    disgust: base=20 × trig=1.2 × weight=0.3 → raw=7.20
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.60 × (1 + 0.060) = 10.18
-    Final delta: 10.18 × 1 × 1 = 10.18
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.20 × (1 + 0.060) = 7.63
+    Final delta: 7.63 × 1 × 1 = 7.63
+    sadness: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 1 × 1 = 8.82
-  Ambient surprise: avg_trigger(0.95) × 15 = +14.3
-  Ambient fear: extreme event detected → +11.4
+    Modified delta: 3.96 × (1 + 0.633) = 6.47
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 6.47 × 1 × 1 × 1.12 = 7.24
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1 = 3.29
+  Tone adjustment: negative chapter dampens joy: 4.6 × 0.4 = 1.8
+  Tone adjustment: negative chapter dampens anticipation: 3.8 × 0.4 = 1.5
+  Ambient fear: extreme event detected → +12.6
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(4.87) = 4.87
-    sadness: carry(0.0 × 0.25) + delta(31.75) = 31.75
-    anger: carry(0.0 × 0.25) + delta(49.63) = 49.63
-    fear: carry(0.0 × 0.25) + delta(11.40) = 11.40
-    disgust: carry(0.0 × 0.25) + delta(10.18) = 10.18
-    surprise: carry(0.0 × 0.25) + delta(14.25) = 14.25
-    trust: carry(0.0 × 0.25) + delta(-0.43) = -0.43
-    anticipation: carry(0.0 × 0.25) + delta(4.51) = 4.51
+    joy: carry(0.0 × 0.2) + delta(1.83) = 1.83
+    sadness: carry(0.0 × 0.08) + delta(30.12) = 30.12
+    anger: carry(0.0 × 0.08) + delta(42.88) = 42.88
+    fear: carry(0.0 × 0.25) + delta(12.60) = 12.60
+    disgust: carry(0.0 × 0.12) + delta(7.63) = 7.63
+    surprise: carry(0.0 × 0.2) + delta(10.26) = 10.26
+    trust: carry(0.0 × 0.2) + delta(-5.88) = -5.88
+    anticipation: carry(0.0 × 0.2) + delta(1.53) = 1.53
 
 === Chapter 2 ===
 Stimulants this chapter: 3
 
   Stimulant: "Haldric is assigned to government administration in the Prime Archon's office, not a poor job but not the Hunter role he wanted."
     Event: constraint | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=1 × weight=0.5 → raw=20.50
+    fear: base=25 × trig=1.2 × weight=0.5 → raw=15.00
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 15.00 × (1 + -0.270) = 10.95
+    Domain amp: autonomy → fear ×1.36 (only at High+ trigger)
+    Final delta: 10.95 × 1 × 1 × 1.36 = 14.89
+    anger: base=32 × trig=1.2 × weight=0.3 → raw=11.52
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2269,29 +2735,30 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 20.50 × (1 + 0.360) = 27.88
-    Final delta: 27.88 × 1 × 1 = 27.88
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1 = 4.09
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 11.52 × (1 + 0.360) = 15.67
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 15.67 × 1 × 1 × 1.48 = 23.19
+    sadness: base=22 × trig=1.2 × weight=0.1 → raw=2.64
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 1 × 1 = 8.82
+    Modified delta: 2.64 × (1 + 0.633) = 4.31
+    Final delta: 4.31 × 1 × 1 = 4.31
+    anticipation: base=28 × trig=1.2 × weight=0.1 → raw=3.36
+    Trait modifiers for anticipation (total: -0.027):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.36 × (1 + -0.027) = 3.27
+    Final delta: 3.27 × 1 × 1 = 3.27
 
   Stimulant: "Asher is named Beast Hunter, the most prestigious role, while Haldric is left with a desk job, intensifying his fury."
     Event: injustice | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=1 × weight=0.5 → raw=20.50
+    anger: base=32 × trig=1.2 × weight=0.4 → raw=15.36
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2299,37 +2766,47 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 20.50 × (1 + 0.360) = 27.88
-    Final delta: 27.88 × 1 × 1 = 27.88
-    disgust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 15.36 × (1 + 0.360) = 20.89
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 20.89 × 1 × 1 × 1.24 = 25.90
+    disgust: base=20 × trig=1.2 × weight=0.3 → raw=7.20
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.60 × (1 + 0.060) = 10.18
-    Final delta: 10.18 × 1 × 1 = 10.18
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.20 × (1 + 0.060) = 7.63
+    Final delta: 7.63 × 1 × 1 = 7.63
+    sadness: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 1 × 1 = 8.82
+    Modified delta: 3.96 × (1 + 0.633) = 6.47
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 6.47 × 1 × 1 × 1.12 = 7.24
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1 = 3.29
 
   Stimulant: "Asher walks away without saying goodbye or apologizing, completing his betrayal of Haldric and Praew."
     Event: rejection | Subject: self | Source: ally_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=27 × trig=1 × weight=0.6 → raw=16.20
+    sadness: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.20 × (1 + 0.633) = 26.46
-    Final delta: 26.46 × 1 × 1.3 = 34.40
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+    Modified delta: 13.20 × (1 + 0.633) = 21.56
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 21.56 × 1 × 1.3 × 1.48 = 41.48
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2337,43 +2814,47 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 1.3 = 14.50
-    fear: base=22 × trig=1 × weight=0.2 → raw=4.40
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Final delta: 10.44 × 1 × 1.3 = 13.58
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 4.40 × (1 + -0.380) = 2.73
-    Final delta: 2.73 × 1 × 1.3 = 3.55
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient anticipation: extreme event detected → +10.0
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.270) = 3.29
+    Final delta: 3.29 × 1 × 1.3 = 4.27
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1.3 = 4.27
 
   Suppression applied:
-  Suppression: anger(119.9) suppresses joy by -35.13 (50% of anger delta)
-  Suppression: anger(119.9) suppresses trust by -21.08 (30% of anger delta)
-  Suppression: anger(119.9) suppresses fear by -10.54 (15% of anger delta)
-  Suppression: sadness(83.8) suppresses joy by -31.22 (60% of sadness delta)
-  Suppression: sadness(83.8) suppresses anticipation by -15.61 (30% of sadness delta)
-  Suppression: sadness(83.8) suppresses surprise by -10.41 (20% of sadness delta)
+  Suppression: anger(105.5) suppresses joy by -31.33 (50% of anger delta)
+  Suppression: anger(105.5) suppresses trust by -18.80 (30% of anger delta)
+  Suppression: anger(105.5) suppresses fear by -9.40 (15% of anger delta)
+  Suppression: sadness(83.2) suppresses joy by -31.82 (60% of sadness delta)
+  Suppression: sadness(83.2) suppresses anticipation by -15.91 (30% of sadness delta)
+  Suppression: sadness(83.2) suppresses surprise by -10.61 (20% of sadness delta)
 
   Emotion updates:
-    joy: carry(4.9 × 0.25) + delta(-66.35) = -65.13
-    sadness: carry(31.8 × 0.25) + delta(52.04) = 59.98
-    anger: carry(49.6 × 0.25) + delta(70.26) = 82.66
-    *** anger in RED ZONE: VU=82.7 (track capped at 75) ***
-    fear: carry(11.4 × 0.25) + delta(-2.90) = -0.05
-    disgust: carry(10.2 × 0.25) + delta(10.18) = 12.72
-    surprise: carry(14.3 × 0.25) + delta(4.59) = 8.15
-    anticipation: carry(4.5 × 0.25) + delta(-5.61) = -4.48
+    joy: carry(1.8 × 0.02) + delta(-63.16) = -63.12
+    sadness: carry(30.1 × 0.055999999999999994) + delta(53.04) = 54.72
+    anger: carry(42.9 × 0.055999999999999994) + delta(62.67) = 65.07
+    fear: carry(12.6 × 0.25) + delta(9.76) = 12.91
+    disgust: carry(7.6 × 0.12) + delta(7.63) = 8.55
+    surprise: carry(10.3 × 0.2) + delta(-3.05) = -0.99
+    anticipation: carry(1.5 × 0.2) + delta(-12.64) = -12.34
 
 === Chapter 3 ===
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(60.0 × 0.25) + delta(0.00) = 14.99
-    anger: carry(75.0 × 0.25) + delta(0.00) = 18.75
-    disgust: carry(12.7 × 0.25) + delta(0.00) = 3.18
-    surprise: carry(8.2 × 0.25) + delta(0.00) = 2.04
+    sadness: carry(54.7 × 0.01) + delta(0.00) = 0.55
+    anger: carry(65.1 × 0.01) + delta(0.00) = 0.65
+    fear: carry(12.9 × 0.02) + delta(0.00) = 0.26
+    disgust: carry(8.5 × 0.02) + delta(0.00) = 0.17
 
 === Chapter 4 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -2389,10 +2870,10 @@ Stimulants this chapter: 2
 
   Stimulant: "Haldric sees how small his food rations are compared to Praew's, a visible sign of the city's inequitable food distribution."
     Event: injustice | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=0.85 × weight=0.5 → raw=17.43
+    anger: base=32 × trig=0.75 × weight=0.4 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2400,35 +2881,42 @@ Stimulants this chapter: 2
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 17.43 × (1 + 0.360) = 23.70
-    Final delta: 23.70 × 1 × 1 = 23.70
-    disgust: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Final delta: 13.06 × 1 × 1 = 13.06
+    disgust: base=20 × trig=0.75 × weight=0.3 → raw=4.50
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 8.16 × (1 + 0.060) = 8.65
-    Final delta: 8.65 × 1 × 1 = 8.65
-    sadness: base=27 × trig=0.85 × weight=0.2 → raw=4.59
+    Modified delta: 4.50 × (1 + 0.060) = 4.77
+    Final delta: 4.77 × 1 × 1 = 4.77
+    sadness: base=22 × trig=0.75 × weight=0.15 → raw=2.48
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.59 × (1 + 0.633) = 7.50
-    Final delta: 7.50 × 1 × 1 = 7.50
+    Modified delta: 2.48 × (1 + 0.633) = 4.04
+    Final delta: 4.04 × 1 × 1 = 4.04
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 1 × 1 = 2.05
 
   Stimulant: "Praew asks Haldric to help investigate the suspicious disappearance of Junya's parents, pulling him into a risky mission."
     Event: moral_cue | Subject: friend | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    disgust: base=32 × trig=0.85 × weight=0.4 → raw=10.88
+    disgust: base=20 × trig=0.75 × weight=0.35 → raw=5.25
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.88 × (1 + 0.060) = 11.53
-    Final delta: 11.53 × 0.8 × 1.3 = 11.99
-    anger: base=41 × trig=0.85 × weight=0.3 → raw=10.46
+    Modified delta: 5.25 × (1 + 0.060) = 5.57
+    Final delta: 5.57 × 0.85 × 1.3 = 6.15
+    anger: base=32 × trig=0.75 × weight=0.25 → raw=6.00
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2436,73 +2924,71 @@ Stimulants this chapter: 2
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 10.46 × (1 + 0.360) = 14.22
-    Final delta: 14.22 × 0.8 × 1.3 = 14.79
-    sadness: base=27 × trig=0.85 × weight=0.3 → raw=6.88
+    Modified delta: 6.00 × (1 + 0.360) = 8.16
+    Final delta: 8.16 × 0.85 × 1.3 = 9.02
+    sadness: base=22 × trig=0.75 × weight=0.2 → raw=3.30
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.88 × (1 + 0.633) = 11.25
-    Final delta: 11.25 × 0.8 × 1.3 = 11.70
-  Ambient surprise: avg_trigger(0.85) × 15 = +12.8
-  Ambient anticipation: extreme event detected → +8.5
-  Ambient fear: extreme event detected → +10.2
-
-  Suppression applied:
-  Suppression: anger(57.2) suppresses joy by -19.24 (50% of anger delta)
-  Suppression: anger(57.2) suppresses trust by -11.55 (30% of anger delta)
-  Suppression: anger(57.2) suppresses fear by -5.77 (15% of anger delta)
+    Modified delta: 3.30 × (1 + 0.633) = 5.39
+    Final delta: 5.39 × 0.85 × 1.3 = 5.96
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.170) = 2.74
+    Final delta: 2.74 × 0.85 × 1.3 = 3.03
 
   Emotion updates:
-    sadness: carry(15.0 × 0.25) + delta(19.19) = 22.94
-    anger: carry(18.8 × 0.25) + delta(38.49) = 43.17
-    fear: carry(0.0 × 0.25) + delta(4.43) = 4.43
-    disgust: carry(3.2 × 0.25) + delta(20.64) = 21.44
-    surprise: carry(2.0 × 0.25) + delta(12.75) = 13.26
-    anticipation: carry(0.0 × 0.25) + delta(8.50) = 8.50
+    sadness: carry(0.5 × 0.08) + delta(10.00) = 10.04
+    anger: carry(0.7 × 0.08) + delta(22.07) = 22.12
+    disgust: carry(0.2 × 0.12) + delta(10.92) = 10.94
+    surprise: carry(0.0 × 0.2) + delta(5.08) = 5.08
 
 === Chapter 8 ===
 Stimulants this chapter: 2
 
   Stimulant: "Haldric discovers his Grayparents have been secretly skipping meals to save food for him, leaving them gaunt and weak."
     Event: surprise_reveal | Subject: family | Source: ally_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.9 × 1.3 = 12.24
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.95 × 1.3 = 16.24
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.9 × 1.3 = 2.39
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 4.38 × 0.95 × 1.3 × 1.7200000000000002 = 9.30
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.9 × 1.3 = 5.30
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.95 × 1.3 = 8.08
 
   Stimulant: "Haldric tells his Grayparents he cannot lose them too after already losing his parents, feeling desperate fear for their health."
     Event: threat | Subject: family | Source: world_caused | Domain: attachment
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: world_caused → ×0.7
-    fear: base=22 × trig=0.85 × weight=0.7 → raw=13.09
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=0.75 × weight=0.7 → raw=13.13
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 13.09 × (1 + -0.380) = 8.12
-    Final delta: 8.12 × 0.9 × 0.7 = 5.11
-    anger: base=41 × trig=0.85 × weight=0.2 → raw=6.97
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.13 × (1 + -0.270) = 9.58
+    Final delta: 9.58 × 0.95 × 0.7 = 6.37
+    anger: base=32 × trig=0.75 × weight=0.15 → raw=3.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2510,71 +2996,71 @@ Stimulants this chapter: 2
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.97 × (1 + 0.360) = 9.48
-    Final delta: 9.48 × 0.9 × 0.7 = 5.97
-    anticipation: base=31 × trig=0.85 × weight=0.1 → raw=2.63
+    Modified delta: 3.60 × (1 + 0.360) = 4.90
+    Final delta: 4.90 × 0.95 × 0.7 = 3.26
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.63 × (1 + -0.027) = 2.56
-    Final delta: 2.56 × 0.9 × 0.7 = 1.62
+    Modified delta: 3.15 × (1 + -0.027) = 3.07
+    Final delta: 3.07 × 0.95 × 0.7 = 2.04
 
   Emotion updates:
-    sadness: carry(22.9 × 0.25) + delta(0.00) = 5.74
-    anger: carry(43.2 × 0.25) + delta(5.97) = 16.77
-    fear: carry(4.4 × 0.25) + delta(7.51) = 8.61
-    disgust: carry(21.4 × 0.25) + delta(0.00) = 5.36
-    surprise: carry(13.3 × 0.25) + delta(12.24) = 15.55
-    anticipation: carry(8.5 × 0.25) + delta(6.91) = 9.04
+    sadness: carry(10.0 × 0.02) + delta(0.00) = 0.20
+    anger: carry(22.1 × 0.08) + delta(3.26) = 5.03
+    fear: carry(0.0 × 0.25) + delta(15.68) = 15.68
+    disgust: carry(10.9 × 0.02) + delta(0.00) = 0.22
+    surprise: carry(5.1 × 0.2) + delta(16.24) = 17.25
+    anticipation: carry(0.0 × 0.2) + delta(10.12) = 10.12
 
 === Chapter 9 ===
 Stimulants this chapter: 4
 
   Stimulant: "Haldric overhears Godric furiously confronting The Prime about something involving 'them,' sparking his suspicion."
     Event: surprise_reveal | Subject: authority | Source: world_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=1 → total=5 → Medium (×0.6)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=2 imm=2 cert=1 → total=5 → Medium (×0.4)
+    Subject mult: authority → ×0.65
     Source mult: world_caused → ×0.7
-    surprise: base=18 × trig=0.6 × weight=0.7 → raw=7.56
+    surprise: base=22 × trig=0.4 × weight=0.6 → raw=5.28
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 7.56 × (1 + -0.170) = 6.27
-    Final delta: 6.27 × 0.6 × 0.7 = 2.64
-    fear: base=22 × trig=0.6 × weight=0.15 → raw=1.98
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 0.65 × 0.7 = 1.99
+    fear: base=25 × trig=0.4 × weight=0.2 → raw=2.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 1.98 × (1 + -0.380) = 1.23
-    Final delta: 1.23 × 0.6 × 0.7 = 0.52
-    anticipation: base=31 × trig=0.6 × weight=0.15 → raw=2.79
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.00 × (1 + -0.270) = 1.46
+    Final delta: 1.46 × 0.65 × 0.7 = 0.66
+    anticipation: base=28 × trig=0.4 × weight=0.2 → raw=2.24
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.79 × (1 + -0.027) = 2.72
-    Final delta: 2.72 × 0.6 × 0.7 = 1.14
+    Modified delta: 2.24 × (1 + -0.027) = 2.18
+    Final delta: 2.18 × 0.65 × 0.7 = 0.99
 
   Stimulant: "Haldric accidentally asks The Prime if he is okay, revealing he overheard the argument and compromising his position."
     Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=0.85 × weight=0.5 → raw=11.47
+    sadness: base=22 × trig=0.75 × weight=0.4 → raw=6.60
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.47 × (1 + 0.633) = 18.74
-    Final delta: 18.74 × 1 × 1.1 = 20.62
-    fear: base=22 × trig=0.85 × weight=0.3 → raw=5.61
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 6.60 × (1 + 0.633) = 10.78
+    Final delta: 10.78 × 1 × 1.1 = 11.86
+    fear: base=25 × trig=0.75 × weight=0.25 → raw=4.69
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 5.61 × (1 + -0.380) = 3.48
-    Final delta: 3.48 × 1 × 1.1 = 3.83
-    anger: base=41 × trig=0.85 × weight=0.2 → raw=6.97
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.69 × (1 + -0.270) = 3.42
+    Final delta: 3.42 × 1 × 1.1 = 3.76
+    anger: base=32 × trig=0.75 × weight=0.2 → raw=4.80
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2582,81 +3068,95 @@ Stimulants this chapter: 4
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.97 × (1 + 0.360) = 9.48
-    Final delta: 9.48 × 1 × 1.1 = 10.43
+    Modified delta: 4.80 × (1 + 0.360) = 6.53
+    Final delta: 6.53 × 1 × 1.1 = 7.18
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 1 × 1.1 = 2.26
 
   Stimulant: "The Prime apologizes for Asher's betrayal during the test and shows unexpected vulnerability, confusing Haldric's view of him."
     Event: connection | Subject: authority | Source: authority_caused | Domain: belonging
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: authority → ×0.65
     Source mult: authority_caused → ×1
-    trust: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    trust: base=28 × trig=0.75 × weight=0.4 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 13.60 × (1 + -0.160) = 11.42
-    Final delta: 11.42 × 0.6 × 1 = 6.85
-    joy: base=22 × trig=0.85 × weight=0.3 → raw=5.61
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 0.65 × 1 = 4.59
+    joy: base=22 × trig=0.75 × weight=0.3 → raw=4.95
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 5.61 × (1 + -0.013) = 5.54
-    Final delta: 5.54 × 0.6 × 1 = 3.32
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 4.95 × (1 + -0.013) = 4.88
+    Final delta: 4.88 × 0.65 × 1 = 3.17
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.027) = 5.13
-    Final delta: 5.13 × 0.6 × 1 = 3.08
+    Modified delta: 4.20 × (1 + -0.027) = 4.09
+    Final delta: 4.09 × 0.65 × 1 = 2.66
+    surprise: base=22 × trig=0.75 × weight=0.1 → raw=1.65
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 1.65 × (1 + -0.170) = 1.37
+    Final delta: 1.37 × 0.65 × 1 = 0.89
 
   Stimulant: "Haldric feels the thrill of the hunt for the first time since starting his desk job, reignited by the mysteries around the Prime."
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=2 cert=2 → total=5 → Medium (×0.6)
+    Trigger: stakes=1 imm=2 cert=2 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=0.6 × weight=0.5 → raw=8.10
+    sadness: base=22 × trig=0.4 × weight=0.4 → raw=3.52
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.1 = 14.55
-    fear: base=22 × trig=0.6 × weight=0.3 → raw=3.96
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 3.52 × (1 + 0.633) = 5.75
+    Final delta: 5.75 × 1 × 1.1 = 6.32
+    fear: base=25 × trig=0.4 × weight=0.2 → raw=2.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.96 × (1 + -0.380) = 2.46
-    Final delta: 2.46 × 1 × 1.1 = 2.70
-    anger: base=41 × trig=0.6 × weight=0.2 → raw=4.92
-    Trait modifiers for anger (total: +0.360):
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.00 × (1 + -0.270) = 1.46
+    Final delta: 1.46 × 1 × 1.1 = 1.61
+    anticipation: base=28 × trig=0.4 × weight=0.2 → raw=2.24
+    Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(65/75 × 0.2) = +0.173 [Sensitive pride = anger when status/competence challenged]
-  patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
-  impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 4.92 × (1 + 0.360) = 6.69
-    Final delta: 6.69 × 1 × 1.1 = 7.36
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 2.24 × (1 + -0.027) = 2.18
+    Final delta: 2.18 × 1 × 1.1 = 2.40
+    trust: base=28 × trig=0.4 × weight=0.2 → raw=2.24
+    Trait modifiers for trust (total: -0.160):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 2.24 × (1 + -0.160) = 1.88
+    Final delta: 1.88 × 1 × 1.1 = 2.07
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(3.32) = 3.32
-    sadness: carry(5.7 × 0.25) + delta(35.17) = 36.60
-    anger: carry(16.8 × 0.25) + delta(17.79) = 21.98
-    fear: carry(8.6 × 0.25) + delta(7.04) = 9.20
-    disgust: carry(5.4 × 0.25) + delta(0.00) = 1.34
-    surprise: carry(15.6 × 0.25) + delta(2.64) = 6.52
-    trust: carry(0.0 × 0.25) + delta(6.85) = 6.85
-    anticipation: carry(9.0 × 0.25) + delta(4.22) = 6.48
+    joy: carry(0.0 × 0.2) + delta(3.17) = 3.17
+    sadness: carry(0.2 × 0.08) + delta(18.18) = 18.20
+    anger: carry(5.0 × 0.08) + delta(7.18) = 7.58
+    fear: carry(15.7 × 0.25) + delta(6.03) = 9.95
+    surprise: carry(17.3 × 0.2) + delta(5.14) = 8.59
+    trust: carry(0.0 × 0.2) + delta(6.66) = 6.66
+    anticipation: carry(10.1 × 0.2) + delta(6.05) = 8.07
 
 === Chapter 10 ===
 Stimulants this chapter: 5
 
   Stimulant: "Haldric is assigned to personally deliver the retirement notice to War Claw Bresdin, a Mythical Beast Hunter."
     Event: obstacle | Subject: self | Source: authority_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=1 × weight=0.4 → raw=16.40
+    anger: base=32 × trig=1.2 × weight=0.3 → raw=11.52
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2664,33 +3164,42 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 16.40 × (1 + 0.360) = 22.30
-    Final delta: 22.30 × 1 × 1 = 22.30
-    anticipation: base=31 × trig=1 × weight=0.3 → raw=9.30
+    Modified delta: 11.52 × (1 + 0.360) = 15.67
+    Final delta: 15.67 × 1 × 1 = 15.67
+    fear: base=25 × trig=1.2 × weight=0.3 → raw=9.00
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.00 × (1 + -0.270) = 6.57
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 6.57 × 1 × 1 × 1.12 = 7.36
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 9.30 × (1 + -0.027) = 9.05
-    Final delta: 9.05 × 1 × 1 = 9.05
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 8.40 × (1 + -0.027) = 8.18
+    Final delta: 8.18 × 1 × 1 = 8.18
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1 = 4.09
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1 = 3.29
 
   Stimulant: "Hunters at the office threaten and shove Haldric when he announces the honorable discharge of their legend."
     Event: threat | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=22 × trig=1 × weight=0.7 → raw=15.40
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 15.40 × (1 + -0.380) = 9.55
-    Final delta: 9.55 × 1 × 0.8 = 7.64
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.270) = 15.33
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 15.33 × 1 × 0.8 × 1.7200000000000002 = 21.09
+    anger: base=32 × trig=1.2 × weight=0.15 → raw=5.76
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2698,33 +3207,35 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 0.8 = 8.92
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 5.76 × (1 + 0.360) = 7.83
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.83 × 1 × 0.8 × 1.24 = 7.77
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 0.8 = 2.41
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 0.8 = 3.92
 
   Stimulant: "Bresdin flees and opens the surface gate to blind Haldric, then attacks him with a weapon while Haldric is unable to see."
     Event: danger_cue | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=22 × trig=1 × weight=0.7 → raw=15.40
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 15.40 × (1 + -0.380) = 9.55
-    Final delta: 9.55 × 1 × 0.8 = 7.64
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.270) = 9.86
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 9.86 × 1 × 0.8 × 1.7200000000000002 = 13.56
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.027) = 6.03
-    Final delta: 6.03 × 1 × 0.8 = 4.83
-    anger: base=41 × trig=1 × weight=0.1 → raw=4.10
+    Modified delta: 8.40 × (1 + -0.027) = 8.18
+    Final delta: 8.18 × 1 × 0.8 = 6.54
+    anger: base=32 × trig=1.2 × weight=0.15 → raw=5.76
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2732,157 +3243,193 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 4.10 × (1 + 0.360) = 5.58
-    Final delta: 5.58 × 1 × 0.8 = 4.46
+    Modified delta: 5.76 × (1 + 0.360) = 7.83
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.83 × 1 × 0.8 × 1.24 = 7.77
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 0.8 = 2.63
 
   Stimulant: "Haldric successfully fights Bresdin while blind using childhood training, and The Prime intervenes to stop the Hunter."
     Event: success | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    joy: base=22 × trig=1 × weight=0.7 → raw=15.40
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 15.40 × (1 + -0.013) = 15.19
-    Final delta: 15.19 × 1 × 1.1 = 16.71
-    trust: base=32 × trig=1 × weight=0.2 → raw=6.40
+    Modified delta: 13.20 × (1 + -0.013) = 13.02
+    Final delta: 13.02 × 1 × 1.1 = 14.33
+    trust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 6.40 × (1 + -0.160) = 5.38
-    Final delta: 5.38 × 1 × 1.1 = 5.91
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 6.72 × (1 + -0.160) = 5.64
+    Final delta: 5.64 × 1 × 1.1 = 6.21
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1.1 = 3.32
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1.1 = 5.40
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1.1 = 3.62
 
   Stimulant: "The Prime Archon checks Haldric for injuries with paternal concern, and praises his fighting ability."
     Event: reward | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    joy: base=22 × trig=1 × weight=0.6 → raw=13.20
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
     Modified delta: 13.20 × (1 + -0.013) = 13.02
     Final delta: 13.02 × 1 × 1 = 13.02
-    trust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    trust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.160) = 8.06
-    Final delta: 8.06 × 1 × 1 = 8.06
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 1 × 1 = 7.06
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1 = 3.02
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1 = 4.91
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 1 × 1 = 2.19
 
   Suppression applied:
-  Suppression: anger(57.7) suppresses joy by -17.84 (50% of anger delta)
-  Suppression: anger(57.7) suppresses trust by -10.71 (30% of anger delta)
-  Suppression: anger(57.7) suppresses fear by -5.35 (15% of anger delta)
+  Suppression: fear(52.0) suppresses joy by -16.81 (40% of fear delta)
+  Suppression: fear(52.0) suppresses trust by -12.60 (30% of fear delta)
+  Suppression: fear(52.0) suppresses anticipation by -8.40 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(3.3 × 0.25) + delta(11.89) = 12.73
-    sadness: carry(36.6 × 0.25) + delta(0.00) = 9.15
-    anger: carry(22.0 × 0.25) + delta(35.69) = 41.18
-    fear: carry(9.2 × 0.25) + delta(14.02) = 16.31
-    disgust: carry(1.3 × 0.25) + delta(0.00) = 0.33
-    surprise: carry(6.5 × 0.25) + delta(15.00) = 16.63
-    trust: carry(6.9 × 0.25) + delta(3.27) = 4.99
-    anticipation: carry(6.5 × 0.25) + delta(22.63) = 24.25
+    joy: carry(3.2 × 0.2) + delta(10.55) = 11.18
+    sadness: carry(18.2 × 0.02) + delta(0.00) = 0.36
+    anger: carry(7.6 × 0.08) + delta(31.21) = 31.82
+    fear: carry(10.0 × 0.25) + delta(42.01) = 44.50
+    surprise: carry(8.6 × 0.2) + delta(11.72) = 13.44
+    trust: carry(6.7 × 0.2) + delta(0.66) = 1.99
+    anticipation: carry(8.1 × 0.2) + delta(20.54) = 22.15
 
 === Chapter 11 ===
 Stimulants this chapter: 10
 
   Stimulant: "Haldric's body has acclimated to the surface, gaining enhanced strength, stamina, and senses overnight."
     Event: success | Subject: self | Source: world_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    joy: base=22 × trig=1 × weight=0.7 → raw=15.40
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 15.40 × (1 + -0.013) = 15.19
-    Final delta: 15.19 × 1 × 0.7 = 10.64
-    trust: base=32 × trig=1 × weight=0.2 → raw=6.40
+    Modified delta: 13.20 × (1 + -0.013) = 13.02
+    Final delta: 13.02 × 1 × 0.7 = 9.12
+    trust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 6.40 × (1 + -0.160) = 5.38
-    Final delta: 5.38 × 1 × 0.7 = 3.76
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 6.72 × (1 + -0.160) = 5.64
+    Final delta: 5.64 × 1 × 0.7 = 3.95
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 0.7 = 2.11
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 0.7 = 3.43
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 0.7 = 2.30
 
   Stimulant: "The Prime tells Haldric that it should have been him who became a Hunter, acknowledging the injustice of the test."
     Event: reward | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    joy: base=22 × trig=1 × weight=0.6 → raw=13.20
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
     Modified delta: 13.20 × (1 + -0.013) = 13.02
     Final delta: 13.02 × 1 × 1 = 13.02
-    trust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    trust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.160) = 8.06
-    Final delta: 8.06 × 1 × 1 = 8.06
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 1 × 1 = 7.06
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1 = 3.02
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1 = 4.91
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 1 × 1 = 2.19
 
   Stimulant: "The Prime tells Haldric he is fired, causing a moment of panic before Haldric realizes it may be a joke leading to something bigger."
     Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: future_security
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 1 × 1 = 10.46
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 1 × 1 = 13.15
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 1 × 1 = 2.05
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 4.38 × 1 × 1 × 1.36 = 5.96
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 1 × 1 = 4.53
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 6.54 × 1 × 1 × 1.36 = 8.90
 
   Stimulant: "Haldric sees the surface for the first time in full beauty but turns away, choosing to stay and serve rather than become a Hunter."
     Event: moral_cue | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    disgust: base=32 × trig=1 × weight=0.4 → raw=12.80
+    disgust: base=20 × trig=1.2 × weight=0.35 → raw=8.40
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.80 × (1 + 0.060) = 13.57
-    Final delta: 13.57 × 1 × 1.1 = 14.92
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 8.40 × (1 + 0.060) = 8.90
+    Final delta: 8.90 × 1 × 1.1 = 9.79
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -2890,123 +3437,154 @@ Stimulants this chapter: 10
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.1 = 18.40
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1.1 × 1.48 = 21.26
+    sadness: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.1 = 14.55
+    Modified delta: 5.28 × (1 + 0.633) = 8.62
+    Final delta: 8.62 × 1 × 1.1 = 9.49
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.1 = 4.82
 
   Stimulant: "The Prime Archon publicly announces Haldric as the Heir Archon, his chosen successor, shocking the entire administration."
     Event: success | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    joy: base=22 × trig=1 × weight=0.7 → raw=15.40
-    Trait modifiers for joy (total: -0.013):
-  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 15.40 × (1 + -0.013) = 15.19
-    Final delta: 15.19 × 1 × 1 = 15.19
-    trust: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for trust (total: -0.160):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 6.40 × (1 + -0.160) = 5.38
-    Final delta: 5.38 × 1 × 1 = 5.38
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
-    Trait modifiers for anticipation (total: -0.027):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1 = 3.02
-
-  Stimulant: "The administration erupts in cheers for Haldric and he feels belonging for the first time in the building."
-    Event: connection | Subject: group | Source: world_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
-    Source mult: world_caused → ×0.7
-    trust: base=32 × trig=1 × weight=0.5 → raw=16.00
-    Trait modifiers for trust (total: -0.160):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 16.00 × (1 + -0.160) = 13.44
-    Final delta: 13.44 × 0.7 × 0.7 = 6.59
-    joy: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for joy (total: -0.013):
-  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 6.60 × (1 + -0.013) = 6.51
-    Final delta: 6.51 × 0.7 × 0.7 = 3.19
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for anticipation (total: -0.027):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.027) = 6.03
-    Final delta: 6.03 × 0.7 × 0.7 = 2.96
-
-  Stimulant: "The Prime gives Haldric the Master Key and the book of the previous Archon, entrusting him with the city's deepest secrets."
-    Event: reward | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    joy: base=22 × trig=1 × weight=0.6 → raw=13.20
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
     Modified delta: 13.20 × (1 + -0.013) = 13.02
     Final delta: 13.02 × 1 × 1 = 13.02
-    trust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    trust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.160) = 8.06
-    Final delta: 8.06 × 1 × 1 = 8.06
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 6.72 × (1 + -0.160) = 5.64
+    Final delta: 5.64 × 1 × 1 = 5.64
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1 = 3.02
-
-  Stimulant: "A mysterious white-haired girl appears to Haldric that no one else can see, speaking to him and then vanishing through a door."
-    Event: surprise_reveal | Subject: stranger | Source: world_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: stranger → ×0.3
-    Source mult: world_caused → ×0.7
-    surprise: base=18 × trig=0.85 × weight=0.7 → raw=10.71
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1 = 4.91
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 10.71 × (1 + -0.170) = 8.89
-    Final delta: 8.89 × 0.3 × 0.7 = 1.87
-    fear: base=22 × trig=0.85 × weight=0.15 → raw=2.80
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1 = 3.29
+
+  Stimulant: "The administration erupts in cheers for Haldric and he feels belonging for the first time in the building."
+    Event: connection | Subject: group | Source: world_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
+    Source mult: world_caused → ×0.7
+    trust: base=28 × trig=1.2 × weight=0.4 → raw=13.44
+    Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 2.80 × (1 + -0.380) = 1.74
-    Final delta: 1.74 × 0.3 × 0.7 = 0.37
-    anticipation: base=31 × trig=0.85 × weight=0.15 → raw=3.95
+    Modified delta: 13.44 × (1 + -0.160) = 11.29
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 11.29 × 0.85 × 0.7 × 1.36 = 9.14
+    joy: base=22 × trig=1.2 × weight=0.3 → raw=7.92
+    Trait modifiers for joy (total: -0.013):
+  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 7.92 × (1 + -0.013) = 7.81
+    Final delta: 7.81 × 0.85 × 0.7 = 4.65
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.95 × (1 + -0.027) = 3.85
-    Final delta: 3.85 × 0.3 × 0.7 = 0.81
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.85 × 0.7 = 3.89
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 0.85 × 0.7 = 1.30
+
+  Stimulant: "The Prime gives Haldric the Master Key and the book of the previous Archon, entrusting him with the city's deepest secrets."
+    Event: reward | Subject: self | Source: authority_caused | Domain: status
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
+    Trait modifiers for joy (total: -0.013):
+  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 13.20 × (1 + -0.013) = 13.02
+    Final delta: 13.02 × 1 × 1 = 13.02
+    trust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
+    Trait modifiers for trust (total: -0.160):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 1 × 1 = 7.06
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
+    Trait modifiers for anticipation (total: -0.027):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1 = 4.91
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 1 × 1 = 2.19
+
+  Stimulant: "A mysterious white-haired girl appears to Haldric that no one else can see, speaking to him and then vanishing through a door."
+    Event: surprise_reveal | Subject: stranger | Source: world_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: stranger → ×0.4
+    Source mult: world_caused → ×0.7
+    surprise: base=22 × trig=0.75 × weight=0.6 → raw=9.90
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 9.90 × (1 + -0.170) = 8.22
+    Final delta: 8.22 × 0.4 × 0.7 = 2.30
+    fear: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.75 × (1 + -0.270) = 2.74
+    Final delta: 2.74 × 0.4 × 0.7 = 0.77
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
+    Trait modifiers for anticipation (total: -0.027):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 4.20 × (1 + -0.027) = 4.09
+    Final delta: 4.09 × 0.4 × 0.7 = 1.14
 
   Stimulant: "Praew confronts Haldric about his new power and The Prime, urging him to use his position to uncover the truth."
     Event: moral_cue | Subject: self | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    disgust: base=32 × trig=1 × weight=0.4 → raw=12.80
+    disgust: base=20 × trig=1.2 × weight=0.35 → raw=8.40
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.80 × (1 + 0.060) = 13.57
-    Final delta: 13.57 × 1 × 1.3 = 17.64
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 8.40 × (1 + 0.060) = 8.90
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 8.90 × 1 × 1.3 × 2.2 = 25.47
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3014,37 +3592,45 @@ Stimulants this chapter: 10
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.3 = 21.75
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1.3 × 1.36 = 23.08
+    sadness: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.3 = 17.20
+    Modified delta: 5.28 × (1 + 0.633) = 8.62
+    Final delta: 8.62 × 1 × 1.3 = 11.21
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.3 = 5.70
 
   Stimulant: "Haldric accidentally smashes a stone table with his fist while defending The Prime, revealing his new strength to Praew."
     Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=0.85 × weight=0.5 → raw=11.47
+    sadness: base=22 × trig=0.75 × weight=0.4 → raw=6.60
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.47 × (1 + 0.633) = 18.74
-    Final delta: 18.74 × 1 × 1.1 = 20.62
-    fear: base=22 × trig=0.85 × weight=0.3 → raw=5.61
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 6.60 × (1 + 0.633) = 10.78
+    Final delta: 10.78 × 1 × 1.1 = 11.86
+    fear: base=25 × trig=0.75 × weight=0.25 → raw=4.69
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 5.61 × (1 + -0.380) = 3.48
-    Final delta: 3.48 × 1 × 1.1 = 3.83
-    anger: base=41 × trig=0.85 × weight=0.2 → raw=6.97
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.69 × (1 + -0.270) = 3.42
+    Final delta: 3.42 × 1 × 1.1 = 3.76
+    anger: base=32 × trig=0.75 × weight=0.2 → raw=4.80
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3052,36 +3638,47 @@ Stimulants this chapter: 10
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.97 × (1 + 0.360) = 9.48
-    Final delta: 9.48 × 1 × 1.1 = 10.43
+    Modified delta: 4.80 × (1 + 0.360) = 6.53
+    Final delta: 6.53 × 1 × 1.1 = 7.18
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 1 × 1.1 = 2.26
+  Tone adjustment: positive chapter dampens anger: 51.5 × 0.4 = 20.6
+  Tone adjustment: positive chapter dampens sadness: 32.6 × 0.4 = 13.0
+  Tone adjustment: positive chapter dampens fear: 10.5 × 0.4 = 4.2
+  Tone adjustment: positive chapter dampens disgust: 35.3 × 0.4 = 14.1
 
   Suppression applied:
-  Suppression: anger(91.8) suppresses joy by -25.29 (50% of anger delta)
-  Suppression: anger(91.8) suppresses trust by -15.17 (30% of anger delta)
-  Suppression: anger(91.8) suppresses fear by -7.59 (15% of anger delta)
-  Suppression: sadness(61.5) suppresses joy by -31.42 (60% of sadness delta)
-  Suppression: sadness(61.5) suppresses anticipation by -15.71 (30% of sadness delta)
-  Suppression: sadness(61.5) suppresses surprise by -10.47 (20% of sadness delta)
+  Suppression: anger(52.4) suppresses joy by -10.30 (50% of anger delta)
+  Suppression: anger(52.4) suppresses trust by -6.18 (30% of anger delta)
+  Suppression: anger(52.4) suppresses fear by -3.09 (15% of anger delta)
+  Suppression: joy(53.7) suppresses sadness by -17.01 (40% of joy delta)
+  Suppression: joy(53.7) suppresses fear by -12.76 (30% of joy delta)
+  Suppression: joy(53.7) suppresses anger by -8.51 (20% of joy delta)
 
   Emotion updates:
-    joy: carry(12.7 × 0.25) + delta(-1.64) = 1.54
-    sadness: carry(9.2 × 0.25) + delta(52.37) = 54.66
-    anger: carry(41.2 × 0.25) + delta(50.57) = 60.87
-    fear: carry(16.3 × 0.25) + delta(-1.35) = 2.73
-    disgust: carry(0.3 × 0.25) + delta(32.56) = 32.65
-    surprise: carry(16.6 × 0.25) + delta(1.85) = 6.01
-    trust: carry(5.0 × 0.25) + delta(16.68) = 17.93
-    anticipation: carry(24.2 × 0.25) + delta(3.74) = 9.81
+    joy: carry(11.2 × 0.2) + delta(42.53) = 44.77
+    sadness: carry(0.4 × 0.08) + delta(-3.99) = -3.96
+    anger: carry(31.8 × 0.055999999999999994) + delta(12.10) = 13.88
+    fear: carry(44.5 × 0.175) + delta(-11.66) = -3.87
+    disgust: carry(0.0 × 0.12) + delta(14.10) = 14.10
+    surprise: carry(13.4 × 0.2) + delta(39.50) = 42.19
+    trust: carry(2.0 × 0.2) + delta(26.66) = 27.06
+    anticipation: carry(22.2 × 0.2) + delta(32.08) = 36.51
 
 === Chapter 12 ===
 Stimulants this chapter: 3
 
   Stimulant: "Haldric witnesses the Fourth Floor's slavery, whippings, and horrific conditions, shattering his image of The Prime as a benevolent leader."
     Event: injustice | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    anger: base=41 × trig=1 × weight=0.5 → raw=20.50
+    anger: base=32 × trig=1.2 × weight=0.4 → raw=15.36
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3089,29 +3686,38 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 20.50 × (1 + 0.360) = 27.88
-    Final delta: 27.88 × 0.7 × 1 = 19.52
-    disgust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 15.36 × (1 + 0.360) = 20.89
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 20.89 × 0.85 × 1 × 1.36 = 24.15
+    disgust: base=20 × trig=1.2 × weight=0.3 → raw=7.20
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.60 × (1 + 0.060) = 10.18
-    Final delta: 10.18 × 0.7 × 1 = 7.12
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.20 × (1 + 0.060) = 7.63
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 7.63 × 0.85 × 1 × 2.2 = 14.27
+    sadness: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 0.7 × 1 = 6.17
+    Modified delta: 3.96 × (1 + 0.633) = 6.47
+    Final delta: 6.47 × 0.85 × 1 = 5.50
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 0.85 × 1 = 2.79
 
   Stimulant: "Haldric desperately insists The Prime doesn't know about the Fourth Floor atrocities, his voice cracking as denial battles with what he has witnessed."
     Event: obstacle | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    anger: base=41 × trig=0.85 × weight=0.4 → raw=13.94
+    anger: base=32 × trig=0.75 × weight=0.3 → raw=7.20
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3119,33 +3725,40 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 13.94 × (1 + 0.360) = 18.96
-    Final delta: 18.96 × 1 × 1.1 = 20.85
-    anticipation: base=31 × trig=0.85 × weight=0.3 → raw=7.90
+    Modified delta: 7.20 × (1 + 0.360) = 9.79
+    Final delta: 9.79 × 1 × 1.1 = 10.77
+    fear: base=25 × trig=0.75 × weight=0.3 → raw=5.63
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 5.63 × (1 + -0.270) = 4.11
+    Final delta: 4.11 × 1 × 1.1 = 4.52
+    anticipation: base=28 × trig=0.75 × weight=0.25 → raw=5.25
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 7.90 × (1 + -0.027) = 7.69
-    Final delta: 7.69 × 1 × 1.1 = 8.46
-    fear: base=22 × trig=0.85 × weight=0.3 → raw=5.61
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 5.25 × (1 + -0.027) = 5.11
+    Final delta: 5.11 × 1 × 1.1 = 5.62
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 5.61 × (1 + -0.380) = 3.48
-    Final delta: 3.48 × 1 × 1.1 = 3.83
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 1 × 1.1 = 2.26
 
   Stimulant: "Haldric steals two Sifaralith stones and a ledger from the Fourth Floor identification area, committing a dangerous act of rebellion."
     Event: moral_cue | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    disgust: base=32 × trig=1 × weight=0.4 → raw=12.80
+    disgust: base=20 × trig=1.2 × weight=0.35 → raw=8.40
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.80 × (1 + 0.060) = 13.57
-    Final delta: 13.57 × 1 × 1.1 = 14.92
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 8.40 × (1 + 0.060) = 8.90
+    Final delta: 8.90 × 1 × 1.1 = 9.79
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3153,78 +3766,81 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.1 = 18.40
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1.1 × 1.48 = 21.26
+    sadness: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.1 = 14.55
-  Ambient surprise: avg_trigger(0.95) × 15 = +14.3
+    Modified delta: 5.28 × (1 + 0.633) = 8.62
+    Final delta: 8.62 × 1 × 1.1 = 9.49
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.1 = 4.82
 
   Suppression applied:
-  Suppression: anger(119.6) suppresses joy by -29.39 (50% of anger delta)
-  Suppression: anger(119.6) suppresses trust by -17.63 (30% of anger delta)
-  Suppression: anger(119.6) suppresses fear by -8.82 (15% of anger delta)
-  Suppression: sadness(75.4) suppresses joy by -12.44 (60% of sadness delta)
-  Suppression: sadness(75.4) suppresses anticipation by -6.22 (30% of sadness delta)
-  Suppression: sadness(75.4) suppresses surprise by -4.15 (20% of sadness delta)
-  Suppression: disgust(54.7) suppresses joy by -8.82 (40% of disgust delta)
-  Suppression: disgust(54.7) suppresses trust by -11.02 (50% of disgust delta)
+  Suppression: anger(70.1) suppresses joy by -28.09 (50% of anger delta)
+  Suppression: anger(70.1) suppresses trust by -16.85 (30% of anger delta)
+  Suppression: anger(70.1) suppresses fear by -8.43 (15% of anger delta)
 
   Emotion updates:
-    joy: carry(1.5 × 0.25) + delta(-50.64) = -50.26
-    sadness: carry(54.7 × 0.25) + delta(20.73) = 34.39
-    anger: carry(60.9 × 0.25) + delta(58.77) = 73.99
-    fear: carry(2.7 × 0.25) + delta(-4.99) = -4.31
-    disgust: carry(32.6 × 0.25) + delta(22.05) = 30.21
-    surprise: carry(6.0 × 0.25) + delta(10.10) = 11.61
-    trust: carry(17.9 × 0.25) + delta(-28.66) = -24.17
-    anticipation: carry(9.8 × 0.25) + delta(2.25) = 4.70
+    joy: carry(44.8 × 0.013999999999999999) + delta(-28.09) = -27.46
+    sadness: carry(0.0 × 0.08) + delta(14.98) = 14.98
+    anger: carry(13.9 × 0.08) + delta(56.17) = 57.29
+    fear: carry(0.0 × 0.25) + delta(-3.91) = -3.91
+    disgust: carry(14.1 × 0.12) + delta(24.07) = 25.76
+    surprise: carry(42.2 × 0.13999999999999999) + delta(9.87) = 15.78
+    trust: carry(27.1 × 0.02) + delta(-16.85) = -16.31
+    anticipation: carry(36.5 × 0.13999999999999999) + delta(5.62) = 10.73
 
 === Chapter 13 ===
 Stimulants this chapter: 5
 
   Stimulant: "Note reveals he is a rebel and accuses The Prime of holding Hunter families hostage, further eroding Haldric's trust."
     Event: surprise_reveal | Subject: authority | Source: enemy_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: authority → ×0.65
     Source mult: enemy_caused → ×0.8
-    surprise: base=18 × trig=0.85 × weight=0.7 → raw=10.71
+    surprise: base=22 × trig=0.75 × weight=0.6 → raw=9.90
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 10.71 × (1 + -0.170) = 8.89
-    Final delta: 8.89 × 0.6 × 0.8 = 4.27
-    fear: base=22 × trig=0.85 × weight=0.15 → raw=2.80
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 9.90 × (1 + -0.170) = 8.22
+    Final delta: 8.22 × 0.65 × 0.8 = 4.27
+    fear: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 2.80 × (1 + -0.380) = 1.74
-    Final delta: 1.74 × 0.6 × 0.8 = 0.83
-    anticipation: base=31 × trig=0.85 × weight=0.15 → raw=3.95
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.75 × (1 + -0.270) = 2.74
+    Final delta: 2.74 × 0.65 × 0.8 = 1.42
+    anticipation: base=28 × trig=0.75 × weight=0.2 → raw=4.20
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.95 × (1 + -0.027) = 3.85
-    Final delta: 3.85 × 0.6 × 0.8 = 1.85
+    Modified delta: 4.20 × (1 + -0.027) = 4.09
+    Final delta: 4.09 × 0.65 × 0.8 = 2.13
 
   Stimulant: "Haldric realizes being seen with a rebel could get his entire family executed, and he panics about Praew's recklessness."
     Event: threat | Subject: family | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    fear: base=22 × trig=1 × weight=0.7 → raw=15.40
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 15.40 × (1 + -0.380) = 9.55
-    Final delta: 9.55 × 0.9 × 1.3 = 11.17
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.270) = 15.33
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 15.33 × 0.95 × 1.3 × 1.7200000000000002 = 32.56
+    anger: base=32 × trig=1.2 × weight=0.15 → raw=5.76
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3232,35 +3848,37 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 0.9 × 1.3 = 13.05
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 5.76 × (1 + 0.360) = 7.83
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.83 × 0.95 × 1.3 × 1.24 = 12.00
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 0.9 × 1.3 = 3.53
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 0.95 × 1.3 = 6.06
 
   Stimulant: "Haldric hurts Praew with his enhanced grip and cruelly insults her intelligence, then watches her walk away without looking back."
     Event: failure | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.5 → raw=13.50
+    sadness: base=22 × trig=1.2 × weight=0.4 → raw=10.56
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.50 × (1 + 0.633) = 22.05
-    Final delta: 22.05 × 1 × 1.1 = 24.26
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 10.56 × (1 + 0.633) = 17.25
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 17.25 × 1 × 1.1 × 1.36 = 25.80
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1.1 = 4.50
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.270) = 5.47
+    Final delta: 5.47 × 1 × 1.1 = 6.02
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3268,48 +3886,56 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 1.1 = 12.27
-
-  Stimulant: "Haldric breaks into The Prime's office and discovers the BoltStone Recorrection Program documents signed by Godric, and breeding ledgers proving the food shortage is manufactured."
-    Event: surprise_reveal | Subject: authority | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: authority → ×0.6
-    Source mult: self_caused → ×1.1
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Final delta: 10.44 × 1 × 1.1 = 11.49
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.6 × 1.1 = 6.90
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1.1 = 3.62
+
+  Stimulant: "Haldric breaks into The Prime's office and discovers the BoltStone Recorrection Program documents signed by Godric, and breeding ledgers proving the food shortage is manufactured."
+    Event: surprise_reveal | Subject: authority | Source: self_caused | Domain: morality
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
+    Source mult: self_caused → ×1.1
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
+    Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.6 × 1.1 = 1.35
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.65 × 1.1 = 9.40
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Final delta: 4.38 × 0.65 × 1.1 = 3.13
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.6 × 1.1 = 2.99
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.65 × 1.1 = 4.68
 
   Stimulant: "The Prime catches Haldric snooping in his office with classified documents exposed, expressing deep disappointment."
     Event: humiliation | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    sadness: base=27 × trig=1 × weight=0.4 → raw=10.80
+    sadness: base=22 × trig=1.2 × weight=0.3 → raw=7.92
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.80 × (1 + 0.633) = 17.64
-    Final delta: 17.64 × 1 × 1 = 17.64
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 7.92 × (1 + 0.633) = 12.94
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 12.94 × 1 × 1 × 1.12 = 14.49
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3317,71 +3943,79 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1 = 16.73
-    disgust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1 × 1.24 = 16.19
+    disgust: base=20 × trig=1.2 × weight=0.25 → raw=6.00
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.60 × (1 + 0.060) = 10.18
-    Final delta: 10.18 × 1 × 1 = 10.18
+    Modified delta: 6.00 × (1 + 0.060) = 6.36
+    Final delta: 6.36 × 1 × 1 = 6.36
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1 = 4.38
 
   Suppression applied:
-  Suppression: anger(116.0) suppresses joy by -21.02 (50% of anger delta)
-  Suppression: anger(116.0) suppresses trust by -12.61 (30% of anger delta)
-  Suppression: anger(116.0) suppresses fear by -6.31 (15% of anger delta)
-  Suppression: sadness(76.3) suppresses joy by -25.14 (60% of sadness delta)
-  Suppression: sadness(76.3) suppresses anticipation by -12.57 (30% of sadness delta)
-  Suppression: sadness(76.3) suppresses surprise by -8.38 (20% of sadness delta)
+  Suppression: anger(97.0) suppresses joy by -19.84 (50% of anger delta)
+  Suppression: anger(97.0) suppresses trust by -11.90 (30% of anger delta)
+  Suppression: anger(97.0) suppresses fear by -5.95 (15% of anger delta)
+  Suppression: sadness(55.3) suppresses joy by -24.17 (60% of sadness delta)
+  Suppression: sadness(55.3) suppresses anticipation by -12.09 (30% of sadness delta)
+  Suppression: sadness(55.3) suppresses surprise by -8.06 (20% of sadness delta)
 
   Emotion updates:
-    sadness: carry(34.4 × 0.25) + delta(41.90) = 50.49
-    anger: carry(74.0 × 0.25) + delta(42.04) = 60.54
-    fear: carry(0.0 × 0.25) + delta(11.55) = 11.55
-    disgust: carry(30.2 × 0.25) + delta(10.18) = 17.73
-    surprise: carry(11.6 × 0.25) + delta(2.79) = 5.69
-    anticipation: carry(4.7 × 0.25) + delta(-4.20) = -3.03
+    sadness: carry(15.0 × 0.08) + delta(40.29) = 41.49
+    anger: carry(57.3 × 0.04) + delta(39.68) = 41.97
+    fear: carry(0.0 × 0.25) + delta(37.19) = 37.19
+    disgust: carry(25.8 × 0.12) + delta(6.36) = 9.45
+    surprise: carry(15.8 × 0.2) + delta(13.61) = 16.77
+    anticipation: carry(10.7 × 0.2) + delta(0.77) = 2.92
 
 === Chapter 14 ===
 Stimulants this chapter: 5
 
   Stimulant: "The Prime takes Haldric to the Noble Quarter and systematically dismantles his assumptions about the upper class being pampered."
     Event: surprise_reveal | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.7 × 1 = 7.32
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.85 × 1 = 11.18
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.7 × 1 = 1.43
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Final delta: 4.38 × 0.85 × 1 = 3.72
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.7 × 1 = 3.17
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.85 × 1 = 5.56
 
   Stimulant: "The Prime reveals the planet Ravour is dying and that everyone must eventually acclimate to survive evacuation through portals."
     Event: threat | Subject: group | Source: authority_caused | Domain: future_security
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    fear: base=22 × trig=0.85 × weight=0.7 → raw=13.09
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=0.75 × weight=0.7 → raw=13.13
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 13.09 × (1 + -0.380) = 8.12
-    Final delta: 8.12 × 0.7 × 1 = 5.68
-    anger: base=41 × trig=0.85 × weight=0.2 → raw=6.97
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.13 × (1 + -0.270) = 9.58
+    Final delta: 9.58 × 0.85 × 1 = 8.14
+    anger: base=32 × trig=0.75 × weight=0.15 → raw=3.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3389,33 +4023,33 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.97 × (1 + 0.360) = 9.48
-    Final delta: 9.48 × 0.7 × 1 = 6.64
-    anticipation: base=31 × trig=0.85 × weight=0.1 → raw=2.63
+    Modified delta: 3.60 × (1 + 0.360) = 4.90
+    Final delta: 4.90 × 0.85 × 1 = 4.16
+    anticipation: base=28 × trig=0.75 × weight=0.15 → raw=3.15
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.63 × (1 + -0.027) = 2.56
-    Final delta: 2.56 × 0.7 × 1 = 1.80
+    Modified delta: 3.15 × (1 + -0.027) = 3.07
+    Final delta: 3.07 × 0.85 × 1 = 2.61
 
   Stimulant: "The Prime reveals the ten Beasts of Legend have learned to reproduce, potentially spelling human extinction."
     Event: danger_cue | Subject: group | Source: authority_caused | Domain: future_security
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    fear: base=22 × trig=0.85 × weight=0.7 → raw=13.09
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=0.75 × weight=0.45 → raw=8.44
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 13.09 × (1 + -0.380) = 8.12
-    Final delta: 8.12 × 0.7 × 1 = 5.68
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.44 × (1 + -0.270) = 6.16
+    Final delta: 6.16 × 0.85 × 1 = 5.24
+    anticipation: base=28 × trig=0.75 × weight=0.25 → raw=5.25
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.027) = 5.13
-    Final delta: 5.13 × 0.7 × 1 = 3.59
-    anger: base=41 × trig=0.85 × weight=0.1 → raw=3.49
+    Modified delta: 5.25 × (1 + -0.027) = 5.11
+    Final delta: 5.11 × 0.85 × 1 = 4.34
+    anger: base=32 × trig=0.75 × weight=0.15 → raw=3.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3423,27 +4057,34 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.49 × (1 + 0.360) = 4.74
-    Final delta: 4.74 × 0.7 × 1 = 3.32
+    Modified delta: 3.60 × (1 + 0.360) = 4.90
+    Final delta: 4.90 × 0.85 × 1 = 4.16
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 0.85 × 1 = 1.75
 
   Stimulant: "The mysterious white-haired girl reappears on the surface, getting terrifyingly close to Haldric and whispering that he looks like someone."
     Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=1 imm=3 cert=2 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=2 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    fear: base=22 × trig=0.85 × weight=0.7 → raw=13.09
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=0.75 × weight=0.45 → raw=8.44
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 13.09 × (1 + -0.380) = 8.12
-    Final delta: 8.12 × 1 × 0.7 = 5.68
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.44 × (1 + -0.270) = 6.16
+    Final delta: 6.16 × 1 × 0.7 = 4.31
+    anticipation: base=28 × trig=0.75 × weight=0.25 → raw=5.25
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.027) = 5.13
-    Final delta: 5.13 × 1 × 0.7 = 3.59
-    anger: base=41 × trig=0.85 × weight=0.1 → raw=3.49
+    Modified delta: 5.25 × (1 + -0.027) = 5.11
+    Final delta: 5.11 × 1 × 0.7 = 3.58
+    anger: base=32 × trig=0.75 × weight=0.15 → raw=3.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3451,62 +4092,83 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.49 × (1 + 0.360) = 4.74
-    Final delta: 4.74 × 1 × 0.7 = 3.32
+    Modified delta: 3.60 × (1 + 0.360) = 4.90
+    Final delta: 4.90 × 1 × 0.7 = 3.43
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.170) = 2.05
+    Final delta: 2.05 × 1 × 0.7 = 1.44
 
   Stimulant: "The Prime tells Haldric the world needs a kind heart willing to risk everything, and that he chose Haldric for that quality."
     Event: reward | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    joy: base=22 × trig=1 × weight=0.6 → raw=13.20
+    joy: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for joy (total: -0.013):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
     Modified delta: 13.20 × (1 + -0.013) = 13.02
     Final delta: 13.02 × 1 × 1 = 13.02
-    trust: base=32 × trig=1 × weight=0.3 → raw=9.60
+    trust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for trust (total: -0.160):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.160) = 8.06
-    Final delta: 8.06 × 1 × 1 = 8.06
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 8.40 × (1 + -0.160) = 7.06
+    Final delta: 7.06 × 1 × 1 = 7.06
+    anticipation: base=28 × trig=1.2 × weight=0.15 → raw=5.04
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.027) = 3.02
-    Final delta: 3.02 × 1 × 1 = 3.02
+    Modified delta: 5.04 × (1 + -0.027) = 4.91
+    Final delta: 4.91 × 1 × 1 = 4.91
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 1 × 1 = 2.19
+  Tone adjustment: negative chapter dampens joy: 13.0 × 0.4 = 5.2
+  Tone adjustment: negative chapter dampens trust: 7.1 × 0.4 = 2.8
+  Tone adjustment: negative chapter dampens anticipation: 21.0 × 0.4 = 8.4
 
   Suppression applied:
-  Suppression: anger(73.8) suppresses joy by -6.64 (50% of anger delta)
-  Suppression: anger(73.8) suppresses trust by -3.98 (30% of anger delta)
-  Suppression: anger(73.8) suppresses fear by -1.99 (15% of anger delta)
+  Suppression: anger(53.7) suppresses joy by -5.88 (50% of anger delta)
+  Suppression: anger(53.7) suppresses trust by -3.53 (30% of anger delta)
+  Suppression: anger(53.7) suppresses fear by -1.76 (15% of anger delta)
+  Suppression: fear(56.8) suppresses joy by -7.86 (40% of fear delta)
+  Suppression: fear(56.8) suppresses trust by -5.90 (30% of fear delta)
+  Suppression: fear(56.8) suppresses anticipation by -3.93 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(6.39) = 6.39
-    sadness: carry(50.5 × 0.25) + delta(0.00) = 12.62
-    anger: carry(60.5 × 0.25) + delta(13.27) = 28.41
-    fear: carry(11.6 × 0.25) + delta(16.48) = 19.37
-    disgust: carry(17.7 × 0.25) + delta(0.00) = 4.43
-    surprise: carry(5.7 × 0.25) + delta(7.32) = 8.74
-    trust: carry(0.0 × 0.25) + delta(4.08) = 4.08
-    anticipation: carry(0.0 × 0.25) + delta(15.16) = 15.16
+    joy: carry(0.0 × 0.2) + delta(-8.53) = -8.53
+    sadness: carry(41.5 × 0.013999999999999999) + delta(0.00) = 0.58
+    anger: carry(42.0 × 0.055999999999999994) + delta(11.75) = 14.10
+    fear: carry(37.2 × 0.175) + delta(19.65) = 26.16
+    disgust: carry(9.5 × 0.02) + delta(0.00) = 0.19
+    surprise: carry(16.8 × 0.2) + delta(16.55) = 19.90
+    trust: carry(0.0 × 0.2) + delta(-6.60) = -6.60
+    anticipation: carry(2.9 × 0.2) + delta(4.47) = 5.05
 
 === Chapter 15 ===
 Stimulants this chapter: 4
 
   Stimulant: "Haldric realizes Praew was right about The Prime and is consumed by guilt for how he treated her, resolving to apologize."
     Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    disgust: base=32 × trig=1 × weight=0.4 → raw=12.80
+    disgust: base=20 × trig=1.2 × weight=0.35 → raw=8.40
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.80 × (1 + 0.060) = 13.57
-    Final delta: 13.57 × 1 × 1.1 = 14.92
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 8.40 × (1 + 0.060) = 8.90
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 8.90 × 1 × 1.1 × 2.2 = 21.55
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3514,90 +4176,43 @@ Stimulants this chapter: 4
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.1 = 18.40
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1.1 × 1.36 = 19.53
+    sadness: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.1 = 14.55
-
-  Stimulant: "Praew's parents reveal she has been missing since yesterday and no one can find her, sending Haldric into a panic."
-    Event: danger_cue | Subject: friend | Source: world_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: world_caused → ×0.7
-    fear: base=22 × trig=1 × weight=0.7 → raw=15.40
-    Trait modifiers for fear (total: -0.380):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 15.40 × (1 + -0.380) = 9.55
-    Final delta: 9.55 × 0.8 × 0.7 = 5.35
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for anticipation (total: -0.027):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.027) = 6.03
-    Final delta: 6.03 × 0.8 × 0.7 = 3.38
-    anger: base=41 × trig=1 × weight=0.1 → raw=4.10
-    Trait modifiers for anger (total: +0.360):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(65/75 × 0.2) = +0.173 [Sensitive pride = anger when status/competence challenged]
-  patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
-  impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 4.10 × (1 + 0.360) = 5.58
-    Final delta: 5.58 × 0.8 × 0.7 = 3.12
-
-  Stimulant: "Haldric finds classified medical records showing Godric was injured in suspicious late-night combat and another patient is redacted and in a coma."
-    Event: surprise_reveal | Subject: authority | Source: self_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: authority → ×0.6
-    Source mult: self_caused → ×1.1
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    Modified delta: 5.28 × (1 + 0.633) = 8.62
+    Final delta: 8.62 × 1 × 1.1 = 9.49
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.6 × 1.1 = 6.90
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.1 = 4.82
+
+  Stimulant: "Praew's parents reveal she has been missing since yesterday and no one can find her, sending Haldric into a panic."
+    Event: danger_cue | Subject: friend | Source: world_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: world_caused → ×0.7
+    fear: base=25 × trig=1.2 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.6 × 1.1 = 1.35
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.270) = 9.86
+    Final delta: 9.86 × 0.85 × 0.7 = 5.86
+    anticipation: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.6 × 1.1 = 2.99
-
-  Stimulant: "Haldric confronts Godric in the training center, attacks him with surged ForceStone, and is easily defeated and thrown into a wall."
-    Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.5 → raw=13.50
-    Trait modifiers for sadness (total: +0.633):
-  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.50 × (1 + 0.633) = 22.05
-    Final delta: 22.05 × 1 × 1.1 = 24.26
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1.1 = 4.50
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+    Modified delta: 8.40 × (1 + -0.027) = 8.18
+    Final delta: 8.18 × 0.85 × 0.7 = 4.86
+    anger: base=32 × trig=1.2 × weight=0.15 → raw=5.76
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3605,103 +4220,166 @@ Stimulants this chapter: 4
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 1.1 = 12.27
+    Modified delta: 5.76 × (1 + 0.360) = 7.83
+    Final delta: 7.83 × 0.85 × 0.7 = 4.66
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 0.85 × 0.7 = 1.96
 
-  Suppression applied:
-  Suppression: anger(62.2) suppresses joy by -16.90 (50% of anger delta)
-  Suppression: anger(62.2) suppresses trust by -10.14 (30% of anger delta)
-  Suppression: anger(62.2) suppresses fear by -5.07 (15% of anger delta)
-  Suppression: sadness(51.4) suppresses joy by -23.28 (60% of sadness delta)
-  Suppression: sadness(51.4) suppresses anticipation by -11.64 (30% of sadness delta)
-  Suppression: sadness(51.4) suppresses surprise by -7.76 (20% of sadness delta)
+  Stimulant: "Haldric finds classified medical records showing Godric was injured in suspicious late-night combat and another patient is redacted and in a coma."
+    Event: surprise_reveal | Subject: authority | Source: self_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
+    Source mult: self_caused → ×1.1
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.65 × 1.1 = 9.40
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 4.38 × 0.65 × 1.1 × 1.7200000000000002 = 5.39
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: -0.027):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.65 × 1.1 = 4.68
+
+  Stimulant: "Haldric confronts Godric in the training center, attacks him with surged ForceStone, and is easily defeated and thrown into a wall."
+    Event: failure | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=22 × trig=1.2 × weight=0.4 → raw=10.56
+    Trait modifiers for sadness (total: +0.633):
+  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
+    Modified delta: 10.56 × (1 + 0.633) = 17.25
+    Domain amp: competence → sadness ×1.12 (only at High+ trigger)
+    Final delta: 17.25 × 1 × 1.1 × 1.12 = 21.25
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.270):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.270) = 5.47
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 5.47 × 1 × 1.1 × 1.12 = 6.75
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
+    Trait modifiers for anger (total: +0.360):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(65/75 × 0.2) = +0.173 [Sensitive pride = anger when status/competence challenged]
+  patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
+  impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
+  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Final delta: 10.44 × 1 × 1.1 = 11.49
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1.1 = 3.62
 
   Emotion updates:
-    joy: carry(6.4 × 0.25) + delta(-40.18) = -38.58
-    sadness: carry(12.6 × 0.25) + delta(38.81) = 41.96
-    anger: carry(28.4 × 0.25) + delta(33.79) = 40.89
-    fear: carry(19.4 × 0.25) + delta(6.13) = 10.97
-    disgust: carry(4.4 × 0.25) + delta(14.92) = 16.03
-    surprise: carry(8.7 × 0.25) + delta(-0.86) = 1.33
-    trust: carry(4.1 × 0.25) + delta(-10.14) = -9.12
-    anticipation: carry(15.2 × 0.25) + delta(-5.28) = -1.49
+    sadness: carry(0.6 × 0.08) + delta(30.74) = 30.78
+    anger: carry(14.1 × 0.08) + delta(35.68) = 36.81
+    fear: carry(26.2 × 0.25) + delta(18.00) = 24.54
+    disgust: carry(0.2 × 0.12) + delta(21.55) = 21.57
+    surprise: carry(19.9 × 0.2) + delta(19.79) = 23.77
+    anticipation: carry(5.1 × 0.2) + delta(9.54) = 10.55
 
 === Chapter 16 ===
 Stimulants this chapter: 2
 
   Stimulant: "Godric reveals he did not kidnap Praew's friends but has been trying to find them, and that he heard screaming below the Fourth Floor."
     Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.8 × 1.3 = 10.88
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.85 × 1.3 = 14.53
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.8 × 1.3 = 2.13
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 4.38 × 0.85 × 1.3 × 1.7200000000000002 = 8.32
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.8 × 1.3 = 4.71
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.85 × 1.3 = 7.23
 
   Stimulant: "Haldric realizes the entrance to the Fifth Floor is hidden in The Prime's own office, confirming The Prime's involvement."
     Event: surprise_reveal | Subject: authority | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
     Source mult: self_caused → ×1.1
-    surprise: base=18 × trig=1 × weight=0.7 → raw=12.60
+    surprise: base=22 × trig=1.2 × weight=0.6 → raw=15.84
     Trait modifiers for surprise (total: -0.170):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
   impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
-    Modified delta: 12.60 × (1 + -0.170) = 10.46
-    Final delta: 10.46 × 0.6 × 1.1 = 6.90
-    fear: base=22 × trig=1 × weight=0.15 → raw=3.30
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 15.84 × (1 + -0.170) = 13.15
+    Final delta: 13.15 × 0.65 × 1.1 = 9.40
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 3.30 × (1 + -0.380) = 2.05
-    Final delta: 2.05 × 0.6 × 1.1 = 1.35
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Final delta: 4.38 × 0.65 × 1.1 = 3.13
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.027) = 4.53
-    Final delta: 4.53 × 0.6 × 1.1 = 2.99
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.65 × 1.1 = 4.68
 
   Emotion updates:
-    sadness: carry(42.0 × 0.25) + delta(0.00) = 10.49
-    anger: carry(40.9 × 0.25) + delta(0.00) = 10.22
-    fear: carry(11.0 × 0.25) + delta(3.48) = 6.22
-    disgust: carry(16.0 × 0.25) + delta(0.00) = 4.01
-    surprise: carry(1.3 × 0.25) + delta(17.78) = 18.11
-    anticipation: carry(0.0 × 0.25) + delta(7.69) = 7.69
+    sadness: carry(30.8 × 0.013999999999999999) + delta(0.00) = 0.43
+    anger: carry(36.8 × 0.013999999999999999) + delta(0.00) = 0.52
+    fear: carry(24.5 × 0.25) + delta(11.46) = 17.59
+    disgust: carry(21.6 × 0.02) + delta(0.00) = 0.43
+    surprise: carry(23.8 × 0.2) + delta(23.93) = 28.68
+    anticipation: carry(10.6 × 0.2) + delta(11.90) = 14.01
 
 === Chapter 17 ===
 Stimulants this chapter: 5
 
   Stimulant: "Haldric sees Praew strapped to a slab, covered in blood with a stone embedded in her chest, and two dead bodies nearby."
     Event: harm | Subject: friend | Source: authority_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: authority_caused → ×1
-    fear: base=22 × trig=1 × weight=0.5 → raw=11.00
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 11.00 × (1 + -0.380) = 6.82
-    Final delta: 6.82 × 0.8 × 1 = 5.46
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 18.00 × (1 + -0.270) = 13.14
+    Final delta: 13.14 × 0.85 × 1 = 11.17
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3709,37 +4387,45 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 0.8 × 1 = 13.38
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Final delta: 10.44 × 0.85 × 1 = 8.88
+    sadness: base=22 × trig=1.2 × weight=0.1 → raw=2.64
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 0.8 × 1 = 7.06
+    Modified delta: 2.64 × (1 + 0.633) = 4.31
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 4.31 × 0.85 × 1 × 1.48 = 5.42
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 0.85 × 1 = 1.86
 
   Stimulant: "Haldric blames himself for believing The Prime's lies instead of trusting Praew, realizing his denial may have cost lives."
     Event: failure | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.5 → raw=13.50
+    sadness: base=22 × trig=1.2 × weight=0.4 → raw=10.56
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.50 × (1 + 0.633) = 22.05
-    Final delta: 22.05 × 1 × 1.1 = 24.26
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 10.56 × (1 + 0.633) = 17.25
+    Final delta: 17.25 × 1 × 1.1 = 18.97
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1.1 = 4.50
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.270) = 5.47
+    Final delta: 5.47 × 1 × 1.1 = 6.02
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3747,29 +4433,38 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 1.1 = 12.27
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 10.44 × 1 × 1.1 × 1.36 = 15.63
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.170) = 3.29
+    Final delta: 3.29 × 1 × 1.1 = 3.62
 
   Stimulant: "Haldric confesses to Godric that he loves Praew, knowing he may never see her again after the rescue."
     Event: separation | Subject: friend | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.6 → raw=16.20
+    sadness: base=22 × trig=1.2 × weight=0.5 → raw=13.20
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.20 × (1 + 0.633) = 26.46
-    Final delta: 26.46 × 0.8 × 1.1 = 23.28
-    fear: base=22 × trig=1 × weight=0.2 → raw=4.40
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 13.20 × (1 + 0.633) = 21.56
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 21.56 × 0.85 × 1.1 × 1.48 = 29.83
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 4.40 × (1 + -0.380) = 2.73
-    Final delta: 2.73 × 0.8 × 1.1 = 2.40
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.270) = 5.47
+    Final delta: 5.47 × 0.85 × 1.1 = 5.12
+    anger: base=32 × trig=1.2 × weight=0.15 → raw=5.76
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3777,21 +4472,29 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 0.8 × 1.1 = 9.81
+    Modified delta: 5.76 × (1 + 0.360) = 7.83
+    Final delta: 7.83 × 0.85 × 1.1 = 7.32
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 0.85 × 1.1 = 2.05
 
   Stimulant: "Haldric uses the Master Key to release every prisoner in the city jail as a distraction, an act of treason to save Praew."
     Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    disgust: base=32 × trig=1 × weight=0.4 → raw=12.80
+    disgust: base=20 × trig=1.2 × weight=0.35 → raw=8.40
     Trait modifiers for disgust (total: +0.060):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.80 × (1 + 0.060) = 13.57
-    Final delta: 13.57 × 1 × 1.1 = 14.92
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+    Modified delta: 8.40 × (1 + 0.060) = 8.90
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 8.90 × 1 × 1.1 × 2.2 = 21.55
+    anger: base=32 × trig=1.2 × weight=0.25 → raw=9.60
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3799,29 +4502,37 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1.1 = 18.40
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 9.60 × (1 + 0.360) = 13.06
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 13.06 × 1 × 1.1 × 1.36 = 19.53
+    sadness: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.633) = 13.23
-    Final delta: 13.23 × 1 × 1.1 = 14.55
+    Modified delta: 5.28 × (1 + 0.633) = 8.62
+    Final delta: 8.62 × 1 × 1.1 = 9.49
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.170) = 4.38
+    Final delta: 4.38 × 1 × 1.1 = 4.82
 
   Stimulant: "A freed prisoner murders a woman in front of her child as a direct consequence of Haldric's jailbreak, devastating him with guilt."
     Event: harm | Subject: stranger | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: self_caused → ×1.1
-    fear: base=22 × trig=1 × weight=0.5 → raw=11.00
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 11.00 × (1 + -0.380) = 6.82
-    Final delta: 6.82 × 0.3 × 1.1 = 2.25
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 18.00 × (1 + -0.270) = 13.14
+    Final delta: 13.14 × 0.4 × 1.1 = 5.78
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3829,50 +4540,58 @@ Stimulants this chapter: 5
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 0.3 × 1.1 = 5.52
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 10.44 × 0.4 × 1.1 × 1.36 = 6.25
+    sadness: base=22 × trig=1.2 × weight=0.1 → raw=2.64
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 0.3 × 1.1 = 2.91
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient anticipation: extreme event detected → +10.0
+    Modified delta: 2.64 × (1 + 0.633) = 4.31
+    Final delta: 4.31 × 0.4 × 1.1 = 1.90
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 0.4 × 1.1 = 0.96
+  Ambient anticipation: extreme event detected → +12.0
 
   Suppression applied:
-  Suppression: anger(69.6) suppresses joy by -29.69 (50% of anger delta)
-  Suppression: anger(69.6) suppresses trust by -17.82 (30% of anger delta)
-  Suppression: anger(69.6) suppresses fear by -8.91 (15% of anger delta)
-  Suppression: sadness(82.6) suppresses joy by -43.24 (60% of sadness delta)
-  Suppression: sadness(82.6) suppresses anticipation by -21.62 (30% of sadness delta)
-  Suppression: sadness(82.6) suppresses surprise by -14.41 (20% of sadness delta)
+  Suppression: anger(58.1) suppresses joy by -28.80 (50% of anger delta)
+  Suppression: anger(58.1) suppresses trust by -17.28 (30% of anger delta)
+  Suppression: anger(58.1) suppresses fear by -8.64 (15% of anger delta)
+  Suppression: sadness(66.0) suppresses joy by -39.37 (60% of sadness delta)
+  Suppression: sadness(66.0) suppresses anticipation by -19.68 (30% of sadness delta)
+  Suppression: sadness(66.0) suppresses surprise by -13.12 (20% of sadness delta)
 
   Emotion updates:
-    sadness: carry(10.5 × 0.25) + delta(72.06) = 74.68
-    anger: carry(10.2 × 0.25) + delta(59.38) = 61.94
-    fear: carry(6.2 × 0.25) + delta(5.70) = 7.26
-    disgust: carry(4.0 × 0.25) + delta(14.92) = 15.93
-    surprise: carry(18.1 × 0.25) + delta(0.59) = 5.12
-    anticipation: carry(7.7 × 0.25) + delta(-11.62) = -9.69
+    sadness: carry(0.4 × 0.08) + delta(65.62) = 65.65
+    anger: carry(0.5 × 0.08) + delta(57.61) = 57.65
+    fear: carry(17.6 × 0.25) + delta(19.45) = 23.85
+    disgust: carry(0.4 × 0.12) + delta(21.55) = 21.60
+    surprise: carry(28.7 × 0.2) + delta(0.19) = 5.92
+    anticipation: carry(14.0 × 0.2) + delta(-7.68) = -4.88
 
 === Chapter 18 ===
 Stimulants this chapter: 3
 
   Stimulant: "The Prime Archon beats Haldric with kicks and backhands, calling him a fool who doomed everyone."
     Event: harm | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    fear: base=22 × trig=1 × weight=0.5 → raw=11.00
-    Trait modifiers for fear (total: -0.380):
+    fear: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 11.00 × (1 + -0.380) = 6.82
-    Final delta: 6.82 × 1 × 1 = 6.82
-    anger: base=41 × trig=1 × weight=0.3 → raw=12.30
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 18.00 × (1 + -0.270) = 13.14
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 13.14 × 1 × 1 × 1.7200000000000002 = 22.60
+    anger: base=32 × trig=1.2 × weight=0.2 → raw=7.68
     Trait modifiers for anger (total: +0.360):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -3880,88 +4599,106 @@ Stimulants this chapter: 3
   patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
   impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 12.30 × (1 + 0.360) = 16.73
-    Final delta: 16.73 × 1 × 1 = 16.73
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.68 × (1 + 0.360) = 10.44
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 10.44 × 1 × 1 × 1.24 = 12.95
+    sadness: base=22 × trig=1.2 × weight=0.1 → raw=2.64
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.40 × (1 + 0.633) = 8.82
-    Final delta: 8.82 × 1 × 1 = 8.82
+    Modified delta: 2.64 × (1 + 0.633) = 4.31
+    Final delta: 4.31 × 1 × 1 = 4.31
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 1 × 1 = 2.19
 
   Stimulant: "Haldric involuntarily calls The Prime 'Father' while being beaten, revealing his deep conflicted attachment despite everything."
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.5 → raw=13.50
+    sadness: base=22 × trig=1.2 × weight=0.4 → raw=10.56
     Trait modifiers for sadness (total: +0.633):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(70/75 × 0.3) = +0.280 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.50 × (1 + 0.633) = 22.05
-    Final delta: 22.05 × 1 × 1.1 = 24.26
-    fear: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for fear (total: -0.380):
+    Modified delta: 10.56 × (1 + 0.633) = 17.25
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 17.25 × 1 × 1.1 × 1.48 = 28.08
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.270):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  riskAppetite(55/75 × -0.3) = -0.220 [High risk appetite = fear hits less hard]
-    Modified delta: 6.60 × (1 + -0.380) = 4.09
-    Final delta: 4.09 × 1 × 1.1 = 4.50
-    anger: base=41 × trig=1 × weight=0.2 → raw=8.20
-    Trait modifiers for anger (total: +0.360):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(65/75 × 0.2) = +0.173 [Sensitive pride = anger when status/competence challenged]
-  patience(35/75 × -0.2) = -0.093 [Patient = slower to anger]
-  impulsiveness(55/75 × 0.1) = +0.073 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 8.20 × (1 + 0.360) = 11.15
-    Final delta: 11.15 × 1 × 1.1 = 12.27
-
-  Stimulant: "The Prime immediately softens after being called Father, asking if Haldric is alright, creating a whiplash of conflicting emotions."
-    Event: connection | Subject: authority | Source: authority_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: authority → ×0.6
-    Source mult: authority_caused → ×1
-    trust: base=32 × trig=1 × weight=0.5 → raw=16.00
-    Trait modifiers for trust (total: -0.160):
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 16.00 × (1 + -0.160) = 13.44
-    Final delta: 13.44 × 0.6 × 1 = 8.06
-    joy: base=22 × trig=1 × weight=0.3 → raw=6.60
-    Trait modifiers for joy (total: -0.013):
-  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
-  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
-    Modified delta: 6.60 × (1 + -0.013) = 6.51
-    Final delta: 6.51 × 0.6 × 1 = 3.91
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(55/75 × -0.15) = -0.110 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.270) = 4.38
+    Final delta: 4.38 × 1 × 1.1 = 4.82
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for anticipation (total: -0.027):
   emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.027) = 6.03
-    Final delta: 6.03 × 0.6 × 1 = 3.62
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 1 × 1.1 = 7.19
+    trust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for trust (total: -0.160):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 6.72 × (1 + -0.160) = 5.64
+    Domain amp: attachment → trust ×1.36 (only at High+ trigger)
+    Final delta: 5.64 × 1 × 1.1 × 1.36 = 8.44
+
+  Stimulant: "The Prime immediately softens after being called Father, asking if Haldric is alright, creating a whiplash of conflicting emotions."
+    Event: connection | Subject: authority | Source: authority_caused | Domain: attachment
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
+    Source mult: authority_caused → ×1
+    trust: base=28 × trig=1.2 × weight=0.4 → raw=13.44
+    Trait modifiers for trust (total: -0.160):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 13.44 × (1 + -0.160) = 11.29
+    Domain amp: attachment → trust ×1.36 (only at High+ trigger)
+    Final delta: 11.29 × 0.65 × 1 × 1.36 = 9.98
+    joy: base=22 × trig=1.2 × weight=0.3 → raw=7.92
+    Trait modifiers for joy (total: -0.013):
+  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+    Modified delta: 7.92 × (1 + -0.013) = 7.81
+    Final delta: 7.81 × 0.65 × 1 = 5.08
+    anticipation: base=28 × trig=1.2 × weight=0.2 → raw=6.72
+    Trait modifiers for anticipation (total: -0.027):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 6.72 × (1 + -0.027) = 6.54
+    Final delta: 6.54 × 0.65 × 1 = 4.25
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.170):
+  emotionalContainment(40/75 × -0.3) = -0.160 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(45/75 × -0.2) = -0.120 [Adaptable = recovers from surprise faster]
+  impulsiveness(55/75 × 0.15) = +0.110 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.170) = 2.19
+    Final delta: 2.19 × 0.65 × 1 = 1.42
 
   Suppression applied:
-  Suppression: anger(90.9) suppresses joy by -14.50 (50% of anger delta)
-  Suppression: anger(90.9) suppresses trust by -8.70 (30% of anger delta)
-  Suppression: anger(90.9) suppresses fear by -4.35 (15% of anger delta)
-  Suppression: sadness(107.8) suppresses joy by -19.85 (60% of sadness delta)
-  Suppression: sadness(107.8) suppresses anticipation by -9.92 (30% of sadness delta)
-  Suppression: sadness(107.8) suppresses surprise by -6.62 (20% of sadness delta)
+  Suppression: anger(70.6) suppresses joy by -6.48 (50% of anger delta)
+  Suppression: anger(70.6) suppresses trust by -3.89 (30% of anger delta)
+  Suppression: anger(70.6) suppresses fear by -1.94 (15% of anger delta)
+  Suppression: sadness(98.0) suppresses joy by -19.44 (60% of sadness delta)
+  Suppression: sadness(98.0) suppresses anticipation by -9.72 (30% of sadness delta)
+  Suppression: sadness(98.0) suppresses surprise by -6.48 (20% of sadness delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-30.44) = -30.44
-    sadness: carry(74.7 × 0.25) + delta(33.08) = 51.75
-    anger: carry(61.9 × 0.25) + delta(29.00) = 44.48
-    fear: carry(7.3 × 0.25) + delta(6.97) = 8.79
-    disgust: carry(15.9 × 0.25) + delta(0.00) = 3.98
-    surprise: carry(5.1 × 0.25) + delta(8.38) = 9.66
-    trust: carry(0.0 × 0.25) + delta(-0.63) = -0.63
-    anticipation: carry(0.0 × 0.25) + delta(-6.30) = -6.30
+    joy: carry(0.0 × 0.2) + delta(-20.83) = -20.83
+    sadness: carry(65.7 × 0.04) + delta(32.39) = 35.02
+    anger: carry(57.7 × 0.04) + delta(12.95) = 15.26
+    fear: carry(23.8 × 0.25) + delta(25.48) = 31.44
+    disgust: carry(21.6 × 0.02) + delta(0.00) = 0.43
+    surprise: carry(5.9 × 0.2) + delta(-2.86) = -1.68
+    trust: carry(0.0 × 0.2) + delta(14.54) = 14.54
+    anticipation: carry(0.0 × 0.2) + delta(1.73) = 1.73
 ```
 
 ### Profile Reasoning
@@ -4000,24 +4737,24 @@ Stimulants this chapter: 3
 Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 --------------------------------------------------------------------------
  0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
- 1 |      0 |      8 |     10 |     12 |     14 |     15 |      0 |     10
- 2 |      0 |     41 |     42 |     14 |     12 |     17 |      0 |      3
- 3 |      0 |     49 |    75! |     18 |     11 |      1 |      0 |      0
- 4 |      0 |     49 |     75 |     18 |     11 |      1 |      0 |      0
- 5 |      0 |     49 |     75 |     18 |     11 |      1 |      0 |      0
- 6 |      0 |     49 |     75 |     18 |     11 |      1 |      0 |      0
- 7 |      0 |     12 |     19 |      5 |      3 |      0 |      0 |      0
- 8 |      0 |     12 |     19 |      5 |      3 |      0 |      0 |      0
- 9 |      1 |     34 |     31 |     20 |     13 |     13 |      2 |      4
-10 |      0 |     20 |     17 |     15 |      3 |     17 |      0 |      2
-11 |      0 |     39 |     23 |     11 |     15 |     11 |      0 |      0
-12 |      0 |     10 |      6 |      3 |      4 |      3 |      0 |      0
-13 |      0 |     33 |     29 |      4 |      7 |     15 |      0 |     10
-14 |      0 |     38 |     55 |     11 |     29 |     10 |      0 |      0
-15 |      0 |      9 |     14 |      3 |      7 |      3 |      0 |      0
-16 |      4 |      8 |     10 |     13 |     11 |     16 |      1 |      2
-17 |      1 |     13 |     17 |     15 |      3 |     18 |      0 |      5
-18 |      0 |    75! |     53 |     35 |     15 |      2 |      0 |      0
+ 1 |      0 |      5 |     11 |     14 |     27 |      2 |      0 |     12
+ 2 |      0 |     44 |     40 |      7 |     12 |      6 |      0 |      3
+ 3 |      0 |     31 |     58 |     44 |     10 |      5 |      0 |     12
+ 4 |      0 |     31 |     58 |     44 |     10 |      5 |      0 |     12
+ 5 |      0 |     31 |     58 |     44 |     10 |      5 |      0 |     12
+ 6 |      0 |     31 |     58 |     44 |     10 |      5 |      0 |     12
+ 7 |      0 |      0 |      1 |      1 |      0 |      0 |      0 |      0
+ 8 |      0 |      0 |      1 |      1 |      0 |      0 |      0 |      0
+ 9 |      0 |     17 |     15 |     17 |      8 |      3 |      1 |      5
+10 |      0 |      8 |      4 |     19 |      0 |     15 |      2 |      9
+11 |      0 |     22 |     18 |     10 |     27 |      7 |      0 |     11
+12 |      0 |      0 |      0 |      0 |      1 |      0 |      0 |      0
+13 |      0 |     31 |     21 |      3 |      4 |      4 |      0 |     11
+14 |      0 |     17 |     30 |     22 |     18 |      5 |      1 |     17
+15 |      0 |      0 |      1 |      0 |      0 |      0 |      0 |      0
+16 |      4 |      4 |     10 |     15 |     23 |      3 |      2 |      7
+17 |      0 |      9 |     17 |     17 |      0 |      4 |      0 |     10
+18 |      0 |    75! |     42 |     45 |     11 |      0 |      0 |      0
 ```
 
 ### Calculation Breakdown
@@ -4032,16 +4769,17 @@ Stimulants this chapter: 1
 
   Stimulant: "The Prime Archon watches from above as his son Asher betrays his best friend Haldric during the Hunter test, a scenario The Prime himself orchestrated"
     Event: moral_cue | Subject: family | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=1 × weight=0.4 → raw=14.40
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 14.40 × (1 + 0.000) = 14.40
-    Final delta: 14.40 × 0.9 × 1.1 = 14.26
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 11.76 × (1 + 0.000) = 11.76
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 11.76 × 0.95 × 1.1 × 2.2 = 27.04
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4049,45 +4787,53 @@ Stimulants this chapter: 1
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.9 × 1.1 = 10.01
-    sadness: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.90 × 0.95 × 1.1 × 1.36 = 11.23
+    sadness: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.140) = 7.87
-    Final delta: 7.87 × 0.9 × 1.1 = 7.79
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient anticipation: extreme event detected → +10.0
-  Ambient fear: extreme event detected → +12.0
+    Modified delta: 4.32 × (1 + 0.140) = 4.92
+    Final delta: 4.92 × 0.95 × 1.1 = 5.15
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.95 × 1.1 = 1.98
+  Ambient anticipation: extreme event detected → +12.0
+  Ambient fear: extreme event detected → +14.4
 
   Emotion updates:
-    sadness: carry(0.0 × 0.25) + delta(7.79) = 7.79
-    anger: carry(0.0 × 0.25) + delta(10.01) = 10.01
-    fear: carry(0.0 × 0.25) + delta(12.00) = 12.00
-    disgust: carry(0.0 × 0.25) + delta(14.26) = 14.26
-    surprise: carry(0.0 × 0.25) + delta(15.00) = 15.00
-    anticipation: carry(0.0 × 0.25) + delta(10.00) = 10.00
+    sadness: carry(0.0 × 0.08) + delta(5.15) = 5.15
+    anger: carry(0.0 × 0.08) + delta(11.23) = 11.23
+    fear: carry(0.0 × 0.25) + delta(14.40) = 14.40
+    disgust: carry(0.0 × 0.12) + delta(27.04) = 27.04
+    surprise: carry(0.0 × 0.2) + delta(1.98) = 1.98
+    anticipation: carry(0.0 × 0.2) + delta(12.00) = 12.00
 
 === Chapter 2 ===
 Stimulants this chapter: 4
 
   Stimulant: "The Prime tries to speak to Asher before he leaves and is coldly cut off as Asher walks right past him, refusing any fatherly connection"
     Event: rejection | Subject: family | Source: ally_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.6 → raw=13.80
+    sadness: base=18 × trig=1.2 × weight=0.5 → raw=10.80
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.80 × (1 + 0.140) = 15.73
-    Final delta: 15.73 × 0.9 × 1.3 = 18.41
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+    Modified delta: 10.80 × (1 + 0.140) = 12.31
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 12.31 × 0.95 × 1.3 × 1.48 = 22.50
+    anger: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4095,21 +4841,28 @@ Stimulants this chapter: 4
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.9 × 1.3 = 7.89
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 6.00 × (1 + 0.053) = 6.32
+    Final delta: 6.32 × 0.95 × 1.3 = 7.81
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.9 × 1.3 = 3.92
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Final delta: 2.83 × 0.95 × 1.3 = 3.50
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.95 × 1.3 = 1.75
 
   Stimulant: "Asher publicly accuses The Prime of sabotaging his Hunter test by pitting him against his best friend"
     Event: insult | Subject: family | Source: ally_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    anger: base=32 × trig=1 × weight=0.6 → raw=19.20
+    anger: base=25 × trig=1.2 × weight=0.5 → raw=15.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4117,43 +4870,53 @@ Stimulants this chapter: 4
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 19.20 × (1 + 0.053) = 20.22
-    Final delta: 20.22 × 0.9 × 1.3 = 23.66
-    disgust: base=36 × trig=1 × weight=0.2 → raw=7.20
+    Modified delta: 15.00 × (1 + 0.053) = 15.80
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 15.80 × 0.95 × 1.3 × 1.24 = 24.20
+    disgust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.20 × (1 + 0.000) = 7.20
-    Final delta: 7.20 × 0.9 × 1.3 = 8.42
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 6.72 × (1 + 0.000) = 6.72
+    Final delta: 6.72 × 0.95 × 1.3 = 8.30
+    sadness: base=18 × trig=1.2 × weight=0.15 → raw=3.24
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.140) = 5.24
-    Final delta: 5.24 × 0.9 × 1.3 = 6.14
+    Modified delta: 3.24 × (1 + 0.140) = 3.69
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 3.69 × 0.95 × 1.3 × 1.12 = 5.11
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.95 × 1.3 = 1.75
 
   Stimulant: "The Prime sputters and fails to find words as Asher walks away, left speechless by his son's rejection"
     Event: failure | Subject: self | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.140) = 13.11
-    Final delta: 13.11 × 1 × 1.1 = 14.42
-    fear: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 8.64 × (1 + 0.140) = 9.85
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 9.85 × 1 × 1.1 × 1.48 = 16.04
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 9.30 × (1 + -0.460) = 5.02
-    Final delta: 5.02 × 1 × 1.1 = 5.52
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.370) = 4.72
+    Final delta: 4.72 × 1 × 1.1 = 5.20
+    anger: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4161,27 +4924,34 @@ Stimulants this chapter: 4
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 1 × 1.1 = 7.42
+    Modified delta: 6.00 × (1 + 0.053) = 6.32
+    Final delta: 6.32 × 1 × 1.1 = 6.95
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 1 × 1.1 = 1.56
 
   Stimulant: "Renwick makes a veiled, suspicious comment about "a prime contribution" that alarms Arthur, but Renwick deflects before Arthur can press further"
     Event: danger_cue | Subject: stranger | Source: enemy_caused | Domain: safety
-    Trigger: stakes=1 imm=2 cert=1 → total=4 → Medium (×0.6)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=1 imm=2 cert=1 → total=4 → Medium (×0.4)
+    Subject mult: stranger → ×0.4
     Source mult: enemy_caused → ×0.8
-    fear: base=31 × trig=0.6 × weight=0.7 → raw=13.02
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=0.4 × weight=0.45 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 13.02 × (1 + -0.460) = 7.03
-    Final delta: 7.03 × 0.3 × 0.8 = 1.69
-    anticipation: base=31 × trig=0.6 × weight=0.2 → raw=3.72
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Final delta: 2.83 × 0.4 × 0.8 = 0.91
+    anticipation: base=38 × trig=0.4 × weight=0.25 → raw=3.80
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.72 × (1 + -0.187) = 3.03
-    Final delta: 3.03 × 0.3 × 0.8 = 0.73
-    anger: base=32 × trig=0.6 × weight=0.1 → raw=1.92
+    Modified delta: 3.80 × (1 + -0.187) = 3.09
+    Final delta: 3.09 × 0.4 × 0.8 = 0.99
+    anger: base=25 × trig=0.4 × weight=0.15 → raw=1.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4189,41 +4959,53 @@ Stimulants this chapter: 4
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 1.92 × (1 + 0.053) = 2.02
-    Final delta: 2.02 × 0.3 × 0.8 = 0.49
-  Ambient surprise: avg_trigger(0.90) × 15 = +13.5
+    Modified delta: 1.50 × (1 + 0.053) = 1.58
+    Final delta: 1.58 × 0.4 × 0.8 = 0.51
+    surprise: base=12 × trig=0.4 × weight=0.15 → raw=0.72
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 0.72 × (1 + -0.343) = 0.47
+    Final delta: 0.47 × 0.4 × 0.8 = 0.15
+
+  Suppression applied:
+  Suppression: anger(50.7) suppresses joy by -19.73 (50% of anger delta)
+  Suppression: anger(50.7) suppresses trust by -11.84 (30% of anger delta)
+  Suppression: anger(50.7) suppresses fear by -5.92 (15% of anger delta)
 
   Emotion updates:
-    sadness: carry(7.8 × 0.25) + delta(38.96) = 40.91
-    anger: carry(10.0 × 0.25) + delta(39.45) = 41.95
-    fear: carry(12.0 × 0.25) + delta(11.13) = 14.13
-    disgust: carry(14.3 × 0.25) + delta(8.42) = 11.99
-    surprise: carry(15.0 × 0.25) + delta(13.50) = 17.25
-    anticipation: carry(10.0 × 0.25) + delta(0.73) = 3.23
+    sadness: carry(5.1 × 0.08) + delta(43.65) = 44.06
+    anger: carry(11.2 × 0.08) + delta(39.46) = 40.36
+    fear: carry(14.4 × 0.25) + delta(3.69) = 7.29
+    disgust: carry(27.0 × 0.12) + delta(8.30) = 11.54
+    surprise: carry(2.0 × 0.2) + delta(5.21) = 5.61
+    anticipation: carry(12.0 × 0.2) + delta(0.99) = 3.39
 
 === Chapter 3 ===
 Stimulants this chapter: 7
 
   Stimulant: "Arthur learns the previous Prime has died and he must immediately assume the title, receiving the news while children play nearby"
     Event: loss | Subject: authority | Source: world_caused | Domain: future_security
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
     Source mult: world_caused → ×0.7
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.140) = 18.35
-    Final delta: 18.35 × 0.6 × 0.7 = 7.71
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 12.96 × (1 + 0.140) = 14.77
+    Final delta: 14.77 × 0.65 × 0.7 = 6.72
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.6 × 0.7 = 1.41
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 2.83 × 0.65 × 0.7 × 1.36 = 1.75
+    anger: base=25 × trig=1.2 × weight=0.1 → raw=3.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4231,68 +5013,86 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.053) = 3.37
-    Final delta: 3.37 × 0.6 × 0.7 = 1.42
-
-  Stimulant: "Arthur learns a mythical beast threatens Stormhaven and the only willing defender, Godric, has already gone to the surface to likely die"
-    Event: threat | Subject: group | Source: world_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
-    Source mult: world_caused → ×0.7
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.7 × 0.7 = 5.74
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.053):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
-  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
-  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
-  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.7 × 0.7 = 3.30
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
-    Trait modifiers for anticipation (total: -0.187):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.7 × 0.7 = 1.24
-
-  Stimulant: "Newly-made Prime Arthur is visibly shaken, sweating, bloodshot-eyed and terrified after learning the secrets shown only to the Prime Archon"
-    Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: future_security
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    surprise: base=9 × trig=1 × weight=0.7 → raw=6.30
+    Modified delta: 3.00 × (1 + 0.053) = 3.16
+    Final delta: 3.16 × 0.65 × 0.7 = 1.44
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
     Trait modifiers for surprise (total: -0.343):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
   impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
-    Modified delta: 6.30 × (1 + -0.343) = 4.14
-    Final delta: 4.14 × 1 × 1 = 4.14
-    fear: base=31 × trig=1 × weight=0.15 → raw=4.65
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.65 × 0.7 = 0.65
+
+  Stimulant: "Arthur learns a mythical beast threatens Stormhaven and the only willing defender, Godric, has already gone to the surface to likely die"
+    Event: threat | Subject: group | Source: world_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
+    Source mult: world_caused → ×0.7
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 4.65 × (1 + -0.460) = 2.51
-    Final delta: 2.51 × 1 × 1 = 2.51
-    anticipation: base=31 × trig=1 × weight=0.15 → raw=4.65
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.370) = 13.23
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 13.23 × 0.85 × 0.7 × 1.7200000000000002 = 13.54
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for anger (total: +0.053):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
+  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
+  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
+  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 4.74 × 0.85 × 0.7 × 1.24 = 3.50
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 4.65 × (1 + -0.187) = 3.78
-    Final delta: 3.78 × 1 × 1 = 3.78
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Final delta: 5.56 × 0.85 × 0.7 = 3.31
+
+  Stimulant: "Newly-made Prime Arthur is visibly shaken, sweating, bloodshot-eyed and terrified after learning the secrets shown only to the Prime Archon"
+    Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: future_security
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    surprise: base=12 × trig=1.2 × weight=0.6 → raw=8.64
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 8.64 × (1 + -0.343) = 5.67
+    Final delta: 5.67 × 1 × 1 = 5.67
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.370):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.370) = 3.78
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 3.78 × 1 × 1 × 1.36 = 5.14
+    anticipation: base=38 × trig=1.2 × weight=0.2 → raw=9.12
+    Trait modifiers for anticipation (total: -0.187):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 9.12 × (1 + -0.187) = 7.42
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 7.42 × 1 × 1 × 1.36 = 10.09
 
   Stimulant: "Arthur harshly tells young Asher to never call him "Father" in public again, squeezing his arm hard enough to hurt, terrified of public vulnerability"
     Event: constraint | Subject: family | Source: self_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    anger: base=32 × trig=1 × weight=0.5 → raw=16.00
+    fear: base=25 × trig=1.2 × weight=0.5 → raw=15.00
+    Trait modifiers for fear (total: -0.370):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 15.00 × (1 + -0.370) = 9.45
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 9.45 × 0.95 × 1.1 × 1.7200000000000002 = 16.99
+    anger: base=25 × trig=1.2 × weight=0.3 → raw=9.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4300,29 +5100,30 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 16.00 × (1 + 0.053) = 16.85
-    Final delta: 16.85 × 0.9 × 1.1 = 16.68
-    fear: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for fear (total: -0.460):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 9.30 × (1 + -0.460) = 5.02
-    Final delta: 5.02 × 0.9 × 1.1 = 4.97
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 9.00 × (1 + 0.053) = 9.48
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 9.48 × 0.95 × 1.1 × 1.24 = 12.28
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.140) = 5.24
-    Final delta: 5.24 × 0.9 × 1.1 = 5.19
+    Modified delta: 2.16 × (1 + 0.140) = 2.46
+    Final delta: 2.46 × 0.95 × 1.1 = 2.57
+    anticipation: base=38 × trig=1.2 × weight=0.1 → raw=4.56
+    Trait modifiers for anticipation (total: -0.187):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 4.56 × (1 + -0.187) = 3.71
+    Final delta: 3.71 × 0.95 × 1.1 = 3.88
 
   Stimulant: "Young Asher calls Arthur a coward hiding underground while real heroes sacrifice themselves, directly challenging his honor"
     Event: insult | Subject: family | Source: ally_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    anger: base=32 × trig=1 × weight=0.6 → raw=19.20
+    anger: base=25 × trig=1.2 × weight=0.5 → raw=15.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4330,43 +5131,54 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 19.20 × (1 + 0.053) = 20.22
-    Final delta: 20.22 × 0.9 × 1.3 = 23.66
-    disgust: base=36 × trig=1 × weight=0.2 → raw=7.20
+    Modified delta: 15.00 × (1 + 0.053) = 15.80
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 15.80 × 0.95 × 1.3 × 1.24 = 24.20
+    disgust: base=28 × trig=1.2 × weight=0.2 → raw=6.72
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.20 × (1 + 0.000) = 7.20
-    Final delta: 7.20 × 0.9 × 1.3 = 8.42
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 6.72 × (1 + 0.000) = 6.72
+    Final delta: 6.72 × 0.95 × 1.3 = 8.30
+    sadness: base=18 × trig=1.2 × weight=0.15 → raw=3.24
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.140) = 5.24
-    Final delta: 5.24 × 0.9 × 1.3 = 6.14
+    Modified delta: 3.24 × (1 + 0.140) = 3.69
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 3.69 × 0.95 × 1.3 × 1.12 = 5.11
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.95 × 1.3 = 1.75
 
   Stimulant: "Arthur slams the stone table so hard he leaves a permanent palm print, losing control of his enhanced strength in front of Asher"
     Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.140) = 13.11
-    Final delta: 13.11 × 1 × 1.1 = 14.42
-    fear: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 8.64 × (1 + 0.140) = 9.85
+    Domain amp: competence → sadness ×1.12 (only at High+ trigger)
+    Final delta: 9.85 × 1 × 1.1 × 1.12 = 12.13
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 9.30 × (1 + -0.460) = 5.02
-    Final delta: 5.02 × 1 × 1.1 = 5.52
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.370) = 4.72
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 4.72 × 1 × 1.1 × 1.12 = 5.82
+    anger: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4374,15 +5186,28 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 1 × 1.1 = 7.42
+    Modified delta: 6.00 × (1 + 0.053) = 6.32
+    Final delta: 6.32 × 1 × 1.1 = 6.95
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 1 × 1.1 = 1.56
 
   Stimulant: "Arthur forbids Asher from becoming a Hunter, declaring it too dangerous, but Asher reminds him the law prevents the Prime from blocking the test"
     Event: constraint | Subject: family | Source: ally_caused | Domain: autonomy
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    anger: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    fear: base=25 × trig=0.75 × weight=0.5 → raw=9.38
+    Trait modifiers for fear (total: -0.370):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.38 × (1 + -0.370) = 5.91
+    Final delta: 5.91 × 0.95 × 1.3 = 7.29
+    anger: base=25 × trig=0.75 × weight=0.3 → raw=5.63
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4390,39 +5215,38 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 13.60 × (1 + 0.053) = 14.33
-    Final delta: 14.33 × 0.9 × 1.3 = 16.76
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 0.9 × 1.3 = 4.99
-    sadness: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 5.63 × (1 + 0.053) = 5.93
+    Final delta: 5.93 × 0.95 × 1.3 = 7.32
+    sadness: base=18 × trig=0.75 × weight=0.1 → raw=1.35
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 3.91 × (1 + 0.140) = 4.46
-    Final delta: 4.46 × 0.9 × 1.3 = 5.22
+    Modified delta: 1.35 × (1 + 0.140) = 1.54
+    Final delta: 1.54 × 0.95 × 1.3 = 1.90
+    anticipation: base=38 × trig=0.75 × weight=0.1 → raw=2.85
+    Trait modifiers for anticipation (total: -0.187):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 2.85 × (1 + -0.187) = 2.32
+    Final delta: 2.32 × 0.95 × 1.3 = 2.86
 
   Suppression applied:
-  Suppression: anger(111.2) suppresses joy by -34.62 (50% of anger delta)
-  Suppression: anger(111.2) suppresses trust by -20.77 (30% of anger delta)
-  Suppression: anger(111.2) suppresses fear by -10.39 (15% of anger delta)
-  Suppression: sadness(79.6) suppresses joy by -23.20 (60% of sadness delta)
-  Suppression: sadness(79.6) suppresses anticipation by -11.60 (30% of sadness delta)
-  Suppression: sadness(79.6) suppresses surprise by -7.73 (20% of sadness delta)
+  Suppression: anger(96.0) suppresses joy by -27.84 (50% of anger delta)
+  Suppression: anger(96.0) suppresses trust by -16.71 (30% of anger delta)
+  Suppression: anger(96.0) suppresses fear by -8.35 (15% of anger delta)
+  Suppression: sadness(72.5) suppresses joy by -17.06 (60% of sadness delta)
+  Suppression: sadness(72.5) suppresses anticipation by -8.53 (30% of sadness delta)
+  Suppression: sadness(72.5) suppresses surprise by -5.69 (20% of sadness delta)
 
   Emotion updates:
-    sadness: carry(40.9 × 0.25) + delta(38.67) = 48.90
-    anger: carry(42.0 × 0.25) + delta(69.24) = 79.73
-    *** anger in RED ZONE: VU=79.7 (track capped at 75) ***
-    fear: carry(14.1 × 0.25) + delta(14.76) = 18.30
-    disgust: carry(12.0 × 0.25) + delta(8.42) = 11.42
-    surprise: carry(17.3 × 0.25) + delta(-3.60) = 0.72
-    anticipation: carry(3.2 × 0.25) + delta(-6.58) = -5.78
+    sadness: carry(44.1 × 0.055999999999999994) + delta(28.44) = 30.91
+    anger: carry(40.4 × 0.055999999999999994) + delta(55.68) = 57.94
+    fear: carry(7.3 × 0.25) + delta(42.18) = 44.00
+    disgust: carry(11.5 × 0.12) + delta(8.30) = 9.68
+    surprise: carry(5.6 × 0.2) + delta(3.94) = 5.07
+    anticipation: carry(3.4 × 0.2) + delta(11.60) = 12.28
 
 === Chapter 4 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -4437,11 +5261,12 @@ Character NOT PRESENT — values frozen, no line drawn
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(48.9 × 0.25) + delta(0.00) = 12.22
-    anger: carry(75.0 × 0.25) + delta(0.00) = 18.75
-    fear: carry(18.3 × 0.25) + delta(0.00) = 4.57
-    disgust: carry(11.4 × 0.25) + delta(0.00) = 2.86
-    surprise: carry(0.7 × 0.25) + delta(0.00) = 0.18
+    sadness: carry(30.9 × 0.013999999999999999) + delta(0.00) = 0.43
+    anger: carry(57.9 × 0.01) + delta(0.00) = 0.58
+    fear: carry(44.0 × 0.013999999999999999) + delta(0.00) = 0.62
+    disgust: carry(9.7 × 0.02) + delta(0.00) = 0.19
+    surprise: carry(5.1 × 0.02) + delta(0.00) = 0.10
+    anticipation: carry(12.3 × 0.02) + delta(0.00) = 0.25
 
 === Chapter 8 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -4451,16 +5276,16 @@ Stimulants this chapter: 5
 
   Stimulant: "Godric storms into The Prime's office furious, screaming accusations about what Arthur is doing to people, physically confronting him"
     Event: threat | Subject: authority | Source: ally_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
     Source mult: ally_caused → ×1.3
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.6 × 1.3 = 9.14
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.370) = 13.23
+    Final delta: 13.23 × 0.65 × 1.3 = 11.18
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4468,35 +5293,36 @@ Stimulants this chapter: 5
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.6 × 1.3 = 5.26
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 4.74 × 0.65 × 1.3 × 1.24 = 4.97
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.6 × 1.3 = 1.97
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Final delta: 5.56 × 0.65 × 1.3 = 4.70
 
   Stimulant: "After Godric leaves, The Prime mutters "blasted Hunters" with open disdain before catching himself, revealing a rare crack in his composure"
     Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.140) = 11.14
-    Final delta: 11.14 × 1 × 1.1 = 12.26
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 5.40 × (1 + 0.140) = 6.16
+    Final delta: 6.16 × 1 × 1.1 = 6.77
+    fear: base=25 × trig=0.75 × weight=0.25 → raw=4.69
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 1 × 1.1 = 4.70
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.69 × (1 + -0.370) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.25
+    anger: base=25 × trig=0.75 × weight=0.2 → raw=3.75
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4504,74 +5330,89 @@ Stimulants this chapter: 5
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.053) = 5.73
-    Final delta: 5.73 × 1 × 1.1 = 6.30
+    Modified delta: 3.75 × (1 + 0.053) = 3.95
+    Final delta: 3.95 × 1 × 1.1 = 4.35
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 1 × 1.1 = 0.98
 
   Stimulant: "Haldric unexpectedly asks "Are you okay?" after overhearing the confrontation, and The Prime is moved that someone cares about his wellbeing"
     Event: connection | Subject: stranger | Source: ally_caused | Domain: belonging
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
+    Subject mult: stranger → ×0.4
     Source mult: ally_caused → ×1.3
-    trust: base=13 × trig=0.85 × weight=0.5 → raw=5.52
+    trust: base=15 × trig=0.75 × weight=0.4 → raw=4.50
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 5.52 × (1 + -0.280) = 3.98
-    Final delta: 3.98 × 0.3 × 1.3 = 1.55
-    joy: base=9 × trig=0.85 × weight=0.3 → raw=2.29
+    Modified delta: 4.50 × (1 + -0.280) = 3.24
+    Final delta: 3.24 × 0.4 × 1.3 = 1.68
+    joy: base=10 × trig=0.75 × weight=0.3 → raw=2.25
     Trait modifiers for joy (total: -0.200):
   empathyBaseline(30/75 × 0.2) = +0.080 [Empathic joy — shares in others' happiness]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 2.29 × (1 + -0.200) = 1.84
-    Final delta: 1.84 × 0.3 × 1.3 = 0.72
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 2.25 × (1 + -0.200) = 1.80
+    Final delta: 1.80 × 0.4 × 1.3 = 0.94
+    anticipation: base=38 × trig=0.75 × weight=0.2 → raw=5.70
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.187) = 4.29
-    Final delta: 4.29 × 0.3 × 1.3 = 1.67
+    Modified delta: 5.70 × (1 + -0.187) = 4.64
+    Final delta: 4.64 × 0.4 × 1.3 = 2.41
+    surprise: base=12 × trig=0.75 × weight=0.1 → raw=0.90
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 0.90 × (1 + -0.343) = 0.59
+    Final delta: 0.59 × 0.4 × 1.3 = 0.31
 
   Stimulant: "The Prime admits that Haldric may be the first person to worry about his wellbeing since he became Prime, revealing deep loneliness"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.140) = 11.14
-    Final delta: 11.14 × 1 × 1.1 = 12.26
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 5.40 × (1 + 0.140) = 6.16
+    Final delta: 6.16 × 1 × 1.1 = 6.77
+    fear: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 1 × 1.1 = 4.70
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.053):
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.75 × (1 + -0.370) = 2.36
+    Final delta: 2.36 × 1 × 1.1 = 2.60
+    anticipation: base=38 × trig=0.75 × weight=0.2 → raw=5.70
+    Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
-  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
-  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
-  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.053) = 5.73
-    Final delta: 5.73 × 1 × 1.1 = 6.30
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 5.70 × (1 + -0.187) = 4.64
+    Final delta: 4.64 × 1 × 1.1 = 5.10
+    trust: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 2.25 × (1 + -0.280) = 1.62
+    Final delta: 1.62 × 1 × 1.1 = 1.78
 
   Stimulant: "The Prime apologizes to Haldric for Asher's betrayal during the test, admitting it was not supposed to happen that way"
     Event: moral_cue | Subject: family | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=0.85 × weight=0.4 → raw=12.24
+    disgust: base=28 × trig=0.75 × weight=0.35 → raw=7.35
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.24 × (1 + 0.000) = 12.24
-    Final delta: 12.24 × 0.9 × 1.1 = 12.12
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 7.35 × (1 + 0.000) = 7.35
+    Final delta: 7.35 × 0.95 × 1.1 = 7.68
+    anger: base=25 × trig=0.75 × weight=0.25 → raw=4.69
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4579,43 +5420,53 @@ Stimulants this chapter: 5
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.053) = 8.60
-    Final delta: 8.60 × 0.9 × 1.1 = 8.51
-    sadness: base=23 × trig=0.85 × weight=0.3 → raw=5.87
+    Modified delta: 4.69 × (1 + 0.053) = 4.94
+    Final delta: 4.94 × 0.95 × 1.1 = 5.16
+    sadness: base=18 × trig=0.75 × weight=0.2 → raw=2.70
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.87 × (1 + 0.140) = 6.69
-    Final delta: 6.69 × 0.9 × 1.1 = 6.62
-  Ambient surprise: avg_trigger(0.88) × 15 = +13.2
+    Modified delta: 2.70 × (1 + 0.140) = 3.08
+    Final delta: 3.08 × 0.95 × 1.1 = 3.22
+    surprise: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.80 × (1 + -0.343) = 1.18
+    Final delta: 1.18 × 0.95 × 1.1 = 1.24
+  Tone adjustment: negative chapter dampens joy: 0.9 × 0.4 = 0.4
+  Tone adjustment: negative chapter dampens trust: 3.5 × 0.4 = 1.4
+  Tone adjustment: negative chapter dampens anticipation: 12.2 × 0.4 = 4.9
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(0.72) = 0.72
-    sadness: carry(12.2 × 0.25) + delta(31.13) = 34.19
-    anger: carry(18.8 × 0.25) + delta(26.37) = 31.06
-    fear: carry(4.6 × 0.25) + delta(18.53) = 19.67
-    disgust: carry(2.9 × 0.25) + delta(12.12) = 12.83
-    surprise: carry(0.2 × 0.25) + delta(13.20) = 13.24
-    trust: carry(0.0 × 0.25) + delta(1.55) = 1.55
-    anticipation: carry(0.0 × 0.25) + delta(3.64) = 3.64
+    joy: carry(0.0 × 0.2) + delta(0.37) = 0.37
+    sadness: carry(0.4 × 0.08) + delta(16.76) = 16.79
+    anger: carry(0.6 × 0.08) + delta(14.47) = 14.52
+    fear: carry(0.6 × 0.25) + delta(17.03) = 17.18
+    disgust: carry(0.2 × 0.12) + delta(7.68) = 7.70
+    surprise: carry(0.1 × 0.2) + delta(2.52) = 2.54
+    trust: carry(0.0 × 0.2) + delta(1.39) = 1.39
+    anticipation: carry(0.2 × 0.2) + delta(4.88) = 4.93
 
 === Chapter 10 ===
 Stimulants this chapter: 2
 
   Stimulant: "The Prime orchestrates the capture of rebel Bresdin by letting Haldric unknowingly serve as bait, then cuts off Bresdin's hand with a sword"
     Event: threat | Subject: authority | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: authority → ×0.6
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: authority → ×0.65
     Source mult: enemy_caused → ×0.8
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.6 × 0.8 = 5.62
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.370) = 13.23
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 13.23 × 0.65 × 0.8 × 1.7200000000000002 = 11.83
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4623,79 +5474,80 @@ Stimulants this chapter: 2
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.6 × 0.8 = 3.24
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 4.74 × 0.65 × 0.8 × 1.24 = 3.06
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.6 × 0.8 = 1.21
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Final delta: 5.56 × 0.65 × 0.8 = 2.89
 
   Stimulant: "Arthur feels satisfaction watching Hunters admire Haldric, but also disgust, recognizing Haldric as the bridge Asher was supposed to be"
     Event: reminder_cue | Subject: family | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.140) = 11.14
-    Final delta: 11.14 × 0.9 × 1.1 = 11.03
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 5.40 × (1 + 0.140) = 6.16
+    Final delta: 6.16 × 0.95 × 1.1 = 6.43
+    fear: base=25 × trig=0.75 × weight=0.2 → raw=3.75
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 0.9 × 1.1 = 4.23
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
-    Trait modifiers for anger (total: +0.053):
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.75 × (1 + -0.370) = 2.36
+    Final delta: 2.36 × 0.95 × 1.1 = 2.47
+    anticipation: base=38 × trig=0.75 × weight=0.2 → raw=5.70
+    Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
-  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
-  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
-  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.053) = 5.73
-    Final delta: 5.73 × 0.9 × 1.1 = 5.67
-  Ambient surprise: avg_trigger(0.93) × 15 = +13.9
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 5.70 × (1 + -0.187) = 4.64
+    Final delta: 4.64 × 0.95 × 1.1 = 4.84
+    trust: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 2.25 × (1 + -0.280) = 1.62
+    Final delta: 1.62 × 0.95 × 1.1 = 1.69
+  Ambient surprise: avg_trigger(0.97) × 15 = +14.6
 
   Emotion updates:
-    joy: carry(0.7 × 0.25) + delta(0.00) = 0.18
-    sadness: carry(34.2 × 0.25) + delta(11.03) = 19.58
-    anger: carry(31.1 × 0.25) + delta(8.91) = 16.67
-    fear: carry(19.7 × 0.25) + delta(9.85) = 14.77
-    disgust: carry(12.8 × 0.25) + delta(0.00) = 3.21
-    surprise: carry(13.2 × 0.25) + delta(13.88) = 17.19
-    trust: carry(1.6 × 0.25) + delta(0.00) = 0.39
-    anticipation: carry(3.6 × 0.25) + delta(1.21) = 2.12
+    sadness: carry(16.8 × 0.08) + delta(6.43) = 7.78
+    anger: carry(14.5 × 0.08) + delta(3.06) = 4.22
+    fear: carry(17.2 × 0.25) + delta(14.30) = 18.60
+    disgust: carry(7.7 × 0.02) + delta(0.00) = 0.15
+    surprise: carry(2.5 × 0.2) + delta(14.63) = 15.13
+    trust: carry(1.4 × 0.2) + delta(1.69) = 1.97
+    anticipation: carry(4.9 × 0.2) + delta(7.74) = 8.72
 
 === Chapter 11 ===
 Stimulants this chapter: 3
 
   Stimulant: "The Prime reveals to Haldric that he doesn't know where he went wrong with Asher, admitting his son had everything and threw it away to be a Hunter"
     Event: loss | Subject: family | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.7 → raw=13.69
+    sadness: base=18 × trig=0.75 × weight=0.6 → raw=8.10
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.69 × (1 + 0.140) = 15.60
-    Final delta: 15.60 × 0.9 × 1.1 = 15.44
-    fear: base=31 × trig=0.85 × weight=0.2 → raw=5.27
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 8.10 × (1 + 0.140) = 9.23
+    Final delta: 9.23 × 0.95 × 1.1 = 9.65
+    fear: base=25 × trig=0.75 × weight=0.15 → raw=2.81
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 5.27 × (1 + -0.460) = 2.85
-    Final delta: 2.85 × 0.9 × 1.1 = 2.82
-    anger: base=32 × trig=0.85 × weight=0.1 → raw=2.72
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.81 × (1 + -0.370) = 1.77
+    Final delta: 1.77 × 0.95 × 1.1 = 1.85
+    anger: base=25 × trig=0.75 × weight=0.1 → raw=1.88
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4703,29 +5555,36 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 2.72 × (1 + 0.053) = 2.87
-    Final delta: 2.87 × 0.9 × 1.1 = 2.84
+    Modified delta: 1.88 × (1 + 0.053) = 1.98
+    Final delta: 1.98 × 0.95 × 1.1 = 2.06
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 0.95 × 1.1 = 0.93
 
   Stimulant: "The Prime tells Haldric "it should have been you" as a Hunter, implicitly acknowledging Asher's failure and his own parenting failure"
     Event: failure | Subject: family | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.140) = 11.14
-    Final delta: 11.14 × 0.9 × 1.1 = 11.03
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 5.40 × (1 + 0.140) = 6.16
+    Final delta: 6.16 × 0.95 × 1.1 = 6.43
+    fear: base=25 × trig=0.75 × weight=0.25 → raw=4.69
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 0.9 × 1.1 = 4.23
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.69 × (1 + -0.370) = 2.95
+    Final delta: 2.95 × 0.95 × 1.1 = 3.09
+    anger: base=25 × trig=0.75 × weight=0.2 → raw=3.75
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4733,21 +5592,29 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.053) = 5.73
-    Final delta: 5.73 × 0.9 × 1.1 = 5.67
+    Modified delta: 3.75 × (1 + 0.053) = 3.95
+    Final delta: 3.95 × 0.95 × 1.1 = 4.13
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 0.95 × 1.1 = 0.93
 
   Stimulant: "The Prime names Haldric as Heir Archon, publicly choosing someone else's child over his own son as his successor"
     Event: moral_cue | Subject: family | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=1 × weight=0.4 → raw=14.40
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 14.40 × (1 + 0.000) = 14.40
-    Final delta: 14.40 × 0.9 × 1.1 = 14.26
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 11.76 × (1 + 0.000) = 11.76
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 11.76 × 0.95 × 1.1 × 2.2 = 27.04
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4755,59 +5622,64 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.9 × 1.1 = 10.01
-    sadness: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.90 × 0.95 × 1.1 × 1.36 = 11.23
+    sadness: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.140) = 7.87
-    Final delta: 7.87 × 0.9 × 1.1 = 7.79
-  Ambient surprise: avg_trigger(0.90) × 15 = +13.5
+    Modified delta: 4.32 × (1 + 0.140) = 4.92
+    Final delta: 4.92 × 0.95 × 1.1 = 5.15
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.95 × 1.1 = 1.98
   Ambient anticipation: extreme event detected → +9.0
 
-  Suppression applied:
-  Suppression: sadness(53.8) suppresses joy by -20.56 (60% of sadness delta)
-  Suppression: sadness(53.8) suppresses anticipation by -10.28 (30% of sadness delta)
-  Suppression: sadness(53.8) suppresses surprise by -6.85 (20% of sadness delta)
-
   Emotion updates:
-    sadness: carry(19.6 × 0.25) + delta(34.26) = 39.16
-    anger: carry(16.7 × 0.25) + delta(18.52) = 22.69
-    fear: carry(14.8 × 0.25) + delta(7.04) = 10.74
-    disgust: carry(3.2 × 0.25) + delta(14.26) = 15.06
-    surprise: carry(17.2 × 0.25) + delta(6.65) = 10.94
-    anticipation: carry(2.1 × 0.25) + delta(-1.28) = -0.75
+    sadness: carry(7.8 × 0.08) + delta(21.23) = 21.85
+    anger: carry(4.2 × 0.08) + delta(17.42) = 17.76
+    fear: carry(18.6 × 0.25) + delta(4.94) = 9.59
+    disgust: carry(0.2 × 0.12) + delta(27.04) = 27.05
+    surprise: carry(15.1 × 0.2) + delta(3.83) = 6.86
+    trust: carry(2.0 × 0.02) + delta(0.00) = 0.04
+    anticipation: carry(8.7 × 0.2) + delta(9.00) = 10.74
 
 === Chapter 12 ===
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(39.2 × 0.25) + delta(0.00) = 9.79
-    anger: carry(22.7 × 0.25) + delta(0.00) = 5.67
-    fear: carry(10.7 × 0.25) + delta(0.00) = 2.68
-    disgust: carry(15.1 × 0.25) + delta(0.00) = 3.76
-    surprise: carry(10.9 × 0.25) + delta(0.00) = 2.74
+    sadness: carry(21.9 × 0.02) + delta(0.00) = 0.44
+    anger: carry(17.8 × 0.02) + delta(0.00) = 0.36
+    fear: carry(9.6 × 0.02) + delta(0.00) = 0.19
+    disgust: carry(27.1 × 0.02) + delta(0.00) = 0.54
+    surprise: carry(6.9 × 0.02) + delta(0.00) = 0.14
+    anticipation: carry(10.7 × 0.02) + delta(0.00) = 0.21
 
 === Chapter 13 ===
 Stimulants this chapter: 3
 
   Stimulant: "The Prime catches Haldric snooping in his office looking through classified documents, feeling deep disappointment at the betrayal of trust"
     Event: betrayal | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.4 → raw=9.20
+    sadness: base=18 × trig=1.2 × weight=0.3 → raw=6.48
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.20 × (1 + 0.140) = 10.49
-    Final delta: 10.49 × 0.8 × 1.3 = 10.91
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 6.48 × (1 + 0.140) = 7.39
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 7.39 × 0.85 × 1.3 × 1.36 = 11.10
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4815,29 +5687,38 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.8 × 1.3 = 10.52
-    trust (COLLAPSE): base=13 × trig=1 × weight=0.3 → raw=3.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Final delta: 7.90 × 0.85 × 1.3 = 8.73
+    trust (COLLAPSE): base=15 × trig=1.2 × weight=0.25 → raw=4.50
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 3.90 × (1 + -0.280) = 2.81
-    Final delta: 2.81 × 0.8 × 1.3 = 2.92
-    → Trust COLLAPSED by -2.92
+    Modified delta: 4.50 × (1 + -0.280) = 3.24
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 3.24 × 0.85 × 1.3 × 1.36 = 4.87
+    → Trust COLLAPSED by -4.87
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.85 × 1.3 = 2.09
 
   Stimulant: "The Prime tells Haldric "My fault for believing in you," expressing that even his chosen successor has turned against him"
     Event: rejection | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.6 → raw=13.80
+    sadness: base=18 × trig=1.2 × weight=0.5 → raw=10.80
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.80 × (1 + 0.140) = 15.73
-    Final delta: 15.73 × 0.8 × 1.3 = 16.36
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+    Modified delta: 10.80 × (1 + 0.140) = 12.31
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 12.31 × 0.85 × 1.3 × 1.36 = 18.50
+    anger: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4845,21 +5726,28 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.8 × 1.3 = 7.01
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 6.00 × (1 + 0.053) = 6.32
+    Final delta: 6.32 × 0.85 × 1.3 = 6.98
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.8 × 1.3 = 3.48
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Final delta: 2.83 × 0.85 × 1.3 = 3.13
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.85 × 1.3 = 1.57
 
   Stimulant: "The Prime laments that the whole city blames him for everything and he thought Haldric would be different, revealing his isolation"
     Event: injustice | Subject: self | Source: world_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    anger: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    anger: base=25 × trig=0.75 × weight=0.4 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4867,72 +5755,79 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 13.60 × (1 + 0.053) = 14.33
-    Final delta: 14.33 × 1 × 0.7 = 10.03
-    disgust: base=36 × trig=0.85 × weight=0.3 → raw=9.18
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Final delta: 7.90 × 1 × 0.7 = 5.53
+    disgust: base=28 × trig=0.75 × weight=0.3 → raw=6.30
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.18 × (1 + 0.000) = 9.18
-    Final delta: 9.18 × 1 × 0.7 = 6.43
-    sadness: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 6.30 × (1 + 0.000) = 6.30
+    Final delta: 6.30 × 1 × 0.7 = 4.41
+    sadness: base=18 × trig=0.75 × weight=0.15 → raw=2.02
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 3.91 × (1 + 0.140) = 4.46
-    Final delta: 4.46 × 1 × 0.7 = 3.12
-  Ambient surprise: avg_trigger(0.95) × 15 = +14.3
-  Ambient anticipation: extreme event detected → +9.5
+    Modified delta: 2.02 × (1 + 0.140) = 2.31
+    Final delta: 2.31 × 1 × 0.7 = 1.62
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 1 × 0.7 = 0.62
+  Ambient anticipation: extreme event detected → +10.5
 
   Emotion updates:
-    sadness: carry(9.8 × 0.25) + delta(30.39) = 32.84
-    anger: carry(5.7 × 0.25) + delta(27.56) = 28.97
-    fear: carry(2.7 × 0.25) + delta(3.48) = 4.15
-    disgust: carry(3.8 × 0.25) + delta(6.43) = 7.37
-    surprise: carry(2.7 × 0.25) + delta(14.25) = 14.93
-    anticipation: carry(0.0 × 0.25) + delta(9.50) = 9.50
+    sadness: carry(0.4 × 0.08) + delta(31.22) = 31.25
+    anger: carry(0.4 × 0.08) + delta(21.24) = 21.27
+    fear: carry(0.2 × 0.25) + delta(3.13) = 3.18
+    disgust: carry(0.5 × 0.12) + delta(4.41) = 4.47
+    surprise: carry(0.1 × 0.2) + delta(4.28) = 4.31
+    anticipation: carry(0.2 × 0.2) + delta(10.50) = 10.54
 
 === Chapter 14 ===
 Stimulants this chapter: 8
 
   Stimulant: "The Prime walks with heavy, exhausted strides when no one of importance is watching, revealing the burden of carrying the city alone"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.6)
+    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.6 × weight=0.5 → raw=6.90
+    sadness: base=18 × trig=0.4 × weight=0.4 → raw=2.88
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.140) = 7.87
-    Final delta: 7.87 × 1 × 1.1 = 8.65
-    fear: base=31 × trig=0.6 × weight=0.3 → raw=5.58
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 2.88 × (1 + 0.140) = 3.28
+    Final delta: 3.28 × 1 × 1.1 = 3.61
+    fear: base=25 × trig=0.4 × weight=0.2 → raw=2.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 5.58 × (1 + -0.460) = 3.01
-    Final delta: 3.01 × 1 × 1.1 = 3.31
-    anger: base=32 × trig=0.6 × weight=0.2 → raw=3.84
-    Trait modifiers for anger (total: +0.053):
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.00 × (1 + -0.370) = 1.26
+    Final delta: 1.26 × 1 × 1.1 = 1.39
+    anticipation: base=38 × trig=0.4 × weight=0.2 → raw=3.04
+    Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
-  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
-  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
-  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.84 × (1 + 0.053) = 4.04
-    Final delta: 4.04 × 1 × 1.1 = 4.45
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 3.04 × (1 + -0.187) = 2.47
+    Final delta: 2.47 × 1 × 1.1 = 2.72
+    trust: base=15 × trig=0.4 × weight=0.2 → raw=1.20
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 1.20 × (1 + -0.280) = 0.86
+    Final delta: 0.86 × 1 × 1.1 = 0.95
 
   Stimulant: "The Prime flushes with rage when the Noble Quarter's original meaning is twisted by rumors into a sign of privilege and corruption"
     Event: injustice | Subject: self | Source: world_caused | Domain: status
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    anger: base=32 × trig=0.85 × weight=0.5 → raw=13.60
+    anger: base=25 × trig=0.75 × weight=0.4 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4940,35 +5835,43 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 13.60 × (1 + 0.053) = 14.33
-    Final delta: 14.33 × 1 × 0.7 = 10.03
-    disgust: base=36 × trig=0.85 × weight=0.3 → raw=9.18
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Final delta: 7.90 × 1 × 0.7 = 5.53
+    disgust: base=28 × trig=0.75 × weight=0.3 → raw=6.30
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.18 × (1 + 0.000) = 9.18
-    Final delta: 9.18 × 1 × 0.7 = 6.43
-    sadness: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 6.30 × (1 + 0.000) = 6.30
+    Final delta: 6.30 × 1 × 0.7 = 4.41
+    sadness: base=18 × trig=0.75 × weight=0.15 → raw=2.02
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 3.91 × (1 + 0.140) = 4.46
-    Final delta: 4.46 × 1 × 0.7 = 3.12
+    Modified delta: 2.02 × (1 + 0.140) = 2.31
+    Final delta: 2.31 × 1 × 0.7 = 1.62
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 1 × 0.7 = 0.62
 
   Stimulant: "The Prime reveals Ravour is dying and acclimation is getting harder each year, confessing the species faces extinction"
     Event: threat | Subject: group | Source: world_caused | Domain: future_security
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: world_caused → ×0.7
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.7 × 0.7 = 5.74
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.370) = 13.23
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 13.23 × 0.85 × 0.7 × 1.36 = 10.71
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -4976,33 +5879,36 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.7 × 0.7 = 3.30
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Final delta: 4.74 × 0.85 × 0.7 = 2.82
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.7 × 0.7 = 1.24
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 5.56 × 0.85 × 0.7 × 1.36 = 4.50
 
   Stimulant: "The Prime reveals the noble beasts have learned to reproduce, meaning ten have become eleven, an existential threat he cannot stop"
     Event: danger_cue | Subject: group | Source: world_caused | Domain: future_security
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: world_caused → ×0.7
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.7 × 0.7 = 5.74
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.370) = 8.51
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 8.51 × 0.85 × 0.7 × 1.36 = 6.88
+    anticipation: base=38 × trig=1.2 × weight=0.25 → raw=11.40
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.187) = 5.04
-    Final delta: 5.04 × 0.7 × 0.7 = 2.47
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+    Modified delta: 11.40 × (1 + -0.187) = 9.27
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 9.27 × 0.85 × 0.7 × 1.36 = 7.50
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5010,29 +5916,36 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.053) = 3.37
-    Final delta: 3.37 × 0.7 × 0.7 = 1.65
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Final delta: 4.74 × 0.85 × 0.7 = 2.82
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.85 × 0.7 = 0.84
 
   Stimulant: "The Prime admits he has tried to form alliances with other cities to find the portals but they either don't believe him or suspect invasion"
     Event: failure | Subject: group | Source: world_caused | Domain: future_security
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: world_caused → ×0.7
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.140) = 11.14
-    Final delta: 11.14 × 0.7 × 0.7 = 5.46
-    fear: base=31 × trig=0.85 × weight=0.3 → raw=7.90
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 5.40 × (1 + 0.140) = 6.16
+    Final delta: 6.16 × 0.85 × 0.7 = 3.66
+    fear: base=25 × trig=0.75 × weight=0.25 → raw=4.69
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 7.90 × (1 + -0.460) = 4.27
-    Final delta: 4.27 × 0.7 × 0.7 = 2.09
-    anger: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.69 × (1 + -0.370) = 2.95
+    Final delta: 2.95 × 0.85 × 0.7 = 1.76
+    anger: base=25 × trig=0.75 × weight=0.2 → raw=3.75
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5040,21 +5953,28 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.44 × (1 + 0.053) = 5.73
-    Final delta: 5.73 × 0.7 × 0.7 = 2.81
+    Modified delta: 3.75 × (1 + 0.053) = 3.95
+    Final delta: 3.95 × 0.85 × 0.7 = 2.35
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 0.85 × 0.7 = 0.53
 
   Stimulant: "The Prime confronts the white-haired phantom girl, telling her he will never forgive her and that they are not allies"
     Event: moral_cue | Subject: stranger | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.6)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.4)
+    Subject mult: stranger → ×0.4
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=0.6 × weight=0.4 → raw=8.64
+    disgust: base=28 × trig=0.4 × weight=0.35 → raw=3.92
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 8.64 × (1 + 0.000) = 8.64
-    Final delta: 8.64 × 0.3 × 1.1 = 2.85
-    anger: base=32 × trig=0.6 × weight=0.3 → raw=5.76
+    Modified delta: 3.92 × (1 + 0.000) = 3.92
+    Final delta: 3.92 × 0.4 × 1.1 = 1.72
+    anger: base=25 × trig=0.4 × weight=0.25 → raw=2.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5062,23 +5982,30 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 5.76 × (1 + 0.053) = 6.07
-    Final delta: 6.07 × 0.3 × 1.1 = 2.00
-    sadness: base=23 × trig=0.6 × weight=0.3 → raw=4.14
+    Modified delta: 2.50 × (1 + 0.053) = 2.63
+    Final delta: 2.63 × 0.4 × 1.1 = 1.16
+    sadness: base=18 × trig=0.4 × weight=0.2 → raw=1.44
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.14 × (1 + 0.140) = 4.72
-    Final delta: 4.72 × 0.3 × 1.1 = 1.56
+    Modified delta: 1.44 × (1 + 0.140) = 1.64
+    Final delta: 1.64 × 0.4 × 1.1 = 0.72
+    surprise: base=12 × trig=0.4 × weight=0.2 → raw=0.96
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 0.96 × (1 + -0.343) = 0.63
+    Final delta: 0.63 × 0.4 × 1.1 = 0.28
 
   Stimulant: "The phantom girl accuses The Prime of lying by omission to Haldric, cutting through his justifications"
     Event: insult | Subject: self | Source: enemy_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    anger: base=32 × trig=0.85 × weight=0.6 → raw=16.32
+    anger: base=25 × trig=0.75 × weight=0.5 → raw=9.38
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5086,35 +6013,42 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 16.32 × (1 + 0.053) = 17.19
-    Final delta: 17.19 × 1 × 0.8 = 13.75
-    disgust: base=36 × trig=0.85 × weight=0.2 → raw=6.12
+    Modified delta: 9.38 × (1 + 0.053) = 9.88
+    Final delta: 9.88 × 1 × 0.8 = 7.90
+    disgust: base=28 × trig=0.75 × weight=0.2 → raw=4.20
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.12 × (1 + 0.000) = 6.12
-    Final delta: 6.12 × 1 × 0.8 = 4.90
-    sadness: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 4.20 × (1 + 0.000) = 4.20
+    Final delta: 4.20 × 1 × 0.8 = 3.36
+    sadness: base=18 × trig=0.75 × weight=0.15 → raw=2.02
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 3.91 × (1 + 0.140) = 4.46
-    Final delta: 4.46 × 1 × 0.8 = 3.57
+    Modified delta: 2.02 × (1 + 0.140) = 2.31
+    Final delta: 2.31 × 1 × 0.8 = 1.85
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 1 × 0.8 = 0.71
 
   Stimulant: "The Prime confesses "The world needs you, Haldric. It needs a kind heart. I will not suffice," admitting his own moral insufficiency"
     Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=0.85 × weight=0.4 → raw=12.24
+    disgust: base=28 × trig=0.75 × weight=0.35 → raw=7.35
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 12.24 × (1 + 0.000) = 12.24
-    Final delta: 12.24 × 1 × 1.1 = 13.46
-    anger: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 7.35 × (1 + 0.000) = 7.35
+    Final delta: 7.35 × 1 × 1.1 = 8.09
+    anger: base=25 × trig=0.75 × weight=0.25 → raw=4.69
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5122,59 +6056,61 @@ Stimulants this chapter: 8
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 8.16 × (1 + 0.053) = 8.60
-    Final delta: 8.60 × 1 × 1.1 = 9.45
-    sadness: base=23 × trig=0.85 × weight=0.3 → raw=5.87
+    Modified delta: 4.69 × (1 + 0.053) = 4.94
+    Final delta: 4.94 × 1 × 1.1 = 5.43
+    sadness: base=18 × trig=0.75 × weight=0.2 → raw=2.70
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.87 × (1 + 0.140) = 6.69
-    Final delta: 6.69 × 1 × 1.1 = 7.35
-  Ambient surprise: avg_trigger(0.82) × 15 = +12.4
-
-  Suppression applied:
-  Suppression: anger(76.4) suppresses joy by -23.72 (50% of anger delta)
-  Suppression: anger(76.4) suppresses trust by -14.23 (30% of anger delta)
-  Suppression: anger(76.4) suppresses fear by -7.12 (15% of anger delta)
-  Suppression: sadness(62.5) suppresses joy by -17.83 (60% of sadness delta)
-  Suppression: sadness(62.5) suppresses anticipation by -8.91 (30% of sadness delta)
-  Suppression: sadness(62.5) suppresses surprise by -5.94 (20% of sadness delta)
+    Modified delta: 2.70 × (1 + 0.140) = 3.08
+    Final delta: 3.08 × 1 × 1.1 = 3.39
+    surprise: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.80 × (1 + -0.343) = 1.18
+    Final delta: 1.18 × 1 × 1.1 = 1.30
 
   Emotion updates:
-    sadness: carry(32.8 × 0.25) + delta(29.71) = 37.92
-    anger: carry(29.0 × 0.25) + delta(47.45) = 54.69
-    fear: carry(4.2 × 0.25) + delta(9.77) = 10.81
-    disgust: carry(7.4 × 0.25) + delta(27.64) = 29.48
-    surprise: carry(14.9 × 0.25) + delta(6.43) = 10.17
-    anticipation: carry(9.5 × 0.25) + delta(-5.21) = -2.83
+    sadness: carry(31.3 × 0.055999999999999994) + delta(14.85) = 16.60
+    anger: carry(21.3 × 0.08) + delta(28.01) = 29.71
+    fear: carry(3.2 × 0.25) + delta(20.73) = 21.53
+    disgust: carry(4.5 × 0.12) + delta(17.58) = 18.12
+    surprise: carry(4.3 × 0.2) + delta(4.28) = 5.14
+    trust: carry(0.0 × 0.2) + delta(0.95) = 0.95
+    anticipation: carry(10.5 × 0.2) + delta(14.72) = 16.83
 
 === Chapter 15 ===
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(37.9 × 0.25) + delta(0.00) = 9.48
-    anger: carry(54.7 × 0.25) + delta(0.00) = 13.67
-    fear: carry(10.8 × 0.25) + delta(0.00) = 2.70
-    disgust: carry(29.5 × 0.25) + delta(0.00) = 7.37
-    surprise: carry(10.2 × 0.25) + delta(0.00) = 2.54
+    sadness: carry(16.6 × 0.02) + delta(0.00) = 0.33
+    anger: carry(29.7 × 0.02) + delta(0.00) = 0.59
+    fear: carry(21.5 × 0.02) + delta(0.00) = 0.43
+    disgust: carry(18.1 × 0.02) + delta(0.00) = 0.36
+    surprise: carry(5.1 × 0.02) + delta(0.00) = 0.10
+    trust: carry(1.0 × 0.02) + delta(0.00) = 0.02
+    anticipation: carry(16.8 × 0.02) + delta(0.00) = 0.34
 
 === Chapter 16 ===
 Stimulants this chapter: 3
 
   Stimulant: "The Prime kills the sadistic scientist who was torturing Praew, stabbing a sword through his throat with visible disgust"
     Event: moral_cue | Subject: stranger | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=1 × weight=0.4 → raw=14.40
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 14.40 × (1 + 0.000) = 14.40
-    Final delta: 14.40 × 0.3 × 1.1 = 4.75
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 11.76 × (1 + 0.000) = 11.76
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 11.76 × 0.4 × 1.1 × 2.2 = 11.38
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5182,52 +6118,69 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.3 × 1.1 = 3.34
-    sadness: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.90 × 0.4 × 1.1 × 1.36 = 4.73
+    sadness: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.140) = 7.87
-    Final delta: 7.87 × 0.3 × 1.1 = 2.60
+    Modified delta: 4.32 × (1 + 0.140) = 4.92
+    Final delta: 4.92 × 0.4 × 1.1 = 2.17
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.4 × 1.1 = 0.83
 
   Stimulant: "The Prime's hands tremble with awe as he sees the Mythical BoltStone successfully embed into Praew, whispering "Finally, after fourteen years""
     Event: success | Subject: group | Source: self_caused | Domain: future_security
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: self_caused → ×1.1
-    joy: base=9 × trig=1 × weight=0.7 → raw=6.30
+    joy: base=10 × trig=1.2 × weight=0.5 → raw=6.00
     Trait modifiers for joy (total: -0.200):
   empathyBaseline(30/75 × 0.2) = +0.080 [Empathic joy — shares in others' happiness]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 6.30 × (1 + -0.200) = 5.04
-    Final delta: 5.04 × 0.7 × 1.1 = 3.88
-    trust: base=13 × trig=1 × weight=0.2 → raw=2.60
+    Modified delta: 6.00 × (1 + -0.200) = 4.80
+    Final delta: 4.80 × 0.85 × 1.1 = 4.49
+    trust: base=15 × trig=1.2 × weight=0.2 → raw=3.60
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 2.60 × (1 + -0.280) = 1.87
-    Final delta: 1.87 × 0.7 × 1.1 = 1.44
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 3.60 × (1 + -0.280) = 2.59
+    Final delta: 2.59 × 0.85 × 1.1 = 2.42
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.7 × 1.1 = 1.94
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 5.56 × 0.85 × 1.1 × 1.36 = 7.07
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.85 × 1.1 = 1.33
 
   Stimulant: "Praew begs The Prime not to use the recorrection program on her, asking "Why must everything be decided for me?" as he overrides her will"
     Event: moral_cue | Subject: stranger | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: self_caused → ×1.1
-    disgust: base=36 × trig=1 × weight=0.4 → raw=14.40
+    disgust: base=28 × trig=1.2 × weight=0.35 → raw=11.76
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 14.40 × (1 + 0.000) = 14.40
-    Final delta: 14.40 × 0.3 × 1.1 = 4.75
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 11.76 × (1 + 0.000) = 11.76
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 11.76 × 0.4 × 1.1 × 2.2 = 11.38
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5235,44 +6188,52 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.3 × 1.1 = 3.34
-    sadness: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.90 × 0.4 × 1.1 × 1.36 = 4.73
+    sadness: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.140) = 7.87
-    Final delta: 7.87 × 0.3 × 1.1 = 2.60
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient fear: extreme event detected → +12.0
+    Modified delta: 4.32 × (1 + 0.140) = 4.92
+    Final delta: 4.92 × 0.4 × 1.1 = 2.17
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.4 × 1.1 = 0.83
+  Ambient fear: extreme event detected → +14.4
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(3.88) = 3.88
-    sadness: carry(9.5 × 0.25) + delta(5.19) = 7.56
-    anger: carry(13.7 × 0.25) + delta(6.67) = 10.09
-    fear: carry(2.7 × 0.25) + delta(12.00) = 12.68
-    disgust: carry(7.4 × 0.25) + delta(9.50) = 11.35
-    surprise: carry(2.5 × 0.25) + delta(15.00) = 15.64
-    trust: carry(0.0 × 0.25) + delta(1.44) = 1.44
-    anticipation: carry(0.0 × 0.25) + delta(1.94) = 1.94
+    joy: carry(0.0 × 0.2) + delta(4.49) = 4.49
+    sadness: carry(0.3 × 0.08) + delta(4.33) = 4.36
+    anger: carry(0.6 × 0.08) + delta(9.45) = 9.50
+    fear: carry(0.4 × 0.25) + delta(14.40) = 14.51
+    disgust: carry(0.4 × 0.12) + delta(22.77) = 22.81
+    surprise: carry(0.1 × 0.2) + delta(2.99) = 3.01
+    trust: carry(0.0 × 0.2) + delta(2.42) = 2.43
+    anticipation: carry(0.3 × 0.2) + delta(7.07) = 7.14
 
 === Chapter 17 ===
 Stimulants this chapter: 3
 
   Stimulant: "Renwick draws a sword on The Prime after witnessing the embedding, but The Prime uses a voice command to force Renwick to stand down and obey"
     Event: threat | Subject: stranger | Source: enemy_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: enemy_caused → ×0.8
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.7 → raw=21.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 0.3 × 0.8 = 2.81
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 21.00 × (1 + -0.370) = 13.23
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 13.23 × 0.4 × 0.8 × 1.7200000000000002 = 7.28
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5280,33 +6241,34 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.3 × 0.8 = 1.62
-    anticipation: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 4.74 × 0.4 × 0.8 × 1.24 = 1.88
+    anticipation: base=38 × trig=1.2 × weight=0.15 → raw=6.84
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 3.10 × (1 + -0.187) = 2.52
-    Final delta: 2.52 × 0.3 × 0.8 = 0.61
+    Modified delta: 6.84 × (1 + -0.187) = 5.56
+    Final delta: 5.56 × 0.4 × 0.8 = 1.78
 
   Stimulant: "The Prime warns that Renwick has "doomed us all" by threatening him instead of supporting the embedding that could save the species"
     Event: danger_cue | Subject: group | Source: ally_caused | Domain: future_security
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: ally_caused → ×1.3
-    fear: base=31 × trig=0.85 × weight=0.7 → raw=18.44
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=0.75 × weight=0.45 → raw=8.44
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 18.44 × (1 + -0.460) = 9.96
-    Final delta: 9.96 × 0.7 × 1.3 = 9.06
-    anticipation: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.44 × (1 + -0.370) = 5.32
+    Final delta: 5.32 × 0.85 × 1.3 = 5.87
+    anticipation: base=38 × trig=0.75 × weight=0.25 → raw=7.13
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 5.27 × (1 + -0.187) = 4.29
-    Final delta: 4.29 × 0.7 × 1.3 = 3.90
-    anger: base=32 × trig=0.85 × weight=0.1 → raw=2.72
+    Modified delta: 7.13 × (1 + -0.187) = 5.79
+    Final delta: 5.79 × 0.85 × 1.3 = 6.40
+    anger: base=25 × trig=0.75 × weight=0.15 → raw=2.81
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5314,23 +6276,30 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 2.72 × (1 + 0.053) = 2.87
-    Final delta: 2.87 × 0.7 × 1.3 = 2.61
+    Modified delta: 2.81 × (1 + 0.053) = 2.96
+    Final delta: 2.96 × 0.85 × 1.3 = 3.27
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.343) = 0.89
+    Final delta: 0.89 × 0.85 × 1.3 = 0.98
 
   Stimulant: "Haldric releases every prisoner in the city jail as a distraction, causing chaos, murder, and destruction throughout Stormhaven"
     Event: betrayal | Subject: friend | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.4 → raw=9.20
+    sadness: base=18 × trig=1.2 × weight=0.3 → raw=6.48
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.20 × (1 + 0.140) = 10.49
-    Final delta: 10.49 × 0.8 × 1.3 = 10.91
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 6.48 × (1 + 0.140) = 7.39
+    Final delta: 7.39 × 0.85 × 1.3 = 8.16
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5338,43 +6307,51 @@ Stimulants this chapter: 3
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.8 × 1.3 = 10.52
-    trust (COLLAPSE): base=13 × trig=1 × weight=0.3 → raw=3.90
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.90 × 0.85 × 1.3 × 1.24 = 10.82
+    trust (COLLAPSE): base=15 × trig=1.2 × weight=0.25 → raw=4.50
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 3.90 × (1 + -0.280) = 2.81
-    Final delta: 2.81 × 0.8 × 1.3 = 2.92
-    → Trust COLLAPSED by -2.92
-  Ambient surprise: avg_trigger(0.95) × 15 = +14.3
+    Modified delta: 4.50 × (1 + -0.280) = 3.24
+    Final delta: 3.24 × 0.85 × 1.3 = 3.58
+    → Trust COLLAPSED by -3.58
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 0.85 × 1.3 = 2.09
 
   Emotion updates:
-    joy: carry(3.9 × 0.25) + delta(0.00) = 0.97
-    sadness: carry(7.6 × 0.25) + delta(10.91) = 12.80
-    anger: carry(10.1 × 0.25) + delta(14.74) = 17.26
-    fear: carry(12.7 × 0.25) + delta(11.88) = 15.05
-    disgust: carry(11.3 × 0.25) + delta(0.00) = 2.84
-    surprise: carry(15.6 × 0.25) + delta(14.25) = 18.16
-    trust: carry(1.4 × 0.25) + delta(-2.92) = -2.56
-    anticipation: carry(1.9 × 0.25) + delta(4.51) = 4.99
+    joy: carry(4.5 × 0.02) + delta(0.00) = 0.09
+    sadness: carry(4.4 × 0.08) + delta(8.16) = 8.51
+    anger: carry(9.5 × 0.08) + delta(15.98) = 16.74
+    fear: carry(14.5 × 0.25) + delta(13.16) = 16.78
+    disgust: carry(22.8 × 0.02) + delta(0.00) = 0.46
+    surprise: carry(3.0 × 0.2) + delta(3.07) = 3.67
+    trust: carry(2.4 × 0.02) + delta(-3.58) = -3.53
+    anticipation: carry(7.1 × 0.2) + delta(8.18) = 9.61
 
 === Chapter 18 ===
 Stimulants this chapter: 7
 
   Stimulant: "Godric ties up The Prime and rescues Praew, calling it a crime punishable by death while The Prime is helpless on the floor"
     Event: humiliation | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.4 → raw=9.20
+    sadness: base=18 × trig=1.2 × weight=0.3 → raw=6.48
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.20 × (1 + 0.140) = 10.49
-    Final delta: 10.49 × 1 × 1.3 = 13.63
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 6.48 × (1 + 0.140) = 7.39
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 7.39 × 1 × 1.3 × 1.12 = 10.76
+    anger: base=25 × trig=1.2 × weight=0.25 → raw=7.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5382,35 +6359,44 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 1 × 1.3 = 13.15
-    disgust: base=36 × trig=1 × weight=0.3 → raw=10.80
+    Modified delta: 7.50 × (1 + 0.053) = 7.90
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 7.90 × 1 × 1.3 × 1.24 = 12.73
+    disgust: base=28 × trig=1.2 × weight=0.25 → raw=8.40
     Trait modifiers for disgust (total: 0.000):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(70/75 × 0.3) = +0.280 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.80 × (1 + 0.000) = 10.80
-    Final delta: 10.80 × 1 × 1.3 = 14.04
+    Modified delta: 8.40 × (1 + 0.000) = 8.40
+    Final delta: 8.40 × 1 × 1.3 = 10.92
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.343) = 1.89
+    Final delta: 1.89 × 1 × 1.3 = 2.46
 
   Stimulant: "The Prime screams at Godric to bring Praew back, threatening to hunt him to the ends of the world, losing all composure"
     Event: loss | Subject: group | Source: ally_caused | Domain: future_security
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.140) = 18.35
-    Final delta: 18.35 × 0.7 × 1.3 = 16.70
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 12.96 × (1 + 0.140) = 14.77
+    Final delta: 14.77 × 0.85 × 1.3 = 16.33
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.7 × 1.3 = 3.05
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 2.83 × 0.85 × 1.3 × 1.36 = 4.26
+    anger: base=25 × trig=1.2 × weight=0.1 → raw=3.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5418,29 +6404,37 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.053) = 3.37
-    Final delta: 3.37 × 0.7 × 1.3 = 3.07
+    Modified delta: 3.00 × (1 + 0.053) = 3.16
+    Final delta: 3.16 × 0.85 × 1.3 = 3.49
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.85 × 1.3 = 1.57
 
   Stimulant: "Godric says "Goodbye, brother" as he takes Praew away, severing his familial bond with Arthur permanently"
     Event: separation | Subject: family | Source: ally_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.6 → raw=13.80
+    sadness: base=18 × trig=1.2 × weight=0.5 → raw=10.80
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.80 × (1 + 0.140) = 15.73
-    Final delta: 15.73 × 0.9 × 1.3 = 18.41
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 10.80 × (1 + 0.140) = 12.31
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 12.31 × 0.95 × 1.3 × 1.48 = 22.50
+    fear: base=25 × trig=1.2 × weight=0.25 → raw=7.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.9 × 1.3 = 3.92
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.50 × (1 + -0.370) = 4.72
+    Final delta: 4.72 × 0.95 × 1.3 = 5.84
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5448,21 +6442,28 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.9 × 1.3 = 7.89
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Final delta: 4.74 × 0.95 × 1.3 = 5.85
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.343) = 0.95
+    Final delta: 0.95 × 0.95 × 1.3 = 1.17
 
   Stimulant: "The Prime beats Haldric viciously, kicking him repeatedly on the floor, screaming "You doomed us all" and "Why must you ruin everything?""
     Event: harm | Subject: friend | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    fear: base=31 × trig=1 × weight=0.5 → raw=15.50
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.6 → raw=18.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 15.50 × (1 + -0.460) = 8.37
-    Final delta: 8.37 × 0.8 × 1.1 = 7.37
-    anger: base=32 × trig=1 × weight=0.3 → raw=9.60
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 18.00 × (1 + -0.370) = 11.34
+    Final delta: 11.34 × 0.85 × 1.1 = 10.60
+    anger: base=25 × trig=1.2 × weight=0.2 → raw=6.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5470,35 +6471,44 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 9.60 × (1 + 0.053) = 10.11
-    Final delta: 10.11 × 0.8 × 1.1 = 8.90
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 6.00 × (1 + 0.053) = 6.32
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 6.32 × 0.85 × 1.1 × 1.36 = 8.04
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.140) = 5.24
-    Final delta: 5.24 × 0.8 × 1.1 = 4.61
+    Modified delta: 2.16 × (1 + 0.140) = 2.46
+    Final delta: 2.46 × 0.85 × 1.1 = 2.30
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.343) = 0.95
+    Final delta: 0.95 × 0.85 × 1.1 = 0.88
 
   Stimulant: "The Prime learns that Haldric freed Bresdin, his most dangerous enemy, causing Arthur visible fear for the first time"
     Event: danger_cue | Subject: self | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    fear: base=31 × trig=1 × weight=0.7 → raw=21.70
-    Trait modifiers for fear (total: -0.460):
+    fear: base=25 × trig=1.2 × weight=0.45 → raw=13.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 21.70 × (1 + -0.460) = 11.72
-    Final delta: 11.72 × 1 × 1.3 = 15.23
-    anticipation: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 13.50 × (1 + -0.370) = 8.51
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 8.51 × 1 × 1.3 × 1.7200000000000002 = 19.02
+    anticipation: base=38 × trig=1.2 × weight=0.25 → raw=11.40
     Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
-    Modified delta: 6.20 × (1 + -0.187) = 5.04
-    Final delta: 5.04 × 1 × 1.3 = 6.56
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+    Modified delta: 11.40 × (1 + -0.187) = 9.27
+    Final delta: 9.27 × 1 × 1.3 = 12.05
+    anger: base=25 × trig=1.2 × weight=0.15 → raw=4.50
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5506,59 +6516,71 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.053) = 3.37
-    Final delta: 3.37 × 1 × 1.3 = 4.38
+    Modified delta: 4.50 × (1 + 0.053) = 4.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 4.74 × 1 × 1.3 × 1.24 = 7.64
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 1 × 1.3 = 1.84
 
   Stimulant: "Haldric calls out "Father, please!" to stop The Prime from kicking him, and Arthur freezes, momentarily confronted with the parental bond he craves"
     Event: reminder_cue | Subject: family | Source: ally_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.140) = 13.11
-    Final delta: 13.11 × 0.9 × 1.3 = 15.34
-    fear: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 8.64 × (1 + 0.140) = 9.85
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 9.85 × 0.95 × 1.3 × 1.48 = 18.00
+    fear: base=25 × trig=1.2 × weight=0.2 → raw=6.00
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 9.30 × (1 + -0.460) = 5.02
-    Final delta: 5.02 × 0.9 × 1.3 = 5.88
-    anger: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anger (total: +0.053):
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.00 × (1 + -0.370) = 3.78
+    Final delta: 3.78 × 0.95 × 1.3 = 4.67
+    anticipation: base=38 × trig=1.2 × weight=0.2 → raw=9.12
+    Trait modifiers for anticipation (total: -0.187):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(60/75 × 0.2) = +0.160 [Sensitive pride = anger when status/competence challenged]
-  patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
-  impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
-  moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 6.40 × (1 + 0.053) = 6.74
-    Final delta: 6.74 × 0.9 × 1.3 = 7.89
+  curiosity(35/75 × 0.2) = +0.093 [Curious = heightened anticipation for new info]
+    Modified delta: 9.12 × (1 + -0.187) = 7.42
+    Final delta: 7.42 × 0.95 × 1.3 = 9.16
+    trust: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 3.60 × (1 + -0.280) = 2.59
+    Domain amp: attachment → trust ×1.36 (only at High+ trigger)
+    Final delta: 2.59 × 0.95 × 1.3 × 1.36 = 4.35
 
   Stimulant: "The Prime must imprison his own brother Godric as a result of the night's events, losing his last remaining familial ally"
     Event: loss | Subject: family | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.140):
   empathyBaseline(30/75 × 0.4) = +0.160 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(30/75 × 0.3) = +0.120 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(35/75 × 0.3) = +0.140 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.140) = 18.35
-    Final delta: 18.35 × 0.9 × 1.1 = 18.17
-    fear: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for fear (total: -0.460):
+    Modified delta: 12.96 × (1 + 0.140) = 14.77
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 14.77 × 0.95 × 1.1 × 1.48 = 22.85
+    fear: base=25 × trig=1.2 × weight=0.15 → raw=4.50
+    Trait modifiers for fear (total: -0.370):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(45/75 × -0.3) = -0.180 [High risk appetite = fear hits less hard]
-    Modified delta: 6.20 × (1 + -0.460) = 3.35
-    Final delta: 3.35 × 0.9 × 1.1 = 3.31
-    anger: base=32 × trig=1 × weight=0.1 → raw=3.20
+  riskAppetite(45/75 × -0.15) = -0.090 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.370) = 2.83
+    Final delta: 2.83 × 0.95 × 1.1 = 2.96
+    anger: base=25 × trig=1.2 × weight=0.1 → raw=3.00
     Trait modifiers for anger (total: +0.053):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(35/75 × 0.3) = +0.140 [Confrontational = anger rises faster in conflict]
@@ -5566,27 +6588,37 @@ Stimulants this chapter: 7
   patience(65/75 × -0.2) = -0.173 [Patient = slower to anger]
   impulsiveness(15/75 × 0.1) = +0.020 [Impulsive = anger flares quickly]
   moralRigidity(70/75 × 0.2) = +0.187 [Rigid morals = anger at injustice]
-    Modified delta: 3.20 × (1 + 0.053) = 3.37
-    Final delta: 3.37 × 0.9 × 1.1 = 3.34
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
+    Modified delta: 3.00 × (1 + 0.053) = 3.16
+    Final delta: 3.16 × 0.95 × 1.1 = 3.30
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.343):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(35/75 × -0.2) = -0.093 [Adaptable = recovers from surprise faster]
+  impulsiveness(15/75 × 0.15) = +0.030 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.343) = 1.42
+    Final delta: 1.42 × 0.95 × 1.1 = 1.48
+  Compression: sadness raw=92.7 → compressed=91.8 (threshold=75)
 
   Suppression applied:
-  Suppression: anger(65.9) suppresses joy by -24.30 (50% of anger delta)
-  Suppression: anger(65.9) suppresses trust by -14.58 (30% of anger delta)
-  Suppression: anger(65.9) suppresses fear by -7.29 (15% of anger delta)
-  Suppression: sadness(99.7) suppresses joy by -52.12 (60% of sadness delta)
-  Suppression: sadness(99.7) suppresses anticipation by -26.06 (30% of sadness delta)
-  Suppression: sadness(99.7) suppresses surprise by -17.37 (20% of sadness delta)
+  Suppression: anger(57.8) suppresses joy by -20.53 (50% of anger delta)
+  Suppression: anger(57.8) suppresses trust by -12.32 (30% of anger delta)
+  Suppression: anger(57.8) suppresses fear by -6.16 (15% of anger delta)
+  Suppression: sadness(100.4) suppresses joy by -55.11 (60% of sadness delta)
+  Suppression: sadness(100.4) suppresses anticipation by -27.55 (30% of sadness delta)
+  Suppression: sadness(100.4) suppresses surprise by -18.37 (20% of sadness delta)
+  Suppression: fear(58.0) suppresses joy by -16.48 (40% of fear delta)
+  Suppression: fear(58.0) suppresses trust by -12.36 (30% of fear delta)
+  Suppression: fear(58.0) suppresses anticipation by -8.24 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(1.0 × 0.25) + delta(-76.42) = -76.18
-    sadness: carry(12.8 × 0.25) + delta(86.87) = 90.07
-    *** sadness in RED ZONE: VU=90.1 (track capped at 75) ***
-    anger: carry(17.3 × 0.25) + delta(48.61) = 52.92
-    fear: carry(15.0 × 0.25) + delta(31.46) = 35.22
-    disgust: carry(2.8 × 0.25) + delta(14.04) = 14.75
-    surprise: carry(18.2 × 0.25) + delta(-2.37) = 2.17
-    anticipation: carry(5.0 × 0.25) + delta(-19.50) = -18.26
+    sadness: carry(8.5 × 0.08) + delta(91.85) = 92.53
+    *** sadness in RED ZONE: VU=92.5 (track capped at 75) ***
+    anger: carry(16.7 × 0.08) + delta(41.06) = 42.40
+    fear: carry(16.8 × 0.25) + delta(41.19) = 45.38
+    disgust: carry(0.5 × 0.12) + delta(10.92) = 10.97
+    surprise: carry(3.7 × 0.2) + delta(-8.97) = -8.23
+    trust: carry(0.0 × 0.2) + delta(-20.32) = -20.32
+    anticipation: carry(9.6 × 0.2) + delta(-14.58) = -12.66
 ```
 
 ### Profile Reasoning
@@ -5624,25 +6656,25 @@ Stimulants this chapter: 7
 ```
 Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 --------------------------------------------------------------------------
- 0 |      0 |     59 |     69 |      5 |     10 |      0 |      0 |      0
- 1 |      0 |     59 |     69 |      5 |     10 |      0 |      0 |      0
- 2 |      0 |     59 |     69 |      5 |     10 |      0 |      0 |      0
- 3 |      0 |     15 |     17 |      1 |      3 |      0 |      0 |      0
- 4 |      0 |     13 |     26 |      0 |      9 |      9 |      0 |      0
- 5 |      0 |     13 |     26 |      0 |      9 |      9 |      0 |      0
- 6 |      0 |      3 |      6 |      1 |      2 |      7 |      0 |      2
- 7 |      0 |      3 |      6 |      1 |      2 |      7 |      0 |      2
- 8 |      0 |     16 |     13 |      3 |      5 |     11 |      0 |      2
- 9 |      0 |     21 |     28 |      3 |      6 |     14 |      0 |      3
-10 |      0 |     21 |     28 |      3 |      6 |     14 |      0 |      3
-11 |      0 |     21 |     28 |      3 |      6 |     14 |      0 |      3
-12 |      0 |     21 |     28 |      3 |      6 |     14 |      0 |      3
-13 |      0 |    75! |     68 |      0 |      8 |      3 |      0 |      0
-14 |      0 |     75 |     68 |      0 |      8 |      3 |      0 |      0
-15 |      0 |     22 |     22 |      1 |      2 |      9 |      0 |      0
-16 |      0 |      5 |     15 |      7 |      1 |      4 |      0 |      4
-17 |      0 |     31 |     28 |      3 |      6 |     16 |      0 |     11
-18 |      0 |    75! |     75 |      8 |     15 |      0 |      0 |      0
+ 0 |      0 |     36 |     26 |     38 |      3 |      8 |      2 |     12
+ 1 |      0 |     36 |     26 |     38 |      3 |      8 |      2 |     12
+ 2 |      0 |     36 |     26 |     38 |      3 |      8 |      2 |     12
+ 3 |      0 |      1 |      1 |      1 |      0 |      0 |      0 |      0
+ 4 |      0 |      4 |      5 |      0 |      3 |      1 |      0 |      0
+ 5 |      0 |      4 |      5 |      0 |      3 |      1 |      0 |      0
+ 6 |      0 |      0 |      0 |      2 |      0 |      5 |      0 |      3
+ 7 |      0 |      0 |      0 |      2 |      0 |      5 |      0 |      3
+ 8 |      0 |      6 |      2 |      3 |      1 |      2 |      1 |      3
+ 9 |      0 |     10 |      7 |      3 |      2 |      3 |      0 |      2
+10 |      0 |     10 |      7 |      3 |      2 |      3 |      0 |      2
+11 |      0 |     10 |      7 |      3 |      2 |      3 |      0 |      2
+12 |      0 |     10 |      7 |      3 |      2 |      3 |      0 |      2
+13 |      0 |     49 |     23 |     20 |      4 |      0 |      5 |      0
+14 |      0 |     49 |     23 |     20 |      4 |      0 |      5 |      0
+15 |      0 |      4 |      3 |      7 |      0 |      0 |      0 |      0
+16 |      0 |      0 |      4 |     11 |      0 |      2 |      0 |      6
+17 |      0 |     27 |     15 |      4 |      8 |      4 |      0 |     13
+18 |      0 |    75! |     25 |     40 |     12 |      0 |      6 |      0
 ```
 
 ### Calculation Breakdown
@@ -5654,72 +6686,83 @@ Stimulants this chapter: 11
 
   Stimulant: "Godric faces Boltrax alone at Stormhaven's gates knowing he will likely die, as no one else has the spine to stand"
     Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    fear: base=13 × trig=1 × weight=0.7 → raw=9.10
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.45 → raw=8.10
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 9.10 × (1 + -0.560) = 4.00
-    Final delta: 4.00 × 1 × 0.7 = 2.80
-    anticipation: base=18 × trig=1 × weight=0.2 → raw=3.60
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.10 × (1 + -0.420) = 4.70
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 4.70 × 1 × 0.7 × 1.7200000000000002 = 5.66
+    anticipation: base=20 × trig=1.2 × weight=0.25 → raw=6.00
+    Trait modifiers for anticipation (total: -0.213):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 6.00 × (1 + -0.213) = 4.72
+    Final delta: 4.72 × 1 × 0.7 = 3.30
+    anger: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for anger (total: +0.147):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
+  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
+  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
+  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
+    Modified delta: 2.16 × (1 + 0.147) = 2.48
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 2.48 × 1 × 0.7 × 1.24 = 2.15
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 1 × 0.7 = 1.00
+
+  Stimulant: "Godric suppresses his fear before the battle, forcing himself to abandon the instinct that would not help when retreat is impossible"
+    Event: threat | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    fear: base=15 × trig=1.2 × weight=0.7 → raw=12.60
+    Trait modifiers for fear (total: -0.420):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.60 × (1 + -0.420) = 7.31
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 7.31 × 1 × 1.1 × 1.12 = 9.00
+    anger: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for anger (total: +0.147):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
+  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
+  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
+  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
+    Modified delta: 2.16 × (1 + 0.147) = 2.48
+    Final delta: 2.48 × 1 × 1.1 = 2.72
+    anticipation: base=20 × trig=1.2 × weight=0.15 → raw=3.60
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
     Modified delta: 3.60 × (1 + -0.213) = 2.83
-    Final delta: 2.83 × 1 × 0.7 = 1.98
-    anger: base=31 × trig=1 × weight=0.1 → raw=3.10
-    Trait modifiers for anger (total: +0.147):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.10 × (1 + 0.147) = 3.55
-    Final delta: 3.55 × 1 × 0.7 = 2.49
-
-  Stimulant: "Godric suppresses his fear before the battle, forcing himself to abandon the instinct that would not help when retreat is impossible"
-    Event: threat | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    fear: base=13 × trig=1 × weight=0.7 → raw=9.10
-    Trait modifiers for fear (total: -0.560):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 9.10 × (1 + -0.560) = 4.00
-    Final delta: 4.00 × 1 × 1.1 = 4.40
-    anger: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for anger (total: +0.147):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.20 × (1 + 0.147) = 7.11
-    Final delta: 7.11 × 1 × 1.1 = 7.82
-    anticipation: base=18 × trig=1 × weight=0.1 → raw=1.80
-    Trait modifiers for anticipation (total: -0.213):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 1.80 × (1 + -0.213) = 1.42
-    Final delta: 1.42 × 1 × 1.1 = 1.56
+    Final delta: 2.83 × 1 × 1.1 = 3.12
 
   Stimulant: "Boltrax strikes Godric with bone-crushing force, sending him flying into the gates and leaving him unable to reach his dropped spear"
     Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=13 × trig=1 × weight=0.5 → raw=6.50
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 6.50 × (1 + -0.560) = 2.86
-    Final delta: 2.86 × 1 × 0.8 = 2.29
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.420) = 6.26
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.26 × 1 × 0.8 × 1.7200000000000002 = 8.62
+    anger: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5727,37 +6770,47 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 1 × 0.8 = 8.53
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 2.88 × (1 + 0.147) = 3.30
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.30 × 1 × 0.8 × 1.24 = 3.28
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 0.8 = 5.10
+    Modified delta: 2.16 × (1 + 0.387) = 3.00
+    Final delta: 3.00 × 1 × 0.8 = 2.40
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 1 × 0.8 = 0.76
 
   Stimulant: "Godric drops his spear during combat and berates himself for the rookie mistake, believing he will not survive"
     Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.387) = 15.95
-    Final delta: 15.95 × 1 × 1.1 = 17.54
-    fear: base=13 × trig=1 × weight=0.3 → raw=3.90
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 8.64 × (1 + 0.387) = 11.98
+    Domain amp: competence → sadness ×1.12 (only at High+ trigger)
+    Final delta: 11.98 × 1 × 1.1 × 1.12 = 14.76
+    fear: base=15 × trig=1.2 × weight=0.25 → raw=4.50
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.90 × (1 + -0.560) = 1.72
-    Final delta: 1.72 × 1 × 1.1 = 1.89
-    anger: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.420) = 2.61
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 2.61 × 1 × 1.1 × 1.12 = 3.22
+    anger: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5765,65 +6818,80 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.20 × (1 + 0.147) = 7.11
-    Final delta: 7.11 × 1 × 1.1 = 7.82
+    Modified delta: 2.88 × (1 + 0.147) = 3.30
+    Final delta: 3.30 × 1 × 1.1 = 3.63
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 1 × 1.1 = 1.58
 
   Stimulant: "An eight-year-old boy (Srevlis) walks calmly toward the mythical beast, ignoring Godric's desperate orders to get back inside"
     Event: surprise_reveal | Subject: stranger | Source: world_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: stranger → ×0.4
     Source mult: world_caused → ×0.7
-    surprise: base=9 × trig=1 × weight=0.7 → raw=6.30
+    surprise: base=12 × trig=1.2 × weight=0.6 → raw=8.64
     Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
   impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
-    Modified delta: 6.30 × (1 + -0.337) = 4.18
-    Final delta: 4.18 × 0.3 × 0.7 = 0.88
-    fear: base=13 × trig=1 × weight=0.15 → raw=1.95
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 8.64 × (1 + -0.337) = 5.73
+    Final delta: 5.73 × 0.4 × 0.7 = 1.60
+    fear: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 1.95 × (1 + -0.560) = 0.86
-    Final delta: 0.86 × 0.3 × 0.7 = 0.18
-    anticipation: base=18 × trig=1 × weight=0.15 → raw=2.70
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.60 × (1 + -0.420) = 2.09
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 2.09 × 0.4 × 0.7 × 1.7200000000000002 = 1.01
+    anticipation: base=20 × trig=1.2 × weight=0.2 → raw=4.80
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 2.70 × (1 + -0.213) = 2.12
-    Final delta: 2.12 × 0.3 × 0.7 = 0.45
+    Modified delta: 4.80 × (1 + -0.213) = 3.78
+    Final delta: 3.78 × 0.4 × 0.7 = 1.06
 
   Stimulant: "Godric watches in awe as Srevlis fights with impossible mastery, wielding the spear as if born to it, surpassing anything Godric has ever seen"
     Event: surprise_reveal | Subject: stranger | Source: world_caused | Domain: competence
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: stranger → ×0.4
     Source mult: world_caused → ×0.7
-    surprise: base=9 × trig=0.85 × weight=0.7 → raw=5.35
+    surprise: base=12 × trig=0.75 × weight=0.6 → raw=5.40
     Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
   impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
-    Modified delta: 5.35 × (1 + -0.337) = 3.55
-    Final delta: 3.55 × 0.3 × 0.7 = 0.75
-    fear: base=13 × trig=0.85 × weight=0.15 → raw=1.66
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 5.40 × (1 + -0.337) = 3.58
+    Final delta: 3.58 × 0.4 × 0.7 = 1.00
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 1.66 × (1 + -0.560) = 0.73
-    Final delta: 0.73 × 0.3 × 0.7 = 0.15
-    anticipation: base=18 × trig=0.85 × weight=0.15 → raw=2.29
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.420) = 1.31
+    Final delta: 1.31 × 0.4 × 0.7 = 0.37
+    anticipation: base=20 × trig=0.75 × weight=0.2 → raw=3.00
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 2.29 × (1 + -0.213) = 1.81
-    Final delta: 1.81 × 0.3 × 0.7 = 0.38
+    Modified delta: 3.00 × (1 + -0.213) = 2.36
+    Final delta: 2.36 × 0.4 × 0.7 = 0.66
 
   Stimulant: "Guards drag Godric inside and slam the gates shut against his will, cutting him off from the fight and the boy"
     Event: constraint | Subject: self | Source: ally_caused | Domain: autonomy
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=31 × trig=1 × weight=0.5 → raw=15.50
+    fear: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for fear (total: -0.420):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.00 × (1 + -0.420) = 5.22
+    Domain amp: autonomy → fear ×1.36 (only at High+ trigger)
+    Final delta: 5.22 × 1 × 1.3 × 1.36 = 9.23
+    anger: base=12 × trig=1.2 × weight=0.3 → raw=4.32
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5831,37 +6899,38 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 15.50 × (1 + 0.147) = 17.77
-    Final delta: 17.77 × 1 × 1.3 = 23.11
-    fear: base=13 × trig=1 × weight=0.3 → raw=3.90
-    Trait modifiers for fear (total: -0.560):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.90 × (1 + -0.560) = 1.72
-    Final delta: 1.72 × 1 × 1.3 = 2.23
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 4.32 × (1 + 0.147) = 4.95
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 4.95 × 1 × 1.3 × 1.48 = 9.53
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 1.3 = 8.29
+    Modified delta: 2.16 × (1 + 0.387) = 3.00
+    Final delta: 3.00 × 1 × 1.3 = 3.89
+    anticipation: base=20 × trig=1.2 × weight=0.1 → raw=2.40
+    Trait modifiers for anticipation (total: -0.213):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 2.40 × (1 + -0.213) = 1.89
+    Final delta: 1.89 × 1 × 1.3 = 2.45
 
   Stimulant: "Srevlis rejects Godric's offer of a home in Stormhaven and says "Do you think you're the only victim?" before disappearing into the storm"
     Event: rejection | Subject: stranger | Source: world_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: stranger → ×0.3
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: stranger → ×0.4
     Source mult: world_caused → ×0.7
-    sadness: base=23 × trig=0.85 × weight=0.6 → raw=11.73
+    sadness: base=18 × trig=0.75 × weight=0.5 → raw=6.75
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.73 × (1 + 0.387) = 16.27
-    Final delta: 16.27 × 0.3 × 0.7 = 3.42
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 6.75 × (1 + 0.387) = 9.36
+    Final delta: 9.36 × 0.4 × 0.7 = 2.62
+    anger: base=12 × trig=0.75 × weight=0.2 → raw=1.80
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5869,29 +6938,36 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 0.3 × 0.7 = 1.27
-    fear: base=13 × trig=0.85 × weight=0.2 → raw=2.21
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 1.80 × (1 + 0.147) = 2.06
+    Final delta: 2.06 × 0.4 × 0.7 = 0.58
+    fear: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.21 × (1 + -0.560) = 0.97
-    Final delta: 0.97 × 0.3 × 0.7 = 0.20
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.69 × (1 + -0.420) = 0.98
+    Final delta: 0.98 × 0.4 × 0.7 = 0.27
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 0.4 × 0.7 = 0.25
 
   Stimulant: "Godric is left humiliated by the realization that a wild-born eight-year-old did what he, a veteran Hunter, could not"
     Event: humiliation | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.4 → raw=7.82
+    sadness: base=18 × trig=0.75 × weight=0.3 → raw=4.05
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 7.82 × (1 + 0.387) = 10.84
-    Final delta: 10.84 × 1 × 1.1 = 11.93
-    anger: base=31 × trig=0.85 × weight=0.3 → raw=7.90
+    Modified delta: 4.05 × (1 + 0.387) = 5.62
+    Final delta: 5.62 × 1 × 1.1 = 6.18
+    anger: base=12 × trig=0.75 × weight=0.25 → raw=2.25
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5899,57 +6975,65 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 7.90 × (1 + 0.147) = 9.06
-    Final delta: 9.06 × 1 × 1.1 = 9.97
-    disgust: base=27 × trig=0.85 × weight=0.3 → raw=6.88
+    Modified delta: 2.25 × (1 + 0.147) = 2.58
+    Final delta: 2.58 × 1 × 1.1 = 2.84
+    disgust: base=12 × trig=0.75 × weight=0.25 → raw=2.25
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.88 × (1 + -0.060) = 6.47
-    Final delta: 6.47 × 1 × 1.1 = 7.12
+    Modified delta: 2.25 × (1 + -0.060) = 2.11
+    Final delta: 2.11 × 1 × 1.1 = 2.33
+    surprise: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.80 × (1 + -0.337) = 1.19
+    Final delta: 1.19 × 1 × 1.1 = 1.31
 
   Stimulant: "Srevlis's words "Do you think you're the only victim?" gnaw at Godric, carving a permanent place in his mind and reminding him of his failure"
     Event: reminder_cue | Subject: self | Source: world_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: world_caused → ×0.7
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.387) = 13.55
-    Final delta: 13.55 × 1 × 0.7 = 9.49
-    fear: base=13 × trig=0.85 × weight=0.3 → raw=3.31
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 5.40 × (1 + 0.387) = 7.49
+    Final delta: 7.49 × 1 × 0.7 = 5.24
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.31 × (1 + -0.560) = 1.46
-    Final delta: 1.46 × 1 × 0.7 = 1.02
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
-    Trait modifiers for anger (total: +0.147):
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.420) = 1.31
+    Final delta: 1.31 × 1 × 0.7 = 0.91
+    anticipation: base=20 × trig=0.75 × weight=0.2 → raw=3.00
+    Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 0.7 = 4.23
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 3.00 × (1 + -0.213) = 2.36
+    Final delta: 2.36 × 1 × 0.7 = 1.65
+    trust: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 3.30 × (1 + -0.280) = 2.38
+    Final delta: 2.38 × 1 × 0.7 = 1.66
 
   Stimulant: "Godric finds renewed purpose from the encounter with Srevlis, recommitting to fight and protect others"
     Event: moral_cue | Subject: principle | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.6)
-    Subject mult: principle → ×0.5
+    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.4)
+    Subject mult: principle → ×0.6
     Source mult: self_caused → ×1.1
-    disgust: base=27 × trig=0.6 × weight=0.4 → raw=6.48
+    disgust: base=12 × trig=0.4 × weight=0.35 → raw=1.68
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.48 × (1 + -0.060) = 6.09
-    Final delta: 6.09 × 0.5 × 1.1 = 3.35
-    anger: base=31 × trig=0.6 × weight=0.3 → raw=5.58
+    Modified delta: 1.68 × (1 + -0.060) = 1.58
+    Final delta: 1.58 × 0.6 × 1.1 = 1.04
+    anger: base=12 × trig=0.4 × weight=0.25 → raw=1.20
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -5957,32 +7041,32 @@ Stimulants this chapter: 11
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.58 × (1 + 0.147) = 6.40
-    Final delta: 6.40 × 0.5 × 1.1 = 3.52
-    sadness: base=23 × trig=0.6 × weight=0.3 → raw=4.14
+    Modified delta: 1.20 × (1 + 0.147) = 1.38
+    Final delta: 1.38 × 0.6 × 1.1 = 0.91
+    sadness: base=18 × trig=0.4 × weight=0.2 → raw=1.44
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.14 × (1 + 0.387) = 5.74
-    Final delta: 5.74 × 0.5 × 1.1 = 3.16
-
-  Suppression applied:
-  Suppression: anger(68.8) suppresses joy by -34.38 (50% of anger delta)
-  Suppression: anger(68.8) suppresses trust by -20.63 (30% of anger delta)
-  Suppression: anger(68.8) suppresses fear by -10.31 (15% of anger delta)
-  Suppression: sadness(58.9) suppresses joy by -35.36 (60% of sadness delta)
-  Suppression: sadness(58.9) suppresses anticipation by -17.68 (30% of sadness delta)
-  Suppression: sadness(58.9) suppresses surprise by -11.79 (20% of sadness delta)
+    Modified delta: 1.44 × (1 + 0.387) = 2.00
+    Final delta: 2.00 × 0.6 × 1.1 = 1.32
+    surprise: base=12 × trig=0.4 × weight=0.2 → raw=0.96
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.96 × (1 + -0.337) = 0.64
+    Final delta: 0.64 × 0.6 × 1.1 = 0.42
 
   Emotion updates:
-    sadness: carry(0.0 × 0.25) + delta(58.93) = 58.93
-    anger: carry(0.0 × 0.25) + delta(68.75) = 68.75
-    fear: carry(0.0 × 0.25) + delta(4.86) = 4.86
-    disgust: carry(0.0 × 0.25) + delta(10.47) = 10.47
-    surprise: carry(0.0 × 0.25) + delta(-10.16) = -10.16
-    anticipation: carry(0.0 × 0.25) + delta(-13.31) = -13.31
+    sadness: carry(0.0 × 0.08) + delta(36.41) = 36.41
+    anger: carry(0.0 × 0.08) + delta(25.64) = 25.64
+    fear: carry(0.0 × 0.25) + delta(38.28) = 38.28
+    disgust: carry(0.0 × 0.12) + delta(3.37) = 3.37
+    surprise: carry(0.0 × 0.2) + delta(7.94) = 7.94
+    trust: carry(0.0 × 0.2) + delta(1.66) = 1.66
+    anticipation: carry(0.0 × 0.2) + delta(12.24) = 12.24
 
 === Chapter 1 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -5994,20 +7078,23 @@ Character NOT PRESENT — values frozen, no line drawn
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(58.9 × 0.25) + delta(0.00) = 14.73
-    anger: carry(68.8 × 0.25) + delta(0.00) = 17.19
-    fear: carry(4.9 × 0.25) + delta(0.00) = 1.21
-    disgust: carry(10.5 × 0.25) + delta(0.00) = 2.62
+    sadness: carry(36.4 × 0.013999999999999999) + delta(0.00) = 0.51
+    anger: carry(25.6 × 0.02) + delta(0.00) = 0.51
+    fear: carry(38.3 × 0.013999999999999999) + delta(0.00) = 0.54
+    disgust: carry(3.4 × 0.02) + delta(0.00) = 0.07
+    surprise: carry(7.9 × 0.02) + delta(0.00) = 0.16
+    trust: carry(1.7 × 0.02) + delta(0.00) = 0.03
+    anticipation: carry(12.2 × 0.02) + delta(0.00) = 0.24
 
 === Chapter 4 ===
 Stimulants this chapter: 2
 
   Stimulant: "Praew accidentally calls him "Stone Face" out loud in front of the whole class, prompting him to adopt the nickname as his title"
     Event: insult | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=0 imm=2 cert=3 → total=5 → Medium (×0.6)
+    Trigger: stakes=0 imm=2 cert=3 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=31 × trig=0.6 × weight=0.6 → raw=11.16
+    anger: base=12 × trig=0.4 × weight=0.5 → raw=2.40
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6015,35 +7102,42 @@ Stimulants this chapter: 2
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 11.16 × (1 + 0.147) = 12.80
-    Final delta: 12.80 × 1 × 1.3 = 16.64
-    disgust: base=27 × trig=0.6 × weight=0.2 → raw=3.24
+    Modified delta: 2.40 × (1 + 0.147) = 2.75
+    Final delta: 2.75 × 1 × 1.3 = 3.58
+    disgust: base=12 × trig=0.4 × weight=0.2 → raw=0.96
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 3.24 × (1 + -0.060) = 3.05
-    Final delta: 3.05 × 1 × 1.3 = 3.96
-    sadness: base=23 × trig=0.6 × weight=0.2 → raw=2.76
+    Modified delta: 0.96 × (1 + -0.060) = 0.90
+    Final delta: 0.90 × 1 × 1.3 = 1.17
+    sadness: base=18 × trig=0.4 × weight=0.15 → raw=1.08
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 2.76 × (1 + 0.387) = 3.83
-    Final delta: 3.83 × 1 × 1.3 = 4.98
+    Modified delta: 1.08 × (1 + 0.387) = 1.50
+    Final delta: 1.50 × 1 × 1.3 = 1.95
+    surprise: base=12 × trig=0.4 × weight=0.15 → raw=0.72
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.72 × (1 + -0.337) = 0.48
+    Final delta: 0.48 × 1 × 1.3 = 0.62
 
   Stimulant: "Godric confronts the recruits about their failure at the Hunter test and tells them to get over it, channeling his own understanding of purpose and second chances"
     Event: moral_cue | Subject: group | Source: self_caused | Domain: morality
-    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.6)
-    Subject mult: group → ×0.7
+    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.4)
+    Subject mult: group → ×0.85
     Source mult: self_caused → ×1.1
-    disgust: base=27 × trig=0.6 × weight=0.4 → raw=6.48
+    disgust: base=12 × trig=0.4 × weight=0.35 → raw=1.68
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.48 × (1 + -0.060) = 6.09
-    Final delta: 6.09 × 0.7 × 1.1 = 4.69
-    anger: base=31 × trig=0.6 × weight=0.3 → raw=5.58
+    Modified delta: 1.68 × (1 + -0.060) = 1.58
+    Final delta: 1.58 × 0.85 × 1.1 = 1.48
+    anger: base=12 × trig=0.4 × weight=0.25 → raw=1.20
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6051,24 +7145,30 @@ Stimulants this chapter: 2
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.58 × (1 + 0.147) = 6.40
-    Final delta: 6.40 × 0.7 × 1.1 = 4.93
-    sadness: base=23 × trig=0.6 × weight=0.3 → raw=4.14
+    Modified delta: 1.20 × (1 + 0.147) = 1.38
+    Final delta: 1.38 × 0.85 × 1.1 = 1.29
+    sadness: base=18 × trig=0.4 × weight=0.2 → raw=1.44
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.14 × (1 + 0.387) = 5.74
-    Final delta: 5.74 × 0.7 × 1.1 = 4.42
-  Ambient surprise: avg_trigger(0.60) × 15 = +9.0
+    Modified delta: 1.44 × (1 + 0.387) = 2.00
+    Final delta: 2.00 × 0.85 × 1.1 = 1.87
+    surprise: base=12 × trig=0.4 × weight=0.2 → raw=0.96
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.96 × (1 + -0.337) = 0.64
+    Final delta: 0.64 × 0.85 × 1.1 = 0.60
 
   Emotion updates:
-    sadness: carry(14.7 × 0.25) + delta(9.40) = 13.08
-    anger: carry(17.2 × 0.25) + delta(21.56) = 25.86
-    fear: carry(1.2 × 0.25) + delta(0.00) = 0.30
-    disgust: carry(2.6 × 0.25) + delta(8.65) = 9.30
-    surprise: carry(0.0 × 0.25) + delta(9.00) = 9.00
+    sadness: carry(0.5 × 0.08) + delta(3.81) = 3.85
+    anger: carry(0.5 × 0.08) + delta(4.86) = 4.91
+    fear: carry(0.5 × 0.02) + delta(0.00) = 0.01
+    disgust: carry(0.1 × 0.12) + delta(2.65) = 2.66
+    surprise: carry(0.2 × 0.2) + delta(1.22) = 1.25
 
 === Chapter 5 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -6078,36 +7178,36 @@ Stimulants this chapter: 1
 
   Stimulant: "Mai reveals to the students that their instructor "Stone Face" is actually Silverwing Godric, the Mythical Beast Hunter, against his wishes"
     Event: surprise_reveal | Subject: self | Source: ally_caused | Domain: autonomy
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    surprise: base=9 × trig=0.85 × weight=0.7 → raw=5.35
+    surprise: base=12 × trig=0.75 × weight=0.6 → raw=5.40
     Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
   impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
-    Modified delta: 5.35 × (1 + -0.337) = 3.55
-    Final delta: 3.55 × 1 × 1.3 = 4.62
-    fear: base=13 × trig=0.85 × weight=0.15 → raw=1.66
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 5.40 × (1 + -0.337) = 3.58
+    Final delta: 3.58 × 1 × 1.3 = 4.66
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 1.66 × (1 + -0.560) = 0.73
-    Final delta: 0.73 × 1 × 1.3 = 0.95
-    anticipation: base=18 × trig=0.85 × weight=0.15 → raw=2.29
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.420) = 1.31
+    Final delta: 1.31 × 1 × 1.3 = 1.70
+    anticipation: base=20 × trig=0.75 × weight=0.2 → raw=3.00
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 2.29 × (1 + -0.213) = 1.81
-    Final delta: 1.81 × 1 × 1.3 = 2.35
+    Modified delta: 3.00 × (1 + -0.213) = 2.36
+    Final delta: 2.36 × 1 × 1.3 = 3.07
 
   Emotion updates:
-    sadness: carry(13.1 × 0.25) + delta(0.00) = 3.27
-    anger: carry(25.9 × 0.25) + delta(0.00) = 6.46
-    fear: carry(0.3 × 0.25) + delta(0.95) = 1.02
-    disgust: carry(9.3 × 0.25) + delta(0.00) = 2.33
-    surprise: carry(9.0 × 0.25) + delta(4.62) = 6.87
-    anticipation: carry(0.0 × 0.25) + delta(2.35) = 2.35
+    sadness: carry(3.9 × 0.02) + delta(0.00) = 0.08
+    anger: carry(4.9 × 0.02) + delta(0.00) = 0.10
+    fear: carry(0.0 × 0.25) + delta(1.70) = 1.70
+    disgust: carry(2.7 × 0.02) + delta(0.00) = 0.05
+    surprise: carry(1.2 × 0.2) + delta(4.66) = 4.91
+    anticipation: carry(0.0 × 0.2) + delta(3.07) = 3.07
 
 === Chapter 7 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -6117,82 +7217,47 @@ Stimulants this chapter: 3
 
   Stimulant: "Godric reveals his three territory marks (Boltrax wing, Tarnox horns, bite mark) to the class, exposing his deeply personal battle scars"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.6)
+    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.6 × weight=0.5 → raw=6.90
+    sadness: base=18 × trig=0.4 × weight=0.4 → raw=2.88
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.387) = 9.57
-    Final delta: 9.57 × 1 × 1.1 = 10.52
-    fear: base=13 × trig=0.6 × weight=0.3 → raw=2.34
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 2.88 × (1 + 0.387) = 3.99
+    Final delta: 3.99 × 1 × 1.1 = 4.39
+    fear: base=15 × trig=0.4 × weight=0.2 → raw=1.20
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.34 × (1 + -0.560) = 1.03
-    Final delta: 1.03 × 1 × 1.1 = 1.13
-    anger: base=31 × trig=0.6 × weight=0.2 → raw=3.72
-    Trait modifiers for anger (total: +0.147):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.72 × (1 + 0.147) = 4.27
-    Final delta: 4.27 × 1 × 1.1 = 4.69
-
-  Stimulant: "Students look at Godric with hero worship after seeing his marks, and he snaps at them that there is no glory in death"
-    Event: moral_cue | Subject: group | Source: self_caused | Domain: morality
-    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.6)
-    Subject mult: group → ×0.7
-    Source mult: self_caused → ×1.1
-    disgust: base=27 × trig=0.6 × weight=0.4 → raw=6.48
-    Trait modifiers for disgust (total: -0.060):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.48 × (1 + -0.060) = 6.09
-    Final delta: 6.09 × 0.7 × 1.1 = 4.69
-    anger: base=31 × trig=0.6 × weight=0.3 → raw=5.58
-    Trait modifiers for anger (total: +0.147):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.58 × (1 + 0.147) = 6.40
-    Final delta: 6.40 × 0.7 × 1.1 = 4.93
-    sadness: base=23 × trig=0.6 × weight=0.3 → raw=4.14
-    Trait modifiers for sadness (total: +0.387):
-  empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.14 × (1 + 0.387) = 5.74
-    Final delta: 5.74 × 0.7 × 1.1 = 4.42
-
-  Stimulant: "Godric overhears Praew and Wannii arguing about the investigation near a government facility and warns them with a veiled threat about letting stones slip"
-    Event: danger_cue | Subject: group | Source: self_caused | Domain: safety
-    Trigger: stakes=2 imm=1 cert=1 → total=4 → Medium (×0.6)
-    Subject mult: group → ×0.7
-    Source mult: self_caused → ×1.1
-    fear: base=13 × trig=0.6 × weight=0.7 → raw=5.46
-    Trait modifiers for fear (total: -0.560):
-  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 5.46 × (1 + -0.560) = 2.40
-    Final delta: 2.40 × 0.7 × 1.1 = 1.85
-    anticipation: base=18 × trig=0.6 × weight=0.2 → raw=2.16
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.20 × (1 + -0.420) = 0.70
+    Final delta: 0.70 × 1 × 1.1 = 0.77
+    anticipation: base=20 × trig=0.4 × weight=0.2 → raw=1.60
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 2.16 × (1 + -0.213) = 1.70
-    Final delta: 1.70 × 0.7 × 1.1 = 1.31
-    anger: base=31 × trig=0.6 × weight=0.1 → raw=1.86
+    Modified delta: 1.60 × (1 + -0.213) = 1.26
+    Final delta: 1.26 × 1 × 1.1 = 1.38
+    trust: base=22 × trig=0.4 × weight=0.2 → raw=1.76
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 1.76 × (1 + -0.280) = 1.27
+    Final delta: 1.27 × 1 × 1.1 = 1.39
+
+  Stimulant: "Students look at Godric with hero worship after seeing his marks, and he snaps at them that there is no glory in death"
+    Event: moral_cue | Subject: group | Source: self_caused | Domain: morality
+    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.4)
+    Subject mult: group → ×0.85
+    Source mult: self_caused → ×1.1
+    disgust: base=12 × trig=0.4 × weight=0.35 → raw=1.68
+    Trait modifiers for disgust (total: -0.060):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
+    Modified delta: 1.68 × (1 + -0.060) = 1.58
+    Final delta: 1.58 × 0.85 × 1.1 = 1.48
+    anger: base=12 × trig=0.4 × weight=0.25 → raw=1.20
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6200,27 +7265,77 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 1.86 × (1 + 0.147) = 2.13
-    Final delta: 2.13 × 0.7 × 1.1 = 1.64
-  Ambient surprise: avg_trigger(0.60) × 15 = +9.0
+    Modified delta: 1.20 × (1 + 0.147) = 1.38
+    Final delta: 1.38 × 0.85 × 1.1 = 1.29
+    sadness: base=18 × trig=0.4 × weight=0.2 → raw=1.44
+    Trait modifiers for sadness (total: +0.387):
+  empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 1.44 × (1 + 0.387) = 2.00
+    Final delta: 2.00 × 0.85 × 1.1 = 1.87
+    surprise: base=12 × trig=0.4 × weight=0.2 → raw=0.96
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.96 × (1 + -0.337) = 0.64
+    Final delta: 0.64 × 0.85 × 1.1 = 0.60
+
+  Stimulant: "Godric overhears Praew and Wannii arguing about the investigation near a government facility and warns them with a veiled threat about letting stones slip"
+    Event: danger_cue | Subject: group | Source: self_caused | Domain: safety
+    Trigger: stakes=2 imm=1 cert=1 → total=4 → Medium (×0.4)
+    Subject mult: group → ×0.85
+    Source mult: self_caused → ×1.1
+    fear: base=15 × trig=0.4 × weight=0.45 → raw=2.70
+    Trait modifiers for fear (total: -0.420):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.420) = 1.57
+    Final delta: 1.57 × 0.85 × 1.1 = 1.46
+    anticipation: base=20 × trig=0.4 × weight=0.25 → raw=2.00
+    Trait modifiers for anticipation (total: -0.213):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 2.00 × (1 + -0.213) = 1.57
+    Final delta: 1.57 × 0.85 × 1.1 = 1.47
+    anger: base=12 × trig=0.4 × weight=0.15 → raw=0.72
+    Trait modifiers for anger (total: +0.147):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
+  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
+  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
+  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
+    Modified delta: 0.72 × (1 + 0.147) = 0.83
+    Final delta: 0.83 × 0.85 × 1.1 = 0.77
+    surprise: base=12 × trig=0.4 × weight=0.15 → raw=0.72
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.72 × (1 + -0.337) = 0.48
+    Final delta: 0.48 × 0.85 × 1.1 = 0.45
 
   Emotion updates:
-    sadness: carry(3.3 × 0.25) + delta(14.95) = 15.76
-    anger: carry(6.5 × 0.25) + delta(11.26) = 12.88
-    fear: carry(1.0 × 0.25) + delta(2.98) = 3.24
-    disgust: carry(2.3 × 0.25) + delta(4.69) = 5.27
-    surprise: carry(6.9 × 0.25) + delta(9.00) = 10.72
-    anticipation: carry(2.3 × 0.25) + delta(1.31) = 1.90
+    sadness: carry(0.1 × 0.08) + delta(6.26) = 6.27
+    anger: carry(0.1 × 0.08) + delta(2.06) = 2.07
+    fear: carry(1.7 × 0.25) + delta(2.23) = 2.65
+    disgust: carry(0.1 × 0.12) + delta(1.48) = 1.48
+    surprise: carry(4.9 × 0.2) + delta(1.04) = 2.02
+    trust: carry(0.0 × 0.2) + delta(1.39) = 1.39
+    anticipation: carry(3.1 × 0.2) + delta(2.86) = 3.47
 
 === Chapter 9 ===
 Stimulants this chapter: 3
 
   Stimulant: "Godric is unusually agitated and grouchy in class, stomping and slamming his fist on the desk, hinting at internal turmoil after his confrontation with The Prime"
     Event: obstacle | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.6)
+    Trigger: stakes=2 imm=1 cert=2 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    anger: base=31 × trig=0.6 × weight=0.4 → raw=7.44
+    anger: base=12 × trig=0.4 × weight=0.3 → raw=1.44
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6228,27 +7343,34 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 7.44 × (1 + 0.147) = 8.53
-    Final delta: 8.53 × 1 × 1 = 8.53
-    anticipation: base=18 × trig=0.6 × weight=0.3 → raw=3.24
+    Modified delta: 1.44 × (1 + 0.147) = 1.65
+    Final delta: 1.65 × 1 × 1 = 1.65
+    fear: base=15 × trig=0.4 × weight=0.3 → raw=1.80
+    Trait modifiers for fear (total: -0.420):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.80 × (1 + -0.420) = 1.04
+    Final delta: 1.04 × 1 × 1 = 1.04
+    anticipation: base=20 × trig=0.4 × weight=0.25 → raw=2.00
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 3.24 × (1 + -0.213) = 2.55
-    Final delta: 2.55 × 1 × 1 = 2.55
-    fear: base=13 × trig=0.6 × weight=0.3 → raw=2.34
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 2.00 × (1 + -0.213) = 1.57
+    Final delta: 1.57 × 1 × 1 = 1.57
+    surprise: base=12 × trig=0.4 × weight=0.15 → raw=0.72
+    Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.34 × (1 + -0.560) = 1.03
-    Final delta: 1.03 × 1 × 1 = 1.03
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.72 × (1 + -0.337) = 0.48
+    Final delta: 0.48 × 1 × 1 = 0.48
 
   Stimulant: "Godric confronts The Prime Archon in a furious argument, shouting about what The Prime is "doing to them" and threatening him"
     Event: injustice | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    anger: base=31 × trig=0.85 × weight=0.5 → raw=13.17
+    anger: base=12 × trig=0.75 × weight=0.4 → raw=3.60
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6256,43 +7378,50 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 13.17 × (1 + 0.147) = 15.11
-    Final delta: 15.11 × 0.7 × 1 = 10.58
-    disgust: base=27 × trig=0.85 × weight=0.3 → raw=6.88
+    Modified delta: 3.60 × (1 + 0.147) = 4.13
+    Final delta: 4.13 × 0.85 × 1 = 3.51
+    disgust: base=12 × trig=0.75 × weight=0.3 → raw=2.70
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.88 × (1 + -0.060) = 6.47
-    Final delta: 6.47 × 0.7 × 1 = 4.53
-    sadness: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 2.70 × (1 + -0.060) = 2.54
+    Final delta: 2.54 × 0.85 × 1 = 2.16
+    sadness: base=18 × trig=0.75 × weight=0.15 → raw=2.02
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 3.91 × (1 + 0.387) = 5.42
-    Final delta: 5.42 × 0.7 × 1 = 3.80
+    Modified delta: 2.02 × (1 + 0.387) = 2.81
+    Final delta: 2.81 × 0.85 × 1 = 2.39
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 0.85 × 1 = 0.76
 
   Stimulant: "Godric storms out of The Prime's office with clenched fists, visibly disheveled, after the confrontation fails to resolve his concerns"
     Event: failure | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.387) = 13.55
-    Final delta: 13.55 × 1 × 1 = 13.55
-    fear: base=13 × trig=0.85 × weight=0.3 → raw=3.31
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 5.40 × (1 + 0.387) = 7.49
+    Final delta: 7.49 × 1 × 1 = 7.49
+    fear: base=15 × trig=0.75 × weight=0.25 → raw=2.81
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.31 × (1 + -0.560) = 1.46
-    Final delta: 1.46 × 1 × 1 = 1.46
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.81 × (1 + -0.420) = 1.63
+    Final delta: 1.63 × 1 × 1 = 1.63
+    anger: base=12 × trig=0.75 × weight=0.2 → raw=1.80
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6300,17 +7429,24 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 1 = 6.04
-  Ambient surprise: avg_trigger(0.77) × 15 = +11.5
+    Modified delta: 1.80 × (1 + 0.147) = 2.06
+    Final delta: 2.06 × 1 × 1 = 2.06
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 1 × 1 = 0.90
 
   Emotion updates:
-    sadness: carry(15.8 × 0.25) + delta(17.35) = 21.29
-    anger: carry(12.9 × 0.25) + delta(25.15) = 28.37
-    fear: carry(3.2 × 0.25) + delta(2.49) = 3.30
-    disgust: carry(5.3 × 0.25) + delta(4.53) = 5.85
-    surprise: carry(10.7 × 0.25) + delta(11.50) = 14.18
-    anticipation: carry(1.9 × 0.25) + delta(2.55) = 3.02
+    sadness: carry(6.3 × 0.08) + delta(9.87) = 10.38
+    anger: carry(2.1 × 0.08) + delta(7.22) = 7.39
+    fear: carry(2.7 × 0.25) + delta(2.68) = 3.34
+    disgust: carry(1.5 × 0.12) + delta(2.16) = 2.34
+    surprise: carry(2.0 × 0.2) + delta(2.13) = 2.54
+    trust: carry(1.4 × 0.02) + delta(0.00) = 0.03
+    anticipation: carry(3.5 × 0.2) + delta(1.57) = 2.27
 
 === Chapter 10 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -6326,10 +7462,10 @@ Stimulants this chapter: 5
 
   Stimulant: "Mai reveals Godric's former title "Madman Godric, the Deadly Scientist" from the Ghost operatives, striking a deeply personal nerve"
     Event: insult | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=31 × trig=1 × weight=0.6 → raw=18.60
+    anger: base=12 × trig=1.2 × weight=0.5 → raw=7.20
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6337,67 +7473,77 @@ Stimulants this chapter: 5
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 18.60 × (1 + 0.147) = 21.33
-    Final delta: 21.33 × 1 × 1.3 = 27.73
-    disgust: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 7.20 × (1 + 0.147) = 8.26
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 8.26 × 1 × 1.3 × 1.24 = 13.31
+    disgust: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.40 × (1 + -0.060) = 5.08
-    Final delta: 5.08 × 1 × 1.3 = 6.60
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 2.88 × (1 + -0.060) = 2.71
+    Final delta: 2.71 × 1 × 1.3 = 3.52
+    sadness: base=18 × trig=1.2 × weight=0.15 → raw=3.24
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 1.3 = 8.29
+    Modified delta: 3.24 × (1 + 0.387) = 4.49
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 4.49 × 1 × 1.3 × 1.12 = 6.54
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 1 × 1.3 = 1.86
 
   Stimulant: "Godric threatens Mai for calling him by his former Ghost title, showing his sensitivity about his past as a scientist"
     Event: reminder_cue | Subject: self | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.387) = 15.95
-    Final delta: 15.95 × 1 × 1.3 = 20.73
-    fear: base=13 × trig=1 × weight=0.3 → raw=3.90
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 8.64 × (1 + 0.387) = 11.98
+    Final delta: 11.98 × 1 × 1.3 = 15.58
+    fear: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.90 × (1 + -0.560) = 1.72
-    Final delta: 1.72 × 1 × 1.3 = 2.23
-    anger: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for anger (total: +0.147):
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.60 × (1 + -0.420) = 2.09
+    Final delta: 2.09 × 1 × 1.3 = 2.71
+    anticipation: base=20 × trig=1.2 × weight=0.2 → raw=4.80
+    Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.20 × (1 + 0.147) = 7.11
-    Final delta: 7.11 × 1 × 1.3 = 9.24
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 4.80 × (1 + -0.213) = 3.78
+    Final delta: 3.78 × 1 × 1.3 = 4.91
+    trust: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 5.28 × (1 + -0.280) = 3.80
+    Final delta: 3.80 × 1 × 1.3 = 4.94
 
   Stimulant: "Praew tells Godric he was one of her heroes, using past tense, showing she has lost faith in him"
     Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=23 × trig=0.85 × weight=0.6 → raw=11.73
+    sadness: base=18 × trig=0.75 × weight=0.5 → raw=6.75
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.73 × (1 + 0.387) = 16.27
-    Final delta: 16.27 × 1 × 1.3 = 21.15
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 6.75 × (1 + 0.387) = 9.36
+    Final delta: 9.36 × 1 × 1.3 = 12.17
+    anger: base=12 × trig=0.75 × weight=0.2 → raw=1.80
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6405,27 +7551,35 @@ Stimulants this chapter: 5
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 1.3 = 7.86
-    fear: base=13 × trig=0.85 × weight=0.2 → raw=2.21
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 1.80 × (1 + 0.147) = 2.06
+    Final delta: 2.06 × 1 × 1.3 = 2.68
+    fear: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.21 × (1 + -0.560) = 0.97
-    Final delta: 0.97 × 1 × 1.3 = 1.26
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.69 × (1 + -0.420) = 0.98
+    Final delta: 0.98 × 1 × 1.3 = 1.27
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 1 × 1.3 = 1.16
 
   Stimulant: "Mai stabs a dagger through Godric's foot when he takes his eyes off her during the confrontation"
     Event: harm | Subject: self | Source: ally_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    fear: base=13 × trig=1 × weight=0.5 → raw=6.50
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 6.50 × (1 + -0.560) = 2.86
-    Final delta: 2.86 × 1 × 1.3 = 3.72
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.420) = 6.26
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.26 × 1 × 1.3 × 1.7200000000000002 = 14.01
+    anger: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6433,37 +7587,45 @@ Stimulants this chapter: 5
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 1 × 1.3 = 13.86
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 2.88 × (1 + 0.147) = 3.30
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.30 × 1 × 1.3 × 1.24 = 5.32
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 1.3 = 8.29
+    Modified delta: 2.16 × (1 + 0.387) = 3.00
+    Final delta: 3.00 × 1 × 1.3 = 3.89
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 1 × 1.3 = 1.24
 
   Stimulant: "Godric discovers that his students (Wannii, Junya, Jorpen) have been disappearing and he cannot find them, leading him to search the Fourth Floor"
     Event: loss | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    sadness: base=23 × trig=0.85 × weight=0.7 → raw=13.69
+    sadness: base=18 × trig=0.75 × weight=0.6 → raw=8.10
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.69 × (1 + 0.387) = 18.98
-    Final delta: 18.98 × 0.7 × 1 = 13.28
-    fear: base=13 × trig=0.85 × weight=0.2 → raw=2.21
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 8.10 × (1 + 0.387) = 11.23
+    Final delta: 11.23 × 0.85 × 1 = 9.55
+    fear: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.21 × (1 + -0.560) = 0.97
-    Final delta: 0.97 × 0.7 × 1 = 0.68
-    anger: base=31 × trig=0.85 × weight=0.1 → raw=2.63
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.69 × (1 + -0.420) = 0.98
+    Final delta: 0.98 × 0.85 × 1 = 0.83
+    anger: base=12 × trig=0.75 × weight=0.1 → raw=0.90
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6471,27 +7633,29 @@ Stimulants this chapter: 5
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 2.63 × (1 + 0.147) = 3.02
-    Final delta: 3.02 × 0.7 × 1 = 2.12
-  Ambient surprise: avg_trigger(0.94) × 15 = +14.1
-  Ambient anticipation: extreme event detected → +9.4
+    Modified delta: 0.90 × (1 + 0.147) = 1.03
+    Final delta: 1.03 × 0.85 × 1 = 0.88
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 0.85 × 1 = 0.76
 
   Suppression applied:
-  Suppression: anger(89.2) suppresses joy by -30.40 (50% of anger delta)
-  Suppression: anger(89.2) suppresses trust by -18.24 (30% of anger delta)
-  Suppression: anger(89.2) suppresses fear by -9.12 (15% of anger delta)
-  Suppression: sadness(93.0) suppresses joy by -43.05 (60% of sadness delta)
-  Suppression: sadness(93.0) suppresses anticipation by -21.52 (30% of sadness delta)
-  Suppression: sadness(93.0) suppresses surprise by -14.35 (20% of sadness delta)
+  Suppression: sadness(58.1) suppresses joy by -28.64 (60% of sadness delta)
+  Suppression: sadness(58.1) suppresses anticipation by -14.32 (30% of sadness delta)
+  Suppression: sadness(58.1) suppresses surprise by -9.55 (20% of sadness delta)
 
   Emotion updates:
-    sadness: carry(21.3 × 0.25) + delta(71.74) = 77.07
-    *** sadness in RED ZONE: VU=77.1 (track capped at 75) ***
-    anger: carry(28.4 × 0.25) + delta(60.80) = 67.89
-    fear: carry(3.3 × 0.25) + delta(-1.23) = -0.40
-    disgust: carry(5.8 × 0.25) + delta(6.60) = 8.06
-    surprise: carry(14.2 × 0.25) + delta(-0.25) = 3.30
-    anticipation: carry(3.0 × 0.25) + delta(-12.12) = -11.37
+    sadness: carry(10.4 × 0.08) + delta(47.73) = 48.56
+    anger: carry(7.4 × 0.08) + delta(22.19) = 22.78
+    fear: carry(3.3 × 0.25) + delta(18.83) = 19.66
+    disgust: carry(2.3 × 0.12) + delta(3.52) = 3.80
+    surprise: carry(2.5 × 0.2) + delta(-4.52) = -4.01
+    trust: carry(0.0 × 0.2) + delta(4.94) = 4.95
+    anticipation: carry(2.3 × 0.2) + delta(-9.41) = -8.96
 
 === Chapter 14 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -6501,16 +7665,16 @@ Stimulants this chapter: 1
 
   Stimulant: "Godric finds classified medical records show he was injured (dislocated shoulder, impaled foot) in "combat training" — evidence of his fight with Mai"
     Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.6)
+    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=13 × trig=0.6 × weight=0.5 → raw=3.90
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=0.4 × weight=0.6 → raw=3.60
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.90 × (1 + -0.560) = 1.72
-    Final delta: 1.72 × 1 × 0.8 = 1.37
-    anger: base=31 × trig=0.6 × weight=0.3 → raw=5.58
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.60 × (1 + -0.420) = 2.09
+    Final delta: 2.09 × 1 × 0.8 = 1.67
+    anger: base=12 × trig=0.4 × weight=0.2 → raw=0.96
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6518,54 +7682,53 @@ Stimulants this chapter: 1
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.58 × (1 + 0.147) = 6.40
-    Final delta: 6.40 × 1 × 0.8 = 5.12
-    sadness: base=23 × trig=0.6 × weight=0.2 → raw=2.76
+    Modified delta: 0.96 × (1 + 0.147) = 1.10
+    Final delta: 1.10 × 1 × 0.8 = 0.88
+    sadness: base=18 × trig=0.4 × weight=0.1 → raw=0.72
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 2.76 × (1 + 0.387) = 3.83
-    Final delta: 3.83 × 1 × 0.8 = 3.06
-  Ambient surprise: avg_trigger(0.60) × 15 = +9.0
-
-  Suppression applied:
-  Suppression: anger(73.0) suppresses joy by -2.56 (50% of anger delta)
-  Suppression: anger(73.0) suppresses trust by -1.54 (30% of anger delta)
-  Suppression: anger(73.0) suppresses fear by -0.77 (15% of anger delta)
-  Suppression: sadness(78.1) suppresses joy by -1.84 (60% of sadness delta)
-  Suppression: sadness(78.1) suppresses anticipation by -0.92 (30% of sadness delta)
-  Suppression: sadness(78.1) suppresses surprise by -0.61 (20% of sadness delta)
+    Modified delta: 0.72 × (1 + 0.387) = 1.00
+    Final delta: 1.00 × 1 × 0.8 = 0.80
+    surprise: base=12 × trig=0.4 × weight=0.1 → raw=0.48
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.48 × (1 + -0.337) = 0.32
+    Final delta: 0.32 × 1 × 0.8 = 0.25
 
   Emotion updates:
-    sadness: carry(75.0 × 0.25) + delta(3.06) = 21.81
-    anger: carry(67.9 × 0.25) + delta(5.12) = 22.09
-    fear: carry(0.0 × 0.25) + delta(0.60) = 0.60
-    disgust: carry(8.1 × 0.25) + delta(0.00) = 2.02
-    surprise: carry(3.3 × 0.25) + delta(8.39) = 9.21
+    sadness: carry(48.6 × 0.055999999999999994) + delta(0.80) = 3.52
+    anger: carry(22.8 × 0.08) + delta(0.88) = 2.70
+    fear: carry(19.7 × 0.25) + delta(1.67) = 6.59
+    disgust: carry(3.8 × 0.02) + delta(0.00) = 0.08
+    surprise: carry(0.0 × 0.2) + delta(0.25) = 0.25
+    trust: carry(4.9 × 0.02) + delta(0.00) = 0.10
 
 === Chapter 16 ===
 Stimulants this chapter: 3
 
   Stimulant: "Godric reveals he has been searching for the missing students and heard screaming from below the Fourth Floor, confirming a hidden Fifth Floor"
     Event: danger_cue | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    fear: base=13 × trig=0.85 × weight=0.7 → raw=7.73
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=0.75 × weight=0.45 → raw=5.06
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 7.73 × (1 + -0.560) = 3.40
-    Final delta: 3.40 × 0.7 × 1 = 2.38
-    anticipation: base=18 × trig=0.85 × weight=0.2 → raw=3.06
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 5.06 × (1 + -0.420) = 2.94
+    Final delta: 2.94 × 0.85 × 1 = 2.50
+    anticipation: base=20 × trig=0.75 × weight=0.25 → raw=3.75
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 3.06 × (1 + -0.213) = 2.41
-    Final delta: 2.41 × 0.7 × 1 = 1.69
-    anger: base=31 × trig=0.85 × weight=0.1 → raw=2.63
+    Modified delta: 3.75 × (1 + -0.213) = 2.95
+    Final delta: 2.95 × 0.85 × 1 = 2.51
+    anger: base=12 × trig=0.75 × weight=0.15 → raw=1.35
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6573,46 +7736,53 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 2.63 × (1 + 0.147) = 3.02
-    Final delta: 3.02 × 0.7 × 1 = 2.12
-
-  Stimulant: "Godric admits the deadliest person in the city (Mai) was put into a coma by an unknown attacker, and he does not know who did it"
-    Event: surprise_reveal | Subject: friend | Source: enemy_caused | Domain: safety
-    Trigger: stakes=2 imm=1 cert=1 → total=4 → Medium (×0.6)
-    Subject mult: friend → ×0.8
-    Source mult: enemy_caused → ×0.8
-    surprise: base=9 × trig=0.6 × weight=0.7 → raw=3.78
+    Modified delta: 1.35 × (1 + 0.147) = 1.55
+    Final delta: 1.55 × 0.85 × 1 = 1.32
+    surprise: base=12 × trig=0.75 × weight=0.15 → raw=1.35
     Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
   impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
-    Modified delta: 3.78 × (1 + -0.337) = 2.51
-    Final delta: 2.51 × 0.8 × 0.8 = 1.60
-    fear: base=13 × trig=0.6 × weight=0.15 → raw=1.17
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 1.35 × (1 + -0.337) = 0.90
+    Final delta: 0.90 × 0.85 × 1 = 0.76
+
+  Stimulant: "Godric admits the deadliest person in the city (Mai) was put into a coma by an unknown attacker, and he does not know who did it"
+    Event: surprise_reveal | Subject: friend | Source: enemy_caused | Domain: safety
+    Trigger: stakes=2 imm=1 cert=1 → total=4 → Medium (×0.4)
+    Subject mult: friend → ×0.85
+    Source mult: enemy_caused → ×0.8
+    surprise: base=12 × trig=0.4 × weight=0.6 → raw=2.88
+    Trait modifiers for surprise (total: -0.337):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 1.17 × (1 + -0.560) = 0.51
-    Final delta: 0.51 × 0.8 × 0.8 = 0.33
-    anticipation: base=18 × trig=0.6 × weight=0.15 → raw=1.62
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.337) = 1.91
+    Final delta: 1.91 × 0.85 × 0.8 = 1.30
+    fear: base=15 × trig=0.4 × weight=0.2 → raw=1.20
+    Trait modifiers for fear (total: -0.420):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.20 × (1 + -0.420) = 0.70
+    Final delta: 0.70 × 0.85 × 0.8 = 0.47
+    anticipation: base=20 × trig=0.4 × weight=0.2 → raw=1.60
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 1.62 × (1 + -0.213) = 1.27
-    Final delta: 1.27 × 0.8 × 0.8 = 0.82
+    Modified delta: 1.60 × (1 + -0.213) = 1.26
+    Final delta: 1.26 × 0.85 × 0.8 = 0.86
 
   Stimulant: "Haldric confronts Godric with a surged ForceStone demanding to know where Praew is, forcing Godric into a fight with an ally"
     Event: threat | Subject: self | Source: ally_caused | Domain: safety
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    fear: base=13 × trig=0.85 × weight=0.7 → raw=7.73
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=0.75 × weight=0.7 → raw=7.87
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 7.73 × (1 + -0.560) = 3.40
-    Final delta: 3.40 × 1 × 1.3 = 4.42
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.87 × (1 + -0.420) = 4.57
+    Final delta: 4.57 × 1 × 1.3 = 5.94
+    anger: base=12 × trig=0.75 × weight=0.15 → raw=1.35
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6620,32 +7790,31 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 1.3 = 7.86
-    anticipation: base=18 × trig=0.85 × weight=0.1 → raw=1.53
+    Modified delta: 1.35 × (1 + 0.147) = 1.55
+    Final delta: 1.55 × 1 × 1.3 = 2.01
+    anticipation: base=20 × trig=0.75 × weight=0.15 → raw=2.25
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 1.53 × (1 + -0.213) = 1.20
-    Final delta: 1.20 × 1 × 1.3 = 1.56
+    Modified delta: 2.25 × (1 + -0.213) = 1.77
+    Final delta: 1.77 × 1 × 1.3 = 2.30
 
   Emotion updates:
-    sadness: carry(21.8 × 0.25) + delta(0.00) = 5.45
-    anger: carry(22.1 × 0.25) + delta(9.97) = 15.49
-    fear: carry(0.6 × 0.25) + delta(7.14) = 7.29
-    disgust: carry(2.0 × 0.25) + delta(0.00) = 0.50
-    surprise: carry(9.2 × 0.25) + delta(1.60) = 3.91
-    anticipation: carry(0.0 × 0.25) + delta(4.07) = 4.07
+    sadness: carry(3.5 × 0.02) + delta(0.00) = 0.07
+    anger: carry(2.7 × 0.08) + delta(3.33) = 3.54
+    fear: carry(6.6 × 0.25) + delta(8.91) = 10.55
+    surprise: carry(0.3 × 0.2) + delta(2.06) = 2.11
+    anticipation: carry(0.0 × 0.2) + delta(5.66) = 5.66
 
 === Chapter 17 ===
 Stimulants this chapter: 3
 
   Stimulant: "Godric and Haldric discover Praew strapped to a slab with a stone embedded in her chest, bloodied and barely conscious, confirming The Prime's atrocities"
     Event: injustice | Subject: friend | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: authority_caused → ×1
-    anger: base=31 × trig=1 × weight=0.5 → raw=15.50
+    anger: base=12 × trig=1.2 × weight=0.4 → raw=5.76
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6653,43 +7822,52 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 15.50 × (1 + 0.147) = 17.77
-    Final delta: 17.77 × 0.8 × 1 = 14.22
-    disgust: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 5.76 × (1 + 0.147) = 6.60
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 6.60 × 0.85 × 1 × 1.36 = 7.64
+    disgust: base=12 × trig=1.2 × weight=0.3 → raw=4.32
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 8.10 × (1 + -0.060) = 7.61
-    Final delta: 7.61 × 0.8 × 1 = 6.09
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 4.32 × (1 + -0.060) = 4.06
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 4.06 × 0.85 × 1 × 2.2 = 7.59
+    sadness: base=18 × trig=1.2 × weight=0.15 → raw=3.24
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 0.8 × 1 = 5.10
+    Modified delta: 3.24 × (1 + 0.387) = 4.49
+    Final delta: 4.49 × 0.85 × 1 = 3.82
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 0.85 × 1 = 1.22
 
   Stimulant: "Godric sees two dead bodies (including Junya) in The Prime's recorrection chamber — his own students murdered in experiments"
     Event: loss | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.387) = 22.33
-    Final delta: 22.33 × 0.7 × 1 = 15.63
-    fear: base=13 × trig=1 × weight=0.2 → raw=2.60
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 12.96 × (1 + 0.387) = 17.97
+    Final delta: 17.97 × 0.85 × 1 = 15.28
+    fear: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.60 × (1 + -0.560) = 1.14
-    Final delta: 1.14 × 0.7 × 1 = 0.80
-    anger: base=31 × trig=1 × weight=0.1 → raw=3.10
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.420) = 1.57
+    Final delta: 1.57 × 0.85 × 1 = 1.33
+    anger: base=12 × trig=1.2 × weight=0.1 → raw=1.44
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6697,23 +7875,31 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.10 × (1 + 0.147) = 3.55
-    Final delta: 3.55 × 0.7 × 1 = 2.49
+    Modified delta: 1.44 × (1 + 0.147) = 1.65
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 1.65 × 0.85 × 1 × 1.36 = 1.91
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 0.85 × 1 = 1.22
 
   Stimulant: "Godric recognizes that his missing students Wannii and Jorpen are among the six masked Embedded warriors he must fight, turned into mind-controlled soldiers"
     Event: betrayal | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: authority_caused → ×1
-    sadness: base=23 × trig=1 × weight=0.4 → raw=9.20
+    sadness: base=18 × trig=1.2 × weight=0.3 → raw=6.48
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.20 × (1 + 0.387) = 12.76
-    Final delta: 12.76 × 0.7 × 1 = 8.93
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+    Modified delta: 6.48 × (1 + 0.387) = 8.99
+    Final delta: 8.99 × 0.85 × 1 = 7.64
+    anger: base=12 × trig=1.2 × weight=0.25 → raw=3.60
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6721,48 +7907,56 @@ Stimulants this chapter: 3
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 0.7 × 1 = 7.46
-    trust (COLLAPSE): base=22 × trig=1 × weight=0.3 → raw=6.60
+    Modified delta: 3.60 × (1 + 0.147) = 4.13
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 4.13 × 0.85 × 1 × 1.36 = 4.77
+    trust (COLLAPSE): base=22 × trig=1.2 × weight=0.25 → raw=6.60
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
     Modified delta: 6.60 × (1 + -0.280) = 4.75
-    Final delta: 4.75 × 0.7 × 1 = 3.33
-    → Trust COLLAPSED by -3.33
-  Ambient surprise: avg_trigger(1.00) × 15 = +15.0
-  Ambient anticipation: extreme event detected → +10.0
+    Final delta: 4.75 × 0.85 × 1 = 4.04
+    → Trust COLLAPSED by -4.04
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.337) = 1.91
+    Final delta: 1.91 × 0.85 × 1 = 1.62
+  Ambient anticipation: extreme event detected → +12.0
 
   Emotion updates:
-    sadness: carry(5.5 × 0.25) + delta(29.66) = 31.02
-    anger: carry(15.5 × 0.25) + delta(24.17) = 28.05
-    fear: carry(7.3 × 0.25) + delta(0.80) = 2.62
-    disgust: carry(0.5 × 0.25) + delta(6.09) = 6.22
-    surprise: carry(3.9 × 0.25) + delta(15.00) = 15.98
-    anticipation: carry(4.1 × 0.25) + delta(10.00) = 11.02
+    sadness: carry(0.1 × 0.08) + delta(26.73) = 26.74
+    anger: carry(3.5 × 0.08) + delta(14.32) = 14.60
+    fear: carry(10.6 × 0.25) + delta(1.33) = 3.97
+    disgust: carry(0.0 × 0.12) + delta(7.59) = 7.59
+    surprise: carry(2.1 × 0.2) + delta(4.06) = 4.48
+    anticipation: carry(5.7 × 0.2) + delta(12.00) = 13.13
 
 === Chapter 18 ===
 Stimulants this chapter: 12
 
   Stimulant: "Godric calls The Prime "brother" as he says goodbye, acknowledging the personal betrayal of fighting his own sibling"
     Event: separation | Subject: family | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.6 → raw=13.80
+    sadness: base=18 × trig=1.2 × weight=0.5 → raw=10.80
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.80 × (1 + 0.387) = 19.14
-    Final delta: 19.14 × 0.9 × 1.1 = 18.94
-    fear: base=13 × trig=1 × weight=0.2 → raw=2.60
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 10.80 × (1 + 0.387) = 14.98
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 14.98 × 0.95 × 1.1 × 1.48 = 23.16
+    fear: base=15 × trig=1.2 × weight=0.25 → raw=4.50
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.60 × (1 + -0.560) = 1.14
-    Final delta: 1.14 × 0.9 × 1.1 = 1.13
-    anger: base=31 × trig=1 × weight=0.2 → raw=6.20
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.420) = 2.61
+    Final delta: 2.61 × 0.95 × 1.1 = 2.73
+    anger: base=12 × trig=1.2 × weight=0.15 → raw=2.16
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6770,21 +7964,28 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.20 × (1 + 0.147) = 7.11
-    Final delta: 7.11 × 0.9 × 1.1 = 7.04
+    Modified delta: 2.16 × (1 + 0.147) = 2.48
+    Final delta: 2.48 × 0.95 × 1.1 = 2.59
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 0.95 × 1.1 = 1.00
 
   Stimulant: "The Prime shouts that Godric will be hunted to the ends of the world for taking Praew, threatening his life and freedom"
     Event: threat | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    fear: base=13 × trig=0.85 × weight=0.7 → raw=7.73
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=0.75 × weight=0.7 → raw=7.87
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 7.73 × (1 + -0.560) = 3.40
-    Final delta: 3.40 × 1 × 1 = 3.40
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.87 × (1 + -0.420) = 4.57
+    Final delta: 4.57 × 1 × 1 = 4.57
+    anger: base=12 × trig=0.75 × weight=0.15 → raw=1.35
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6792,56 +7993,64 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 1 = 6.04
-    anticipation: base=18 × trig=0.85 × weight=0.1 → raw=1.53
+    Modified delta: 1.35 × (1 + 0.147) = 1.55
+    Final delta: 1.55 × 1 × 1 = 1.55
+    anticipation: base=20 × trig=0.75 × weight=0.15 → raw=2.25
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 1.53 × (1 + -0.213) = 1.20
-    Final delta: 1.20 × 1 × 1 = 1.20
+    Modified delta: 2.25 × (1 + -0.213) = 1.77
+    Final delta: 1.77 × 1 × 1 = 1.77
 
   Stimulant: "Praew quotes his own book back to him — "Thank you for picking up your spear to face the storm!" — validating his lifelong purpose"
     Event: connection | Subject: friend | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    trust: base=22 × trig=1 × weight=0.5 → raw=11.00
+    trust: base=22 × trig=1.2 × weight=0.4 → raw=10.56
     Trait modifiers for trust (total: -0.280):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 11.00 × (1 + -0.280) = 7.92
-    Final delta: 7.92 × 0.8 × 1.3 = 8.24
-    joy: base=9 × trig=1 × weight=0.3 → raw=2.70
+    Modified delta: 10.56 × (1 + -0.280) = 7.60
+    Final delta: 7.60 × 0.85 × 1.3 = 8.40
+    joy: base=12 × trig=1.2 × weight=0.3 → raw=4.32
     Trait modifiers for joy (total: -0.147):
   empathyBaseline(50/75 × 0.2) = +0.133 [Empathic joy — shares in others' happiness]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-    Modified delta: 2.70 × (1 + -0.147) = 2.30
-    Final delta: 2.30 × 0.8 × 1.3 = 2.40
-    anticipation: base=18 × trig=1 × weight=0.2 → raw=3.60
+    Modified delta: 4.32 × (1 + -0.147) = 3.69
+    Final delta: 3.69 × 0.85 × 1.3 = 4.07
+    anticipation: base=20 × trig=1.2 × weight=0.2 → raw=4.80
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 3.60 × (1 + -0.213) = 2.83
-    Final delta: 2.83 × 0.8 × 1.3 = 2.95
+    Modified delta: 4.80 × (1 + -0.213) = 3.78
+    Final delta: 3.78 × 0.85 × 1.3 = 4.17
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 0.85 × 1.3 = 1.06
 
   Stimulant: "Godric faces six Embedded warriors alone to buy Praew time to escape, knowing he will likely die"
     Event: danger_cue | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=13 × trig=1 × weight=0.7 → raw=9.10
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.45 → raw=8.10
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 9.10 × (1 + -0.560) = 4.00
-    Final delta: 4.00 × 1 × 0.8 = 3.20
-    anticipation: base=18 × trig=1 × weight=0.2 → raw=3.60
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.10 × (1 + -0.420) = 4.70
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 4.70 × 1 × 0.8 × 1.7200000000000002 = 6.46
+    anticipation: base=20 × trig=1.2 × weight=0.25 → raw=6.00
     Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
-    Modified delta: 3.60 × (1 + -0.213) = 2.83
-    Final delta: 2.83 × 1 × 0.8 = 2.27
-    anger: base=31 × trig=1 × weight=0.1 → raw=3.10
+    Modified delta: 6.00 × (1 + -0.213) = 4.72
+    Final delta: 4.72 × 1 × 0.8 = 3.78
+    anger: base=12 × trig=1.2 × weight=0.15 → raw=2.16
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6849,21 +8058,30 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.10 × (1 + 0.147) = 3.55
-    Final delta: 3.55 × 1 × 0.8 = 2.84
+    Modified delta: 2.16 × (1 + 0.147) = 2.48
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 2.48 × 1 × 0.8 × 1.24 = 2.46
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 1 × 0.8 = 1.15
 
   Stimulant: "Godric is forced to decapitate his own students Wannii and Jorpen, who have been turned into mindless Embedded warriors"
     Event: moral_cue | Subject: group | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: self_caused → ×1.1
-    disgust: base=27 × trig=1 × weight=0.4 → raw=10.80
+    disgust: base=12 × trig=1.2 × weight=0.35 → raw=5.04
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 10.80 × (1 + -0.060) = 10.15
-    Final delta: 10.15 × 0.7 × 1.1 = 7.82
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+    Modified delta: 5.04 × (1 + -0.060) = 4.74
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 4.74 × 0.85 × 1.1 × 2.2 = 9.75
+    anger: base=12 × trig=1.2 × weight=0.25 → raw=3.60
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6871,37 +8089,45 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 0.7 × 1.1 = 8.21
-    sadness: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Modified delta: 3.60 × (1 + 0.147) = 4.13
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 4.13 × 0.85 × 1.1 × 1.36 = 5.25
+    sadness: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.90 × (1 + 0.387) = 9.57
-    Final delta: 9.57 × 0.7 × 1.1 = 7.37
+    Modified delta: 4.32 × (1 + 0.387) = 5.99
+    Final delta: 5.99 × 0.85 × 1.1 = 5.60
+    surprise: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.88 × (1 + -0.337) = 1.91
+    Final delta: 1.91 × 0.85 × 1.1 = 1.79
 
   Stimulant: "Godric prays for his students' mercy in their next life before killing them, revealing deep moral anguish"
     Event: loss | Subject: group | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: group → ×0.7
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: group → ×0.85
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.387) = 22.33
-    Final delta: 22.33 × 0.7 × 1.1 = 17.19
-    fear: base=13 × trig=1 × weight=0.2 → raw=2.60
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 12.96 × (1 + 0.387) = 17.97
+    Final delta: 17.97 × 0.85 × 1.1 = 16.80
+    fear: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.60 × (1 + -0.560) = 1.14
-    Final delta: 1.14 × 0.7 × 1.1 = 0.88
-    anger: base=31 × trig=1 × weight=0.1 → raw=3.10
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.420) = 1.57
+    Final delta: 1.57 × 0.85 × 1.1 = 1.46
+    anger: base=12 × trig=1.2 × weight=0.1 → raw=1.44
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6909,21 +8135,30 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.10 × (1 + 0.147) = 3.55
-    Final delta: 3.55 × 0.7 × 1.1 = 2.74
+    Modified delta: 1.44 × (1 + 0.147) = 1.65
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 1.65 × 0.85 × 1.1 × 1.36 = 2.10
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 0.85 × 1.1 = 1.34
 
   Stimulant: "Renwick slashes Godric's throat from behind after the battle, leaving him bleeding out"
     Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=13 × trig=1 × weight=0.5 → raw=6.50
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 6.50 × (1 + -0.560) = 2.86
-    Final delta: 2.86 × 1 × 0.8 = 2.29
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.420) = 6.26
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.26 × 1 × 0.8 × 1.7200000000000002 = 8.62
+    anger: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6931,29 +8166,38 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 1 × 0.8 = 8.53
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 2.88 × (1 + 0.147) = 3.30
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.30 × 1 × 0.8 × 1.24 = 3.28
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 0.8 = 5.10
+    Modified delta: 2.16 × (1 + 0.387) = 3.00
+    Final delta: 3.00 × 1 × 0.8 = 2.40
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 1 × 0.8 = 0.76
 
   Stimulant: "Godric's ribs shatter from a surged strike during the battle, and his body is failing from multiple wounds and surge overuse"
     Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    fear: base=13 × trig=1 × weight=0.5 → raw=6.50
-    Trait modifiers for fear (total: -0.560):
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 6.50 × (1 + -0.560) = 2.86
-    Final delta: 2.86 × 1 × 0.8 = 2.29
-    anger: base=31 × trig=1 × weight=0.3 → raw=9.30
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.420) = 6.26
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.26 × 1 × 0.8 × 1.7200000000000002 = 8.62
+    anger: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6961,37 +8205,46 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 9.30 × (1 + 0.147) = 10.66
-    Final delta: 10.66 × 1 × 0.8 = 8.53
-    sadness: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 2.88 × (1 + 0.147) = 3.30
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.30 × 1 × 0.8 × 1.24 = 3.28
+    sadness: base=18 × trig=1.2 × weight=0.1 → raw=2.16
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.60 × (1 + 0.387) = 6.38
-    Final delta: 6.38 × 1 × 0.8 = 5.10
+    Modified delta: 2.16 × (1 + 0.387) = 3.00
+    Final delta: 3.00 × 1 × 0.8 = 2.40
+    surprise: base=12 × trig=1.2 × weight=0.1 → raw=1.44
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 1.44 × (1 + -0.337) = 0.96
+    Final delta: 0.96 × 1 × 0.8 = 0.76
 
   Stimulant: "Godric collapses at the gate after the battle, driving his spear into the ground one final time as the world dims around him"
     Event: loss | Subject: self | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.7 → raw=16.10
+    sadness: base=18 × trig=1.2 × weight=0.6 → raw=12.96
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.10 × (1 + 0.387) = 22.33
-    Final delta: 22.33 × 1 × 1.1 = 24.56
-    fear: base=13 × trig=1 × weight=0.2 → raw=2.60
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 12.96 × (1 + 0.387) = 17.97
+    Final delta: 17.97 × 1 × 1.1 = 19.77
+    fear: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 2.60 × (1 + -0.560) = 1.14
-    Final delta: 1.14 × 1 × 1.1 = 1.26
-    anger: base=31 × trig=1 × weight=0.1 → raw=3.10
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.420) = 1.57
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 1.57 × 1 × 1.1 × 1.7200000000000002 = 2.96
+    anger: base=12 × trig=1.2 × weight=0.1 → raw=1.44
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -6999,21 +8252,29 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 3.10 × (1 + 0.147) = 3.55
-    Final delta: 3.55 × 1 × 1.1 = 3.91
+    Modified delta: 1.44 × (1 + 0.147) = 1.65
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 1.65 × 1 × 1.1 × 1.24 = 2.25
+    surprise: base=12 × trig=1.2 × weight=0.15 → raw=2.16
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.337) = 1.43
+    Final delta: 1.43 × 1 × 1.1 = 1.58
 
   Stimulant: "Godric worries that Praew will view her own compassion as weakness if the Embedded warriors track her down using her empathy against her"
     Event: moral_cue | Subject: friend | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=1 cert=1 → total=5 → Medium (×0.6)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=1 cert=1 → total=5 → Medium (×0.4)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    disgust: base=27 × trig=0.6 × weight=0.4 → raw=6.48
+    disgust: base=12 × trig=0.4 × weight=0.35 → raw=1.68
     Trait modifiers for disgust (total: -0.060):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   moralRigidity(55/75 × 0.3) = +0.220 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.48 × (1 + -0.060) = 6.09
-    Final delta: 6.09 × 0.8 × 1.1 = 5.36
-    anger: base=31 × trig=0.6 × weight=0.3 → raw=5.58
+    Modified delta: 1.68 × (1 + -0.060) = 1.58
+    Final delta: 1.58 × 0.85 × 1.1 = 1.48
+    anger: base=12 × trig=0.4 × weight=0.25 → raw=1.20
     Trait modifiers for anger (total: +0.147):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
@@ -7021,96 +8282,105 @@ Stimulants this chapter: 12
   patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
   impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
   moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.58 × (1 + 0.147) = 6.40
-    Final delta: 6.40 × 0.8 × 1.1 = 5.63
-    sadness: base=23 × trig=0.6 × weight=0.3 → raw=4.14
+    Modified delta: 1.20 × (1 + 0.147) = 1.38
+    Final delta: 1.38 × 0.85 × 1.1 = 1.29
+    sadness: base=18 × trig=0.4 × weight=0.2 → raw=1.44
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.14 × (1 + 0.387) = 5.74
-    Final delta: 5.74 × 0.8 × 1.1 = 5.05
+    Modified delta: 1.44 × (1 + 0.387) = 2.00
+    Final delta: 2.00 × 0.85 × 1.1 = 1.87
+    surprise: base=12 × trig=0.4 × weight=0.2 → raw=0.96
+    Trait modifiers for surprise (total: -0.337):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(40/75 × -0.2) = -0.107 [Adaptable = recovers from surprise faster]
+  impulsiveness(25/75 × 0.15) = +0.050 [Impulsive = reacts more to surprises]
+    Modified delta: 0.96 × (1 + -0.337) = 0.64
+    Final delta: 0.64 × 0.85 × 1.1 = 0.60
 
   Stimulant: "Godric acknowledges his "greatest shame" — the burn mark on the back of his neck — connecting him to the recorrection program that enslaved his students"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=1 × weight=0.5 → raw=11.50
+    sadness: base=18 × trig=1.2 × weight=0.4 → raw=8.64
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 11.50 × (1 + 0.387) = 15.95
-    Final delta: 15.95 × 1 × 1.1 = 17.54
-    fear: base=13 × trig=1 × weight=0.3 → raw=3.90
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 8.64 × (1 + 0.387) = 11.98
+    Final delta: 11.98 × 1 × 1.1 = 13.18
+    fear: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.90 × (1 + -0.560) = 1.72
-    Final delta: 1.72 × 1 × 1.1 = 1.89
-    anger: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for anger (total: +0.147):
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.60 × (1 + -0.420) = 2.09
+    Final delta: 2.09 × 1 × 1.1 = 2.30
+    anticipation: base=20 × trig=1.2 × weight=0.2 → raw=4.80
+    Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 6.20 × (1 + 0.147) = 7.11
-    Final delta: 7.11 × 1 × 1.1 = 7.82
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 4.80 × (1 + -0.213) = 3.78
+    Final delta: 3.78 × 1 × 1.1 = 4.15
+    trust: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 5.28 × (1 + -0.280) = 3.80
+    Final delta: 3.80 × 1 × 1.1 = 4.18
 
   Stimulant: "Godric reflects that he and his brother (The Prime) share the same weakness — growing more callous while growing more calloused"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    sadness: base=18 × trig=0.75 × weight=0.4 → raw=5.40
     Trait modifiers for sadness (total: +0.387):
   empathyBaseline(50/75 × 0.4) = +0.267 [High empathy = feels loss/pain more deeply]
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
   shameSensitivity(45/75 × 0.3) = +0.180 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.78 × (1 + 0.387) = 13.55
-    Final delta: 13.55 × 1 × 1.1 = 14.91
-    fear: base=13 × trig=0.85 × weight=0.3 → raw=3.31
-    Trait modifiers for fear (total: -0.560):
+    Modified delta: 5.40 × (1 + 0.387) = 7.49
+    Final delta: 7.49 × 1 × 1.1 = 8.24
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.420):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  riskAppetite(70/75 × -0.3) = -0.280 [High risk appetite = fear hits less hard]
-    Modified delta: 3.31 × (1 + -0.560) = 1.46
-    Final delta: 1.46 × 1 × 1.1 = 1.60
-    anger: base=31 × trig=0.85 × weight=0.2 → raw=5.27
-    Trait modifiers for anger (total: +0.147):
+  riskAppetite(70/75 × -0.15) = -0.140 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.420) = 1.31
+    Final delta: 1.31 × 1 × 1.1 = 1.44
+    anticipation: base=20 × trig=0.75 × weight=0.2 → raw=3.00
+    Trait modifiers for anticipation (total: -0.213):
   emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
-  confrontationalTendency(65/75 × 0.3) = +0.260 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(35/75 × 0.2) = +0.093 [Sensitive pride = anger when status/competence challenged]
-  patience(40/75 × -0.2) = -0.107 [Patient = slower to anger]
-  impulsiveness(25/75 × 0.1) = +0.033 [Impulsive = anger flares quickly]
-  moralRigidity(55/75 × 0.2) = +0.147 [Rigid morals = anger at injustice]
-    Modified delta: 5.27 × (1 + 0.147) = 6.04
-    Final delta: 6.04 × 1 × 1.1 = 6.65
-  Ambient surprise: avg_trigger(0.94) × 15 = +14.1
+  curiosity(25/75 × 0.2) = +0.067 [Curious = heightened anticipation for new info]
+    Modified delta: 3.00 × (1 + -0.213) = 2.36
+    Final delta: 2.36 × 1 × 1.1 = 2.60
+    trust: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for trust (total: -0.280):
+  emotionalContainment(70/75 × -0.3) = -0.280 [High containment = suppresses emotional expression]
+    Modified delta: 3.30 × (1 + -0.280) = 2.38
+    Final delta: 2.38 × 1 × 1.1 = 2.61
+  Tone adjustment: negative chapter dampens joy: 4.1 × 0.4 = 1.6
+  Tone adjustment: negative chapter dampens trust: 15.2 × 0.4 = 6.1
+  Tone adjustment: negative chapter dampens anticipation: 16.5 × 0.4 = 6.6
+  Compression: sadness raw=93.4 → compressed=92.2 (threshold=75)
 
   Suppression applied:
-  Suppression: anger(96.0) suppresses joy by -33.97 (50% of anger delta)
-  Suppression: anger(96.0) suppresses trust by -20.38 (30% of anger delta)
-  Suppression: anger(96.0) suppresses fear by -10.19 (15% of anger delta)
-  Suppression: sadness(146.8) suppresses joy by -69.46 (60% of sadness delta)
-  Suppression: sadness(146.8) suppresses anticipation by -34.73 (30% of sadness delta)
-  Suppression: sadness(146.8) suppresses surprise by -23.15 (20% of sadness delta)
+  Suppression: sadness(118.9) suppresses joy by -55.30 (60% of sadness delta)
+  Suppression: sadness(118.9) suppresses anticipation by -27.65 (30% of sadness delta)
+  Suppression: sadness(118.9) suppresses surprise by -18.43 (20% of sadness delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-101.04) = -101.04
-    sadness: carry(31.0 × 0.25) + delta(115.77) = 123.53
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(28.0 × 0.25) + delta(67.94) = 74.96
-    fear: carry(2.6 × 0.25) + delta(7.75) = 8.41
-    disgust: carry(6.2 × 0.25) + delta(13.18) = 14.73
-    surprise: carry(16.0 × 0.25) + delta(-9.03) = -5.03
-    trust: carry(0.0 × 0.25) + delta(-12.15) = -12.15
-    anticipation: carry(11.0 × 0.25) + delta(-28.32) = -25.56
+    joy: carry(0.0 × 0.2) + delta(-53.67) = -53.67
+    sadness: carry(26.7 × 0.08) + delta(92.16) = 94.30
+    *** sadness in RED ZONE: VU=94.3 (track capped at 75) ***
+    anger: carry(14.6 × 0.08) + delta(24.03) = 25.20
+    fear: carry(4.0 × 0.25) + delta(39.16) = 40.15
+    disgust: carry(7.6 × 0.12) + delta(11.22) = 12.13
+    surprise: carry(4.5 × 0.2) + delta(-8.41) = -7.51
+    trust: carry(0.0 × 0.2) + delta(6.08) = 6.08
+    anticipation: carry(13.1 × 0.2) + delta(-21.06) = -18.43
 ```
 
 ### Profile Reasoning
@@ -7154,19 +8424,19 @@ Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
  3 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
  4 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
  5 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
- 6 |      0 |    75! |     50 |      8 |     13 |      0 |      0 |      0
- 7 |      0 |    75! |     74 |      0 |     25 |      0 |      1 |      0
- 8 |      0 |     19 |     18 |      0 |      6 |      0 |      0 |      0
- 9 |      8 |     26 |     20 |     12 |      2 |      6 |     12 |     12
-10 |      8 |     26 |     20 |     12 |      2 |      6 |     12 |     12
-11 |      8 |     26 |     20 |     12 |      2 |      6 |     12 |     12
-12 |      2 |      6 |      5 |      3 |      0 |      1 |      3 |      3
-13 |      0 |    75! |     70 |     41 |      3 |      0 |      0 |      0
-14 |      0 |     75 |     70 |     41 |      3 |      0 |      0 |      0
-15 |      0 |     75 |     70 |     41 |      3 |      0 |      0 |      0
-16 |      0 |     75 |     70 |     41 |      3 |      0 |      0 |      0
-17 |      0 |     75 |     70 |     41 |      3 |      0 |      0 |      0
-18 |      0 |     75 |     70 |     41 |      3 |      0 |      0 |      0
+ 6 |      2 |     41 |     21 |     10 |     20 |     15 |      2 |      5
+ 7 |      0 |     72 |     32 |      2 |     30 |      2 |      0 |      0
+ 8 |      0 |      1 |      0 |      0 |      0 |      0 |      0 |      0
+ 9 |      6 |     10 |      3 |      6 |      0 |      6 |      5 |     13
+10 |      6 |     10 |      3 |      6 |      0 |      6 |      5 |     13
+11 |      6 |     10 |      3 |      6 |      0 |      6 |      5 |     13
+12 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
+13 |      0 |    75! |     34 |     62 |      3 |     10 |      0 |      0
+14 |      0 |     75 |     34 |     62 |      3 |     10 |      0 |      0
+15 |      0 |     75 |     34 |     62 |      3 |     10 |      0 |      0
+16 |      0 |     75 |     34 |     62 |      3 |     10 |      0 |      0
+17 |      0 |     75 |     34 |     62 |      3 |     10 |      0 |      0
+18 |      0 |     75 |     34 |     62 |      3 |     10 |      0 |      0
 ```
 
 ### Calculation Breakdown
@@ -7196,16 +8466,16 @@ Stimulants this chapter: 8
 
   Stimulant: "Mai poisons all students with needles during a flicker of darkness to establish authority and test their composure on her first day as instructor"
     Event: threat | Subject: group | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
     Source mult: self_caused → ×1.1
-    fear: base=23 × trig=0.85 × weight=0.7 → raw=13.69
-    Trait modifiers for fear (total: -0.480):
+    fear: base=15 × trig=0.75 × weight=0.7 → raw=7.87
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 13.69 × (1 + -0.480) = 7.12
-    Final delta: 7.12 × 0.7 × 1.1 = 5.48
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 7.87 × (1 + -0.360) = 5.04
+    Final delta: 5.04 × 0.85 × 1.1 = 4.71
+    anger: base=14 × trig=0.75 × weight=0.15 → raw=1.57
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7213,21 +8483,21 @@ Stimulants this chapter: 8
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 0.7 × 1.1 = 3.93
-    anticipation: base=23 × trig=0.85 × weight=0.1 → raw=1.96
+    Modified delta: 1.57 × (1 + 0.113) = 1.75
+    Final delta: 1.75 × 0.85 × 1.1 = 1.64
+    anticipation: base=22 × trig=0.75 × weight=0.15 → raw=2.48
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 1.96 × (1 + -0.107) = 1.75
-    Final delta: 1.75 × 0.7 × 1.1 = 1.34
+    Modified delta: 2.48 × (1 + -0.107) = 2.21
+    Final delta: 2.21 × 0.85 × 1.1 = 2.07
 
   Stimulant: "Bpen challenges Mai's authority by calling assassination cowardly and questioning her age, forcing her to assert dominance with a second poison needle"
     Event: insult | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=27 × trig=0.85 × weight=0.6 → raw=13.77
+    anger: base=14 × trig=0.75 × weight=0.5 → raw=5.25
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7235,175 +8505,145 @@ Stimulants this chapter: 8
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 13.77 × (1 + 0.113) = 15.33
-    Final delta: 15.33 × 1 × 1.3 = 19.93
-    disgust: base=22 × trig=0.85 × weight=0.2 → raw=3.74
+    Modified delta: 5.25 × (1 + 0.113) = 5.84
+    Final delta: 5.84 × 1 × 1.3 = 7.60
+    disgust: base=18 × trig=0.75 × weight=0.2 → raw=2.70
     Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 3.74 × (1 + -0.100) = 3.37
-    Final delta: 3.37 × 1 × 1.3 = 4.38
-    sadness: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 2.70 × (1 + -0.100) = 2.43
+    Final delta: 2.43 × 1 × 1.3 = 3.16
+    sadness: base=20 × trig=0.75 × weight=0.15 → raw=2.25
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.27 × (1 + 0.453) = 7.66
-    Final delta: 7.66 × 1 × 1.3 = 9.96
-
-  Stimulant: "Mai kills the bound man in front of Praew after Praew refuses to do it, performing the execution to save Praew's life despite Praew's moral condemnation"
-    Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    disgust: base=22 × trig=1 × weight=0.4 → raw=8.80
-    Trait modifiers for disgust (total: -0.100):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 8.80 × (1 + -0.100) = 7.92
-    Final delta: 7.92 × 1 × 1.1 = 8.71
-    anger: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 8.10 × (1 + 0.113) = 9.02
-    Final delta: 9.02 × 1 × 1.1 = 9.92
-    sadness: base=31 × trig=1 × weight=0.3 → raw=9.30
-    Trait modifiers for sadness (total: +0.453):
-  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.30 × (1 + 0.453) = 13.52
-    Final delta: 13.52 × 1 × 1.1 = 14.87
-
-  Stimulant: "Mai hesitates when Praew defiantly tells her to "get it over with" rather than cower, revealing a flurry of conflicting emotions breaking through her mask"
-    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    surprise: base=18 × trig=0.85 × weight=0.7 → raw=10.71
+    Modified delta: 2.25 × (1 + 0.453) = 3.27
+    Final delta: 3.27 × 1 × 1.3 = 4.25
+    surprise: base=18 × trig=0.75 × weight=0.15 → raw=2.02
     Trait modifiers for surprise (total: -0.320):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
   impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
-    Modified delta: 10.71 × (1 + -0.320) = 7.28
-    Final delta: 7.28 × 0.8 × 1.3 = 7.57
-    fear: base=23 × trig=0.85 × weight=0.15 → raw=2.93
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 1.3 = 1.79
+
+  Stimulant: "Mai kills the bound man in front of Praew after Praew refuses to do it, performing the execution to save Praew's life despite Praew's moral condemnation"
+    Event: moral_cue | Subject: self | Source: self_caused | Domain: morality
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    disgust: base=18 × trig=1.2 × weight=0.35 → raw=7.56
+    Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 2.93 × (1 + -0.480) = 1.52
-    Final delta: 1.52 × 0.8 × 1.3 = 1.59
-    anticipation: base=23 × trig=0.85 × weight=0.15 → raw=2.93
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 7.56 × (1 + -0.100) = 6.80
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 6.80 × 1 × 1.1 × 2.2 = 16.47
+    anger: base=14 × trig=1.2 × weight=0.25 → raw=4.20
+    Trait modifiers for anger (total: +0.113):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 4.20 × (1 + 0.113) = 4.68
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 4.68 × 1 × 1.1 × 1.36 = 7.00
+    sadness: base=20 × trig=1.2 × weight=0.2 → raw=4.80
+    Trait modifiers for sadness (total: +0.453):
+  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
+    Modified delta: 4.80 × (1 + 0.453) = 6.98
+    Final delta: 6.98 × 1 × 1.1 = 7.67
+    surprise: base=18 × trig=1.2 × weight=0.2 → raw=4.32
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 4.32 × (1 + -0.320) = 2.94
+    Final delta: 2.94 × 1 × 1.1 = 3.23
+
+  Stimulant: "Mai hesitates when Praew defiantly tells her to "get it over with" rather than cower, revealing a flurry of conflicting emotions breaking through her mask"
+    Event: surprise_reveal | Subject: friend | Source: ally_caused | Domain: morality
+    Trigger: stakes=2 imm=3 cert=2 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    surprise: base=18 × trig=0.75 × weight=0.6 → raw=8.10
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 8.10 × (1 + -0.320) = 5.51
+    Final delta: 5.51 × 0.85 × 1.3 = 6.09
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 0.85 × 1.3 = 1.59
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.93 × (1 + -0.107) = 2.62
-    Final delta: 2.62 × 0.8 × 1.3 = 2.72
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 0.85 × 1.3 = 3.26
 
   Stimulant: "Mai acknowledges the trauma of what her students went through, admitting the worst beasts she ever fought were human, revealing her own haunted past"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=31 × trig=0.85 × weight=0.5 → raw=13.17
+    sadness: base=20 × trig=0.75 × weight=0.4 → raw=6.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.17 × (1 + 0.453) = 19.15
-    Final delta: 19.15 × 1 × 1.1 = 21.06
-    fear: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 6.00 × (1 + 0.453) = 8.72
+    Final delta: 8.72 × 1 × 1.1 = 9.59
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 5.87 × (1 + -0.480) = 3.05
-    Final delta: 3.05 × 1 × 1.1 = 3.35
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.1 = 5.62
-
-  Stimulant: "Mai accidentally reveals Godric's true identity as Silverwing Godric to her class despite being told not to, showing her difficulty with secrets"
-    Event: failure | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=31 × trig=0.6 × weight=0.5 → raw=9.30
-    Trait modifiers for sadness (total: +0.453):
-  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.30 × (1 + 0.453) = 13.52
-    Final delta: 13.52 × 1 × 1.1 = 14.87
-    fear: base=23 × trig=0.6 × weight=0.3 → raw=4.14
-    Trait modifiers for fear (total: -0.480):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 4.14 × (1 + -0.480) = 2.15
-    Final delta: 2.15 × 1 × 1.1 = 2.37
-    anger: base=27 × trig=0.6 × weight=0.2 → raw=3.24
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 3.24 × (1 + 0.113) = 3.61
-    Final delta: 3.61 × 1 × 1.1 = 3.97
-
-  Stimulant: "Mai fails Praew from Ghost Operations class to protect her from having to kill again, and tells Praew she has earned her respect"
-    Event: connection | Subject: friend | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
-    Source mult: self_caused → ×1.1
-    trust: base=36 × trig=0.85 × weight=0.5 → raw=15.30
-    Trait modifiers for trust (total: -0.240):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 15.30 × (1 + -0.240) = 11.63
-    Final delta: 11.63 × 0.8 × 1.1 = 10.23
-    joy: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for joy (total: -0.093):
-  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 8.16 × (1 + -0.093) = 7.40
-    Final delta: 7.40 × 0.8 × 1.1 = 6.51
-    anticipation: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1.1 = 1.58
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.91 × (1 + -0.107) = 3.49
-    Final delta: 3.49 × 0.8 × 1.1 = 3.07
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.24
+    trust: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 1.80 × (1 + -0.240) = 1.37
+    Final delta: 1.37 × 1 × 1.1 = 1.50
 
-  Stimulant: "Praew dismisses Mai coldly after class with "Can I go now?" leaving Mai sounding dejected after her attempt at friendship"
-    Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+  Stimulant: "Mai accidentally reveals Godric's true identity as Silverwing Godric to her class despite being told not to, showing her difficulty with secrets"
+    Event: failure | Subject: self | Source: self_caused | Domain: competence
+    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.4)
     Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    sadness: base=31 × trig=0.85 × weight=0.6 → raw=15.81
+    Source mult: self_caused → ×1.1
+    sadness: base=20 × trig=0.4 × weight=0.4 → raw=3.20
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 15.81 × (1 + 0.453) = 22.98
-    Final delta: 22.98 × 1 × 1.3 = 29.87
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
+    Modified delta: 3.20 × (1 + 0.453) = 4.65
+    Final delta: 4.65 × 1 × 1.1 = 5.12
+    fear: base=15 × trig=0.4 × weight=0.25 → raw=1.50
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.50 × (1 + -0.360) = 0.96
+    Final delta: 0.96 × 1 × 1.1 = 1.06
+    anger: base=14 × trig=0.4 × weight=0.2 → raw=1.12
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7411,74 +8651,144 @@ Stimulants this chapter: 8
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.3 = 6.64
-    fear: base=23 × trig=0.85 × weight=0.2 → raw=3.91
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 1.12 × (1 + 0.113) = 1.25
+    Final delta: 1.25 × 1 × 1.1 = 1.37
+    surprise: base=18 × trig=0.4 × weight=0.15 → raw=1.08
+    Trait modifiers for surprise (total: -0.320):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 3.91 × (1 + -0.480) = 2.03
-    Final delta: 2.03 × 1 × 1.3 = 2.64
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 1.08 × (1 + -0.320) = 0.73
+    Final delta: 0.73 × 1 × 1.1 = 0.81
 
-  Suppression applied:
-  Suppression: anger(50.0) suppresses joy by -25.01 (50% of anger delta)
-  Suppression: anger(50.0) suppresses trust by -15.01 (30% of anger delta)
-  Suppression: anger(50.0) suppresses fear by -7.50 (15% of anger delta)
-  Suppression: sadness(90.6) suppresses joy by -54.37 (60% of sadness delta)
-  Suppression: sadness(90.6) suppresses anticipation by -27.19 (30% of sadness delta)
-  Suppression: sadness(90.6) suppresses surprise by -18.12 (20% of sadness delta)
+  Stimulant: "Mai fails Praew from Ghost Operations class to protect her from having to kill again, and tells Praew she has earned her respect"
+    Event: connection | Subject: friend | Source: self_caused | Domain: attachment
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
+    Source mult: self_caused → ×1.1
+    trust: base=12 × trig=0.75 × weight=0.4 → raw=3.60
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 3.60 × (1 + -0.240) = 2.74
+    Final delta: 2.74 × 0.85 × 1.1 = 2.56
+    joy: base=28 × trig=0.75 × weight=0.3 → raw=6.30
+    Trait modifiers for joy (total: -0.093):
+  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 6.30 × (1 + -0.093) = 5.71
+    Final delta: 5.71 × 0.85 × 1.1 = 5.34
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for anticipation (total: -0.107):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 0.85 × 1.1 = 2.76
+    surprise: base=18 × trig=0.75 × weight=0.1 → raw=1.35
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 1.35 × (1 + -0.320) = 0.92
+    Final delta: 0.92 × 0.85 × 1.1 = 0.86
+
+  Stimulant: "Praew dismisses Mai coldly after class with "Can I go now?" leaving Mai sounding dejected after her attempt at friendship"
+    Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: ally_caused → ×1.3
+    sadness: base=20 × trig=0.75 × weight=0.5 → raw=7.50
+    Trait modifiers for sadness (total: +0.453):
+  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
+    Modified delta: 7.50 × (1 + 0.453) = 10.90
+    Final delta: 10.90 × 1 × 1.3 = 14.17
+    anger: base=14 × trig=0.75 × weight=0.2 → raw=2.10
+    Trait modifiers for anger (total: +0.113):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.10 × (1 + 0.113) = 2.34
+    Final delta: 2.34 × 1 × 1.3 = 3.04
+    fear: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.69 × (1 + -0.360) = 1.08
+    Final delta: 1.08 × 1 × 1.3 = 1.40
+    surprise: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 1.3 = 1.79
+  Tone adjustment: negative chapter dampens joy: 5.3 × 0.4 = 2.1
+  Tone adjustment: negative chapter dampens trust: 4.1 × 0.4 = 1.6
+  Tone adjustment: negative chapter dampens anticipation: 11.3 × 0.4 = 4.5
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-72.87) = -72.87
-    sadness: carry(0.0 × 0.25) + delta(90.62) = 90.62
-    *** sadness in RED ZONE: VU=90.6 (track capped at 75) ***
-    anger: carry(0.0 × 0.25) + delta(50.02) = 50.02
-    fear: carry(0.0 × 0.25) + delta(7.93) = 7.93
-    disgust: carry(0.0 × 0.25) + delta(13.09) = 13.09
-    surprise: carry(0.0 × 0.25) + delta(-10.55) = -10.55
-    trust: carry(0.0 × 0.25) + delta(-4.77) = -4.77
-    anticipation: carry(0.0 × 0.25) + delta(-20.04) = -20.04
+    joy: carry(0.0 × 0.2) + delta(2.14) = 2.14
+    sadness: carry(0.0 × 0.08) + delta(40.80) = 40.80
+    anger: carry(0.0 × 0.08) + delta(20.64) = 20.64
+    fear: carry(0.0 × 0.25) + delta(10.35) = 10.35
+    disgust: carry(0.0 × 0.12) + delta(19.62) = 19.62
+    surprise: carry(0.0 × 0.2) + delta(14.56) = 14.56
+    trust: carry(0.0 × 0.2) + delta(1.63) = 1.63
+    anticipation: carry(0.0 × 0.2) + delta(4.53) = 4.53
 
 === Chapter 7 ===
 Stimulants this chapter: 7
 
   Stimulant: "Mai follows Praew home and shows up uninvited at her parents' house, sitting casually with them despite being a trained assassin"
     Event: connection | Subject: friend | Source: self_caused | Domain: belonging
-    Trigger: stakes=1 imm=2 cert=2 → total=5 → Medium (×0.6)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=1 imm=2 cert=2 → total=5 → Medium (×0.4)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    trust: base=36 × trig=0.6 × weight=0.5 → raw=10.80
+    trust: base=12 × trig=0.4 × weight=0.4 → raw=1.92
     Trait modifiers for trust (total: -0.240):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 10.80 × (1 + -0.240) = 8.21
-    Final delta: 8.21 × 0.8 × 1.1 = 7.22
-    joy: base=32 × trig=0.6 × weight=0.3 → raw=5.76
+    Modified delta: 1.92 × (1 + -0.240) = 1.46
+    Final delta: 1.46 × 0.85 × 1.1 = 1.36
+    joy: base=28 × trig=0.4 × weight=0.3 → raw=3.36
     Trait modifiers for joy (total: -0.093):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 5.76 × (1 + -0.093) = 5.22
-    Final delta: 5.22 × 0.8 × 1.1 = 4.60
-    anticipation: base=23 × trig=0.6 × weight=0.2 → raw=2.76
+    Modified delta: 3.36 × (1 + -0.093) = 3.05
+    Final delta: 3.05 × 0.85 × 1.1 = 2.85
+    anticipation: base=22 × trig=0.4 × weight=0.2 → raw=1.76
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.76 × (1 + -0.107) = 2.47
-    Final delta: 2.47 × 0.8 × 1.1 = 2.17
+    Modified delta: 1.76 × (1 + -0.107) = 1.57
+    Final delta: 1.57 × 0.85 × 1.1 = 1.47
+    surprise: base=18 × trig=0.4 × weight=0.1 → raw=0.72
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 0.72 × (1 + -0.320) = 0.49
+    Final delta: 0.49 × 0.85 × 1.1 = 0.46
 
   Stimulant: "Praew calls Mai a "psychopathic murderer" and says she would never be friends with her, telling her to stay away from her parents"
     Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=31 × trig=1 × weight=0.6 → raw=18.60
+    sadness: base=20 × trig=1.2 × weight=0.5 → raw=12.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 18.60 × (1 + 0.453) = 27.03
-    Final delta: 27.03 × 1 × 1.3 = 35.14
-    anger: base=27 × trig=1 × weight=0.2 → raw=5.40
+    Modified delta: 12.00 × (1 + 0.453) = 17.44
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 17.44 × 1 × 1.3 × 1.36 = 30.83
+    anger: base=14 × trig=1.2 × weight=0.2 → raw=3.36
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7486,29 +8796,37 @@ Stimulants this chapter: 7
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.40 × (1 + 0.113) = 6.01
-    Final delta: 6.01 × 1 × 1.3 = 7.82
-    fear: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 3.36 × (1 + 0.113) = 3.74
+    Final delta: 3.74 × 1 × 1.3 = 4.86
+    fear: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 4.60 × (1 + -0.480) = 2.39
-    Final delta: 2.39 × 1 × 1.3 = 3.11
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.360) = 1.73
+    Final delta: 1.73 × 1 × 1.3 = 2.25
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 1 × 1.3 = 2.86
 
   Stimulant: "Mai breaks down crying and reveals she is Stormhaven's best assassin only because she was raised to kill, not because she enjoys it"
     Event: humiliation | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=31 × trig=1 × weight=0.4 → raw=12.40
+    sadness: base=20 × trig=1.2 × weight=0.3 → raw=7.20
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 12.40 × (1 + 0.453) = 18.02
-    Final delta: 18.02 × 1 × 1.3 = 23.43
-    anger: base=27 × trig=1 × weight=0.3 → raw=8.10
+    Modified delta: 7.20 × (1 + 0.453) = 10.46
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 10.46 × 1 × 1.3 × 1.36 = 18.50
+    anger: base=14 × trig=1.2 × weight=0.25 → raw=4.20
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7516,74 +8834,90 @@ Stimulants this chapter: 7
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 8.10 × (1 + 0.113) = 9.02
-    Final delta: 9.02 × 1 × 1.3 = 11.72
-    disgust: base=22 × trig=1 × weight=0.3 → raw=6.60
+    Modified delta: 4.20 × (1 + 0.113) = 4.68
+    Final delta: 4.68 × 1 × 1.3 = 6.08
+    disgust: base=18 × trig=1.2 × weight=0.25 → raw=5.40
     Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.60 × (1 + -0.100) = 5.94
-    Final delta: 5.94 × 1 × 1.3 = 7.72
+    Modified delta: 5.40 × (1 + -0.100) = 4.86
+    Final delta: 4.86 × 1 × 1.3 = 6.32
+    surprise: base=18 × trig=1.2 × weight=0.2 → raw=4.32
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 4.32 × (1 + -0.320) = 2.94
+    Final delta: 2.94 × 1 × 1.3 = 3.82
 
   Stimulant: "Mai reveals she was only allowed to make a single friend after five years of maintaining a flawless kill record, and Praew is the first person she chose"
     Event: connection | Subject: friend | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    trust: base=36 × trig=1 × weight=0.5 → raw=18.00
+    trust: base=12 × trig=1.2 × weight=0.4 → raw=5.76
     Trait modifiers for trust (total: -0.240):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 18.00 × (1 + -0.240) = 13.68
-    Final delta: 13.68 × 0.8 × 1.1 = 12.04
-    joy: base=32 × trig=1 × weight=0.3 → raw=9.60
+    Modified delta: 5.76 × (1 + -0.240) = 4.38
+    Domain amp: attachment → trust ×1.36 (only at High+ trigger)
+    Final delta: 4.38 × 0.85 × 1.1 × 1.36 = 5.57
+    joy: base=28 × trig=1.2 × weight=0.3 → raw=10.08
     Trait modifiers for joy (total: -0.093):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.093) = 8.70
-    Final delta: 8.70 × 0.8 × 1.1 = 7.66
-    anticipation: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 10.08 × (1 + -0.093) = 9.14
+    Final delta: 9.14 × 0.85 × 1.1 = 8.55
+    anticipation: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.60 × (1 + -0.107) = 4.11
-    Final delta: 4.11 × 0.8 × 1.1 = 3.62
+    Modified delta: 5.28 × (1 + -0.107) = 4.72
+    Final delta: 4.72 × 0.85 × 1.1 = 4.41
+    surprise: base=18 × trig=1.2 × weight=0.1 → raw=2.16
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.320) = 1.47
+    Final delta: 1.47 × 0.85 × 1.1 = 1.37
 
   Stimulant: "Mai reveals she would have killed herself long ago if not for staying positive, exposing the depth of her suffering and isolation"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=31 × trig=0.85 × weight=0.5 → raw=13.17
+    sadness: base=20 × trig=0.75 × weight=0.4 → raw=6.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.17 × (1 + 0.453) = 19.15
-    Final delta: 19.15 × 1 × 1.1 = 21.06
-    fear: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 6.00 × (1 + 0.453) = 8.72
+    Final delta: 8.72 × 1 × 1.1 = 9.59
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 5.87 × (1 + -0.480) = 3.05
-    Final delta: 3.05 × 1 × 1.1 = 3.35
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for anger (total: +0.113):
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1.1 = 1.58
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.1 = 5.62
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.24
+    trust: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 1.80 × (1 + -0.240) = 1.37
+    Final delta: 1.37 × 1 × 1.1 = 1.50
 
   Stimulant: "Mai reveals the man she killed was a cannibal who murdered and ate his own wife and daughter, defending her actions against Praew's moral judgment"
     Event: injustice | Subject: self | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=27 × trig=0.85 × weight=0.5 → raw=11.47
+    anger: base=14 × trig=0.75 × weight=0.4 → raw=4.20
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7591,29 +8925,36 @@ Stimulants this chapter: 7
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 11.47 × (1 + 0.113) = 12.78
-    Final delta: 12.78 × 1 × 1.3 = 16.61
-    disgust: base=22 × trig=0.85 × weight=0.3 → raw=5.61
+    Modified delta: 4.20 × (1 + 0.113) = 4.68
+    Final delta: 4.68 × 1 × 1.3 = 6.08
+    disgust: base=18 × trig=0.75 × weight=0.3 → raw=4.05
     Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.61 × (1 + -0.100) = 5.05
-    Final delta: 5.05 × 1 × 1.3 = 6.56
-    sadness: base=31 × trig=0.85 × weight=0.2 → raw=5.27
+    Modified delta: 4.05 × (1 + -0.100) = 3.65
+    Final delta: 3.65 × 1 × 1.3 = 4.74
+    sadness: base=20 × trig=0.75 × weight=0.15 → raw=2.25
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 5.27 × (1 + 0.453) = 7.66
-    Final delta: 7.66 × 1 × 1.3 = 9.96
+    Modified delta: 2.25 × (1 + 0.453) = 3.27
+    Final delta: 3.27 × 1 × 1.3 = 4.25
+    surprise: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 1.3 = 1.79
 
   Stimulant: "Mai confronts Praew with "You condemn me but protect people like that?" before walking away, devastated by the injustice of being judged"
     Event: injustice | Subject: self | Source: ally_caused | Domain: morality
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    anger: base=27 × trig=1 × weight=0.5 → raw=13.50
+    anger: base=14 × trig=1.2 × weight=0.4 → raw=6.72
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7621,137 +8962,114 @@ Stimulants this chapter: 7
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 13.50 × (1 + 0.113) = 15.03
-    Final delta: 15.03 × 1 × 1.3 = 19.54
-    disgust: base=22 × trig=1 × weight=0.3 → raw=6.60
+    Modified delta: 6.72 × (1 + 0.113) = 7.48
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 7.48 × 1 × 1.3 × 1.36 = 13.23
+    disgust: base=18 × trig=1.2 × weight=0.3 → raw=6.48
     Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.60 × (1 + -0.100) = 5.94
-    Final delta: 5.94 × 1 × 1.3 = 7.72
-    sadness: base=31 × trig=1 × weight=0.2 → raw=6.20
+    Modified delta: 6.48 × (1 + -0.100) = 5.83
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 5.83 × 1 × 1.3 × 2.2 = 16.68
+    sadness: base=20 × trig=1.2 × weight=0.15 → raw=3.60
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.20 × (1 + 0.453) = 9.01
-    Final delta: 9.01 × 1 × 1.3 = 11.71
-  Ambient surprise: avg_trigger(0.90) × 15 = +13.5
+    Modified delta: 3.60 × (1 + 0.453) = 5.23
+    Final delta: 5.23 × 1 × 1.3 = 6.80
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 1 × 1.3 = 2.86
+  Tone adjustment: negative chapter dampens joy: 11.4 × 0.4 = 4.6
+  Tone adjustment: negative chapter dampens trust: 8.4 × 0.4 = 3.4
+  Tone adjustment: negative chapter dampens anticipation: 9.1 × 0.4 = 3.6
 
   Suppression applied:
-  Suppression: anger(111.3) suppresses joy by -30.65 (50% of anger delta)
-  Suppression: anger(111.3) suppresses trust by -18.39 (30% of anger delta)
-  Suppression: anger(111.3) suppresses fear by -9.20 (15% of anger delta)
-  Suppression: sadness(176.3) suppresses joy by -60.78 (60% of sadness delta)
-  Suppression: sadness(176.3) suppresses anticipation by -30.39 (30% of sadness delta)
-  Suppression: sadness(176.3) suppresses surprise by -20.26 (20% of sadness delta)
+  Suppression: anger(50.9) suppresses joy by -15.12 (50% of anger delta)
+  Suppression: anger(50.9) suppresses trust by -9.07 (30% of anger delta)
+  Suppression: anger(50.9) suppresses fear by -4.54 (15% of anger delta)
+  Suppression: sadness(110.8) suppresses joy by -41.99 (60% of sadness delta)
+  Suppression: sadness(110.8) suppresses anticipation by -20.99 (30% of sadness delta)
+  Suppression: sadness(110.8) suppresses surprise by -14.00 (20% of sadness delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-79.18) = -79.18
-    sadness: carry(75.0 × 0.25) + delta(101.30) = 120.05
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(50.0 × 0.25) + delta(61.31) = 73.81
-    fear: carry(7.9 × 0.25) + delta(-2.73) = -0.75
-    disgust: carry(13.1 × 0.25) + delta(22.01) = 25.28
-    surprise: carry(0.0 × 0.25) + delta(-6.76) = -6.76
-    trust: carry(0.0 × 0.25) + delta(0.87) = 0.87
-    anticipation: carry(0.0 × 0.25) + delta(-24.60) = -24.60
+    joy: carry(2.1 × 0.2) + delta(-52.55) = -52.13
+    sadness: carry(40.8 × 0.055999999999999994) + delta(69.98) = 72.26
+    anger: carry(20.6 × 0.08) + delta(30.25) = 31.90
+    fear: carry(10.3 × 0.25) + delta(-0.71) = 1.88
+    disgust: carry(19.6 × 0.12) + delta(27.74) = 30.09
+    surprise: carry(14.6 × 0.2) + delta(-0.83) = 2.09
+    trust: carry(1.6 × 0.2) + delta(-5.70) = -5.38
+    anticipation: carry(4.5 × 0.2) + delta(-17.34) = -16.44
 
 === Chapter 8 ===
 Stimulants this chapter: 0
 
   Emotion updates:
-    sadness: carry(75.0 × 0.25) + delta(0.00) = 18.75
-    anger: carry(73.8 × 0.25) + delta(0.00) = 18.45
-    disgust: carry(25.3 × 0.25) + delta(0.00) = 6.32
-    trust: carry(0.9 × 0.25) + delta(0.00) = 0.22
+    sadness: carry(72.3 × 0.01) + delta(0.00) = 0.72
+    anger: carry(31.9 × 0.013999999999999999) + delta(0.00) = 0.45
+    fear: carry(1.9 × 0.02) + delta(0.00) = 0.04
+    disgust: carry(30.1 × 0.013999999999999999) + delta(0.00) = 0.42
+    surprise: carry(2.1 × 0.02) + delta(0.00) = 0.04
 
 === Chapter 9 ===
 Stimulants this chapter: 5
 
   Stimulant: "Praew returns to apologize to Mai, admitting she was wrong and offering to try being friends with boundaries"
     Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    trust: base=36 × trig=0.85 × weight=0.5 → raw=15.30
+    trust: base=12 × trig=0.75 × weight=0.4 → raw=3.60
     Trait modifiers for trust (total: -0.240):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 15.30 × (1 + -0.240) = 11.63
-    Final delta: 11.63 × 0.8 × 1.3 = 12.09
-    joy: base=32 × trig=0.85 × weight=0.3 → raw=8.16
+    Modified delta: 3.60 × (1 + -0.240) = 2.74
+    Final delta: 2.74 × 0.85 × 1.3 = 3.02
+    joy: base=28 × trig=0.75 × weight=0.3 → raw=6.30
     Trait modifiers for joy (total: -0.093):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 8.16 × (1 + -0.093) = 7.40
-    Final delta: 7.40 × 0.8 × 1.3 = 7.69
-    anticipation: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 6.30 × (1 + -0.093) = 5.71
+    Final delta: 5.71 × 0.85 × 1.3 = 6.31
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.91 × (1 + -0.107) = 3.49
-    Final delta: 3.49 × 0.8 × 1.3 = 3.63
-
-  Stimulant: "Mai anxiously asks if Praew is going to "break up" with her, revealing how much their friendship means and how fragile it feels to her"
-    Event: danger_cue | Subject: self | Source: self_caused | Domain: attachment
-    Trigger: stakes=2 imm=2 cert=1 → total=5 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    fear: base=23 × trig=0.6 × weight=0.7 → raw=9.66
-    Trait modifiers for fear (total: -0.480):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 9.66 × (1 + -0.480) = 5.02
-    Final delta: 5.02 × 1 × 1.1 = 5.53
-    anticipation: base=23 × trig=0.6 × weight=0.2 → raw=2.76
-    Trait modifiers for anticipation (total: -0.107):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.76 × (1 + -0.107) = 2.47
-    Final delta: 2.47 × 1 × 1.1 = 2.71
-    anger: base=27 × trig=0.6 × weight=0.1 → raw=1.62
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 1.62 × (1 + 0.113) = 1.80
-    Final delta: 1.80 × 1 × 1.1 = 1.98
-
-  Stimulant: "Mai reveals she has been studying a romance guide book to learn how friendships work, not even knowing the difference between courting and friendship"
-    Event: surprise_reveal | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    surprise: base=18 × trig=0.6 × weight=0.7 → raw=7.56
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 0.85 × 1.3 = 3.26
+    surprise: base=18 × trig=0.75 × weight=0.1 → raw=1.35
     Trait modifiers for surprise (total: -0.320):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
   impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
-    Modified delta: 7.56 × (1 + -0.320) = 5.14
-    Final delta: 5.14 × 1 × 1.1 = 5.65
-    fear: base=23 × trig=0.6 × weight=0.15 → raw=2.07
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 1.35 × (1 + -0.320) = 0.92
+    Final delta: 0.92 × 0.85 × 1.3 = 1.01
+
+  Stimulant: "Mai anxiously asks if Praew is going to "break up" with her, revealing how much their friendship means and how fragile it feels to her"
+    Event: danger_cue | Subject: self | Source: self_caused | Domain: attachment
+    Trigger: stakes=2 imm=2 cert=1 → total=5 → Medium (×0.4)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    fear: base=15 × trig=0.4 × weight=0.45 → raw=2.70
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 2.07 × (1 + -0.480) = 1.08
-    Final delta: 1.08 × 1 × 1.1 = 1.18
-    anticipation: base=23 × trig=0.6 × weight=0.15 → raw=2.07
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.360) = 1.73
+    Final delta: 1.73 × 1 × 1.1 = 1.90
+    anticipation: base=22 × trig=0.4 × weight=0.25 → raw=2.20
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.07 × (1 + -0.107) = 1.85
-    Final delta: 1.85 × 1 × 1.1 = 2.03
-
-  Stimulant: "Mai tries to painfully force a reassuring smile when Praew performs poorly, her eye twitching as she struggles to express unfamiliar empathy"
-    Event: obstacle | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.6)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    anger: base=27 × trig=0.6 × weight=0.4 → raw=6.48
+    Modified delta: 2.20 × (1 + -0.107) = 1.97
+    Final delta: 1.97 × 1 × 1.1 = 2.16
+    anger: base=14 × trig=0.4 × weight=0.15 → raw=0.84
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7759,60 +9077,115 @@ Stimulants this chapter: 5
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 6.48 × (1 + 0.113) = 7.21
-    Final delta: 7.21 × 1 × 1.1 = 7.94
-    anticipation: base=23 × trig=0.6 × weight=0.3 → raw=4.14
+    Modified delta: 0.84 × (1 + 0.113) = 0.94
+    Final delta: 0.94 × 1 × 1.1 = 1.03
+    surprise: base=18 × trig=0.4 × weight=0.15 → raw=1.08
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 1.08 × (1 + -0.320) = 0.73
+    Final delta: 0.73 × 1 × 1.1 = 0.81
+
+  Stimulant: "Mai reveals she has been studying a romance guide book to learn how friendships work, not even knowing the difference between courting and friendship"
+    Event: surprise_reveal | Subject: self | Source: self_caused | Domain: belonging
+    Trigger: stakes=1 imm=1 cert=3 → total=5 → Medium (×0.4)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    surprise: base=18 × trig=0.4 × weight=0.6 → raw=4.32
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 4.32 × (1 + -0.320) = 2.94
+    Final delta: 2.94 × 1 × 1.1 = 3.23
+    fear: base=15 × trig=0.4 × weight=0.2 → raw=1.20
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.20 × (1 + -0.360) = 0.77
+    Final delta: 0.77 × 1 × 1.1 = 0.84
+    anticipation: base=22 × trig=0.4 × weight=0.2 → raw=1.76
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.14 × (1 + -0.107) = 3.70
-    Final delta: 3.70 × 1 × 1.1 = 4.07
-    fear: base=23 × trig=0.6 × weight=0.3 → raw=4.14
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 1.76 × (1 + -0.107) = 1.57
+    Final delta: 1.57 × 1 × 1.1 = 1.73
+
+  Stimulant: "Mai tries to painfully force a reassuring smile when Praew performs poorly, her eye twitching as she struggles to express unfamiliar empathy"
+    Event: obstacle | Subject: self | Source: self_caused | Domain: belonging
+    Trigger: stakes=1 imm=1 cert=2 → total=4 → Medium (×0.4)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    anger: base=14 × trig=0.4 × weight=0.3 → raw=1.68
+    Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 4.14 × (1 + -0.480) = 2.15
-    Final delta: 2.15 × 1 × 1.1 = 2.37
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 1.68 × (1 + 0.113) = 1.87
+    Final delta: 1.87 × 1 × 1.1 = 2.06
+    fear: base=15 × trig=0.4 × weight=0.3 → raw=1.80
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.80 × (1 + -0.360) = 1.15
+    Final delta: 1.15 × 1 × 1.1 = 1.27
+    anticipation: base=22 × trig=0.4 × weight=0.25 → raw=2.20
+    Trait modifiers for anticipation (total: -0.107):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 2.20 × (1 + -0.107) = 1.97
+    Final delta: 1.97 × 1 × 1.1 = 2.16
+    surprise: base=18 × trig=0.4 × weight=0.15 → raw=1.08
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 1.08 × (1 + -0.320) = 0.73
+    Final delta: 0.73 × 1 × 1.1 = 0.81
 
   Stimulant: "When Praew asks Mai to train her the way she was trained, Mai reflexively punches her, revealing her traumatic upbringing through instinct"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=31 × trig=0.85 × weight=0.5 → raw=13.17
+    sadness: base=20 × trig=0.75 × weight=0.4 → raw=6.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.17 × (1 + 0.453) = 19.15
-    Final delta: 19.15 × 1 × 1.1 = 21.06
-    fear: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 6.00 × (1 + 0.453) = 8.72
+    Final delta: 8.72 × 1 × 1.1 = 9.59
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 5.87 × (1 + -0.480) = 3.05
-    Final delta: 3.05 × 1 × 1.1 = 3.35
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for anger (total: +0.113):
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1.1 = 1.58
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.1 = 5.62
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.24
+    trust: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 1.80 × (1 + -0.240) = 1.37
+    Final delta: 1.37 × 1 × 1.1 = 1.50
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(7.69) = 7.69
-    sadness: carry(18.8 × 0.25) + delta(21.06) = 25.75
-    anger: carry(18.5 × 0.25) + delta(15.54) = 20.15
-    fear: carry(0.0 × 0.25) + delta(12.43) = 12.43
-    disgust: carry(6.3 × 0.25) + delta(0.00) = 1.58
-    surprise: carry(0.0 × 0.25) + delta(5.65) = 5.65
-    trust: carry(0.2 × 0.25) + delta(12.09) = 12.15
-    anticipation: carry(0.0 × 0.25) + delta(12.45) = 12.45
+    joy: carry(0.0 × 0.2) + delta(6.31) = 6.31
+    sadness: carry(0.7 × 0.08) + delta(9.59) = 9.65
+    anger: carry(0.4 × 0.08) + delta(3.09) = 3.12
+    fear: carry(0.0 × 0.25) + delta(5.60) = 5.61
+    surprise: carry(0.0 × 0.2) + delta(5.86) = 5.87
+    trust: carry(0.0 × 0.2) + delta(4.53) = 4.53
+    anticipation: carry(0.0 × 0.2) + delta(12.55) = 12.55
 
 === Chapter 10 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -7824,66 +9197,67 @@ Character NOT PRESENT — values frozen, no line drawn
 Stimulants this chapter: 0
 
   Emotion updates:
-    joy: carry(7.7 × 0.25) + delta(0.00) = 1.92
-    sadness: carry(25.7 × 0.25) + delta(0.00) = 6.44
-    anger: carry(20.2 × 0.25) + delta(0.00) = 5.04
-    fear: carry(12.4 × 0.25) + delta(0.00) = 3.11
-    disgust: carry(1.6 × 0.25) + delta(0.00) = 0.39
-    surprise: carry(5.7 × 0.25) + delta(0.00) = 1.41
-    trust: carry(12.1 × 0.25) + delta(0.00) = 3.04
-    anticipation: carry(12.4 × 0.25) + delta(0.00) = 3.11
+    joy: carry(6.3 × 0.02) + delta(0.00) = 0.13
+    sadness: carry(9.6 × 0.02) + delta(0.00) = 0.19
+    anger: carry(3.1 × 0.02) + delta(0.00) = 0.06
+    fear: carry(5.6 × 0.02) + delta(0.00) = 0.11
+    surprise: carry(5.9 × 0.02) + delta(0.00) = 0.12
+    trust: carry(4.5 × 0.02) + delta(0.00) = 0.09
+    anticipation: carry(12.6 × 0.02) + delta(0.00) = 0.25
 
 === Chapter 13 ===
 Stimulants this chapter: 15
 
   Stimulant: "Mai learns about the Fourth Floor from Praew, and her eyes glaze over with terror as she relives traumatic memories of growing up there"
     Event: reminder_cue | Subject: self | Source: ally_caused | Domain: safety
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=31 × trig=1 × weight=0.5 → raw=15.50
+    sadness: base=20 × trig=1.2 × weight=0.4 → raw=9.60
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 15.50 × (1 + 0.453) = 22.53
-    Final delta: 22.53 × 1 × 1.3 = 29.28
-    fear: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 9.60 × (1 + 0.453) = 13.95
+    Final delta: 13.95 × 1 × 1.3 = 18.14
+    fear: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 6.90 × (1 + -0.480) = 3.59
-    Final delta: 3.59 × 1 × 1.3 = 4.66
-    anger: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for anger (total: +0.113):
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.60 × (1 + -0.360) = 2.30
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 2.30 × 1 × 1.3 × 1.7200000000000002 = 5.15
+    anticipation: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.40 × (1 + 0.113) = 6.01
-    Final delta: 6.01 × 1 × 1.3 = 7.82
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 5.28 × (1 + -0.107) = 4.72
+    Final delta: 4.72 × 1 × 1.3 = 6.13
+    trust: base=12 × trig=1.2 × weight=0.2 → raw=2.88
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 2.88 × (1 + -0.240) = 2.19
+    Final delta: 2.19 × 1 × 1.3 = 2.85
 
   Stimulant: "Mai grabs Praew and desperately begs her to never return to the Fourth Floor, her eyes wide with genuine terror"
     Event: danger_cue | Subject: friend | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: self_caused → ×1.1
-    fear: base=23 × trig=0.85 × weight=0.7 → raw=13.69
-    Trait modifiers for fear (total: -0.480):
+    fear: base=15 × trig=0.75 × weight=0.45 → raw=5.06
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 13.69 × (1 + -0.480) = 7.12
-    Final delta: 7.12 × 0.8 × 1.1 = 6.26
-    anticipation: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 5.06 × (1 + -0.360) = 3.24
+    Final delta: 3.24 × 0.85 × 1.1 = 3.03
+    anticipation: base=22 × trig=0.75 × weight=0.25 → raw=4.13
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 3.91 × (1 + -0.107) = 3.49
-    Final delta: 3.49 × 0.8 × 1.1 = 3.07
-    anger: base=27 × trig=0.85 × weight=0.1 → raw=2.29
+    Modified delta: 4.13 × (1 + -0.107) = 3.69
+    Final delta: 3.69 × 0.85 × 1.1 = 3.45
+    anger: base=14 × trig=0.75 × weight=0.15 → raw=1.57
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7891,53 +9265,61 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.29 × (1 + 0.113) = 2.56
-    Final delta: 2.56 × 0.8 × 1.1 = 2.25
+    Modified delta: 1.57 × (1 + 0.113) = 1.75
+    Final delta: 1.75 × 0.85 × 1.1 = 1.64
+    surprise: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 0.85 × 1.1 = 1.29
 
   Stimulant: "Mai reveals she was born on the Fourth Floor and her entire family worked in the Sifaralith Identification Program"
     Event: reminder_cue | Subject: self | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=31 × trig=0.85 × weight=0.5 → raw=13.17
+    sadness: base=20 × trig=0.75 × weight=0.4 → raw=6.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.17 × (1 + 0.453) = 19.15
-    Final delta: 19.15 × 1 × 1.1 = 21.06
-    fear: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 6.00 × (1 + 0.453) = 8.72
+    Final delta: 8.72 × 1 × 1.1 = 9.59
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 5.87 × (1 + -0.480) = 3.05
-    Final delta: 3.05 × 1 × 1.1 = 3.35
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for anger (total: +0.113):
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1.1 = 1.58
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.1 = 5.62
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.24
+    trust: base=12 × trig=0.75 × weight=0.2 → raw=1.80
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 1.80 × (1 + -0.240) = 1.37
+    Final delta: 1.37 × 1 × 1.1 = 1.50
 
   Stimulant: "Mai reveals her two older brothers blamed her for their father's death, saying she should never have been born"
     Event: rejection | Subject: self | Source: ally_caused | Domain: belonging
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: ally_caused → ×1.3
-    sadness: base=31 × trig=0.85 × weight=0.6 → raw=15.81
+    sadness: base=20 × trig=0.75 × weight=0.5 → raw=7.50
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 15.81 × (1 + 0.453) = 22.98
-    Final delta: 22.98 × 1 × 1.3 = 29.87
-    anger: base=27 × trig=0.85 × weight=0.2 → raw=4.59
+    Modified delta: 7.50 × (1 + 0.453) = 10.90
+    Final delta: 10.90 × 1 × 1.3 = 14.17
+    anger: base=14 × trig=0.75 × weight=0.2 → raw=2.10
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7945,35 +9327,43 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.59 × (1 + 0.113) = 5.11
-    Final delta: 5.11 × 1 × 1.3 = 6.64
-    fear: base=23 × trig=0.85 × weight=0.2 → raw=3.91
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 2.10 × (1 + 0.113) = 2.34
+    Final delta: 2.34 × 1 × 1.3 = 3.04
+    fear: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 3.91 × (1 + -0.480) = 2.03
-    Final delta: 2.03 × 1 × 1.3 = 2.64
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 1.69 × (1 + -0.360) = 1.08
+    Final delta: 1.08 × 1 × 1.3 = 1.40
+    surprise: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 1.3 = 1.79
 
   Stimulant: "Mai recounts her mother losing all her fingers in a stone accident and the family being sentenced to disposal, the moment that destroyed her childhood"
     Event: loss | Subject: family | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: authority_caused → ×1
-    sadness: base=31 × trig=1 × weight=0.7 → raw=21.70
+    sadness: base=20 × trig=1.2 × weight=0.6 → raw=14.40
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 21.70 × (1 + 0.453) = 31.54
-    Final delta: 31.54 × 0.9 × 1 = 28.38
-    fear: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 14.40 × (1 + 0.453) = 20.93
+    Final delta: 20.93 × 0.95 × 1 = 19.88
+    fear: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 4.60 × (1 + -0.480) = 2.39
-    Final delta: 2.39 × 0.9 × 1 = 2.15
-    anger: base=27 × trig=1 × weight=0.1 → raw=2.70
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.360) = 1.73
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 1.73 × 0.95 × 1 × 1.7200000000000002 = 2.82
+    anger: base=14 × trig=1.2 × weight=0.1 → raw=1.68
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -7981,29 +9371,38 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.70 × (1 + 0.113) = 3.01
-    Final delta: 3.01 × 0.9 × 1 = 2.71
+    Modified delta: 1.68 × (1 + 0.113) = 1.87
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 1.87 × 0.95 × 1 × 1.24 = 2.20
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 0.95 × 1 = 2.09
 
   Stimulant: "Mai watches her mother and two brothers being dragged away by guards and never sees them again"
     Event: separation | Subject: family | Source: authority_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: authority_caused → ×1
-    sadness: base=31 × trig=1 × weight=0.6 → raw=18.60
+    sadness: base=20 × trig=1.2 × weight=0.5 → raw=12.00
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 18.60 × (1 + 0.453) = 27.03
-    Final delta: 27.03 × 0.9 × 1 = 24.33
-    fear: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 12.00 × (1 + 0.453) = 17.44
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 17.44 × 0.95 × 1 × 1.48 = 24.52
+    fear: base=15 × trig=1.2 × weight=0.25 → raw=4.50
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 4.60 × (1 + -0.480) = 2.39
-    Final delta: 2.39 × 0.9 × 1 = 2.15
-    anger: base=27 × trig=1 × weight=0.2 → raw=5.40
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.50 × (1 + -0.360) = 2.88
+    Final delta: 2.88 × 0.95 × 1 = 2.74
+    anger: base=14 × trig=1.2 × weight=0.15 → raw=2.52
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -8011,21 +9410,29 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.40 × (1 + 0.113) = 6.01
-    Final delta: 6.01 × 0.9 × 1 = 5.41
+    Modified delta: 2.52 × (1 + 0.113) = 2.81
+    Final delta: 2.81 × 0.95 × 1 = 2.67
+    surprise: base=18 × trig=1.2 × weight=0.1 → raw=2.16
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.320) = 1.47
+    Final delta: 1.47 × 0.95 × 1 = 1.40
 
   Stimulant: "Mai is struck by a guard so hard she flies into a pile of stones and blacks out during the struggle for her family"
     Event: harm | Subject: self | Source: authority_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    fear: base=23 × trig=1 × weight=0.5 → raw=11.50
-    Trait modifiers for fear (total: -0.480):
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 11.50 × (1 + -0.480) = 5.98
-    Final delta: 5.98 × 1 × 1 = 5.98
-    anger: base=27 × trig=1 × weight=0.3 → raw=8.10
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.360) = 6.91
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.91 × 1 × 1 × 1.7200000000000002 = 11.89
+    anger: base=14 × trig=1.2 × weight=0.2 → raw=3.36
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -8033,71 +9440,86 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 8.10 × (1 + 0.113) = 9.02
-    Final delta: 9.02 × 1 × 1 = 9.02
-    sadness: base=31 × trig=1 × weight=0.2 → raw=6.20
+    Modified delta: 3.36 × (1 + 0.113) = 3.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.74 × 1 × 1 × 1.24 = 4.64
+    sadness: base=20 × trig=1.2 × weight=0.1 → raw=2.40
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.20 × (1 + 0.453) = 9.01
-    Final delta: 9.01 × 1 × 1 = 9.01
+    Modified delta: 2.40 × (1 + 0.453) = 3.49
+    Final delta: 3.49 × 1 × 1 = 3.49
+    surprise: base=18 × trig=1.2 × weight=0.1 → raw=2.16
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.320) = 1.47
+    Final delta: 1.47 × 1 × 1 = 1.47
 
   Stimulant: "Mai hunts down and kills the three guards who took her family, slitting their throats and stabbing through the last one's foot in an act of vengeance"
     Event: success | Subject: self | Source: self_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    joy: base=32 × trig=1 × weight=0.7 → raw=22.40
+    joy: base=28 × trig=1.2 × weight=0.5 → raw=16.80
     Trait modifiers for joy (total: -0.093):
   empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 22.40 × (1 + -0.093) = 20.31
-    Final delta: 20.31 × 1 × 1.1 = 22.34
-    trust: base=36 × trig=1 × weight=0.2 → raw=7.20
+    Modified delta: 16.80 × (1 + -0.093) = 15.23
+    Final delta: 15.23 × 1 × 1.1 = 16.76
+    trust: base=12 × trig=1.2 × weight=0.2 → raw=2.88
     Trait modifiers for trust (total: -0.240):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 7.20 × (1 + -0.240) = 5.47
-    Final delta: 5.47 × 1 × 1.1 = 6.02
-    anticipation: base=23 × trig=1 × weight=0.1 → raw=2.30
+    Modified delta: 2.88 × (1 + -0.240) = 2.19
+    Final delta: 2.19 × 1 × 1.1 = 2.41
+    anticipation: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.30 × (1 + -0.107) = 2.05
-    Final delta: 2.05 × 1 × 1.1 = 2.26
+    Modified delta: 3.96 × (1 + -0.107) = 3.54
+    Final delta: 3.54 × 1 × 1.1 = 3.89
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 1 × 1.1 = 2.42
 
   Stimulant: "The previous Prime Archon watches Mai kill the guards with amusement instead of stopping her, then recruits her into Ghost Operations"
     Event: surprise_reveal | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    surprise: base=18 × trig=0.85 × weight=0.7 → raw=10.71
+    surprise: base=18 × trig=0.75 × weight=0.6 → raw=8.10
     Trait modifiers for surprise (total: -0.320):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
   impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
-    Modified delta: 10.71 × (1 + -0.320) = 7.28
-    Final delta: 7.28 × 1 × 1 = 7.28
-    fear: base=23 × trig=0.85 × weight=0.15 → raw=2.93
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 8.10 × (1 + -0.320) = 5.51
+    Final delta: 5.51 × 1 × 1 = 5.51
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 2.93 × (1 + -0.480) = 1.52
-    Final delta: 1.52 × 1 × 1 = 1.52
-    anticipation: base=23 × trig=0.85 × weight=0.15 → raw=2.93
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1 = 1.44
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.93 × (1 + -0.107) = 2.62
-    Final delta: 2.62 × 1 × 1 = 2.62
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1 = 2.95
 
   Stimulant: "Godric confronts Mai about revealing Fourth Floor secrets to Praew and calls her behavior "sick" for imitating a young person to experience missed youth"
     Event: insult | Subject: self | Source: enemy_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: enemy_caused → ×0.8
-    anger: base=27 × trig=1 × weight=0.6 → raw=16.20
+    anger: base=14 × trig=1.2 × weight=0.5 → raw=8.40
     Trait modifiers for anger (total: +0.113):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
@@ -8105,175 +9527,216 @@ Stimulants this chapter: 15
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 16.20 × (1 + 0.113) = 18.04
-    Final delta: 18.04 × 1 × 0.8 = 14.43
-    disgust: base=22 × trig=1 × weight=0.2 → raw=4.40
+    Modified delta: 8.40 × (1 + 0.113) = 9.35
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 9.35 × 1 × 0.8 × 1.24 = 9.28
+    disgust: base=18 × trig=1.2 × weight=0.2 → raw=4.32
     Trait modifiers for disgust (total: -0.100):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 4.40 × (1 + -0.100) = 3.96
-    Final delta: 3.96 × 1 × 0.8 = 3.17
-    sadness: base=31 × trig=1 × weight=0.2 → raw=6.20
+    Modified delta: 4.32 × (1 + -0.100) = 3.89
+    Final delta: 3.89 × 1 × 0.8 = 3.11
+    sadness: base=20 × trig=1.2 × weight=0.15 → raw=3.60
     Trait modifiers for sadness (total: +0.453):
   empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.20 × (1 + 0.453) = 9.01
-    Final delta: 9.01 × 1 × 0.8 = 7.21
-
-  Stimulant: "Godric accuses Mai of making Praew her "next victim" and threatens her for committing treason by sharing classified information"
-    Event: threat | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    fear: base=23 × trig=1 × weight=0.7 → raw=16.10
-    Trait modifiers for fear (total: -0.480):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 16.10 × (1 + -0.480) = 8.37
-    Final delta: 8.37 × 1 × 0.8 = 6.70
-    anger: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.40 × (1 + 0.113) = 6.01
-    Final delta: 6.01 × 1 × 0.8 = 4.81
-    anticipation: base=23 × trig=1 × weight=0.1 → raw=2.30
-    Trait modifiers for anticipation (total: -0.107):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.30 × (1 + -0.107) = 2.05
-    Final delta: 2.05 × 1 × 0.8 = 1.64
-
-  Stimulant: "Praew declares Mai her best friend and says she doesn't care about Mai's age, validating their bond in the face of Godric's hostility"
-    Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: ally_caused → ×1.3
-    trust: base=36 × trig=1 × weight=0.5 → raw=18.00
-    Trait modifiers for trust (total: -0.240):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 18.00 × (1 + -0.240) = 13.68
-    Final delta: 13.68 × 0.8 × 1.3 = 14.23
-    joy: base=32 × trig=1 × weight=0.3 → raw=9.60
-    Trait modifiers for joy (total: -0.093):
-  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-    Modified delta: 9.60 × (1 + -0.093) = 8.70
-    Final delta: 8.70 × 0.8 × 1.3 = 9.05
-    anticipation: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anticipation (total: -0.107):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.60 × (1 + -0.107) = 4.11
-    Final delta: 4.11 × 0.8 × 1.3 = 4.27
-
-  Stimulant: "Mai stabs Godric through the foot and shouts for Praew to run, sacrificing her own safety to protect her friend"
-    Event: danger_cue | Subject: self | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    fear: base=23 × trig=1 × weight=0.7 → raw=16.10
-    Trait modifiers for fear (total: -0.480):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 16.10 × (1 + -0.480) = 8.37
-    Final delta: 8.37 × 1 × 1.1 = 9.21
-    anticipation: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anticipation (total: -0.107):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 4.60 × (1 + -0.107) = 4.11
-    Final delta: 4.11 × 1 × 1.1 = 4.52
-    anger: base=27 × trig=1 × weight=0.1 → raw=2.70
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.70 × (1 + 0.113) = 3.01
-    Final delta: 3.01 × 1 × 1.1 = 3.31
-
-  Stimulant: "Godric casually kicks Mai across the training hall like a child's toy, demonstrating the massive power gap between them"
-    Event: harm | Subject: self | Source: enemy_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    fear: base=23 × trig=1 × weight=0.5 → raw=11.50
-    Trait modifiers for fear (total: -0.480):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 11.50 × (1 + -0.480) = 5.98
-    Final delta: 5.98 × 1 × 0.8 = 4.78
-    anger: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for anger (total: +0.113):
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 8.10 × (1 + 0.113) = 9.02
-    Final delta: 9.02 × 1 × 0.8 = 7.21
-    sadness: base=31 × trig=1 × weight=0.2 → raw=6.20
-    Trait modifiers for sadness (total: +0.453):
-  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.20 × (1 + 0.453) = 9.01
-    Final delta: 9.01 × 1 × 0.8 = 7.21
-
-  Stimulant: "Mai reveals she does not age due to something that happened on the Fourth Floor, exposing her deepest secret and isolation"
-    Event: surprise_reveal | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    surprise: base=18 × trig=0.85 × weight=0.7 → raw=10.71
+    Modified delta: 3.60 × (1 + 0.453) = 5.23
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 5.23 × 1 × 0.8 × 1.12 = 4.69
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
     Trait modifiers for surprise (total: -0.320):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
   impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
-    Modified delta: 10.71 × (1 + -0.320) = 7.28
-    Final delta: 7.28 × 1 × 1.1 = 8.01
-    fear: base=23 × trig=0.85 × weight=0.15 → raw=2.93
-    Trait modifiers for fear (total: -0.480):
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 1 × 0.8 = 1.76
+
+  Stimulant: "Godric accuses Mai of making Praew her "next victim" and threatens her for committing treason by sharing classified information"
+    Event: threat | Subject: self | Source: enemy_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    fear: base=15 × trig=1.2 × weight=0.7 → raw=12.60
+    Trait modifiers for fear (total: -0.360):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
-  riskAppetite(60/75 × -0.3) = -0.240 [High risk appetite = fear hits less hard]
-    Modified delta: 2.93 × (1 + -0.480) = 1.52
-    Final delta: 1.52 × 1 × 1.1 = 1.68
-    anticipation: base=23 × trig=0.85 × weight=0.15 → raw=2.93
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 12.60 × (1 + -0.360) = 8.06
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 8.06 × 1 × 0.8 × 1.7200000000000002 = 11.10
+    anger: base=14 × trig=1.2 × weight=0.15 → raw=2.52
+    Trait modifiers for anger (total: +0.113):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.52 × (1 + 0.113) = 2.81
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 2.81 × 1 × 0.8 × 1.24 = 2.78
+    anticipation: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for anticipation (total: -0.107):
   emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
   curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
-    Modified delta: 2.93 × (1 + -0.107) = 2.62
-    Final delta: 2.62 × 1 × 1.1 = 2.88
+    Modified delta: 3.96 × (1 + -0.107) = 3.54
+    Final delta: 3.54 × 1 × 0.8 = 2.83
+
+  Stimulant: "Praew declares Mai her best friend and says she doesn't care about Mai's age, validating their bond in the face of Godric's hostility"
+    Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: ally_caused → ×1.3
+    trust: base=12 × trig=1.2 × weight=0.4 → raw=5.76
+    Trait modifiers for trust (total: -0.240):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 5.76 × (1 + -0.240) = 4.38
+    Domain amp: belonging → trust ×1.36 (only at High+ trigger)
+    Final delta: 4.38 × 0.85 × 1.3 × 1.36 = 6.58
+    joy: base=28 × trig=1.2 × weight=0.3 → raw=10.08
+    Trait modifiers for joy (total: -0.093):
+  empathyBaseline(55/75 × 0.2) = +0.147 [Empathic joy — shares in others' happiness]
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+    Modified delta: 10.08 × (1 + -0.093) = 9.14
+    Final delta: 9.14 × 0.85 × 1.3 = 10.10
+    anticipation: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for anticipation (total: -0.107):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 5.28 × (1 + -0.107) = 4.72
+    Final delta: 4.72 × 0.85 × 1.3 = 5.21
+    surprise: base=18 × trig=1.2 × weight=0.1 → raw=2.16
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.320) = 1.47
+    Final delta: 1.47 × 0.85 × 1.3 = 1.62
+
+  Stimulant: "Mai stabs Godric through the foot and shouts for Praew to run, sacrificing her own safety to protect her friend"
+    Event: danger_cue | Subject: self | Source: self_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    fear: base=15 × trig=1.2 × weight=0.45 → raw=8.10
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 8.10 × (1 + -0.360) = 5.18
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 5.18 × 1 × 1.1 × 1.7200000000000002 = 9.81
+    anticipation: base=22 × trig=1.2 × weight=0.25 → raw=6.60
+    Trait modifiers for anticipation (total: -0.107):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 6.60 × (1 + -0.107) = 5.90
+    Final delta: 5.90 × 1 × 1.1 = 6.49
+    anger: base=14 × trig=1.2 × weight=0.15 → raw=2.52
+    Trait modifiers for anger (total: +0.113):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.52 × (1 + 0.113) = 2.81
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 2.81 × 1 × 1.1 × 1.24 = 3.83
+    surprise: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 1 × 1.1 = 2.42
+
+  Stimulant: "Godric casually kicks Mai across the training hall like a child's toy, demonstrating the massive power gap between them"
+    Event: harm | Subject: self | Source: enemy_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    fear: base=15 × trig=1.2 × weight=0.6 → raw=10.80
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.360) = 6.91
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.91 × 1 × 0.8 × 1.7200000000000002 = 9.51
+    anger: base=14 × trig=1.2 × weight=0.2 → raw=3.36
+    Trait modifiers for anger (total: +0.113):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  confrontationalTendency(55/75 × 0.3) = +0.220 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(40/75 × 0.2) = +0.107 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(40/75 × 0.1) = +0.053 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 3.36 × (1 + 0.113) = 3.74
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.74 × 1 × 0.8 × 1.24 = 3.71
+    sadness: base=20 × trig=1.2 × weight=0.1 → raw=2.40
+    Trait modifiers for sadness (total: +0.453):
+  empathyBaseline(55/75 × 0.4) = +0.293 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  shameSensitivity(55/75 × 0.3) = +0.220 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(45/75 × 0.3) = +0.180 [High guilt = sadness from moral self-judgment]
+    Modified delta: 2.40 × (1 + 0.453) = 3.49
+    Final delta: 3.49 × 1 × 0.8 = 2.79
+    surprise: base=18 × trig=1.2 × weight=0.1 → raw=2.16
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 2.16 × (1 + -0.320) = 1.47
+    Final delta: 1.47 × 1 × 0.8 = 1.18
+
+  Stimulant: "Mai reveals she does not age due to something that happened on the Fourth Floor, exposing her deepest secret and isolation"
+    Event: surprise_reveal | Subject: self | Source: self_caused | Domain: belonging
+    Trigger: stakes=2 imm=1 cert=3 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    surprise: base=18 × trig=0.75 × weight=0.6 → raw=8.10
+    Trait modifiers for surprise (total: -0.320):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(60/75 × -0.2) = -0.160 [Adaptable = recovers from surprise faster]
+  impulsiveness(40/75 × 0.15) = +0.080 [Impulsive = reacts more to surprises]
+    Modified delta: 8.10 × (1 + -0.320) = 5.51
+    Final delta: 5.51 × 1 × 1.1 = 6.06
+    fear: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for fear (total: -0.360):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  riskAppetite(60/75 × -0.15) = -0.120 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.25 × (1 + -0.360) = 1.44
+    Final delta: 1.44 × 1 × 1.1 = 1.58
+    anticipation: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for anticipation (total: -0.107):
+  emotionalContainment(60/75 × -0.3) = -0.240 [High containment = suppresses emotional expression]
+  curiosity(50/75 × 0.2) = +0.133 [Curious = heightened anticipation for new info]
+    Modified delta: 3.30 × (1 + -0.107) = 2.95
+    Final delta: 2.95 × 1 × 1.1 = 3.24
+  Tone adjustment: negative chapter dampens joy: 26.9 × 0.4 = 10.7
+  Tone adjustment: negative chapter dampens trust: 13.3 × 0.4 = 5.3
+  Tone adjustment: negative chapter dampens anticipation: 37.4 × 0.4 = 15.0
+  Compression: sadness raw=97.3 → compressed=93.9 (threshold=75)
 
   Suppression applied:
-  Suppression: anger(74.3) suppresses joy by -34.61 (50% of anger delta)
-  Suppression: anger(74.3) suppresses trust by -20.77 (30% of anger delta)
-  Suppression: anger(74.3) suppresses fear by -10.38 (15% of anger delta)
-  Suppression: sadness(162.8) suppresses joy by -93.81 (60% of sadness delta)
-  Suppression: sadness(162.8) suppresses anticipation by -46.91 (30% of sadness delta)
-  Suppression: sadness(162.8) suppresses surprise by -31.27 (20% of sadness delta)
+  Suppression: sadness(94.1) suppresses joy by -56.33 (60% of sadness delta)
+  Suppression: sadness(94.1) suppresses anticipation by -28.16 (30% of sadness delta)
+  Suppression: sadness(94.1) suppresses surprise by -18.78 (20% of sadness delta)
+  Suppression: fear(62.2) suppresses joy by -24.82 (40% of fear delta)
+  Suppression: fear(62.2) suppresses trust by -18.62 (30% of fear delta)
+  Suppression: fear(62.2) suppresses anticipation by -12.41 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(1.9 × 0.25) + delta(-97.03) = -96.55
-    sadness: carry(6.4 × 0.25) + delta(156.36) = 157.97
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(5.0 × 0.25) + delta(69.22) = 70.48
-    fear: carry(3.1 × 0.25) + delta(40.72) = 41.50
-    disgust: carry(0.4 × 0.25) + delta(3.17) = 3.27
-    surprise: carry(1.4 × 0.25) + delta(-15.98) = -15.62
-    trust: carry(3.0 × 0.25) + delta(-0.52) = 0.24
-    anticipation: carry(3.1 × 0.25) + delta(-25.63) = -24.86
+    joy: carry(0.1 × 0.2) + delta(-70.41) = -70.38
+    sadness: carry(0.2 × 0.08) + delta(93.88) = 93.89
+    *** sadness in RED ZONE: VU=93.9 (track capped at 75) ***
+    anger: carry(0.1 × 0.08) + delta(33.78) = 33.79
+    fear: carry(0.1 × 0.25) + delta(62.06) = 62.08
+    disgust: carry(0.0 × 0.12) + delta(3.11) = 3.11
+    surprise: carry(0.1 × 0.2) + delta(10.23) = 10.26
+    trust: carry(0.1 × 0.2) + delta(-13.28) = -13.26
+    anticipation: carry(0.3 × 0.2) + delta(-25.60) = -25.55
 
 === Chapter 14 ===
 Character NOT PRESENT — values frozen, no line drawn
@@ -8327,24 +9790,24 @@ Character NOT PRESENT — values frozen, no line drawn
 Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 --------------------------------------------------------------------------
  0 |      0 |      0 |      0 |      0 |      0 |      0 |      0 |      0
- 1 |      0 |     73 |     29 |      3 |     19 |      0 |      0 |      0
- 2 |      0 |    75! |     63 |      8 |     27 |      0 |      0 |      0
- 3 |      0 |    75! |     71 |     44 |     13 |      0 |      0 |      0
- 4 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
- 5 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
- 6 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
- 7 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
- 8 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
- 9 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-10 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-11 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-12 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-13 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-14 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-15 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-16 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-17 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
-18 |      0 |     75 |     71 |     44 |     13 |      0 |      0 |      0
+ 1 |      4 |     37 |     27 |      6 |     23 |     20 |      0 |      7
+ 2 |      0 |     58 |     33 |     12 |     16 |     18 |      0 |      0
+ 3 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 4 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 5 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 6 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 7 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 8 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+ 9 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+10 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+11 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+12 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+13 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+14 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+15 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+16 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+17 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
+18 |      0 |     62 |     38 |     59 |      7 |     21 |      0 |      0
 ```
 
 ### Calculation Breakdown
@@ -8355,28 +9818,65 @@ Ch |    joy |  sadne |  anger |   fear |  disgu |  surpr |  trust |  antic
 Character NOT PRESENT — values frozen, no line drawn
 
 === Chapter 1 ===
-Stimulants this chapter: 6
+Stimulants this chapter: 7
+
+  Stimulant: "Asher faces the Hunter Test that will determine if his 12-year plan to escape his father succeeds — the anticipation of becoming a Hunter drives everything"
+    Event: obstacle | Subject: self | Source: world_caused | Domain: future_security
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    anger: base=15 × trig=1.2 × weight=0.3 → raw=5.40
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 5.40 × (1 + 0.127) = 6.08
+    Final delta: 6.08 × 1 × 0.7 = 4.26
+    fear: base=18 × trig=1.2 × weight=0.3 → raw=6.48
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.48 × (1 + -0.320) = 4.41
+    Domain amp: future_security → fear ×1.36 (only at High+ trigger)
+    Final delta: 4.41 × 1 × 0.7 × 1.36 = 4.19
+    anticipation: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 12.00 × (1 + -0.100) = 10.80
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 10.80 × 1 × 0.7 × 1.36 = 10.28
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 0.7 = 1.99
 
   Stimulant: "Asher struggles to put down the book "Srevlis" for the last time, honoring a pact with his friends to never read it again before the Hunter test"
     Event: loss | Subject: self | Source: self_caused | Domain: attachment
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=0.85 × weight=0.7 → raw=16.06
+    sadness: base=15 × trig=0.75 × weight=0.6 → raw=6.75
     Trait modifiers for sadness (total: +0.440):
   empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.06 × (1 + 0.440) = 23.13
-    Final delta: 23.13 × 1 × 1.1 = 25.45
-    fear: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for fear (total: -0.420):
+    Modified delta: 6.75 × (1 + 0.440) = 9.72
+    Final delta: 9.72 × 1 × 1.1 = 10.69
+    fear: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for fear (total: -0.320):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 4.59 × (1 + -0.420) = 2.66
-    Final delta: 2.66 × 1 × 1.1 = 2.93
-    anger: base=23 × trig=0.85 × weight=0.1 → raw=1.96
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 1.1 = 1.51
+    anger: base=15 × trig=0.75 × weight=0.1 → raw=1.13
     Trait modifiers for anger (total: +0.127):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
@@ -8384,21 +9884,28 @@ Stimulants this chapter: 6
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 1.96 × (1 + 0.127) = 2.20
-    Final delta: 2.20 × 1 × 1.1 = 2.42
+    Modified delta: 1.13 × (1 + 0.127) = 1.27
+    Final delta: 1.27 × 1 × 1.1 = 1.39
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.283) = 1.77
+    Final delta: 1.77 × 1 × 1.1 = 1.95
 
   Stimulant: "Asher defends Praew against Renwick's sexist mockery, snapping his book shut and verbally lashing Renwick"
     Event: moral_cue | Subject: friend | Source: enemy_caused | Domain: morality
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: enemy_caused → ×0.8
-    disgust: base=23 × trig=0.85 × weight=0.4 → raw=7.82
+    disgust: base=18 × trig=0.75 × weight=0.35 → raw=4.72
     Trait modifiers for disgust (total: -0.080):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.82 × (1 + -0.080) = 7.19
-    Final delta: 7.19 × 0.8 × 0.8 = 4.60
-    anger: base=23 × trig=0.85 × weight=0.3 → raw=5.87
+    Modified delta: 4.72 × (1 + -0.080) = 4.35
+    Final delta: 4.35 × 0.85 × 0.8 = 2.96
+    anger: base=15 × trig=0.75 × weight=0.25 → raw=2.81
     Trait modifiers for anger (total: +0.127):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
@@ -8406,537 +9913,68 @@ Stimulants this chapter: 6
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.87 × (1 + 0.127) = 6.61
-    Final delta: 6.61 × 0.8 × 0.8 = 4.23
-    sadness: base=27 × trig=0.85 × weight=0.3 → raw=6.88
+    Modified delta: 2.81 × (1 + 0.127) = 3.17
+    Final delta: 3.17 × 0.85 × 0.8 = 2.15
+    sadness: base=15 × trig=0.75 × weight=0.2 → raw=2.25
     Trait modifiers for sadness (total: +0.440):
   empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.88 × (1 + 0.440) = 9.91
-    Final delta: 9.91 × 0.8 × 0.8 = 6.35
+    Modified delta: 2.25 × (1 + 0.440) = 3.24
+    Final delta: 3.24 × 0.85 × 0.8 = 2.20
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.283) = 2.37
+    Final delta: 2.37 × 0.85 × 0.8 = 1.61
 
   Stimulant: "Asher passes the knowledge portion of the Hunter exam, hearing his name called last among the six survivors"
     Event: success | Subject: self | Source: self_caused | Domain: competence
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: self_caused → ×1.1
-    joy: base=14 × trig=1 × weight=0.7 → raw=9.80
+    joy: base=15 × trig=1.2 × weight=0.5 → raw=9.00
     Trait modifiers for joy (total: -0.100):
   empathyBaseline(45/75 × 0.2) = +0.120 [Empathic joy — shares in others' happiness]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 9.80 × (1 + -0.100) = 8.82
-    Final delta: 8.82 × 1 × 1.1 = 9.70
-    trust: base=23 × trig=1 × weight=0.2 → raw=4.60
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 1.1 = 8.91
+    trust: base=20 × trig=1.2 × weight=0.2 → raw=4.80
     Trait modifiers for trust (total: -0.220):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 4.60 × (1 + -0.220) = 3.59
-    Final delta: 3.59 × 1 × 1.1 = 3.95
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
+    Modified delta: 4.80 × (1 + -0.220) = 3.74
+    Final delta: 3.74 × 1 × 1.1 = 4.12
+    anticipation: base=40 × trig=1.2 × weight=0.15 → raw=7.20
     Trait modifiers for anticipation (total: -0.100):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + -0.100) = 2.88
-    Final delta: 2.88 × 1 × 1.1 = 3.17
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Final delta: 6.48 × 1 × 1.1 = 7.13
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 1.1 = 3.12
 
   Stimulant: "Asher glances up at The Prime Archon watching from above and realizes the test is rigged so both he and Haldric will fail"
     Event: betrayal | Subject: family | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
     Source mult: authority_caused → ×1
-    sadness: base=27 × trig=1 × weight=0.4 → raw=10.80
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.80 × (1 + 0.440) = 15.55
-    Final delta: 15.55 × 0.9 × 1 = 14.00
-    anger: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 6.90 × (1 + 0.127) = 7.77
-    Final delta: 7.77 × 0.9 × 1 = 7.00
-    trust (COLLAPSE): base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for trust (total: -0.220):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 6.90 × (1 + -0.220) = 5.38
-    Final delta: 5.38 × 0.9 × 1 = 4.84
-    → Trust COLLAPSED by -4.84
-
-  Stimulant: "Asher hesitates at the ledge, then deliberately turns away from Haldric and takes both stones, betraying his best friend to pass the test"
-    Event: moral_cue | Subject: friend | Source: self_caused | Domain: morality
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: self_caused → ×1.1
-    disgust: base=23 × trig=1 × weight=0.4 → raw=9.20
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 9.20 × (1 + -0.080) = 8.46
-    Final delta: 8.46 × 0.8 × 1.1 = 7.45
-    anger: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 6.90 × (1 + 0.127) = 7.77
-    Final delta: 7.77 × 0.8 × 1.1 = 6.84
-    sadness: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 8.10 × (1 + 0.440) = 11.66
-    Final delta: 11.66 × 0.8 × 1.1 = 10.26
-
-  Stimulant: "Asher refuses to meet Haldric's furious gaze after stealing both stones, consumed by silent guilt"
-    Event: humiliation | Subject: self | Source: self_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.4 → raw=10.80
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 10.80 × (1 + 0.440) = 15.55
-    Final delta: 15.55 × 1 × 1.1 = 17.11
-    anger: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 6.90 × (1 + 0.127) = 7.77
-    Final delta: 7.77 × 1 × 1.1 = 8.55
-    disgust: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.90 × (1 + -0.080) = 6.35
-    Final delta: 6.35 × 1 × 1.1 = 6.98
-  Ambient surprise: avg_trigger(0.95) × 15 = +14.3
-
-  Suppression applied:
-  Suppression: sadness(73.2) suppresses joy by -43.90 (60% of sadness delta)
-  Suppression: sadness(73.2) suppresses anticipation by -21.95 (30% of sadness delta)
-  Suppression: sadness(73.2) suppresses surprise by -14.63 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-34.19) = -34.19
-    sadness: carry(0.0 × 0.25) + delta(73.16) = 73.16
-    anger: carry(0.0 × 0.25) + delta(29.04) = 29.04
-    fear: carry(0.0 × 0.25) + delta(2.93) = 2.93
-    disgust: carry(0.0 × 0.25) + delta(19.04) = 19.04
-    surprise: carry(0.0 × 0.25) + delta(-0.38) = -0.38
-    trust: carry(0.0 × 0.25) + delta(-0.90) = -0.90
-    anticipation: carry(0.0 × 0.25) + delta(-18.78) = -18.78
-
-=== Chapter 2 ===
-Stimulants this chapter: 10
-
-  Stimulant: "Asher is announced as a Beast Hunter, the most prestigious role aside from Mythical Beast Hunter, triggering gasps across the hall"
-    Event: success | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    joy: base=14 × trig=1 × weight=0.7 → raw=9.80
-    Trait modifiers for joy (total: -0.100):
-  empathyBaseline(45/75 × 0.2) = +0.120 [Empathic joy — shares in others' happiness]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 9.80 × (1 + -0.100) = 8.82
-    Final delta: 8.82 × 1 × 1 = 8.82
-    trust: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for trust (total: -0.220):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 4.60 × (1 + -0.220) = 3.59
-    Final delta: 3.59 × 1 × 1 = 3.59
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + -0.100) = 2.88
-    Final delta: 2.88 × 1 × 1 = 2.88
-
-  Stimulant: "Asher feels Haldric's blazing hatred radiating from him after the role announcements, knowing his friend despises him"
-    Event: rejection | Subject: friend | Source: self_caused | Domain: belonging
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.6 → raw=16.20
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.20 × (1 + 0.440) = 23.33
-    Final delta: 23.33 × 0.8 × 1.1 = 20.53
-    anger: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.60 × (1 + 0.127) = 5.18
-    Final delta: 5.18 × 0.8 × 1.1 = 4.56
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.420) = 3.13
-    Final delta: 3.13 × 0.8 × 1.1 = 2.76
-
-  Stimulant: "Asher turns his back on Praew and Haldric without saying goodbye or apologizing, walking away like a coward"
-    Event: separation | Subject: friend | Source: self_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: friend → ×0.8
-    Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=1 × weight=0.6 → raw=16.20
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.20 × (1 + 0.440) = 23.33
-    Final delta: 23.33 × 0.8 × 1.1 = 20.53
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.420) = 3.13
-    Final delta: 3.13 × 0.8 × 1.1 = 2.76
-    anger: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.60 × (1 + 0.127) = 5.18
-    Final delta: 5.18 × 0.8 × 1.1 = 4.56
-
-  Stimulant: "Asher walks past The Prime and coldly accuses his father of trying to sabotage him by pitting him against his best friend"
-    Event: betrayal | Subject: family | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    sadness: base=27 × trig=0.85 × weight=0.4 → raw=9.18
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.18 × (1 + 0.440) = 13.22
-    Final delta: 13.22 × 0.9 × 1 = 11.90
-    anger: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.87 × (1 + 0.127) = 6.61
-    Final delta: 6.61 × 0.9 × 1 = 5.95
-    trust (COLLAPSE): base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for trust (total: -0.220):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 5.87 × (1 + -0.220) = 4.57
-    Final delta: 4.57 × 0.9 × 1 = 4.12
-    → Trust COLLAPSED by -4.12
-
-  Stimulant: "Renwick taunts Asher with "all Rivers run cold," and Asher internally admits Renwick is right about his cruelty"
-    Event: insult | Subject: self | Source: enemy_caused | Domain: morality
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: enemy_caused → ×0.8
-    anger: base=23 × trig=0.85 × weight=0.6 → raw=11.73
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 11.73 × (1 + 0.127) = 13.22
-    Final delta: 13.22 × 1 × 0.8 = 10.57
-    disgust: base=23 × trig=0.85 × weight=0.2 → raw=3.91
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 3.91 × (1 + -0.080) = 3.60
-    Final delta: 3.60 × 1 × 0.8 = 2.88
-    sadness: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.59 × (1 + 0.440) = 6.61
-    Final delta: 6.61 × 1 × 0.8 = 5.29
-
-  Stimulant: "Asher silently apologizes to Haldric and Praew in his mind, clenching his fists with guilt while walking away"
-    Event: moral_cue | Subject: friend | Source: self_caused | Domain: morality
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
-    Source mult: self_caused → ×1.1
-    disgust: base=23 × trig=0.85 × weight=0.4 → raw=7.82
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 7.82 × (1 + -0.080) = 7.19
-    Final delta: 7.19 × 0.8 × 1.1 = 6.33
-    anger: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.87 × (1 + 0.127) = 6.61
-    Final delta: 6.61 × 0.8 × 1.1 = 5.81
-    sadness: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 6.88 × (1 + 0.440) = 9.91
-    Final delta: 9.91 × 0.8 × 1.1 = 8.72
-
-  Stimulant: "Both Asher and Renwick are overwhelmed and blinded by the sun on their first surface exposure, crying and panicking"
-    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.420) = 10.96
-    Final delta: 10.96 × 1 × 0.7 = 7.67
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + -0.100) = 5.76
-    Final delta: 5.76 × 1 × 0.7 = 4.03
-    anger: base=23 × trig=1 × weight=0.1 → raw=2.30
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.30 × (1 + 0.127) = 2.59
-    Final delta: 2.59 × 1 × 0.7 = 1.81
-
-  Stimulant: "Asher discovers the air on the surface is richer and thicker, coughing violently as his lungs burn from the unfamiliar sensation"
-    Event: obstacle | Subject: self | Source: world_caused | Domain: competence
-    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    anger: base=23 × trig=0.85 × weight=0.4 → raw=7.82
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 7.82 × (1 + 0.127) = 8.81
-    Final delta: 8.81 × 1 × 0.7 = 6.17
-    anticipation: base=32 × trig=0.85 × weight=0.3 → raw=8.16
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 8.16 × (1 + -0.100) = 7.34
-    Final delta: 7.34 × 1 × 0.7 = 5.14
-    fear: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 6.88 × (1 + -0.420) = 3.99
-    Final delta: 3.99 × 1 × 0.7 = 2.80
-
-  Stimulant: "Asher meets his team lead Azel and is immediately embarrassed for speaking rudely to a superior"
-    Event: humiliation | Subject: self | Source: self_caused | Domain: status
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    sadness: base=27 × trig=0.85 × weight=0.4 → raw=9.18
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.18 × (1 + 0.440) = 13.22
-    Final delta: 13.22 × 1 × 1.1 = 14.54
-    anger: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.87 × (1 + 0.127) = 6.61
-    Final delta: 6.61 × 1 × 1.1 = 7.27
-    disgust: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.87 × (1 + -0.080) = 5.40
-    Final delta: 5.40 × 1 × 1.1 = 5.94
-
-  Stimulant: "Azel mocks Asher for crying and screaming during his first exposure to sunlight, revealing other Hunters watched as hazing tradition"
-    Event: humiliation | Subject: self | Source: ally_caused | Domain: status
-    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    sadness: base=27 × trig=0.85 × weight=0.4 → raw=9.18
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 9.18 × (1 + 0.440) = 13.22
-    Final delta: 13.22 × 1 × 1.3 = 17.18
-    anger: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 5.87 × (1 + 0.127) = 6.61
-    Final delta: 6.61 × 1 × 1.3 = 8.59
-    disgust: base=23 × trig=0.85 × weight=0.3 → raw=5.87
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 5.87 × (1 + -0.080) = 5.40
-    Final delta: 5.40 × 1 × 1.3 = 7.01
-  Ambient surprise: avg_trigger(0.91) × 15 = +13.6
-
-  Suppression applied:
-  Suppression: anger(84.3) suppresses joy by -27.65 (50% of anger delta)
-  Suppression: anger(84.3) suppresses trust by -16.59 (30% of anger delta)
-  Suppression: anger(84.3) suppresses fear by -8.29 (15% of anger delta)
-  Suppression: sadness(171.9) suppresses joy by -59.22 (60% of sadness delta)
-  Suppression: sadness(171.9) suppresses anticipation by -29.61 (30% of sadness delta)
-  Suppression: sadness(171.9) suppresses surprise by -19.74 (20% of sadness delta)
-
-  Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-78.04) = -78.04
-    sadness: carry(73.2 × 0.25) + delta(98.69) = 116.98
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(29.0 × 0.25) + delta(55.30) = 62.56
-    fear: carry(2.9 × 0.25) + delta(7.69) = 8.42
-    disgust: carry(19.0 × 0.25) + delta(22.16) = 26.92
-    surprise: carry(0.0 × 0.25) + delta(-6.09) = -6.09
-    trust: carry(0.0 × 0.25) + delta(-17.12) = -17.12
-    anticipation: carry(0.0 × 0.25) + delta(-17.56) = -17.56
-
-=== Chapter 3 ===
-Stimulants this chapter: 12
-
-  Stimulant: "Asher nearly dies on his very first step on the surface when a BoltStone erupts where he stood; Azel yanks him back just in time"
-    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.420) = 10.96
-    Final delta: 10.96 × 1 × 0.7 = 7.67
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + -0.100) = 5.76
-    Final delta: 5.76 × 1 × 0.7 = 4.03
-    anger: base=23 × trig=1 × weight=0.1 → raw=2.30
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.30 × (1 + 0.127) = 2.59
-    Final delta: 2.59 × 1 × 0.7 = 1.81
-
-  Stimulant: "Azel berates Asher for being distracted by the beauty of the surface, shattering his sense of awe"
-    Event: constraint | Subject: self | Source: ally_caused | Domain: competence
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: ally_caused → ×1.3
-    anger: base=23 × trig=1 × weight=0.5 → raw=11.50
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 11.50 × (1 + 0.127) = 12.96
-    Final delta: 12.96 × 1 × 1.3 = 16.84
-    fear: base=27 × trig=1 × weight=0.3 → raw=8.10
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 8.10 × (1 + -0.420) = 4.70
-    Final delta: 4.70 × 1 × 1.3 = 6.11
-    sadness: base=27 × trig=1 × weight=0.2 → raw=5.40
+    sadness: base=15 × trig=1.2 × weight=0.3 → raw=5.40
     Trait modifiers for sadness (total: +0.440):
   empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
     Modified delta: 5.40 × (1 + 0.440) = 7.78
-    Final delta: 7.78 × 1 × 1.3 = 10.11
-
-  Stimulant: "Asher nearly draws his blade on a non-aggressive beast, almost getting both himself and Azel killed"
-    Event: danger_cue | Subject: self | Source: self_caused | Domain: safety
-    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1)
-    Subject mult: self → ×1
-    Source mult: self_caused → ×1.1
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.420) = 10.96
-    Final delta: 10.96 × 1 × 1.1 = 12.06
-    anticipation: base=32 × trig=1 × weight=0.2 → raw=6.40
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 6.40 × (1 + -0.100) = 5.76
-    Final delta: 5.76 × 1 × 1.1 = 6.34
-    anger: base=23 × trig=1 × weight=0.1 → raw=2.30
+    Final delta: 7.78 × 0.95 × 1 = 7.39
+    anger: base=15 × trig=1.2 × weight=0.25 → raw=4.50
     Trait modifiers for anger (total: +0.127):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
@@ -8944,23 +9982,77 @@ Stimulants this chapter: 12
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.30 × (1 + 0.127) = 2.59
-    Final delta: 2.59 × 1 × 1.1 = 2.85
+    Modified delta: 4.50 × (1 + 0.127) = 5.07
+    Domain amp: autonomy → anger ×1.48 (only at High+ trigger)
+    Final delta: 5.07 × 0.95 × 1 × 1.48 = 7.13
+    trust (COLLAPSE): base=20 × trig=1.2 × weight=0.25 → raw=6.00
+    Trait modifiers for trust (total: -0.220):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+    Modified delta: 6.00 × (1 + -0.220) = 4.68
+    Final delta: 4.68 × 0.95 × 1 = 4.45
+    → Trust COLLAPSED by -4.45
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.283) = 3.78
+    Final delta: 3.78 × 0.95 × 1 = 3.59
 
-  Stimulant: "Asher reveals his surname Rivers and the team reacts with an unspoken, uncomfortable tension upon learning he is The Prime Archon's son"
-    Event: rejection | Subject: self | Source: world_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: world_caused → ×0.7
-    sadness: base=27 × trig=0.85 × weight=0.6 → raw=13.77
+  Stimulant: "Asher hesitates at the ledge, then deliberately turns away from Haldric and takes both stones, betraying his best friend to pass the test"
+    Event: moral_cue | Subject: friend | Source: self_caused | Domain: morality
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: self_caused → ×1.1
+    disgust: base=18 × trig=1.2 × weight=0.35 → raw=7.56
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 7.56 × (1 + -0.080) = 6.96
+    Domain amp: morality → disgust ×2.20 (only at High+ trigger)
+    Final delta: 6.96 × 0.85 × 1.1 × 2.2 = 14.31
+    anger: base=15 × trig=1.2 × weight=0.25 → raw=4.50
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 4.50 × (1 + 0.127) = 5.07
+    Domain amp: morality → anger ×1.36 (only at High+ trigger)
+    Final delta: 5.07 × 0.85 × 1.1 × 1.36 = 6.45
+    sadness: base=15 × trig=1.2 × weight=0.2 → raw=3.60
     Trait modifiers for sadness (total: +0.440):
   empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 13.77 × (1 + 0.440) = 19.83
-    Final delta: 19.83 × 1 × 0.7 = 13.88
-    anger: base=23 × trig=0.85 × weight=0.2 → raw=3.91
+    Modified delta: 3.60 × (1 + 0.440) = 5.18
+    Final delta: 5.18 × 0.85 × 1.1 = 4.85
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.283) = 3.78
+    Final delta: 3.78 × 0.85 × 1.1 = 3.54
+
+  Stimulant: "Asher refuses to meet Haldric's furious gaze after stealing both stones, consumed by silent guilt"
+    Event: humiliation | Subject: self | Source: self_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=15 × trig=1.2 × weight=0.3 → raw=5.40
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 5.40 × (1 + 0.440) = 7.78
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 7.78 × 1 × 1.1 × 1.36 = 11.63
+    anger: base=15 × trig=1.2 × weight=0.25 → raw=4.50
     Trait modifiers for anger (total: +0.127):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
@@ -8968,54 +10060,818 @@ Stimulants this chapter: 12
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 3.91 × (1 + 0.127) = 4.41
-    Final delta: 4.41 × 1 × 0.7 = 3.08
-    fear: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for fear (total: -0.420):
+    Modified delta: 4.50 × (1 + 0.127) = 5.07
+    Final delta: 5.07 × 1 × 1.1 = 5.58
+    disgust: base=18 × trig=1.2 × weight=0.25 → raw=5.40
+    Trait modifiers for disgust (total: -0.080):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 4.59 × (1 + -0.420) = 2.66
-    Final delta: 2.66 × 1 × 0.7 = 1.86
-
-  Stimulant: "Asher learns beasts can be farmed and food shortage is manufactured, questioning everything he was taught"
-    Event: surprise_reveal | Subject: group | Source: authority_caused | Domain: morality
-    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.85)
-    Subject mult: group → ×0.7
-    Source mult: authority_caused → ×1
-    surprise: base=22 × trig=0.85 × weight=0.7 → raw=13.09
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 5.40 × (1 + -0.080) = 4.97
+    Final delta: 4.97 × 1 × 1.1 = 5.46
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
     Trait modifiers for surprise (total: -0.283):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
   impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
-    Modified delta: 13.09 × (1 + -0.283) = 9.38
-    Final delta: 9.38 × 0.7 × 1 = 6.57
-    fear: base=27 × trig=0.85 × weight=0.15 → raw=3.44
-    Trait modifiers for fear (total: -0.420):
+    Modified delta: 5.28 × (1 + -0.283) = 3.78
+    Final delta: 3.78 × 1 × 1.1 = 4.16
+  Tone adjustment: negative chapter dampens joy: 8.9 × 0.4 = 3.6
+  Tone adjustment: negative chapter dampens anticipation: 17.4 × 0.4 = 7.0
+
+  Emotion updates:
+    joy: carry(0.0 × 0.2) + delta(3.56) = 3.56
+    sadness: carry(0.0 × 0.08) + delta(36.76) = 36.76
+    anger: carry(0.0 × 0.08) + delta(26.96) = 26.96
+    fear: carry(0.0 × 0.25) + delta(5.71) = 5.71
+    disgust: carry(0.0 × 0.12) + delta(22.73) = 22.73
+    surprise: carry(0.0 × 0.2) + delta(19.96) = 19.96
+    trust: carry(0.0 × 0.2) + delta(-0.33) = -0.33
+    anticipation: carry(0.0 × 0.2) + delta(6.96) = 6.96
+
+=== Chapter 2 ===
+Stimulants this chapter: 11
+
+  Stimulant: "Asher steps through the gate to the surface for the first time — the culmination of everything he planned, facing the unknown world he dreamed of"
+    Event: success | Subject: self | Source: self_caused | Domain: future_security
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    joy: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for joy (total: -0.100):
+  empathyBaseline(45/75 × 0.2) = +0.120 [Empathic joy — shares in others' happiness]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 3.44 × (1 + -0.420) = 2.00
-    Final delta: 2.00 × 0.7 × 1 = 1.40
-    anticipation: base=32 × trig=0.85 × weight=0.15 → raw=4.08
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 1.1 = 8.91
+    trust: base=20 × trig=1.2 × weight=0.2 → raw=4.80
+    Trait modifiers for trust (total: -0.220):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+    Modified delta: 4.80 × (1 + -0.220) = 3.74
+    Final delta: 3.74 × 1 × 1.1 = 4.12
+    anticipation: base=40 × trig=1.2 × weight=0.15 → raw=7.20
     Trait modifiers for anticipation (total: -0.100):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 4.08 × (1 + -0.100) = 3.67
-    Final delta: 3.67 × 0.7 × 1 = 2.57
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Domain amp: future_security → anticipation ×1.36 (only at High+ trigger)
+    Final delta: 6.48 × 1 × 1.1 × 1.36 = 9.69
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 1.1 = 3.12
+
+  Stimulant: "Asher is announced as a Beast Hunter, the most prestigious role aside from Mythical Beast Hunter, triggering gasps across the hall"
+    Event: success | Subject: self | Source: authority_caused | Domain: status
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    joy: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for joy (total: -0.100):
+  empathyBaseline(45/75 × 0.2) = +0.120 [Empathic joy — shares in others' happiness]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+    Modified delta: 9.00 × (1 + -0.100) = 8.10
+    Final delta: 8.10 × 1 × 1 = 8.10
+    trust: base=20 × trig=1.2 × weight=0.2 → raw=4.80
+    Trait modifiers for trust (total: -0.220):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+    Modified delta: 4.80 × (1 + -0.220) = 3.74
+    Final delta: 3.74 × 1 × 1 = 3.74
+    anticipation: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Final delta: 6.48 × 1 × 1 = 6.48
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 1 = 2.84
+
+  Stimulant: "Asher feels Haldric's blazing hatred radiating from him after the role announcements, knowing his friend despises him"
+    Event: rejection | Subject: friend | Source: self_caused | Domain: belonging
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: self_caused → ×1.1
+    sadness: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 9.00 × (1 + 0.440) = 12.96
+    Domain amp: belonging → sadness ×1.36 (only at High+ trigger)
+    Final delta: 12.96 × 0.85 × 1.1 × 1.36 = 16.48
+    anger: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 3.60 × (1 + 0.127) = 4.06
+    Final delta: 4.06 × 0.85 × 1.1 = 3.79
+    fear: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 0.85 × 1.1 = 2.06
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 0.85 × 1.1 = 2.65
+
+  Stimulant: "Asher turns his back on Praew and Haldric without saying goodbye or apologizing, walking away like a coward"
+    Event: separation | Subject: friend | Source: self_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: friend → ×0.85
+    Source mult: self_caused → ×1.1
+    sadness: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 9.00 × (1 + 0.440) = 12.96
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 12.96 × 0.85 × 1.1 × 1.48 = 17.93
+    fear: base=18 × trig=1.2 × weight=0.25 → raw=5.40
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 5.40 × (1 + -0.320) = 3.67
+    Final delta: 3.67 × 0.85 × 1.1 = 3.43
+    anger: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.70 × (1 + 0.127) = 3.04
+    Final delta: 3.04 × 0.85 × 1.1 = 2.84
+    surprise: base=22 × trig=1.2 × weight=0.1 → raw=2.64
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 2.64 × (1 + -0.283) = 1.89
+    Final delta: 1.89 × 0.85 × 1.1 = 1.77
+
+  Stimulant: "Asher walks past The Prime and coldly accuses his father of trying to sabotage him by pitting him against his best friend"
+    Event: betrayal | Subject: family | Source: authority_caused | Domain: autonomy
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    sadness: base=15 × trig=0.75 × weight=0.3 → raw=3.38
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.38 × (1 + 0.440) = 4.86
+    Final delta: 4.86 × 0.95 × 1 = 4.62
+    anger: base=15 × trig=0.75 × weight=0.25 → raw=2.81
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.81 × (1 + 0.127) = 3.17
+    Final delta: 3.17 × 0.95 × 1 = 3.01
+    trust (COLLAPSE): base=20 × trig=0.75 × weight=0.25 → raw=3.75
+    Trait modifiers for trust (total: -0.220):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+    Modified delta: 3.75 × (1 + -0.220) = 2.93
+    Final delta: 2.93 × 0.95 × 1 = 2.78
+    → Trust COLLAPSED by -2.78
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.283) = 2.37
+    Final delta: 2.37 × 0.95 × 1 = 2.25
+
+  Stimulant: "Renwick taunts Asher with "all Rivers run cold," and Asher internally admits Renwick is right about his cruelty"
+    Event: insult | Subject: self | Source: enemy_caused | Domain: morality
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: enemy_caused → ×0.8
+    anger: base=15 × trig=0.75 × weight=0.5 → raw=5.63
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 5.63 × (1 + 0.127) = 6.34
+    Final delta: 6.34 × 1 × 0.8 = 5.07
+    disgust: base=18 × trig=0.75 × weight=0.2 → raw=2.70
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 2.70 × (1 + -0.080) = 2.48
+    Final delta: 2.48 × 1 × 0.8 = 1.99
+    sadness: base=15 × trig=0.75 × weight=0.15 → raw=1.69
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 1.69 × (1 + 0.440) = 2.43
+    Final delta: 2.43 × 1 × 0.8 = 1.94
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.283) = 1.77
+    Final delta: 1.77 × 1 × 0.8 = 1.42
+
+  Stimulant: "Asher silently apologizes to Haldric and Praew in his mind, clenching his fists with guilt while walking away"
+    Event: moral_cue | Subject: friend | Source: self_caused | Domain: morality
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
+    Source mult: self_caused → ×1.1
+    disgust: base=18 × trig=0.75 × weight=0.35 → raw=4.72
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 4.72 × (1 + -0.080) = 4.35
+    Final delta: 4.35 × 0.85 × 1.1 = 4.06
+    anger: base=15 × trig=0.75 × weight=0.25 → raw=2.81
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.81 × (1 + 0.127) = 3.17
+    Final delta: 3.17 × 0.85 × 1.1 = 2.96
+    sadness: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 2.25 × (1 + 0.440) = 3.24
+    Final delta: 3.24 × 0.85 × 1.1 = 3.03
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.283) = 2.37
+    Final delta: 2.37 × 0.85 × 1.1 = 2.21
+
+  Stimulant: "Both Asher and Renwick are overwhelmed and blinded by the sun on their first surface exposure, crying and panicking"
+    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    fear: base=18 × trig=1.2 × weight=0.45 → raw=9.72
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.72 × (1 + -0.320) = 6.61
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.61 × 1 × 0.7 × 1.7200000000000002 = 7.96
+    anticipation: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 12.00 × (1 + -0.100) = 10.80
+    Final delta: 10.80 × 1 × 0.7 = 7.56
+    anger: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.70 × (1 + 0.127) = 3.04
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.04 × 1 × 0.7 × 1.24 = 2.64
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 0.7 = 1.99
+
+  Stimulant: "Asher discovers the air on the surface is richer and thicker, coughing violently as his lungs burn from the unfamiliar sensation"
+    Event: obstacle | Subject: self | Source: world_caused | Domain: competence
+    Trigger: stakes=1 imm=3 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    anger: base=15 × trig=0.75 × weight=0.3 → raw=3.38
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 3.38 × (1 + 0.127) = 3.80
+    Final delta: 3.80 × 1 × 0.7 = 2.66
+    fear: base=18 × trig=0.75 × weight=0.3 → raw=4.05
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 4.05 × (1 + -0.320) = 2.75
+    Final delta: 2.75 × 1 × 0.7 = 1.93
+    anticipation: base=40 × trig=0.75 × weight=0.25 → raw=7.50
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 7.50 × (1 + -0.100) = 6.75
+    Final delta: 6.75 × 1 × 0.7 = 4.72
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.283) = 1.77
+    Final delta: 1.77 × 1 × 0.7 = 1.24
+
+  Stimulant: "Asher meets his team lead Azel and is immediately embarrassed for speaking rudely to a superior"
+    Event: humiliation | Subject: self | Source: self_caused | Domain: status
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    sadness: base=15 × trig=0.75 × weight=0.3 → raw=3.38
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.38 × (1 + 0.440) = 4.86
+    Final delta: 4.86 × 1 × 1.1 = 5.35
+    anger: base=15 × trig=0.75 × weight=0.25 → raw=2.81
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.81 × (1 + 0.127) = 3.17
+    Final delta: 3.17 × 1 × 1.1 = 3.49
+    disgust: base=18 × trig=0.75 × weight=0.25 → raw=3.38
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 3.38 × (1 + -0.080) = 3.10
+    Final delta: 3.10 × 1 × 1.1 = 3.42
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.283) = 2.37
+    Final delta: 2.37 × 1 × 1.1 = 2.60
+
+  Stimulant: "Azel mocks Asher for crying and screaming during his first exposure to sunlight, revealing other Hunters watched as hazing tradition"
+    Event: humiliation | Subject: self | Source: ally_caused | Domain: status
+    Trigger: stakes=1 imm=2 cert=3 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: ally_caused → ×1.3
+    sadness: base=15 × trig=0.75 × weight=0.3 → raw=3.38
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 3.38 × (1 + 0.440) = 4.86
+    Final delta: 4.86 × 1 × 1.3 = 6.32
+    anger: base=15 × trig=0.75 × weight=0.25 → raw=2.81
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.81 × (1 + 0.127) = 3.17
+    Final delta: 3.17 × 1 × 1.3 = 4.12
+    disgust: base=18 × trig=0.75 × weight=0.25 → raw=3.38
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 3.38 × (1 + -0.080) = 3.10
+    Final delta: 3.10 × 1 × 1.3 = 4.04
+    surprise: base=22 × trig=0.75 × weight=0.2 → raw=3.30
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.30 × (1 + -0.283) = 2.37
+    Final delta: 2.37 × 1 × 1.3 = 3.07
+  Tone adjustment: negative chapter dampens joy: 17.0 × 0.4 = 6.8
+  Tone adjustment: negative chapter dampens trust: 5.1 × 0.4 = 2.0
+  Tone adjustment: negative chapter dampens anticipation: 28.5 × 0.4 = 11.4
+
+  Suppression applied:
+  Suppression: anger(57.5) suppresses joy by -15.29 (50% of anger delta)
+  Suppression: anger(57.5) suppresses trust by -9.18 (30% of anger delta)
+  Suppression: anger(57.5) suppresses fear by -4.59 (15% of anger delta)
+  Suppression: sadness(92.4) suppresses joy by -33.40 (60% of sadness delta)
+  Suppression: sadness(92.4) suppresses anticipation by -16.70 (30% of sadness delta)
+  Suppression: sadness(92.4) suppresses surprise by -11.13 (20% of sadness delta)
+
+  Emotion updates:
+    joy: carry(3.6 × 0.2) + delta(-41.89) = -41.18
+    sadness: carry(36.8 × 0.055999999999999994) + delta(55.67) = 57.73
+    anger: carry(27.0 × 0.08) + delta(30.59) = 32.74
+    fear: carry(5.7 × 0.25) + delta(10.79) = 12.22
+    disgust: carry(22.7 × 0.12) + delta(13.50) = 16.23
+    surprise: carry(20.0 × 0.2) + delta(14.03) = 18.02
+    trust: carry(0.0 × 0.2) + delta(-7.14) = -7.14
+    anticipation: carry(7.0 × 0.2) + delta(-5.32) = -3.92
+
+=== Chapter 3 ===
+Stimulants this chapter: 12
+
+  Stimulant: "Asher nearly dies on his very first step on the surface when a BoltStone erupts where he stood; Azel yanks him back just in time"
+    Event: danger_cue | Subject: self | Source: world_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    fear: base=18 × trig=1.2 × weight=0.45 → raw=9.72
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.72 × (1 + -0.320) = 6.61
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.61 × 1 × 0.7 × 1.7200000000000002 = 7.96
+    anticipation: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 12.00 × (1 + -0.100) = 10.80
+    Final delta: 10.80 × 1 × 0.7 = 7.56
+    anger: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.70 × (1 + 0.127) = 3.04
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.04 × 1 × 0.7 × 1.24 = 2.64
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 0.7 = 1.99
+
+  Stimulant: "Azel berates Asher for being distracted by the beauty of the surface, shattering his sense of awe"
+    Event: constraint | Subject: self | Source: ally_caused | Domain: competence
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: ally_caused → ×1.3
+    fear: base=18 × trig=1.2 × weight=0.5 → raw=10.80
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 10.80 × (1 + -0.320) = 7.34
+    Domain amp: competence → fear ×1.12 (only at High+ trigger)
+    Final delta: 7.34 × 1 × 1.3 × 1.12 = 10.69
+    anger: base=15 × trig=1.2 × weight=0.3 → raw=5.40
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 5.40 × (1 + 0.127) = 6.08
+    Final delta: 6.08 × 1 × 1.3 = 7.91
+    sadness: base=15 × trig=1.2 × weight=0.1 → raw=1.80
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 1.80 × (1 + 0.440) = 2.59
+    Domain amp: competence → sadness ×1.12 (only at High+ trigger)
+    Final delta: 2.59 × 1 × 1.3 × 1.12 = 3.77
+    anticipation: base=40 × trig=1.2 × weight=0.1 → raw=4.80
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 4.80 × (1 + -0.100) = 4.32
+    Final delta: 4.32 × 1 × 1.3 = 5.62
+
+  Stimulant: "Asher nearly draws his blade on a non-aggressive beast, almost getting both himself and Azel killed"
+    Event: danger_cue | Subject: self | Source: self_caused | Domain: safety
+    Trigger: stakes=3 imm=3 cert=2 → total=8 → Extreme (×1.2)
+    Subject mult: self → ×1
+    Source mult: self_caused → ×1.1
+    fear: base=18 × trig=1.2 × weight=0.45 → raw=9.72
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 9.72 × (1 + -0.320) = 6.61
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 6.61 × 1 × 1.1 × 1.7200000000000002 = 12.51
+    anticipation: base=40 × trig=1.2 × weight=0.25 → raw=12.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 12.00 × (1 + -0.100) = 10.80
+    Final delta: 10.80 × 1 × 1.1 = 11.88
+    anger: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.70 × (1 + 0.127) = 3.04
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.04 × 1 × 1.1 × 1.24 = 4.15
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 1 × 1.1 = 3.12
+
+  Stimulant: "Asher reveals his surname Rivers and the team reacts with an unspoken, uncomfortable tension upon learning he is The Prime Archon's son"
+    Event: rejection | Subject: self | Source: world_caused | Domain: belonging
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: world_caused → ×0.7
+    sadness: base=15 × trig=0.75 × weight=0.5 → raw=5.63
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 5.63 × (1 + 0.440) = 8.10
+    Final delta: 8.10 × 1 × 0.7 = 5.67
+    anger: base=15 × trig=0.75 × weight=0.2 → raw=2.25
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.25 × (1 + 0.127) = 2.54
+    Final delta: 2.54 × 1 × 0.7 = 1.77
+    fear: base=18 × trig=0.75 × weight=0.15 → raw=2.02
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.02 × (1 + -0.320) = 1.38
+    Final delta: 1.38 × 1 × 0.7 = 0.96
+    surprise: base=22 × trig=0.75 × weight=0.15 → raw=2.48
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 2.48 × (1 + -0.283) = 1.77
+    Final delta: 1.77 × 1 × 0.7 = 1.24
+
+  Stimulant: "Asher learns beasts can be farmed and food shortage is manufactured, questioning everything he was taught"
+    Event: surprise_reveal | Subject: group | Source: authority_caused | Domain: morality
+    Trigger: stakes=3 imm=2 cert=2 → total=7 → High (×0.75)
+    Subject mult: group → ×0.85
+    Source mult: authority_caused → ×1
+    surprise: base=22 × trig=0.75 × weight=0.6 → raw=9.90
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 9.90 × (1 + -0.283) = 7.10
+    Final delta: 7.10 × 0.85 × 1 = 6.03
+    fear: base=18 × trig=0.75 × weight=0.2 → raw=2.70
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.320) = 1.84
+    Final delta: 1.84 × 0.85 × 1 = 1.56
+    anticipation: base=40 × trig=0.75 × weight=0.2 → raw=6.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 6.00 × (1 + -0.100) = 5.40
+    Final delta: 5.40 × 0.85 × 1 = 4.59
 
   Stimulant: "Asher is given a shovel and told his Beast Hunter job is shoveling manure, realizing his father got the last laugh"
     Event: humiliation | Subject: self | Source: authority_caused | Domain: status
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
     Subject mult: self → ×1
     Source mult: authority_caused → ×1
-    sadness: base=27 × trig=1 × weight=0.4 → raw=10.80
+    sadness: base=15 × trig=1.2 × weight=0.3 → raw=5.40
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 5.40 × (1 + 0.440) = 7.78
+    Domain amp: status → sadness ×1.12 (only at High+ trigger)
+    Final delta: 7.78 × 1 × 1 × 1.12 = 8.71
+    anger: base=15 × trig=1.2 × weight=0.25 → raw=4.50
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 4.50 × (1 + 0.127) = 5.07
+    Domain amp: status → anger ×1.24 (only at High+ trigger)
+    Final delta: 5.07 × 1 × 1 × 1.24 = 6.29
+    disgust: base=18 × trig=1.2 × weight=0.25 → raw=5.40
+    Trait modifiers for disgust (total: -0.080):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
+    Modified delta: 5.40 × (1 + -0.080) = 4.97
+    Final delta: 4.97 × 1 × 1 = 4.97
+    surprise: base=22 × trig=1.2 × weight=0.2 → raw=5.28
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 5.28 × (1 + -0.283) = 3.78
+    Final delta: 3.78 × 1 × 1 = 3.78
+
+  Stimulant: "Asher reflects on the flashback where his father forbade him from becoming a Hunter, remembering the original wound that drove his defiance"
+    Event: constraint | Subject: self | Source: authority_caused | Domain: autonomy
+    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.75)
+    Subject mult: self → ×1
+    Source mult: authority_caused → ×1
+    fear: base=18 × trig=0.75 × weight=0.5 → raw=6.75
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 6.75 × (1 + -0.320) = 4.59
+    Final delta: 4.59 × 1 × 1 = 4.59
+    anger: base=15 × trig=0.75 × weight=0.3 → raw=3.38
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 3.38 × (1 + 0.127) = 3.80
+    Final delta: 3.80 × 1 × 1 = 3.80
+    sadness: base=15 × trig=0.75 × weight=0.1 → raw=1.13
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 1.13 × (1 + 0.440) = 1.62
+    Final delta: 1.62 × 1 × 1 = 1.62
+    anticipation: base=40 × trig=0.75 × weight=0.1 → raw=3.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 3.00 × (1 + -0.100) = 2.70
+    Final delta: 2.70 × 1 × 1 = 2.70
+
+  Stimulant: "Eight-year-old Asher is harshly told by his father never to call him "Father" in public again, and to only use "Prime Archon""
+    Event: rejection | Subject: family | Source: authority_caused | Domain: attachment
+    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1.2)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    sadness: base=15 × trig=1.2 × weight=0.5 → raw=9.00
+    Trait modifiers for sadness (total: +0.440):
+  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
+  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
+    Modified delta: 9.00 × (1 + 0.440) = 12.96
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 12.96 × 0.95 × 1 × 1.48 = 18.22
+    anger: base=15 × trig=1.2 × weight=0.2 → raw=3.60
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 3.60 × (1 + 0.127) = 4.06
+    Final delta: 4.06 × 0.95 × 1 = 3.85
+    fear: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 0.95 × 1 = 2.09
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 0.95 × 1 = 2.70
+
+  Stimulant: "Young Asher sees his father visibly shaken and terrified after becoming Prime, seeing a stone embedded in his chest, and is sworn to secrecy"
+    Event: surprise_reveal | Subject: family | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.75)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    surprise: base=22 × trig=0.75 × weight=0.6 → raw=9.90
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 9.90 × (1 + -0.283) = 7.10
+    Final delta: 7.10 × 0.95 × 1 = 6.74
+    fear: base=18 × trig=0.75 × weight=0.2 → raw=2.70
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 2.70 × (1 + -0.320) = 1.84
+    Final delta: 1.84 × 0.95 × 1 = 1.74
+    anticipation: base=40 × trig=0.75 × weight=0.2 → raw=6.00
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 6.00 × (1 + -0.100) = 5.40
+    Final delta: 5.40 × 0.95 × 1 = 5.13
+
+  Stimulant: "Young Asher's father slams his palm so hard it dents a stone table when Asher says he'd rather be a Hunter than end up like him"
+    Event: threat | Subject: family | Source: authority_caused | Domain: safety
+    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    fear: base=18 × trig=1.2 × weight=0.7 → raw=15.12
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 15.12 × (1 + -0.320) = 10.28
+    Domain amp: safety → fear ×1.72 (only at High+ trigger)
+    Final delta: 10.28 × 0.95 × 1 × 1.7200000000000002 = 16.80
+    anger: base=15 × trig=1.2 × weight=0.15 → raw=2.70
+    Trait modifiers for anger (total: +0.127):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
+  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
+  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
+  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
+  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
+    Modified delta: 2.70 × (1 + 0.127) = 3.04
+    Domain amp: safety → anger ×1.24 (only at High+ trigger)
+    Final delta: 3.04 × 0.95 × 1 × 1.24 = 3.58
+    anticipation: base=40 × trig=1.2 × weight=0.15 → raw=7.20
+    Trait modifiers for anticipation (total: -0.100):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
+    Modified delta: 7.20 × (1 + -0.100) = 6.48
+    Final delta: 6.48 × 0.95 × 1 = 6.16
+
+  Stimulant: "Young Asher feels something crack inside him as his father demands to only be called Prime Archon, knowing the damage is permanent"
+    Event: loss | Subject: family | Source: authority_caused | Domain: attachment
+    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1.2)
+    Subject mult: family → ×0.95
+    Source mult: authority_caused → ×1
+    sadness: base=15 × trig=1.2 × weight=0.6 → raw=10.80
     Trait modifiers for sadness (total: +0.440):
   empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
   guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
     Modified delta: 10.80 × (1 + 0.440) = 15.55
-    Final delta: 15.55 × 1 × 1 = 15.55
-    anger: base=23 × trig=1 × weight=0.3 → raw=6.90
+    Domain amp: attachment → sadness ×1.48 (only at High+ trigger)
+    Final delta: 15.55 × 0.95 × 1 × 1.48 = 21.87
+    fear: base=18 × trig=1.2 × weight=0.15 → raw=3.24
+    Trait modifiers for fear (total: -0.320):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  riskAppetite(50/75 × -0.15) = -0.100 [High risk appetite = slightly less fear (but being harmed still terrifies)]
+    Modified delta: 3.24 × (1 + -0.320) = 2.20
+    Final delta: 2.20 × 0.95 × 1 = 2.09
+    anger: base=15 × trig=1.2 × weight=0.1 → raw=1.80
     Trait modifiers for anger (total: +0.127):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
@@ -9023,202 +10879,69 @@ Stimulants this chapter: 12
   patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
   impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
   moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 6.90 × (1 + 0.127) = 7.77
-    Final delta: 7.77 × 1 × 1 = 7.77
-    disgust: base=23 × trig=1 × weight=0.3 → raw=6.90
-    Trait modifiers for disgust (total: -0.080):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  moralRigidity(35/75 × 0.3) = +0.140 [Rigid morals = stronger moral disgust]
-    Modified delta: 6.90 × (1 + -0.080) = 6.35
-    Final delta: 6.35 × 1 × 1 = 6.35
-
-  Stimulant: "Asher reflects on the flashback where his father forbade him from becoming a Hunter, remembering the original wound that drove his defiance"
-    Event: constraint | Subject: self | Source: authority_caused | Domain: autonomy
-    Trigger: stakes=3 imm=1 cert=3 → total=7 → High (×0.85)
-    Subject mult: self → ×1
-    Source mult: authority_caused → ×1
-    anger: base=23 × trig=0.85 × weight=0.5 → raw=9.78
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 9.78 × (1 + 0.127) = 11.01
-    Final delta: 11.01 × 1 × 1 = 11.01
-    fear: base=27 × trig=0.85 × weight=0.3 → raw=6.88
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 6.88 × (1 + -0.420) = 3.99
-    Final delta: 3.99 × 1 × 1 = 3.99
-    sadness: base=27 × trig=0.85 × weight=0.2 → raw=4.59
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 4.59 × (1 + 0.440) = 6.61
-    Final delta: 6.61 × 1 × 1 = 6.61
-
-  Stimulant: "Eight-year-old Asher is harshly told by his father never to call him "Father" in public again, and to only use "Prime Archon""
-    Event: rejection | Subject: family | Source: authority_caused | Domain: attachment
-    Trigger: stakes=3 imm=3 cert=3 → total=9 → Extreme (×1)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    sadness: base=27 × trig=1 × weight=0.6 → raw=16.20
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 16.20 × (1 + 0.440) = 23.33
-    Final delta: 23.33 × 0.9 × 1 = 21.00
-    anger: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.60 × (1 + 0.127) = 5.18
-    Final delta: 5.18 × 0.9 × 1 = 4.66
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.420) = 3.13
-    Final delta: 3.13 × 0.9 × 1 = 2.82
-
-  Stimulant: "Young Asher sees his father visibly shaken and terrified after becoming Prime, seeing a stone embedded in his chest, and is sworn to secrecy"
-    Event: surprise_reveal | Subject: family | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=2 cert=2 → total=6 → High (×0.85)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    surprise: base=22 × trig=0.85 × weight=0.7 → raw=13.09
+    Modified delta: 1.80 × (1 + 0.127) = 2.03
+    Final delta: 2.03 × 0.95 × 1 = 1.93
+    surprise: base=22 × trig=1.2 × weight=0.15 → raw=3.96
     Trait modifiers for surprise (total: -0.283):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
   impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
-    Modified delta: 13.09 × (1 + -0.283) = 9.38
-    Final delta: 9.38 × 0.9 × 1 = 8.44
-    fear: base=27 × trig=0.85 × weight=0.15 → raw=3.44
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 3.44 × (1 + -0.420) = 2.00
-    Final delta: 2.00 × 0.9 × 1 = 1.80
-    anticipation: base=32 × trig=0.85 × weight=0.15 → raw=4.08
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 4.08 × (1 + -0.100) = 3.67
-    Final delta: 3.67 × 0.9 × 1 = 3.30
-
-  Stimulant: "Young Asher's father slams his palm so hard it dents a stone table when Asher says he'd rather be a Hunter than end up like him"
-    Event: threat | Subject: family | Source: authority_caused | Domain: safety
-    Trigger: stakes=2 imm=3 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    fear: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 18.90 × (1 + -0.420) = 10.96
-    Final delta: 10.96 × 0.9 × 1 = 9.87
-    anger: base=23 × trig=1 × weight=0.2 → raw=4.60
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 4.60 × (1 + 0.127) = 5.18
-    Final delta: 5.18 × 0.9 × 1 = 4.66
-    anticipation: base=32 × trig=1 × weight=0.1 → raw=3.20
-    Trait modifiers for anticipation (total: -0.100):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 3.20 × (1 + -0.100) = 2.88
-    Final delta: 2.88 × 0.9 × 1 = 2.59
-
-  Stimulant: "Young Asher feels something crack inside him as his father demands to only be called Prime Archon, knowing the damage is permanent"
-    Event: loss | Subject: family | Source: authority_caused | Domain: attachment
-    Trigger: stakes=3 imm=2 cert=3 → total=8 → Extreme (×1)
-    Subject mult: family → ×0.9
-    Source mult: authority_caused → ×1
-    sadness: base=27 × trig=1 × weight=0.7 → raw=18.90
-    Trait modifiers for sadness (total: +0.440):
-  empathyBaseline(45/75 × 0.4) = +0.240 [High empathy = feels loss/pain more deeply]
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  shameSensitivity(50/75 × 0.3) = +0.200 [Shame-sensitive = sadness from exposure/failure]
-  guiltSensitivity(55/75 × 0.3) = +0.220 [High guilt = sadness from moral self-judgment]
-    Modified delta: 18.90 × (1 + 0.440) = 27.22
-    Final delta: 27.22 × 0.9 × 1 = 24.49
-    fear: base=27 × trig=1 × weight=0.2 → raw=5.40
-    Trait modifiers for fear (total: -0.420):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  riskAppetite(50/75 × -0.3) = -0.200 [High risk appetite = fear hits less hard]
-    Modified delta: 5.40 × (1 + -0.420) = 3.13
-    Final delta: 3.13 × 0.9 × 1 = 2.82
-    anger: base=23 × trig=1 × weight=0.1 → raw=2.30
-    Trait modifiers for anger (total: +0.127):
-  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-  confrontationalTendency(45/75 × 0.3) = +0.180 [Confrontational = anger rises faster in conflict]
-  prideSensitivity(55/75 × 0.2) = +0.147 [Sensitive pride = anger when status/competence challenged]
-  patience(45/75 × -0.2) = -0.120 [Patient = slower to anger]
-  impulsiveness(35/75 × 0.1) = +0.047 [Impulsive = anger flares quickly]
-  moralRigidity(35/75 × 0.2) = +0.093 [Rigid morals = anger at injustice]
-    Modified delta: 2.30 × (1 + 0.127) = 2.59
-    Final delta: 2.59 × 0.9 × 1 = 2.33
+    Modified delta: 3.96 × (1 + -0.283) = 2.84
+    Final delta: 2.84 × 0.95 × 1 = 2.70
 
   Stimulant: "Young Asher is comforted by Praew and Haldric who mock the idea of being Prime Archon and invite him to become a Hunter with them instead"
     Event: connection | Subject: friend | Source: ally_caused | Domain: belonging
-    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.85)
-    Subject mult: friend → ×0.8
+    Trigger: stakes=2 imm=2 cert=3 → total=7 → High (×0.75)
+    Subject mult: friend → ×0.85
     Source mult: ally_caused → ×1.3
-    trust: base=23 × trig=0.85 × weight=0.5 → raw=9.78
+    trust: base=20 × trig=0.75 × weight=0.4 → raw=6.00
     Trait modifiers for trust (total: -0.220):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 9.78 × (1 + -0.220) = 7.62
-    Final delta: 7.62 × 0.8 × 1.3 = 7.93
-    joy: base=14 × trig=0.85 × weight=0.3 → raw=3.57
+    Modified delta: 6.00 × (1 + -0.220) = 4.68
+    Final delta: 4.68 × 0.85 × 1.3 = 5.17
+    joy: base=15 × trig=0.75 × weight=0.3 → raw=3.38
     Trait modifiers for joy (total: -0.100):
   empathyBaseline(45/75 × 0.2) = +0.120 [Empathic joy — shares in others' happiness]
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
-    Modified delta: 3.57 × (1 + -0.100) = 3.21
-    Final delta: 3.21 × 0.8 × 1.3 = 3.34
-    anticipation: base=32 × trig=0.85 × weight=0.2 → raw=5.44
+    Modified delta: 3.38 × (1 + -0.100) = 3.04
+    Final delta: 3.04 × 0.85 × 1.3 = 3.36
+    anticipation: base=40 × trig=0.75 × weight=0.2 → raw=6.00
     Trait modifiers for anticipation (total: -0.100):
   emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
   curiosity(45/75 × 0.2) = +0.120 [Curious = heightened anticipation for new info]
-    Modified delta: 5.44 × (1 + -0.100) = 4.90
-    Final delta: 4.90 × 0.8 × 1.3 = 5.09
+    Modified delta: 6.00 × (1 + -0.100) = 5.40
+    Final delta: 5.40 × 0.85 × 1.3 = 5.97
+    surprise: base=22 × trig=0.75 × weight=0.1 → raw=1.65
+    Trait modifiers for surprise (total: -0.283):
+  emotionalContainment(55/75 × -0.3) = -0.220 [High containment = suppresses emotional expression]
+  adaptabilityVsRigidity(50/75 × -0.2) = -0.133 [Adaptable = recovers from surprise faster]
+  impulsiveness(35/75 × 0.15) = +0.070 [Impulsive = reacts more to surprises]
+    Modified delta: 1.65 × (1 + -0.283) = 1.18
+    Final delta: 1.18 × 0.85 × 1.3 = 1.31
+  Tone adjustment: negative chapter dampens joy: 3.4 × 0.4 = 1.3
+  Tone adjustment: negative chapter dampens trust: 5.2 × 0.4 = 2.1
+  Tone adjustment: negative chapter dampens anticipation: 49.6 × 0.4 = 19.8
 
   Suppression applied:
-  Suppression: anger(117.6) suppresses joy by -27.52 (50% of anger delta)
-  Suppression: anger(117.6) suppresses trust by -16.51 (30% of anger delta)
-  Suppression: anger(117.6) suppresses fear by -8.26 (15% of anger delta)
-  Suppression: sadness(166.6) suppresses joy by -54.98 (60% of sadness delta)
-  Suppression: sadness(166.6) suppresses anticipation by -27.49 (30% of sadness delta)
-  Suppression: sadness(166.6) suppresses surprise by -18.33 (20% of sadness delta)
-  Suppression: fear(50.6) suppresses joy by -16.86 (40% of fear delta)
-  Suppression: fear(50.6) suppresses trust by -12.64 (30% of fear delta)
-  Suppression: fear(50.6) suppresses anticipation by -8.43 (20% of fear delta)
+  Suppression: anger(68.7) suppresses joy by -17.96 (50% of anger delta)
+  Suppression: anger(68.7) suppresses trust by -10.78 (30% of anger delta)
+  Suppression: anger(68.7) suppresses fear by -5.39 (15% of anger delta)
+  Suppression: sadness(117.6) suppresses joy by -35.92 (60% of sadness delta)
+  Suppression: sadness(117.6) suppresses anticipation by -17.96 (30% of sadness delta)
+  Suppression: sadness(117.6) suppresses surprise by -11.97 (20% of sadness delta)
+  Suppression: fear(67.8) suppresses joy by -22.24 (40% of fear delta)
+  Suppression: fear(67.8) suppresses trust by -16.68 (30% of fear delta)
+  Suppression: fear(67.8) suppresses anticipation by -11.12 (20% of fear delta)
 
   Emotion updates:
-    joy: carry(0.0 × 0.25) + delta(-96.02) = -96.02
-    sadness: carry(75.0 × 0.25) + delta(91.64) = 110.39
-    *** sadness in RED ZONE: VU=100.0 (track capped at 75) ***
-    anger: carry(62.6 × 0.25) + delta(55.04) = 70.68
-    fear: carry(8.4 × 0.25) + delta(42.14) = 44.24
-    disgust: carry(26.9 × 0.25) + delta(6.35) = 13.08
-    surprise: carry(0.0 × 0.25) + delta(-3.32) = -3.32
-    trust: carry(0.0 × 0.25) + delta(-21.22) = -21.22
-    anticipation: carry(0.0 × 0.25) + delta(-11.99) = -11.99
+    joy: carry(0.0 × 0.2) + delta(-74.78) = -74.78
+    sadness: carry(57.7 × 0.04) + delta(59.86) = 62.17
+    anger: carry(32.7 × 0.055999999999999994) + delta(35.93) = 37.76
+    fear: carry(12.2 × 0.25) + delta(55.61) = 58.67
+    disgust: carry(16.2 × 0.12) + delta(4.97) = 6.92
+    surprise: carry(18.0 × 0.2) + delta(17.63) = 21.24
+    trust: carry(0.0 × 0.2) + delta(-25.39) = -25.39
+    anticipation: carry(0.0 × 0.2) + delta(-9.24) = -9.24
 
 === Chapter 4 ===
 Character NOT PRESENT — values frozen, no line drawn

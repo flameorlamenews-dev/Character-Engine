@@ -214,7 +214,34 @@ export function calculateEmotions(
       }
     }
 
-    // Step 7a: Infer ambient emotions from chapter intensity
+    // Step 7a: Chapter tone adjustment
+    // If more positive events than negative, dampen negative emotions (and vice versa)
+    const positiveTypes = new Set(['success', 'reward', 'connection']);
+    const negativeTypes = new Set(['threat', 'harm', 'loss', 'rejection', 'insult', 'betrayal', 'injustice', 'constraint', 'failure', 'humiliation', 'danger_cue', 'disgust_cue']);
+    const posCount = chapterStimulants.filter(s => positiveTypes.has(s.eventType)).length;
+    const negCount = chapterStimulants.filter(s => negativeTypes.has(s.eventType)).length;
+
+    if (posCount > negCount && negCount > 0) {
+      const dampenFactor = 0.4; // positive-dominant chapters dampen negative emotions
+      for (const e of ['anger', 'sadness', 'fear', 'disgust'] as EmotionType[]) {
+        if (deltas[e] > 0) {
+          const dampened = deltas[e] * dampenFactor;
+          breakdown.push(`  Tone adjustment: positive chapter dampens ${e}: ${deltas[e].toFixed(1)} × ${dampenFactor} = ${dampened.toFixed(1)}`);
+          deltas[e] = dampened;
+        }
+      }
+    } else if (negCount > posCount && posCount > 0) {
+      const dampenFactor = 0.4; // negative-dominant chapters dampen positive emotions
+      for (const e of ['joy', 'trust', 'anticipation'] as EmotionType[]) {
+        if (deltas[e] > 0) {
+          const dampened = deltas[e] * dampenFactor;
+          breakdown.push(`  Tone adjustment: negative chapter dampens ${e}: ${deltas[e].toFixed(1)} × ${dampenFactor} = ${dampened.toFixed(1)}`);
+          deltas[e] = dampened;
+        }
+      }
+    }
+
+    // Step 7a2: Infer ambient emotions from chapter intensity
     inferAmbientEmotions(chapterStimulants, deltas, triggeredEmotions, breakdown);
 
     // Step 7a2: Normalize chapter deltas — diminishing returns for stacking
@@ -260,7 +287,7 @@ export function calculateEmotions(
       // Fear persists more (anxiety lingers)
       const emotionCarryBase: Partial<Record<EmotionType, number>> = {
         sadness: 0.08,  // volatile — fades fast unless reinforced
-        anger: 0.15,    // volatile
+        anger: 0.08,    // very volatile — spikes high, drops fast
         fear: 0.25,     // persistent — anxiety lingers
         disgust: 0.12,  // fades relatively fast
       };

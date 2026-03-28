@@ -3,14 +3,14 @@ import type { CharacterProfile } from '../types';
 export const profile: CharacterProfile = {
   name: 'Godric',
   emotionalBaseline: {
-    joy: 9,
-    sadness: 23,
-    anger: 31,
-    fear: 13,
-    disgust: 27,
-    surprise: 9,
+    joy: 12,
+    sadness: 18,
+    anger: 12,
+    fear: 15,
+    disgust: 12,
+    surprise: 12,
     trust: 22,
-    anticipation: 18,
+    anticipation: 20,
   },
   temperament: {
     patience: 40,

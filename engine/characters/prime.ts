@@ -3,14 +3,14 @@ import type { CharacterProfile } from '../types';
 export const profile: CharacterProfile = {
   name: 'The Prime / Arthur Rivers',
   emotionalBaseline: {
-    joy: 9,
-    sadness: 23,
-    anger: 32,
-    fear: 31,
-    disgust: 36,
-    surprise: 9,
-    trust: 13,
-    anticipation: 31,
+    joy: 10,
+    sadness: 18,
+    anger: 25,
+    fear: 25,
+    disgust: 28,
+    surprise: 12,
+    trust: 15,
+    anticipation: 38,
   },
   temperament: {
     patience: 65,

@@ -3,6 +3,18 @@ import type { ExtractedStimulant } from '../types';
 export const stimulants: ExtractedStimulant[] = [
   // ===== Chapter 1 (chapterIndex: 1) =====
   {
+    description: 'Asher faces the Hunter Test that will determine if his 12-year plan to escape his father succeeds — the anticipation of becoming a Hunter drives everything',
+    eventType: 'obstacle',
+    subject: 'self',
+    source: 'world_caused',
+    domain: 'future_security',
+    stakes: 3,
+    immediacy: 3,
+    certainty: 2,
+    targetCharacter: 'Asher',
+    chapterIndex: 1,
+  },
+  {
     description: 'Asher struggles to put down the book "Srevlis" for the last time, honoring a pact with his friends to never read it again before the Hunter test',
     eventType: 'loss',
     subject: 'self',
@@ -76,6 +88,18 @@ export const stimulants: ExtractedStimulant[] = [
   },
 
   // ===== Chapter 2 (chapterIndex: 2) =====
+  {
+    description: 'Asher steps through the gate to the surface for the first time — the culmination of everything he planned, facing the unknown world he dreamed of',
+    eventType: 'success',
+    subject: 'self',
+    source: 'self_caused',
+    domain: 'future_security',
+    stakes: 3,
+    immediacy: 3,
+    certainty: 3,
+    targetCharacter: 'Asher',
+    chapterIndex: 2,
+  },
   {
     description: 'Asher is announced as a Beast Hunter, the most prestigious role aside from Mythical Beast Hunter, triggering gasps across the hall',
     eventType: 'success',

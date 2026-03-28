@@ -3,14 +3,14 @@ import type { CharacterProfile } from '../types';
 export const profile: CharacterProfile = {
   name: 'Mai / Mai Azadi',
   emotionalBaseline: {
-    joy: 32,
-    sadness: 31,
-    anger: 27,
-    fear: 23,
-    disgust: 22,
+    joy: 28,
+    sadness: 20,
+    anger: 14,
+    fear: 15,
+    disgust: 18,
     surprise: 18,
-    trust: 36,
-    anticipation: 23,
+    trust: 12,
+    anticipation: 22,
   },
   temperament: {
     patience: 45,
