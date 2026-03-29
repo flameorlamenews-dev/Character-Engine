@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import { useSession } from '../../context/SessionContext';
+import { AlgorithmInfo } from '../shared/AlgorithmInfo';
 
 interface TopBarProps {
   isPlaying?: boolean;
@@ -10,6 +12,7 @@ interface TopBarProps {
 
 export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPause, onStop }: TopBarProps) {
   const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode } = useSession();
+  const [showAlgorithm, setShowAlgorithm] = useState(false);
   const { book, character, currentChapter, zoomLevel, viewMode, editMode } = session;
 
   const chapter = book.chapters[currentChapter];
@@ -130,6 +133,15 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
         {editMode ? '🔓 Edit' : '🔒 Read'}
       </button>
 
+      {/* Algorithm Info Button */}
+      <button
+        onClick={() => setShowAlgorithm(true)}
+        className="px-2 py-1 rounded text-xs font-semibold bg-ce-panel text-ce-text-muted border border-ce-border hover:text-ce-text hover:border-ce-accent transition-colors"
+        title="View Algorithm Reference"
+      >
+        f(x)
+      </button>
+
       {/* View Toggle */}
       <div className="flex rounded overflow-hidden border border-ce-border">
         <button
@@ -153,6 +165,9 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
           Player
         </button>
       </div>
+
+      {/* Algorithm Info Modal */}
+      {showAlgorithm && <AlgorithmInfo onClose={() => setShowAlgorithm(false)} />}
     </div>
   );
 }
