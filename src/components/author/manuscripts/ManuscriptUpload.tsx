@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import mammoth from 'mammoth';
 import { useAuthorStore, splitIntoScenes } from '../../../stores/author-store';
 
 interface Props {
@@ -12,55 +11,29 @@ export function ManuscriptUpload({ onClose }: Props) {
   const [chapterTitle, setChapterTitle] = useState('');
   const [chapterNumber, setChapterNumber] = useState<number | ''>('');
   const [error, setError] = useState('');
-  const [parsing, setParsing] = useState(false);
-  const [fileName, setFileName] = useState('');
 
+  // Get existing chapter numbers to check for duplicates
   const existingChapters = store.manuscripts.map(m => m.chapterNumber).sort((a, b) => a - b);
   const nextSuggested = existingChapters.length > 0 ? Math.max(...existingChapters) + 1 : 1;
-
-  const autoDetectFromText = (text: string) => {
-    const firstLine = text.split('\n').find(l => l.trim().length > 0) || '';
-    const chapterMatch = firstLine.match(/^(?:Chapter|Prologue|Epilogue|Act)\s*(\d*)\s*[-—:]?\s*(.*)/i);
-    if (chapterMatch) {
-      const num = chapterMatch[1] ? parseInt(chapterMatch[1]) : 0;
-      const title = chapterMatch[2]?.trim() || firstLine.trim();
-      if (chapterNumber === '') setChapterNumber(num || nextSuggested);
-      if (!chapterTitle) setChapterTitle(title || firstLine.trim());
-    }
-  };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setError('');
-    setFileName(file.name);
+    if (file.name.endsWith('.txt') || file.name.endsWith('.md')) {
+      const text = await file.text();
+      setUploadText(text);
 
-    const ext = file.name.split('.').pop()?.toLowerCase();
-
-    try {
-      if (ext === 'txt' || ext === 'md') {
-        const text = await file.text();
-        setUploadText(text);
-        autoDetectFromText(text);
-
-      } else if (ext === 'docx' || ext === 'doc') {
-        setParsing(true);
-        const arrayBuffer = await file.arrayBuffer();
-        const result = await mammoth.extractRawText({ arrayBuffer });
-        const text = result.value;
-        setUploadText(text);
-        autoDetectFromText(text);
-        setParsing(false);
-
-      } else if (ext === 'pdf') {
-        setError('PDF support coming soon. For now, please convert to .docx or .txt and re-upload.');
-
-      } else {
-        setError(`Unsupported file type: .${ext}. Supported: .docx, .txt, .md`);
+      // Try to auto-detect chapter number and title from first line
+      const firstLine = text.split('\n').find(l => l.trim().length > 0) || '';
+      const chapterMatch = firstLine.match(/^(?:Chapter|Prologue|Epilogue|Act)\s*(\d*)\s*[-—:]?\s*(.*)/i);
+      if (chapterMatch) {
+        const num = chapterMatch[1] ? parseInt(chapterMatch[1]) : 0;
+        const title = chapterMatch[2]?.trim() || firstLine.trim();
+        if (!chapterNumber) setChapterNumber(num || nextSuggested);
+        if (!chapterTitle) setChapterTitle(title || firstLine.trim());
       }
-    } catch (err: any) {
-      setParsing(false);
-      setError(`Failed to parse file: ${err.message}`);
+    } else {
+      alert('Please upload .txt or .md files. DOCX/PDF support coming with Claude API integration.');
     }
   };
 
@@ -77,6 +50,7 @@ export function ManuscriptUpload({ onClose }: Props) {
       return;
     }
 
+    // Check for duplicate chapter number
     if (existingChapters.includes(chapterNumber)) {
       setError(`Chapter ${chapterNumber} already exists. Use a different number or delete the existing one first.`);
       return;
@@ -111,7 +85,7 @@ export function ManuscriptUpload({ onClose }: Props) {
 
         {/* Body */}
         <div className="p-4 space-y-3 overflow-y-auto">
-          {/* Chapter Number + Title */}
+          {/* Chapter Number — REQUIRED */}
           <div className="flex gap-3">
             <div className="w-32">
               <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">
@@ -139,33 +113,28 @@ export function ManuscriptUpload({ onClose }: Props) {
             </div>
           </div>
 
-          {/* Existing chapters */}
+          {/* Existing chapters reference */}
           {existingChapters.length > 0 && (
             <div className="text-[9px] text-ce-text-muted bg-ce-body rounded px-3 py-2 border border-ce-border-subtle">
               <span className="text-ce-text-bright">Existing chapters:</span>{' '}
               {existingChapters.map(n => (
-                <span key={n} className="inline-block px-1.5 py-0.5 bg-ce-panel rounded mr-1 font-mono-readout">{n}</span>
+                <span key={n} className="inline-block px-1.5 py-0.5 bg-ce-panel rounded mr-1 font-mono-readout">
+                  {n}
+                </span>
               ))}
-              <span className="text-ce-text-muted ml-1">Next: <span className="text-ce-accent font-mono-readout">{nextSuggested}</span></span>
+              <span className="text-ce-text-muted ml-1">Next suggested: <span className="text-ce-accent font-mono-readout">{nextSuggested}</span></span>
             </div>
           )}
 
-          {/* File upload — accepts DOCX, TXT, MD */}
+          {/* File upload */}
           <div>
             <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">Upload File</label>
             <input
               type="file"
-              accept=".docx,.doc,.txt,.md"
+              accept=".txt,.md"
               onChange={handleFileUpload}
               className="w-full text-xs text-ce-text-muted file:mr-3 file:py-1 file:px-3 file:rounded file:border file:border-ce-border file:bg-ce-panel file:text-ce-text file:text-xs file:cursor-pointer"
             />
-            <div className="text-[8px] text-ce-text-muted mt-0.5">Supported: .docx, .txt, .md</div>
-            {parsing && (
-              <div className="text-[10px] text-ce-accent mt-1 animate-pulse">Parsing {fileName}...</div>
-            )}
-            {fileName && !parsing && uploadText && (
-              <div className="text-[10px] text-green-400 mt-1">Loaded: {fileName}</div>
-            )}
           </div>
 
           {/* Paste text */}
@@ -190,7 +159,7 @@ export function ManuscriptUpload({ onClose }: Props) {
             </div>
           )}
 
-          {/* Error */}
+          {/* Error message */}
           {error && (
             <div className="text-[10px] text-red-400 bg-red-900/20 border border-red-500/30 rounded px-3 py-2">
               {error}
@@ -200,12 +169,15 @@ export function ManuscriptUpload({ onClose }: Props) {
 
         {/* Footer */}
         <div className="flex justify-end gap-2 px-4 py-3 border-t border-ce-border">
-          <button onClick={onClose} className="px-4 py-1.5 text-xs text-ce-text-muted hover:text-ce-text border border-ce-border rounded">
+          <button
+            onClick={onClose}
+            className="px-4 py-1.5 text-xs text-ce-text-muted hover:text-ce-text border border-ce-border rounded"
+          >
             Cancel
           </button>
           <button
             onClick={handleUpload}
-            disabled={!uploadText.trim() || chapterNumber === '' || parsing}
+            disabled={!uploadText.trim() || chapterNumber === ''}
             className="px-4 py-1.5 text-xs font-semibold bg-ce-accent text-white rounded disabled:opacity-40"
           >
             Upload Chapter {chapterNumber !== '' ? chapterNumber : ''}
