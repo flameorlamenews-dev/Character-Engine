@@ -51,6 +51,6 @@ export interface Session {
   character: Character;
   currentChapter: number;
   zoomLevel: number;
-  viewMode: 'producer' | 'player';
+  viewMode: 'producer' | 'player' | 'manuscript';
   editMode: boolean;
 }

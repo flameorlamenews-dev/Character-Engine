@@ -15,7 +15,7 @@ interface SessionContextValue {
   session: Session;
   setCurrentChapter: (ch: number) => void;
   setZoomLevel: (z: number) => void;
-  setViewMode: (mode: 'producer' | 'player') => void;
+  setViewMode: (mode: 'producer' | 'player' | 'manuscript') => void;
   setEditMode: (edit: boolean) => void;
 }
 
@@ -30,7 +30,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const setZoomLevel = (z: number) =>
     setSession((s) => ({ ...s, zoomLevel: z }));
 
-  const setViewMode = (mode: 'producer' | 'player') =>
+  const setViewMode = (mode: 'producer' | 'player' | 'manuscript') =>
     setSession((s) => ({ ...s, viewMode: mode }));
 
   const setEditMode = (edit: boolean) =>
