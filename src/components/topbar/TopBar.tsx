@@ -145,16 +145,6 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
       {/* View Toggle */}
       <div className="flex rounded overflow-hidden border border-ce-border">
         <button
-          onClick={() => setViewMode('manuscript')}
-          className={`px-3 py-1 text-xs font-semibold transition-colors ${
-            viewMode === 'manuscript'
-              ? 'bg-ce-accent text-white'
-              : 'bg-ce-panel text-ce-text-muted hover:text-ce-text'
-          }`}
-        >
-          Manuscript
-        </button>
-        <button
           onClick={() => setViewMode('producer')}
           className={`px-3 py-1 text-xs font-semibold transition-colors ${
             viewMode === 'producer'
