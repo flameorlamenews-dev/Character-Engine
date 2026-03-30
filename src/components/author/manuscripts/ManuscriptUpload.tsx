@@ -9,12 +9,6 @@ export function ManuscriptUpload({ onClose }: Props) {
   const store = useAuthorStore();
   const [uploadText, setUploadText] = useState('');
   const [chapterTitle, setChapterTitle] = useState('');
-  const [chapterNumber, setChapterNumber] = useState<number | ''>('');
-  const [error, setError] = useState('');
-
-  // Get existing chapter numbers to check for duplicates
-  const existingChapters = store.manuscripts.map(m => m.chapterNumber).sort((a, b) => a - b);
-  const nextSuggested = existingChapters.length > 0 ? Math.max(...existingChapters) + 1 : 1;
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -22,46 +16,20 @@ export function ManuscriptUpload({ onClose }: Props) {
     if (file.name.endsWith('.txt') || file.name.endsWith('.md')) {
       const text = await file.text();
       setUploadText(text);
-
-      // Try to auto-detect chapter number and title from first line
-      const firstLine = text.split('\n').find(l => l.trim().length > 0) || '';
-      const chapterMatch = firstLine.match(/^(?:Chapter|Prologue|Epilogue|Act)\s*(\d*)\s*[-—:]?\s*(.*)/i);
-      if (chapterMatch) {
-        const num = chapterMatch[1] ? parseInt(chapterMatch[1]) : 0;
-        const title = chapterMatch[2]?.trim() || firstLine.trim();
-        if (!chapterNumber) setChapterNumber(num || nextSuggested);
-        if (!chapterTitle) setChapterTitle(title || firstLine.trim());
-      }
     } else {
-      alert('Please upload .txt or .md files. DOCX/PDF support coming with Claude API integration.');
+      alert('Please upload .txt or .md files.');
     }
   };
 
   const handleUpload = () => {
-    setError('');
-
-    if (!uploadText.trim()) {
-      setError('Please provide chapter text (upload a file or paste).');
-      return;
-    }
-
-    if (chapterNumber === '' || chapterNumber < 0) {
-      setError('Please enter a valid chapter number (0 for Prologue, 1+ for chapters).');
-      return;
-    }
-
-    // Check for duplicate chapter number
-    if (existingChapters.includes(chapterNumber)) {
-      setError(`Chapter ${chapterNumber} already exists. Use a different number or delete the existing one first.`);
-      return;
-    }
-
-    const scenes = splitIntoScenes(uploadText, chapterNumber);
+    if (!uploadText.trim()) return;
+    const chapterNum = store.manuscripts.length + 1;
+    const scenes = splitIntoScenes(uploadText, chapterNum);
 
     store.addManuscript({
-      title: chapterTitle || (chapterNumber === 0 ? 'Prologue' : `Chapter ${chapterNumber}`),
+      title: chapterTitle || `Chapter ${chapterNum}`,
       content: uploadText,
-      chapterNumber,
+      chapterNumber: chapterNum,
       scenes,
       sceneCount: scenes.length,
       analyzed: false,
@@ -72,61 +40,30 @@ export function ManuscriptUpload({ onClose }: Props) {
     onClose();
   };
 
-  const previewScenes = uploadText.trim() ? splitIntoScenes(uploadText, chapterNumber || 0) : [];
+  const previewScenes = uploadText.trim() ? splitIntoScenes(uploadText, 0) : [];
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
       <div className="bg-ce-panel border border-ce-border rounded-lg w-[600px] max-h-[80vh] flex flex-col">
-        {/* Header */}
+        {/* header */}
         <div className="flex items-center justify-between px-4 py-3 border-b border-ce-border">
           <h3 className="text-sm font-semibold text-ce-text-bright">Upload Chapter</h3>
           <button onClick={onClose} className="text-ce-text-muted hover:text-ce-text-bright text-lg leading-none">&times;</button>
         </div>
 
-        {/* Body */}
+        {/* body */}
         <div className="p-4 space-y-3 overflow-y-auto">
-          {/* Chapter Number — REQUIRED */}
-          <div className="flex gap-3">
-            <div className="w-32">
-              <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">
-                Chapter # <span className="text-red-400">*</span>
-              </label>
-              <input
-                type="number"
-                min={0}
-                value={chapterNumber}
-                onChange={e => setChapterNumber(e.target.value === '' ? '' : parseInt(e.target.value))}
-                placeholder={String(nextSuggested)}
-                className="w-full px-3 py-2 text-xs bg-ce-body border border-ce-border rounded text-ce-text-bright focus:border-ce-accent outline-none font-mono-readout"
-              />
-              <div className="text-[8px] text-ce-text-muted mt-0.5">0 = Prologue</div>
-            </div>
-            <div className="flex-1">
-              <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">Chapter Title</label>
-              <input
-                type="text"
-                value={chapterTitle}
-                onChange={e => setChapterTitle(e.target.value)}
-                placeholder="e.g. The Hunter Exam"
-                className="w-full px-3 py-2 text-xs bg-ce-body border border-ce-border rounded text-ce-text focus:border-ce-accent outline-none"
-              />
-            </div>
+          <div>
+            <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">Chapter Title</label>
+            <input
+              type="text"
+              value={chapterTitle}
+              onChange={e => setChapterTitle(e.target.value)}
+              placeholder="e.g. The Hunter Exam"
+              className="w-full px-3 py-2 text-xs bg-ce-body border border-ce-border rounded text-ce-text focus:border-ce-accent outline-none"
+            />
           </div>
 
-          {/* Existing chapters reference */}
-          {existingChapters.length > 0 && (
-            <div className="text-[9px] text-ce-text-muted bg-ce-body rounded px-3 py-2 border border-ce-border-subtle">
-              <span className="text-ce-text-bright">Existing chapters:</span>{' '}
-              {existingChapters.map(n => (
-                <span key={n} className="inline-block px-1.5 py-0.5 bg-ce-panel rounded mr-1 font-mono-readout">
-                  {n}
-                </span>
-              ))}
-              <span className="text-ce-text-muted ml-1">Next suggested: <span className="text-ce-accent font-mono-readout">{nextSuggested}</span></span>
-            </div>
-          )}
-
-          {/* File upload */}
           <div>
             <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">Upload File</label>
             <input
@@ -137,7 +74,6 @@ export function ManuscriptUpload({ onClose }: Props) {
             />
           </div>
 
-          {/* Paste text */}
           <div>
             <label className="text-[10px] uppercase tracking-widest text-ce-text-muted mb-1 block">Or Paste Text</label>
             <textarea
@@ -148,26 +84,14 @@ export function ManuscriptUpload({ onClose }: Props) {
             />
           </div>
 
-          {/* Preview stats */}
           {uploadText.trim() && (
-            <div className="text-[9px] text-ce-text-muted bg-ce-body rounded px-3 py-2 border border-ce-border-subtle">
-              <span className="text-ce-text-bright">{uploadText.split(/\s+/).length}</span> words
-              {' · '}
-              <span className="text-ce-text-bright">{previewScenes.length}</span> scene{previewScenes.length !== 1 ? 's' : ''} detected
-              {' · '}
-              <span className="text-ce-text-bright">{uploadText.split('\n').length}</span> lines
-            </div>
-          )}
-
-          {/* Error message */}
-          {error && (
-            <div className="text-[10px] text-red-400 bg-red-900/20 border border-red-500/30 rounded px-3 py-2">
-              {error}
+            <div className="text-[9px] text-ce-text-muted">
+              {uploadText.split(/\s+/).length} words &middot; {previewScenes.length} scene{previewScenes.length !== 1 ? 's' : ''} detected
             </div>
           )}
         </div>
 
-        {/* Footer */}
+        {/* footer */}
         <div className="flex justify-end gap-2 px-4 py-3 border-t border-ce-border">
           <button
             onClick={onClose}
@@ -177,10 +101,10 @@ export function ManuscriptUpload({ onClose }: Props) {
           </button>
           <button
             onClick={handleUpload}
-            disabled={!uploadText.trim() || chapterNumber === ''}
+            disabled={!uploadText.trim()}
             className="px-4 py-1.5 text-xs font-semibold bg-ce-accent text-white rounded disabled:opacity-40"
           >
-            Upload Chapter {chapterNumber !== '' ? chapterNumber : ''}
+            Upload Chapter
           </button>
         </div>
       </div>
