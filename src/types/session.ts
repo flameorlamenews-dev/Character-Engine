@@ -15,6 +15,8 @@ export interface Chapter {
   title: string;
   /** Whether the character appears in this chapter */
   characterPresent: boolean;
+  /** Number of scenes in this chapter (detected from text) */
+  sceneCount: number;
 }
 
 export interface Character {

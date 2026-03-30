@@ -1,4 +1,7 @@
-/** Width of a single chapter in pixels at zoom level 1 */
+/** Width of a single SCENE in pixels at zoom level 1 */
+export const BASE_SCENE_WIDTH = 80;
+
+/** Legacy: approximate chapter width (used as fallback) */
 export const BASE_CHAPTER_WIDTH = 160;
 
 /** Height of a single emotion lane in pixels */
@@ -7,14 +10,68 @@ export const LANE_HEIGHT = 72;
 /** Max score value */
 export const MAX_SCORE = 75;
 
-/** Get the x position for a chapter index at a given zoom level */
-export function chapterToX(chapterIndex: number, zoom: number): number {
+/**
+ * Scene-aware layout: calculates x positions based on scene counts per chapter.
+ * Chapters with more scenes take up proportionally more space.
+ */
+export interface ChapterLayout {
+  index: number;
+  startX: number;
+  width: number;
+  sceneCount: number;
+  sceneWidth: number;
+}
+
+export function buildChapterLayout(
+  chapters: { index: number; sceneCount: number }[],
+  zoom: number
+): ChapterLayout[] {
+  const layouts: ChapterLayout[] = [];
+  let x = 0;
+
+  for (const ch of chapters) {
+    const scenes = Math.max(1, ch.sceneCount);
+    const sceneWidth = BASE_SCENE_WIDTH * zoom;
+    const width = scenes * sceneWidth;
+    layouts.push({
+      index: ch.index,
+      startX: x,
+      width,
+      sceneCount: scenes,
+      sceneWidth,
+    });
+    x += width;
+  }
+
+  return layouts;
+}
+
+/** Get the x position for a chapter using the layout */
+export function chapterToX(chapterIndex: number, zoom: number, layout?: ChapterLayout[]): number {
+  if (layout) {
+    const ch = layout.find(l => l.index === chapterIndex);
+    return ch ? ch.startX : 0;
+  }
+  // Fallback to uniform width
   return chapterIndex * BASE_CHAPTER_WIDTH * zoom;
 }
 
-/** Get the x position for the midpoint of a chapter */
-export function chapterMidX(chapterIndex: number, zoom: number): number {
-  return chapterToX(chapterIndex, zoom) + (BASE_CHAPTER_WIDTH * zoom) / 2;
+/** Get the width of a specific chapter */
+export function getChapterWidth(chapterIndex: number, zoom: number, layout?: ChapterLayout[]): number {
+  if (layout) {
+    const ch = layout.find(l => l.index === chapterIndex);
+    return ch ? ch.width : BASE_CHAPTER_WIDTH * zoom;
+  }
+  return BASE_CHAPTER_WIDTH * zoom;
+}
+
+/** Get total timeline width from layout */
+export function getTimelineWidth(chapterCount: number, zoom: number, layout?: ChapterLayout[]): number {
+  if (layout && layout.length > 0) {
+    const last = layout[layout.length - 1];
+    return last.startX + last.width;
+  }
+  return chapterCount * BASE_CHAPTER_WIDTH * zoom;
 }
 
 /** Convert a score (0-75) to a Y position within a lane (0 = top = max, laneHeight = bottom = 0) */
@@ -23,11 +80,6 @@ export function scoreToY(score: number, laneHeight: number = LANE_HEIGHT): numbe
   const padding = 6;
   const usableHeight = laneHeight - padding * 2;
   return padding + usableHeight * (1 - clamped / MAX_SCORE);
-}
-
-/** Get total timeline width based on chapter count and zoom */
-export function getTimelineWidth(chapterCount: number, zoom: number): number {
-  return chapterCount * BASE_CHAPTER_WIDTH * zoom;
 }
 
 /**
@@ -48,10 +100,10 @@ export function buildContinuousLine(
   surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number; id: string }[],
   silenceBlocks: [number, number][],
   zoom: number,
-  laneHeight: number = LANE_HEIGHT
+  laneHeight: number = LANE_HEIGHT,
+  layout?: ChapterLayout[]
 ): TimelinePoint[] {
   const points: TimelinePoint[] = [];
-  const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
 
   // Create a set of silent chapters for quick lookup
   const silentChapters = new Set<number>();
@@ -69,7 +121,8 @@ export function buildContinuousLine(
 
   for (let ch = 0; ch < driftLine.length; ch++) {
     const baseValue = driftLine[ch];
-    const chapterStartX = chapterToX(ch, zoom);
+    const chapterStartX = chapterToX(ch, zoom, layout);
+    const chapterWidth = getChapterWidth(ch, zoom, layout);
 
     if (silentChapters.has(ch)) {
       // Silent chapter — no points (gap in the line)

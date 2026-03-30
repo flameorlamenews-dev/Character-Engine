@@ -6,12 +6,13 @@ import type { EmotionType } from '../../theme/colors';
 import {
   getTimelineWidth,
   chapterToX,
-  BASE_CHAPTER_WIDTH,
+  getChapterWidth,
   LANE_HEIGHT,
   buildContinuousLine,
   splitIntoSegments,
   pointsToSharpPath,
   pointsToFilledPath,
+  type ChapterLayout,
 } from '../../utils/timeline-math';
 import { EmotionEQDetail, EQ_DETAIL_HEIGHT } from './EmotionEQDetail';
 import type { Surge } from '../../types/emotions';
@@ -24,15 +25,16 @@ interface TimelineProps {
   onSeek: (position: number) => void;
   expandedTrack: string | null;
   traitEQData: Record<string, TraitEQPoint[]>;
+  chapterLayout: ChapterLayout[];
 }
 
-export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, expandedTrack, traitEQData }: TimelineProps) {
+export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, expandedTrack, traitEQData, chapterLayout }: TimelineProps) {
   const { session } = useSession();
   const { selectedSurge, selectSurge } = useInspector();
   const { book, character, zoomLevel } = session;
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const totalWidth = getTimelineWidth(book.chapters.length, zoomLevel);
+  const totalWidth = getTimelineWidth(book.chapters.length, zoomLevel, chapterLayout);
   const rulerHeight = 32;
   const visibleEmotions = EMOTION_LIST.filter((e) => {
     if (soloTrack) return e === soloTrack;
@@ -59,17 +61,25 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
     }
   }
 
-  // Playhead X
-  const playheadX = chapterToX(Math.floor(playheadPosition), zoomLevel)
-    + (playheadPosition - Math.floor(playheadPosition)) * BASE_CHAPTER_WIDTH * zoomLevel;
+  // Playhead X — uses layout-aware positioning
+  const playheadChapter = Math.floor(playheadPosition);
+  const playheadFrac = playheadPosition - playheadChapter;
+  const playheadX = chapterToX(playheadChapter, zoomLevel, chapterLayout)
+    + playheadFrac * getChapterWidth(playheadChapter, zoomLevel, chapterLayout);
 
   const handleTimelineClick = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
     const rect = svg.getBoundingClientRect();
-    const x = e.clientX - rect.left + (scrollRef.current?.scrollLeft ?? 0);
-    const chapterWidth = BASE_CHAPTER_WIDTH * zoomLevel;
-    const position = Math.max(0, Math.min(book.chapters.length - 0.01, x / chapterWidth));
-    onSeek(position);
+    const clickX = e.clientX - rect.left + (scrollRef.current?.scrollLeft ?? 0);
+    // Find which chapter was clicked using layout
+    let position = 0;
+    for (const lay of chapterLayout) {
+      if (clickX >= lay.startX && clickX < lay.startX + lay.width) {
+        position = lay.index + (clickX - lay.startX) / lay.width;
+        break;
+      }
+    }
+    onSeek(Math.max(0, Math.min(book.chapters.length - 0.01, position)));
   };
 
   return (
@@ -80,21 +90,42 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
           <g>
             <rect x={0} y={0} width={totalWidth} height={rulerHeight} fill="#1a1a2e" />
             {book.chapters.map((ch, i) => {
-              const x = chapterToX(i, zoomLevel);
-              const w = BASE_CHAPTER_WIDTH * zoomLevel;
+              const lay = chapterLayout.find(l => l.index === i);
+              if (!lay) return null;
+              const x = lay.startX;
+              const w = lay.width;
               return (
                 <g key={i}>
+                  {/* Chapter border */}
                   <line x1={x} y1={0} x2={x} y2={rulerHeight} stroke="#2a2a4a" strokeWidth={1} />
+                  {/* Chapter label */}
                   <text
-                    x={x + w / 2} y={rulerHeight - 8}
+                    x={x + w / 2} y={rulerHeight - 14}
                     textAnchor="middle"
                     fill={ch.characterPresent ? '#c8c8d4' : '#555568'}
                     fontSize={10} fontFamily="'JetBrains Mono', monospace"
                   >
                     Ch.{i + 1}
                   </text>
+                  {/* Scene count indicator */}
+                  <text
+                    x={x + w / 2} y={rulerHeight - 4}
+                    textAnchor="middle"
+                    fill="#555568"
+                    fontSize={7} fontFamily="'JetBrains Mono', monospace"
+                  >
+                    {ch.sceneCount}s
+                  </text>
+                  {/* Scene subdivision ticks within chapter */}
+                  {Array.from({ length: ch.sceneCount - 1 }, (_, si) => {
+                    const sceneX = x + (si + 1) * lay.sceneWidth;
+                    return (
+                      <line key={si} x1={sceneX} y1={rulerHeight - 6} x2={sceneX} y2={rulerHeight}
+                        stroke="#3a3a5a" strokeWidth={0.5} />
+                    );
+                  })}
                   {!ch.characterPresent && (
-                    <rect x={x} y={rulerHeight - 3} width={w} height={3} fill="#555568" opacity={0.3} />
+                    <rect x={x} y={rulerHeight - 2} width={w} height={2} fill="#555568" opacity={0.3} />
                   )}
                 </g>
               );
@@ -123,7 +154,8 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
               })),
               timeline.silenceBlocks,
               zoomLevel,
-              LANE_HEIGHT
+              LANE_HEIGHT,
+              chapterLayout
             );
 
             // Split into segments (gaps where character absent)
@@ -144,9 +176,18 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
 
                   {/* Silence blocks — keep lane color, no dark overlay */}
 
-                  {/* Chapter grid */}
-                  {book.chapters.map((_, i) => (
-                    <line key={i} x1={chapterToX(i, zoomLevel)} y1={0} x2={chapterToX(i, zoomLevel)} y2={LANE_HEIGHT} stroke="#1e1e3a" strokeWidth={0.5} />
+                  {/* Chapter + scene grid */}
+                  {chapterLayout.map((lay) => (
+                    <g key={`grid-${lay.index}`}>
+                      {/* Chapter border */}
+                      <line x1={lay.startX} y1={0} x2={lay.startX} y2={LANE_HEIGHT} stroke="#1e1e3a" strokeWidth={0.5} />
+                      {/* Scene subdivision lines */}
+                      {Array.from({ length: lay.sceneCount - 1 }, (_, si) => (
+                        <line key={si} x1={lay.startX + (si + 1) * lay.sceneWidth} y1={0}
+                          x2={lay.startX + (si + 1) * lay.sceneWidth} y2={LANE_HEIGHT}
+                          stroke="#1a1a30" strokeWidth={0.3} strokeDasharray="2 3" />
+                      ))}
+                    </g>
                   ))}
 
                   {/* Filled areas — one per segment, gaps between */}
@@ -215,6 +256,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
                       totalChapters={book.chapters.length}
                       zoomLevel={zoomLevel}
                       totalWidth={totalWidth}
+                      chapterLayout={chapterLayout}
                     />
                   </g>
                 )}

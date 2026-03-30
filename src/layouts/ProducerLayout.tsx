@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef, useMemo } from 'react';
 import { TopBar } from '../components/topbar/TopBar';
 import { ChannelRack } from '../components/channel-rack/ChannelRack';
 import { Timeline } from '../components/timeline/Timeline';
@@ -7,11 +7,21 @@ import { EffectsRack } from '../components/effects-rack/EffectsRack';
 import { useSession } from '../context/SessionContext';
 import { mockTraitEQ } from '../data/mock-character';
 import { mockInfluenceData } from '../data/mock-influence';
+import { buildChapterLayout } from '../utils/timeline-math';
 
 const PLAYBACK_SPEED = 0.15;
 
 export function ProducerLayout() {
   const { session } = useSession();
+
+  // Build scene-aware layout from chapter data
+  const chapterLayout = useMemo(() =>
+    buildChapterLayout(
+      session.book.chapters.map(ch => ({ index: ch.index, sceneCount: ch.sceneCount })),
+      session.zoomLevel
+    ),
+    [session.book.chapters, session.zoomLevel]
+  );
   const [mutedTracks, setMutedTracks] = useState<Set<string>>(new Set());
   const [soloTrack, setSoloTrack] = useState<string | null>(null);
   const [playheadPosition, setPlayheadPosition] = useState(0);
@@ -103,6 +113,7 @@ export function ProducerLayout() {
           onSeek={handleSeek}
           expandedTrack={expandedTrack}
           traitEQData={mockTraitEQ}
+          chapterLayout={chapterLayout}
         />
         <EffectsRack influenceData={mockInfluenceData} />
       </div>

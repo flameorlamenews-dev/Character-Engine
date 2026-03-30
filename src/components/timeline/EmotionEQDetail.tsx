@@ -4,8 +4,9 @@ import type { TraitEQPoint } from '../../types/trait-eq';
 import type { EmotionTimeline } from '../../types/emotions';
 import {
   chapterToX,
+  getChapterWidth,
   scoreToY,
-  BASE_CHAPTER_WIDTH,
+  type ChapterLayout,
 } from '../../utils/timeline-math';
 
 interface EmotionEQDetailProps {
@@ -15,15 +16,17 @@ interface EmotionEQDetailProps {
   totalChapters: number;
   zoomLevel: number;
   totalWidth: number;
+  chapterLayout?: ChapterLayout[];
 }
 
 /** Height of the expanded EQ detail lane */
 export const EQ_DETAIL_HEIGHT = 220;
 
-/** Convert a chapter position to X */
-function posToX(chapterPos: number, zoom: number): number {
-  return chapterToX(Math.floor(chapterPos), zoom) +
-    (chapterPos - Math.floor(chapterPos)) * BASE_CHAPTER_WIDTH * zoom;
+/** Convert a fractional chapter position to X */
+function posToX(chapterPos: number, zoom: number, layout?: ChapterLayout[]): number {
+  const chIdx = Math.floor(chapterPos);
+  const frac = chapterPos - chIdx;
+  return chapterToX(chIdx, zoom, layout) + frac * getChapterWidth(chIdx, zoom, layout);
 }
 
 /**
@@ -42,11 +45,12 @@ function buildSmoothData(
   silenceBlocks: [number, number][],
   zoom: number,
   totalWidth: number,
-  laneHeight: number
+  laneHeight: number,
+  layout?: ChapterLayout[]
 ): SmoothResult {
   if (driftLine.length === 0) return { paths: [], segments: [] };
 
-  const chapterWidth = BASE_CHAPTER_WIDTH * zoom;
+  const defaultChWidth = 160 * zoom; // fallback
 
   // Silent chapter set
   const silentChapters = new Set<number>();
@@ -74,8 +78,9 @@ function buildSmoothData(
     }
 
     const baseY = scoreToY(driftLine[ch], laneHeight);
-    const chStart = chapterToX(ch, zoom);
-    const chMid = chStart + chapterWidth / 2;
+    const chStart = chapterToX(ch, zoom, layout);
+    const chW = getChapterWidth(ch, zoom, layout);
+    const chMid = chStart + chW / 2;
 
     // Get surges for this chapter
     const chSurges = sortedSurges.filter((s) => s.chapterIndex === ch);
@@ -85,24 +90,24 @@ function buildSmoothData(
       currentSeg.push({ x: chMid, y: baseY });
     } else {
       // Add drift point at chapter start area
-      currentSeg.push({ x: chStart + chapterWidth * 0.15, y: baseY });
+      currentSeg.push({ x: chStart + chW * 0.15, y: baseY });
 
       for (const surge of chSurges) {
-        const surgeX = chStart + surge.scenePosition * chapterWidth;
+        const surgeX = chStart + surge.scenePosition * chW;
         // Pre-surge baseline
-        const preX = surgeX - surge.duration * 0.2 * chapterWidth;
-        if (preX > chStart + chapterWidth * 0.15) {
+        const preX = surgeX - surge.duration * 0.2 * chW;
+        if (preX > chStart + chW * 0.15) {
           currentSeg.push({ x: preX, y: baseY });
         }
         // Surge peak
         currentSeg.push({ x: surgeX, y: scoreToY(surge.peakIntensity, laneHeight) });
         // Post-surge baseline
-        const postX = surgeX + surge.duration * 0.5 * chapterWidth;
-        currentSeg.push({ x: Math.min(postX, chStart + chapterWidth * 0.85), y: baseY });
+        const postX = surgeX + surge.duration * 0.5 * chW;
+        currentSeg.push({ x: Math.min(postX, chStart + chW * 0.85), y: baseY });
       }
 
       // Drift point at chapter end area
-      currentSeg.push({ x: chStart + chapterWidth * 0.85, y: baseY });
+      currentSeg.push({ x: chStart + chW * 0.85, y: baseY });
     }
   }
   if (currentSeg.length > 0) segments.push(currentSeg);
@@ -116,9 +121,9 @@ function buildSmoothData(
     const first = points[0];
     const last = points[points.length - 1];
 
-    let d = `M ${Math.max(0, first.x - chapterWidth * 0.3)} ${first.y}`;
+    let d = `M ${Math.max(0, first.x - defaultChWidth * 0.3)} ${first.y}`;
     // Smooth to first point
-    d += ` C ${first.x - chapterWidth * 0.15} ${first.y} ${first.x - chapterWidth * 0.05} ${first.y} ${first.x} ${first.y}`;
+    d += ` C ${first.x - defaultChWidth * 0.15} ${first.y} ${first.x - defaultChWidth * 0.05} ${first.y} ${first.x} ${first.y}`;
 
     // Smooth curves between all points
     for (let i = 1; i < points.length; i++) {
@@ -129,7 +134,7 @@ function buildSmoothData(
     }
 
     // Extend to right edge
-    d += ` C ${last.x + chapterWidth * 0.05} ${last.y} ${last.x + chapterWidth * 0.15} ${last.y} ${Math.min(totalWidth, last.x + chapterWidth * 0.3)} ${last.y}`;
+    d += ` C ${last.x + defaultChWidth * 0.05} ${last.y} ${last.x + defaultChWidth * 0.15} ${last.y} ${Math.min(totalWidth, last.x + defaultChWidth * 0.3)} ${last.y}`;
 
     return d;
   });
@@ -144,9 +149,10 @@ function buildSmoothFilledPaths(
   silenceBlocks: [number, number][],
   zoom: number,
   totalWidth: number,
-  laneHeight: number
+  laneHeight: number,
+  layout?: ChapterLayout[]
 ): string[] {
-  const { paths } = buildSmoothData(driftLine, surges, silenceBlocks, zoom, totalWidth, laneHeight);
+  const { paths } = buildSmoothData(driftLine, surges, silenceBlocks, zoom, totalWidth, laneHeight, layout);
   return paths.map((p) => {
     if (!p) return '';
     // Extract first and last x from the path
@@ -166,6 +172,7 @@ export function EmotionEQDetail({
   totalChapters,
   zoomLevel,
   totalWidth,
+  chapterLayout,
 }: EmotionEQDetailProps) {
   const color = EMOTION_COLORS[emotion];
   const brightColor = EMOTION_COLORS_BRIGHT[emotion];
@@ -177,8 +184,8 @@ export function EmotionEQDetail({
     peakIntensity: s.peakIntensity,
     duration: s.duration,
   }));
-  const { paths: smoothPaths, segments: smoothSegments } = buildSmoothData(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
-  const smoothFilledPaths = buildSmoothFilledPaths(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT);
+  const { paths: smoothPaths, segments: smoothSegments } = buildSmoothData(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT, chapterLayout);
+  const smoothFilledPaths = buildSmoothFilledPaths(timeline.driftLine, surgeData, timeline.silenceBlocks, zoomLevel, totalWidth, EQ_DETAIL_HEIGHT, chapterLayout);
 
   // Sort trait points
   const sorted = [...traitPoints].sort((a, b) => a.chapterPosition - b.chapterPosition);
@@ -231,7 +238,7 @@ export function EmotionEQDetail({
 
       {/* Vertical chapter grid lines */}
       {Array.from({ length: totalChapters }, (_, i) => {
-        const x = chapterToX(i, zoomLevel);
+        const x = chapterToX(i, zoomLevel, chapterLayout);
         return (
           <line key={i} x1={x} y1={0} x2={x} y2={EQ_DETAIL_HEIGHT} stroke="#1a1a30" strokeWidth={0.5} />
         );
@@ -273,7 +280,7 @@ export function EmotionEQDetail({
 
       {/* Trait control points overlaid on the curve */}
       {sorted.map((point) => {
-        const x = posToX(point.chapterPosition, zoomLevel);
+        const x = posToX(point.chapterPosition, zoomLevel, chapterLayout);
         const lineY = getEmotionYAtChapter(point.chapterPosition);
         const offsetY = -(point.boostCut / 37) * 40;
         const pointY = lineY + offsetY;
