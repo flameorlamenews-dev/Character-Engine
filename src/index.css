@@ -75,3 +75,27 @@ html, body, #root {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-ce-mute);
 }
+
+/* Theme bridge for shadcn components in the Author panel */
+.author-panel {
+  --background: 13 13 26;
+  --foreground: 200 200 212;
+  --card: 20 20 40;
+  --card-foreground: 200 200 212;
+  --primary: 170 59 255;
+  --primary-foreground: 255 255 255;
+  --muted: 26 26 46;
+  --muted-foreground: 107 107 128;
+  --border: 42 42 74;
+  --input: 42 42 74;
+  --accent: 170 59 255;
+  --accent-foreground: 255 255 255;
+  --destructive: 220 53 69;
+  --destructive-foreground: 255 255 255;
+  --ring: 170 59 255;
+  --radius: 0.5rem;
+  --popover: 20 20 40;
+  --popover-foreground: 200 200 212;
+  --secondary: 26 26 46;
+  --secondary-foreground: 200 200 212;
+}
