@@ -152,7 +152,7 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
               : 'bg-ce-panel text-ce-text-muted hover:text-ce-text'
           }`}
         >
-          Producer
+          Emotional Engine
         </button>
         <button
           onClick={() => setViewMode('player')}
