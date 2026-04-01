@@ -1,6 +1,6 @@
 import { Auth } from '@supabase/auth-ui-react';
 import { ThemeSupa } from '@supabase/auth-ui-shared';
-import { supabase } from '@/integrations/supabase/client';
+import { supabaseAuth } from '@/integrations/supabase/client';
 
 export function LoginPage() {
   return (
@@ -11,7 +11,7 @@ export function LoginPage() {
           <p className="text-xs text-ce-text-muted mt-1">Sign in to access your manuscripts and engine</p>
         </div>
         <Auth
-          supabaseClient={supabase as any}
+          supabaseClient={supabaseAuth}
           appearance={{
             theme: ThemeSupa,
             variables: {

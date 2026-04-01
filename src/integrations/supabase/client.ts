@@ -14,6 +14,9 @@ const realSupabase = createClient(
   supabaseAnonKey || 'missing-key'
 );
 
+// Export the real client for Auth UI (Proxy doesn't work with auth-ui-react)
+export const supabaseAuth = realSupabase;
+
 // Wrap the client to intercept edge function calls and route them to Claude API
 export const supabase = new Proxy(realSupabase, {
   get(target, prop) {
