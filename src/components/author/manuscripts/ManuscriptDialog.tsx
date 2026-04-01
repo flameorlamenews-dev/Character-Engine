@@ -119,12 +119,29 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
 
   const extractTextFromFile = async (file: File): Promise<string> => {
     // For text files, read directly
-    if (file.type === "text/plain") {
+    if (file.type === "text/plain" || file.name.endsWith('.txt') || file.name.endsWith('.md')) {
       return await file.text();
     }
 
-    // For Word docs and PDFs, return placeholder - edge function will extract text
-    return "Processing document...";
+    // For Word docs, extract with mammoth client-side
+    if (file.name.endsWith('.docx') || file.name.endsWith('.doc')) {
+      try {
+        const mammoth = await import('mammoth');
+        const arrayBuffer = await file.arrayBuffer();
+        const result = await mammoth.default.extractRawText({ arrayBuffer });
+        return result.value;
+      } catch (err) {
+        console.error('Mammoth extraction failed:', err);
+        return "Failed to extract text from document. Try pasting the text instead.";
+      }
+    }
+
+    // For PDFs, we don't have client-side support yet
+    if (file.name.endsWith('.pdf')) {
+      return "PDF text extraction not yet supported. Please convert to .docx or .txt and re-upload.";
+    }
+
+    return "Unsupported file type. Please use .docx, .txt, or .md files.";
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -229,19 +246,12 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
       let fileName = null;
       let content = uploadContent;
 
-      // Handle file upload if present
+      // Handle file upload — extract text client-side (no Supabase storage needed)
       if (uploadFile) {
-        const fileExt = uploadFile.name.split(".").pop();
-        fileName = `${userId}/${Date.now()}.${fileExt}`;
-        
-        const { error: uploadError } = await supabase.storage
-          .from("manuscripts")
-          .upload(fileName, uploadFile);
-
-        if (uploadError) throw uploadError;
-
-        // Extract text from file
         content = await extractTextFromFile(uploadFile);
+        if (!content || content.includes("Failed") || content.includes("not yet supported") || content.includes("Unsupported")) {
+          throw new Error(content || "Could not extract text from file.");
+        }
       }
 
       if (isReplacement && existingManuscriptId) {
@@ -250,10 +260,10 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
           .from("manuscripts")
           .update({
             title: uploadTitle || uploadFile?.name || "Untitled Manuscript",
-            content: content || "Document uploaded. Text extraction in progress...",
-            file_path: fileName,
+            content: content,
             analysis_progress: 0,
             analysis_results: null,
+            processing_progress: 100,
           })
           .eq("id", existingManuscriptId)
           .select()
@@ -261,15 +271,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
 
         if (updateError) throw updateError;
 
-        // For non-text files, trigger parsing via edge function and wait for completion
-        if (uploadFile && uploadFile.type !== "text/plain" && manuscript) {
-          await supabase.functions.invoke("parse-manuscript", {
-            body: { filePath: fileName, manuscriptId: manuscript.id },
-          });
-          
-          // Poll until processing completes
-          await waitForProcessingComplete(manuscript.id);
-        }
+        // Text already extracted client-side — no edge function needed
       } else {
         // Insert new manuscript record
         const { data: manuscript, error: insertError } = await supabase
@@ -277,8 +279,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
           .insert([
             {
               title: uploadTitle || uploadFile?.name || "Untitled Manuscript",
-              content: content || "Document uploaded. Text extraction in progress...",
-              file_path: fileName,
+              content: content,
               user_id: userId,
               chapter_number: uploadChapterNumber,
               project_id: projectId || null,
@@ -289,15 +290,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
 
         if (insertError) throw insertError;
 
-        // For non-text files, trigger parsing via edge function and wait for completion
-        if (uploadFile && uploadFile.type !== "text/plain" && manuscript) {
-          await supabase.functions.invoke("parse-manuscript", {
-            body: { filePath: fileName, manuscriptId: manuscript.id },
-          });
-          
-          // Poll until processing completes
-          await waitForProcessingComplete(manuscript.id);
-        }
+        // Text already extracted client-side — no edge function needed
       }
     } catch (error) {
       throw error;
