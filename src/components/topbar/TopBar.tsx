@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { AlgorithmInfo } from '../shared/AlgorithmInfo';
+import { supabase } from '@/integrations/supabase/client';
 
 interface TopBarProps {
   isPlaying?: boolean;
@@ -175,6 +176,15 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
           Player
         </button>
       </div>
+
+      {/* Logout */}
+      <button
+        onClick={() => (supabase as any).auth.signOut()}
+        className="px-2 py-1 rounded text-xs bg-ce-panel text-ce-text-muted border border-ce-border hover:text-red-400 hover:border-red-500/50 transition-colors"
+        title="Sign out"
+      >
+        Logout
+      </button>
 
       {/* Algorithm Info Modal */}
       {showAlgorithm && <AlgorithmInfo onClose={() => setShowAlgorithm(false)} />}

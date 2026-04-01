@@ -237,32 +237,7 @@ export const supabase = new Proxy(realSupabase, {
       };
     }
 
-    // For auth, provide a mock session since we don't have Supabase Auth set up
-    if (prop === 'auth') {
-      const realAuth = target.auth;
-      return new Proxy(realAuth, {
-        get(authTarget, authProp) {
-          if (authProp === 'getSession') {
-            return async () => ({
-              data: {
-                session: {
-                  user: {
-                    id: '00000000-0000-0000-0000-000000000001',
-                    email: 'author@local',
-                  },
-                },
-              },
-              error: null,
-            });
-          }
-          if (authProp === 'signOut') {
-            return async () => ({ error: null });
-          }
-          return (authTarget as any)[authProp];
-        },
-      });
-    }
-
+    // Auth passes through to real Supabase Auth (login/signup/logout)
     return (target as any)[prop];
   },
 });
