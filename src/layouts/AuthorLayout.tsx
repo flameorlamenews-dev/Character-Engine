@@ -6,47 +6,102 @@ import { supabase } from '@/integrations/supabase/client';
 export function AuthorLayout() {
   const [session, setSession] = useState<any>(null);
   const [projectId, setProjectId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Get the real auth session
     (supabase as any).auth.getSession().then(({ data }: any) => {
-      setSession(data?.session);
-      if (data?.session?.user?.id) {
-        ensureProject(data.session.user.id);
+      const s = data?.session;
+      setSession(s);
+      if (s?.user?.id) {
+        setupUserAndProject(s.user.id, s.user.email);
       }
     });
   }, []);
 
-  const ensureProject = async (userId: string) => {
-    // Check if user has a project, create one if not
-    const { data: projects } = await (supabase as any)
-      .from('projects')
-      .select('id')
-      .eq('user_id', userId)
-      .limit(1);
-
-    if (projects && projects.length > 0) {
-      setProjectId(projects[0].id);
-    } else {
-      // Create a default project
-      const { data: newProject } = await (supabase as any)
-        .from('projects')
-        .insert({ name: 'My Project', description: 'Default project', user_id: userId })
+  const setupUserAndProject = async (userId: string, email: string) => {
+    try {
+      // 1. Ensure profile exists for this auth user
+      const { data: existingProfile } = await (supabase as any)
+        .from('profiles')
         .select('id')
-        .single();
+        .eq('id', userId)
+        .maybeSingle();
 
-      if (newProject) {
-        setProjectId(newProject.id);
+      if (!existingProfile) {
+        const { error: profileErr } = await (supabase as any)
+          .from('profiles')
+          .insert({ id: userId, email: email || '', full_name: '' });
+
+        if (profileErr) {
+          console.error('Profile creation failed:', profileErr);
+          // Don't block — profile might already exist or FK might not require it
+        }
       }
+
+      // 2. Check if user has a project
+      const { data: projects, error: projErr } = await (supabase as any)
+        .from('projects')
+        .select('id')
+        .eq('user_id', userId);
+
+      if (projErr) {
+        console.error('Project fetch failed:', projErr);
+        setError('Failed to load projects: ' + projErr.message);
+        return;
+      }
+
+      if (projects && projects.length > 0) {
+        setProjectId(projects[0].id);
+      } else {
+        // Create a default project
+        const { data: newProject, error: createErr } = await (supabase as any)
+          .from('projects')
+          .insert({ name: 'My Project', description: 'Default project', user_id: userId })
+          .select('id')
+          .single();
+
+        if (createErr) {
+          console.error('Project creation failed:', createErr);
+          setError('Failed to create project: ' + createErr.message);
+          return;
+        }
+
+        if (newProject) {
+          setProjectId(newProject.id);
+        }
+      }
+    } catch (err: any) {
+      console.error('Setup failed:', err);
+      setError(err.message || 'Failed to initialize');
     }
   };
+
+  if (error) {
+    return (
+      <div className="flex flex-col h-screen">
+        <TopBar />
+        <div className="flex-1 flex items-center justify-center bg-ce-body">
+          <div className="text-center">
+            <div className="text-red-400 text-sm mb-2">Setup error</div>
+            <div className="text-ce-text-muted text-xs mb-4">{error}</div>
+            <button
+              onClick={() => { setError(null); window.location.reload(); }}
+              className="px-4 py-2 text-xs bg-ce-accent text-white rounded"
+            >
+              Retry
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   if (!session || !projectId) {
     return (
       <div className="flex flex-col h-screen">
         <TopBar />
         <div className="flex-1 flex items-center justify-center bg-ce-body">
-          <div className="text-ce-text-muted text-sm">Loading project...</div>
+          <div className="text-ce-text-muted text-sm animate-pulse">Loading project...</div>
         </div>
       </div>
     );
