@@ -3,8 +3,9 @@ import Dashboard from '../components/author/Dashboard';
 
 export function AuthorLayout() {
   // Mock session for the Lovable Dashboard
-  const mockSession = { user: { id: 'local-user', email: 'author@local' } };
-  const mockProjectId = 'default-project';
+  // These IDs match the seed data in 002_author_tables.sql
+  const mockSession = { user: { id: '00000000-0000-0000-0000-000000000001', email: 'author@local' } };
+  const mockProjectId = '00000000-0000-0000-0000-000000000002';
 
   return (
     <div className="flex flex-col h-screen">
