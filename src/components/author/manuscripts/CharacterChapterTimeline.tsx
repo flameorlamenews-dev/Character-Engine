@@ -4,7 +4,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Brain, MessageSquare, Users } from "lucide-react";
 import CharacterComparisonView from "@/components/author/characters/CharacterComparisonView";
 
@@ -110,7 +109,7 @@ export const CharacterChapterTimeline = ({
             </p>
 
             {/* Master Summary */}
-            {(selectedData.masterSummary || selectedData.profile) && (
+            {(selectedData.profile || selectedData.masterSummary) && (
               <Card>
                 <CardHeader>
                   <CardTitle className="text-base flex items-center gap-2">
@@ -123,7 +122,7 @@ export const CharacterChapterTimeline = ({
                     <p className="text-sm"><span className="font-medium">Role:</span> {aiData.formData.role || "—"}</p>
                   )}
                   <p className="text-sm leading-relaxed text-muted-foreground whitespace-pre-line">
-                    {selectedData.masterSummary || selectedData.profile}
+                    {selectedData.profile || selectedData.masterSummary}
                   </p>
                 </CardContent>
               </Card>
@@ -223,52 +222,6 @@ export const CharacterChapterTimeline = ({
               </Card>
             )}
 
-            {/* Chapter-by-Chapter Breakdown */}
-            {chapters.length > 1 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Chapter-by-Chapter Breakdown</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <Accordion type="single" collapsible className="w-full">
-                    {chapters.map((ch) => {
-                      const d = chapterData[ch.id];
-                      if (!d || d._notAnalyzed) return null;
-                      return (
-                        <AccordionItem key={ch.id} value={`ch-${ch.id}`}>
-                          <AccordionTrigger className="text-sm">
-                            Chapter {ch.number}{ch.title ? `: ${ch.title}` : ''}
-                          </AccordionTrigger>
-                          <AccordionContent>
-                            <div className="space-y-3 pt-2">
-                              {d.profile && (
-                                <div className="p-3 bg-muted/50 rounded-lg">
-                                  <p className="text-sm whitespace-pre-wrap">{d.profile}</p>
-                                </div>
-                              )}
-                              <div className="grid grid-cols-2 gap-3">
-                                {d.emotionalState && (
-                                  <div>
-                                    <span className="text-xs font-medium text-muted-foreground">Emotional State</span>
-                                    <Badge variant="secondary" className="mt-1 block w-fit">{d.emotionalState}</Badge>
-                                  </div>
-                                )}
-                              </div>
-                              {d.relationships && (
-                                <div>
-                                  <span className="text-xs font-medium text-muted-foreground">Relationships</span>
-                                  <p className="text-sm text-muted-foreground mt-1">{d.relationships}</p>
-                                </div>
-                              )}
-                            </div>
-                          </AccordionContent>
-                        </AccordionItem>
-                      );
-                    })}
-                  </Accordion>
-                </CardContent>
-              </Card>
-            )}
           </TabsContent>
 
           {/* ── Author Interpretation Tab ──────────────────────────── */}
