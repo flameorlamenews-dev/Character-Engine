@@ -292,7 +292,7 @@ export function EffectsRack({ influenceData }: EffectsRackProps) {
           </span>
         </div>
         <div className="flex flex-col gap-1 px-3 pb-3">
-          {character.relationships.map((rel) => (
+          {(character?.relationships || []).map((rel) => (
             <div key={rel.targetName} className="flex items-center gap-2 text-[10px]">
               <span className="text-ce-text w-14 truncate">{rel.targetName}</span>
               <div className="flex-1 flex gap-1">

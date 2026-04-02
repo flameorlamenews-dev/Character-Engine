@@ -62,8 +62,10 @@ export default function EngineProfileSection({ characterId }: EngineProfileSecti
 
   useEffect(() => {
     if (!characterId) return;
+    let cancelled = false;
     setLoading(true);
     fetchAllEngineData(characterId).then(data => {
+      if (cancelled) return;
       setTemperament(data.temperament);
       setEmotionalBaseline(data.emotionalBaseline);
       setMoralStructure(data.moralStructure);
@@ -72,7 +74,8 @@ export default function EngineProfileSection({ characterId }: EngineProfileSecti
       setConditionalTraits(data.conditionalTraits);
       setInfluenceSliders(data.influenceSliders);
       setLoading(false);
-    }).catch(() => setLoading(false));
+    }).catch(() => { if (!cancelled) setLoading(false); });
+    return () => { cancelled = true; };
   }, [characterId]);
 
   const handleSave = async () => {

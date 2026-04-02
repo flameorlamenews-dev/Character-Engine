@@ -55,7 +55,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
 
   // Surge lookup
   const surgeMap = new Map<string, Surge>();
-  for (const tl of character.emotionTimelines) {
+  for (const tl of (character?.emotionTimelines || [])) {
     for (const surge of tl.surges) {
       surgeMap.set(surge.id, surge);
     }
@@ -135,7 +135,7 @@ export function Timeline({ mutedTracks, soloTrack, playheadPosition, onSeek, exp
 
           {/* Emotion Lanes */}
           {laneOffsets.map(({ emotion, yOffset, isExpanded }) => {
-            const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
+            const timeline = character?.emotionTimelines?.find((t) => t.emotionType === emotion);
             if (!timeline) return null;
 
             const color = EMOTION_COLORS[emotion];

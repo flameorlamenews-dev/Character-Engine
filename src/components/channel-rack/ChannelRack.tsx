@@ -62,14 +62,14 @@ export function ChannelRack({ mutedTracks, soloTrack, onToggleMute, onToggleSolo
 
       {/* Tracks */}
       {EMOTION_LIST.map((emotion) => {
-        const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
+        const timeline = character?.emotionTimelines?.find((t) => t.emotionType === emotion);
         const baseline = timeline?.driftLine[currentChapter] ?? timeline?.baseline ?? 0;
         const color = EMOTION_COLORS[emotion];
         const brightColor = EMOTION_COLORS_BRIGHT[emotion];
         const isMuted = mutedTracks.has(emotion);
         const isSolo = soloTrack === emotion;
         const isExpanded = expandedTrack === emotion;
-        const currentIntensity = getIntensityAtPosition(emotion, playheadPosition, character);
+        const currentIntensity = character ? getIntensityAtPosition(emotion, playheadPosition, character as any) : 0;
 
         // When solo is active, hide non-solo tracks
         if (soloTrack && soloTrack !== emotion) return null;

@@ -3,7 +3,7 @@ import type { Session, Character, Book } from '../types/session';
 
 const defaultSession: Session = {
   book: { id: '', title: '', chapters: [] },
-  character: null as any,
+  character: null,
   currentChapter: 0,
   zoomLevel: 1,
   viewMode: 'producer',
@@ -18,6 +18,8 @@ interface SessionContextValue {
   setEditMode: (edit: boolean) => void;
   setCharacter: (character: Character) => void;
   setBook: (book: Book) => void;
+  /** Set both character and book atomically to avoid race conditions */
+  setCharacterAndBook: (character: Character, book: Book) => void;
   userId: string | null;
   projectId: string | null;
   setUserContext: (userId: string, projectId: string) => void;
@@ -48,8 +50,17 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const setBook = (book: Book) =>
     setSession((s) => ({ ...s, book, currentChapter: 0 }));
 
+  const setCharacterAndBook = (character: Character, book: Book) =>
+    setSession((s) => ({ ...s, character, book, currentChapter: 0 }));
+
   const setUserContext = (uid: string, pid: string) => {
-    setUserId(uid);
+    setUserId((prev) => {
+      if (prev !== uid) {
+        // Reset session when user changes
+        setSession(defaultSession);
+      }
+      return uid;
+    });
     setProjectId(pid);
   };
 
@@ -57,7 +68,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     <SessionContext.Provider
       value={{
         session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode,
-        setCharacter, setBook, userId, projectId, setUserContext,
+        setCharacter, setBook, setCharacterAndBook, userId, projectId, setUserContext,
       }}
     >
       {children}

@@ -37,7 +37,7 @@ export async function loadCharacterForEngine(characterId: string): Promise<{ cha
     relResult,
     influenceResult,
   ] = await Promise.all([
-    (supabase as any).from('characters').select('id, name, project_id').eq('id', characterId).single(),
+    (supabase as any).from('characters').select('id, name, project_id').eq('id', characterId).maybeSingle(),
     (supabase as any).from('temperament_grids').select('*').eq('character_id', characterId).maybeSingle(),
     (supabase as any).from('emotional_baselines').select('*').eq('character_id', characterId).maybeSingle(),
     (supabase as any).from('moral_structures').select('*').eq('character_id', characterId).maybeSingle(),
@@ -188,7 +188,7 @@ function buildEmotionTimelines(
     }
     const allChapters = new Set<number>([...driftMap.keys()]);
     surgeRows.forEach(s => { if (s.emotion_type === emotion) allChapters.add(s.chapter_index); });
-    const maxChapter = allChapters.size > 0 ? Math.max(...allChapters) : 0;
+    const maxChapter = allChapters.size > 0 ? Array.from(allChapters).reduce((a, b) => Math.max(a, b), 0) : 0;
 
     const driftLine: Score75[] = [];
     for (let i = 0; i <= maxChapter; i++) {
@@ -256,7 +256,7 @@ async function buildBookFromProject(projectId: string | null): Promise<Book> {
     .maybeSingle();
 
   const chapters: Chapter[] = manuscripts.map((m: any, i: number) => ({
-    index: i,
+    index: (m.chapter_number != null ? m.chapter_number - 1 : i),
     title: m.chapter_title || m.title || `Chapter ${m.chapter_number || i + 1}`,
     characterPresent: true,
     sceneCount: 1,

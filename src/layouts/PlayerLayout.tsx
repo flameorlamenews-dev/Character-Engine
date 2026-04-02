@@ -19,13 +19,13 @@ export function PlayerLayout() {
 
   // Get current emotional state at this chapter
   const emotionStates = EMOTION_LIST.map((emotion) => {
-    const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
+    const timeline = character.emotionTimelines?.find((t) => t.emotionType === emotion);
     const value = timeline?.driftLine[currentChapter] ?? timeline?.baseline ?? 0;
     return { emotion, value, color: EMOTION_COLORS[emotion], label: EMOTION_LABELS[emotion] };
   }).sort((a, b) => b.value - a.value);
 
-  const dominant = emotionStates[0];
-  const topDesires = character.corePersonality.desireHierarchy.slice(0, 3);
+  const dominant = emotionStates[0] || { emotion: 'joy' as const, value: 0, color: '#888', label: 'None' };
+  const topDesires = character.corePersonality?.desireHierarchy?.slice(0, 3) || [];
 
   // Radar chart
   const radarSize = 200;
@@ -33,7 +33,7 @@ export function PlayerLayout() {
   const radarRadius = 80;
 
   const radarPoints = EMOTION_LIST.map((emotion, i) => {
-    const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
+    const timeline = character.emotionTimelines?.find((t) => t.emotionType === emotion);
     const value = timeline?.driftLine[currentChapter] ?? timeline?.baseline ?? 0;
     const angle = (i / EMOTION_LIST.length) * Math.PI * 2 - Math.PI / 2;
     const r = (value / 75) * radarRadius;

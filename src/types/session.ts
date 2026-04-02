@@ -50,7 +50,7 @@ export interface InfluenceVariable {
 
 export interface Session {
   book: Book;
-  character: Character;
+  character: Character | null;
   currentChapter: number;
   zoomLevel: number;
   viewMode: 'producer' | 'player' | 'author';
