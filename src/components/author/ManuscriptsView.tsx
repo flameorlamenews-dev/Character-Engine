@@ -73,7 +73,7 @@ const ManuscriptsView = ({
   // Controlled polling: refresh when analysis is running OR document is still processing
   useEffect(() => {
     // Poll if we have an active analysis (progress between 1-99) or local state says analyzing
-    const hasActiveAnalysis = manuscripts.some(
+    const hasActiveAnalysis = analyzingManuscriptId !== null && manuscripts.some(
       m => m.analysis_progress !== null && m.analysis_progress > 0 && m.analysis_progress < 100
     );
     

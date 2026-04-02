@@ -2,10 +2,8 @@ import { useState, useEffect } from 'react';
 import { TopBar } from '../components/topbar/TopBar';
 import Dashboard from '../components/author/Dashboard';
 import { supabase } from '@/integrations/supabase/client';
-import { useSession } from '../context/SessionContext';
 
 export function AuthorLayout() {
-  const { setUserContext } = useSession();
   const [session, setSession] = useState<any>(null);
   const [projectId, setProjectId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -77,13 +75,6 @@ export function AuthorLayout() {
       setError(err.message || 'Failed to initialize');
     }
   };
-
-  // Sync userId + projectId to SessionContext so the engine TopBar dropdown works
-  useEffect(() => {
-    if (session?.user?.id && projectId) {
-      setUserContext(session.user.id, projectId);
-    }
-  }, [session?.user?.id, projectId]);
 
   if (error) {
     return (
