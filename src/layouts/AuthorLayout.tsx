@@ -108,9 +108,9 @@ export function AuthorLayout() {
   }
 
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col min-h-screen">
       <TopBar />
-      <div className="flex-1 overflow-hidden author-panel">
+      <div className="flex-1 overflow-auto author-panel">
         <Dashboard session={session} projectId={projectId} />
       </div>
     </div>
