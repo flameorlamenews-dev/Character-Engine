@@ -5,22 +5,21 @@ import { Timeline } from '../components/timeline/Timeline';
 import { InspectorPanel } from '../components/inspector/InspectorPanel';
 import { EffectsRack } from '../components/effects-rack/EffectsRack';
 import { useSession } from '../context/SessionContext';
-import { mockTraitEQ } from '../data/mock-character';
-import { mockInfluenceData } from '../data/mock-influence';
 import { buildChapterLayout } from '../utils/timeline-math';
 
 const PLAYBACK_SPEED = 0.15;
 
 export function ProducerLayout() {
   const { session } = useSession();
+  const { character, book } = session;
 
   // Build scene-aware layout from chapter data
   const chapterLayout = useMemo(() =>
     buildChapterLayout(
-      session.book.chapters.map(ch => ({ index: ch.index, sceneCount: ch.sceneCount })),
+      book.chapters.map(ch => ({ index: ch.index, sceneCount: ch.sceneCount })),
       session.zoomLevel
     ),
-    [session.book.chapters, session.zoomLevel]
+    [book.chapters, session.zoomLevel]
   );
   const [mutedTracks, setMutedTracks] = useState<Set<string>>(new Set());
   const [soloTrack, setSoloTrack] = useState<string | null>(null);
@@ -30,7 +29,7 @@ export function ProducerLayout() {
   const animationRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
 
-  const totalChapters = session.book.chapters.length;
+  const totalChapters = book.chapters.length;
 
   useEffect(() => {
     if (!isPlaying) {
@@ -86,6 +85,26 @@ export function ProducerLayout() {
     setExpandedTrack(emotion);
   }, []);
 
+  // No character selected — show empty engine state
+  if (!character) {
+    return (
+      <div className="flex flex-col h-screen">
+        <TopBar
+          isPlaying={false}
+          playheadPosition={0}
+        />
+        <div className="flex-1 flex items-center justify-center bg-ce-body">
+          <div className="text-center space-y-3">
+            <div className="text-ce-text-muted text-lg font-semibold">No Character Loaded</div>
+            <div className="text-ce-text-muted text-sm max-w-md">
+              Select a character from the dropdown above to load their emotional profile into the engine.
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col h-screen">
       <TopBar
@@ -112,10 +131,10 @@ export function ProducerLayout() {
           playheadPosition={playheadPosition}
           onSeek={handleSeek}
           expandedTrack={expandedTrack}
-          traitEQData={mockTraitEQ}
+          traitEQData={{}}
           chapterLayout={chapterLayout}
         />
-        <EffectsRack influenceData={mockInfluenceData} />
+        <EffectsRack influenceData={{ traits: [], lingeringEmotions: [], desirePressure: [], habitFormation: [], moralOverride: 0 as any, impressionSusceptibility: 37 as any, maskStrength: 0 as any, personalityDrift: 0 as any }} />
       </div>
 
       <InspectorPanel />

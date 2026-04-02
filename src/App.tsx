@@ -7,6 +7,24 @@ import { AuthorLayout } from './layouts/AuthorLayout';
 import { LoginPage } from './components/auth/LoginPage';
 import { supabase } from '@/integrations/supabase/client';
 
+function AuthSync({ authSession }: { authSession: any }) {
+  const { setUserContext } = useSession();
+
+  useEffect(() => {
+    if (!authSession?.user?.id) return;
+    const userId = authSession.user.id;
+
+    // Fetch the user's project and sync to session context
+    (supabase as any).from('projects').select('id').eq('user_id', userId).then(({ data }: any) => {
+      if (data && data.length > 0) {
+        setUserContext(userId, data[0].id);
+      }
+    });
+  }, [authSession?.user?.id]);
+
+  return null;
+}
+
 function AppContent() {
   const { session } = useSession();
 
@@ -65,6 +83,7 @@ function App() {
 
   return (
     <SessionProvider>
+      <AuthSync authSession={authSession} />
       <InspectorProvider>
         <AppContent />
       </InspectorProvider>

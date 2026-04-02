@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { AlgorithmInfo } from '../shared/AlgorithmInfo';
 import { supabase } from '@/integrations/supabase/client';
+import { fetchCharacterList, loadCharacterForEngine } from '@/services/character-loader';
 
 interface TopBarProps {
   isPlaying?: boolean;
@@ -12,23 +13,65 @@ interface TopBarProps {
 }
 
 export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPause, onStop }: TopBarProps) {
-  const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode } = useSession();
+  const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode, setCharacter, userId, projectId } = useSession();
   const [showAlgorithm, setShowAlgorithm] = useState(false);
+  const [characterList, setCharacterList] = useState<Array<{ id: string; name: string }>>([]);
+  const [loadingCharacter, setLoadingCharacter] = useState(false);
   const { book, character, currentChapter, zoomLevel, viewMode, editMode } = session;
 
   const chapter = book.chapters[currentChapter];
 
+  // Fetch character list when userId/projectId become available
+  useEffect(() => {
+    if (!userId) return;
+    fetchCharacterList(userId, projectId || undefined).then(setCharacterList);
+  }, [userId, projectId]);
+
+  const handleCharacterChange = async (characterId: string) => {
+    if (character && characterId === character.id) return;
+    if (loadingCharacter) return;
+    setLoadingCharacter(true);
+    try {
+      const loaded = await loadCharacterForEngine(characterId);
+      if (loaded) setCharacter(loaded);
+    } catch (err) {
+      console.error('Failed to load character:', err);
+    } finally {
+      setLoadingCharacter(false);
+    }
+  };
+
   return (
     <div className="flex items-center gap-3 px-4 h-14 bg-ce-panel-alt border-b border-ce-border shrink-0">
-      {/* Book + Character */}
+      {/* Book + Character Dropdown */}
       <div className="flex items-center gap-3 min-w-0">
         <div
           className="w-8 h-8 rounded-full border-2 shrink-0"
-          style={{ borderColor: character.avatarColor, background: character.avatarColor + '22' }}
+          style={{
+            borderColor: character?.avatarColor || '#555',
+            background: (character?.avatarColor || '#555') + '22',
+          }}
         />
         <div className="min-w-0">
-          <div className="text-xs text-ce-text-muted truncate">{book.seriesName || book.title}</div>
-          <div className="text-sm text-ce-text-bright font-semibold truncate">{character.name}</div>
+          <div className="text-xs text-ce-text-muted truncate">{book.seriesName || book.title || 'No book loaded'}</div>
+          {characterList.length > 0 ? (
+            <select
+              value={character?.id || ''}
+              onChange={(e) => handleCharacterChange(e.target.value)}
+              disabled={loadingCharacter}
+              className="text-sm text-ce-text-bright font-semibold bg-transparent border-none outline-none cursor-pointer hover:text-ce-accent transition-colors p-0 -ml-0.5"
+              style={{ appearance: 'auto' }}
+            >
+              {!character && <option value="">Select a character...</option>}
+              {characterList.map(c => (
+                <option key={c.id} value={c.id}>{c.name}</option>
+              ))}
+            </select>
+          ) : (
+            <div className="text-sm text-ce-text-muted truncate">
+              {loadingCharacter ? 'Loading...' : character?.name || 'No characters'}
+            </div>
+          )}
         </div>
       </div>
 
@@ -92,10 +135,10 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
           &#9664;
         </button>
         <div className="font-mono-readout text-sm text-ce-text-bright bg-ce-panel px-3 py-1 rounded border border-ce-border min-w-[100px] text-center">
-          Ch. {currentChapter + 1} / {book.chapters.length}
+          Ch. {currentChapter + 1} / {book.chapters.length || 0}
         </div>
         <button
-          onClick={() => setCurrentChapter(Math.min(book.chapters.length - 1, currentChapter + 1))}
+          onClick={() => setCurrentChapter(Math.min(Math.max(0, book.chapters.length - 1), currentChapter + 1))}
           className="w-6 h-6 flex items-center justify-center text-ce-text-muted hover:text-ce-text-bright rounded bg-ce-panel hover:bg-ce-surface transition-colors"
         >
           &#9654;

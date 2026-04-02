@@ -6,6 +6,17 @@ export function PlayerLayout() {
   const { session } = useSession();
   const { character, currentChapter } = session;
 
+  if (!character) {
+    return (
+      <div className="flex flex-col h-screen">
+        <TopBar />
+        <div className="flex-1 flex items-center justify-center bg-ce-body">
+          <div className="text-ce-text-muted text-sm">Select a character from the dropdown to view their emotional state.</div>
+        </div>
+      </div>
+    );
+  }
+
   // Get current emotional state at this chapter
   const emotionStates = EMOTION_LIST.map((emotion) => {
     const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
