@@ -24,6 +24,7 @@ interface CharacterChapterTimelineProps {
 
 export const CharacterChapterTimeline = ({
   characterName,
+  characterId,
   chapters = [],
   chapterData = {},
   consistencyFlags = [],
