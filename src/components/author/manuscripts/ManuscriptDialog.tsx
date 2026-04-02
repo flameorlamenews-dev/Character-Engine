@@ -76,7 +76,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
 
     const debounceTimer = setTimeout(checkChapterExists, 300);
     return () => clearTimeout(debounceTimer);
-  }, [chapterNumber, userId]);
+  }, [chapterNumber, userId, projectId]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
