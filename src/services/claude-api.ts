@@ -143,3 +143,162 @@ Stay in character. Write naturally as this character would speak or think.`;
 
   return callClaude(systemPrompt, prompt, 2000);
 }
+
+/**
+ * Engine analysis — extract structured personality data for the Character Engine.
+ * Called as a second pass after the literary analysis.
+ */
+export interface EngineCharacterData {
+  name: string;
+  temperament?: {
+    patience: number; impulsiveness: number; confrontational_tendency: number;
+    agreeableness: number; emotional_containment: number; risk_appetite: number;
+    curiosity: number; pride_sensitivity: number; shame_sensitivity: number;
+    empathy_baseline: number; dominance_vs_deference: number; adaptability_vs_rigidity: number;
+  };
+  emotional_baseline?: {
+    joy: number; sadness: number; anger: number; fear: number;
+    disgust: number; surprise: number; trust: number; anticipation: number;
+  };
+  moral_structure?: {
+    primary_driver: string; moral_rigidity: number;
+    guilt_sensitivity: number; justification_tendency: number;
+  };
+  general_traits?: {
+    stubbornness: number; warmth: number; skepticism: number; humor_style: number;
+    competitiveness: number; orderliness: number; compassion: number; reservedness: number;
+  };
+  desires?: Array<{ name: string; score: number; rank: number }>;
+  conditional_traits?: Array<{
+    trait_label: string; trigger_condition: string; target_scope: string;
+    intensity_score: number; override_strength: number;
+  }>;
+  influence_sliders?: {
+    moral_override: number; impression_susceptibility: number;
+    mask_strength: number; personality_drift: number;
+  };
+  emotion_drift: Array<{ emotion_type: string; value: number }>;
+  surges: Array<{
+    emotion_type: string; scene_position: number; peak_intensity: number;
+    decay_rate: number; duration: number;
+    event_type: string; trigger_subject: string; trigger_source: string;
+    trigger_domain: string; stakes: number; immediacy: number; certainty: number;
+    description: string;
+  }>;
+  relationships: Array<{
+    target_name: string; trust: number; threat: number; admiration: number;
+    envy: number; suspicion: number; perception_care: number;
+  }>;
+}
+
+export async function analyzeManuscriptEngine(
+  chapterText: string,
+  chapterNumber: number,
+  chapterTitle: string,
+  characterNames: string[],
+  isFirstAnalysis: boolean,
+  existingContext?: string
+): Promise<{ characters: EngineCharacterData[] }> {
+  const systemPrompt = `You are a character psychometrics engine for fiction manuscripts. You read chapter text and produce numerical personality profiles. All scores use a 0-75 integer scale where: 0=none/absent, 12=very low, 25=low, 37=moderate/default, 50=high, 62=very high, 75=extreme/maximum. Respond in valid JSON only — no markdown, no code fences.`;
+
+  const foundationBlock = isFirstAnalysis ? `
+This is the FIRST chapter analysis — produce FULL personality foundations for each character.
+Include: temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders.` : `
+This is Chapter ${chapterNumber} (NOT the first). Engine data already exists.
+${existingContext ? `Existing personality context:\n${existingContext}` : ''}
+DO NOT include foundation fields (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders) UNLESS this chapter shows a significant personality shift. If included, values represent the UPDATED state.`;
+
+  const userMessage = `Analyze these characters from Chapter ${chapterNumber}: "${chapterTitle}" and produce Character Engine data.
+
+Characters to profile (use these exact names): ${characterNames.join(', ')}
+${foundationBlock}
+
+You MUST always include: emotion_drift, surges, and relationships for this chapter.
+
+TEXT:
+${chapterText.substring(0, 50000)}
+
+Respond with this exact JSON structure:
+{
+  "characters": [
+    {
+      "name": "Exact Character Name",
+      ${isFirstAnalysis ? `"temperament": {
+        "patience": 37, "impulsiveness": 37, "confrontational_tendency": 37,
+        "agreeableness": 37, "emotional_containment": 37, "risk_appetite": 37,
+        "curiosity": 37, "pride_sensitivity": 37, "shame_sensitivity": 37,
+        "empathy_baseline": 37, "dominance_vs_deference": 37, "adaptability_vs_rigidity": 37
+      },
+      "emotional_baseline": {
+        "joy": 37, "sadness": 37, "anger": 37, "fear": 37,
+        "disgust": 37, "surprise": 37, "trust": 37, "anticipation": 37
+      },
+      "moral_structure": {
+        "primary_driver": "fairness",
+        "moral_rigidity": 37, "guilt_sensitivity": 37, "justification_tendency": 37
+      },
+      "general_traits": {
+        "stubbornness": 37, "warmth": 37, "skepticism": 37, "humor_style": 37,
+        "competitiveness": 37, "orderliness": 37, "compassion": 37, "reservedness": 37
+      },
+      "desires": [{ "name": "desire name", "score": 50, "rank": 1 }],
+      "conditional_traits": [{
+        "trait_label": "Trait Name", "trigger_condition": "when X happens",
+        "target_scope": "who it applies to", "intensity_score": 60, "override_strength": 55
+      }],
+      "influence_sliders": {
+        "moral_override": 0, "impression_susceptibility": 37,
+        "mask_strength": 0, "personality_drift": 0
+      },` : ''}
+      "emotion_drift": [
+        { "emotion_type": "joy", "value": 35 },
+        { "emotion_type": "sadness", "value": 20 },
+        { "emotion_type": "anger", "value": 15 },
+        { "emotion_type": "fear", "value": 25 },
+        { "emotion_type": "disgust", "value": 10 },
+        { "emotion_type": "surprise", "value": 30 },
+        { "emotion_type": "trust", "value": 40 },
+        { "emotion_type": "anticipation", "value": 45 }
+      ],
+      "surges": [{
+        "emotion_type": "anger", "scene_position": 0.5, "peak_intensity": 60,
+        "decay_rate": 0.3, "duration": 0.3,
+        "event_type": "betrayal", "trigger_subject": "friend", "trigger_source": "ally_caused",
+        "trigger_domain": "attachment", "stakes": 2, "immediacy": 3, "certainty": 3,
+        "description": "What caused the emotional spike"
+      }],
+      "relationships": [{
+        "target_name": "Other Character",
+        "trust": 50, "threat": 10, "admiration": 30,
+        "envy": 0, "suspicion": 15, "perception_care": 40
+      }]
+    }
+  ]
+}
+
+RULES:
+- All numeric values must be integers 0-75 (except scene_position, decay_rate, duration which are 0.0-1.0, and stakes/immediacy/certainty which are 0-3)
+- primary_driver: protection, fairness, loyalty, autonomy, or order
+- emotion_type: joy, sadness, anger, fear, disgust, surprise, trust, or anticipation
+- event_type: threat, harm, loss, rejection, insult, betrayal, injustice, constraint, failure, obstacle, success, reward, connection, separation, humiliation, danger_cue, disgust_cue, surprise_reveal, reminder_cue, or moral_cue
+- trigger_subject: self, family, friend, rival, stranger, authority, group, principle, or object
+- trigger_source: self_caused, ally_caused, enemy_caused, authority_caused, or world_caused
+- trigger_domain: safety, belonging, status, autonomy, competence, morality, attachment, or future_security
+- emotion_drift: one entry per emotion (8 total) — where each emotion RESTS at end of this chapter
+- surges: only significant emotional peaks (1-5 per character per chapter, not every moment)
+- relationships: only characters who interact in this chapter
+- desires: 3-7 ranked by importance
+- conditional_traits: 1-4 situation-triggered behaviors
+- Base all scores on observable behavior in the text`;
+
+  const responseText = await callClaude(systemPrompt, userMessage, 16000);
+
+  try {
+    const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    return JSON.parse(cleaned);
+  } catch (e) {
+    console.error('Failed to parse engine analysis response:', responseText.substring(0, 500));
+    return { characters: [] };
+  }
+}
+

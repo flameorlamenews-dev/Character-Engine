@@ -6,6 +6,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Slider } from "@/components/ui/slider";
 import { Brain, MessageSquare, Users } from "lucide-react";
 import CharacterComparisonView from "@/components/author/characters/CharacterComparisonView";
+import EngineProfileSection from "@/components/author/characters/EngineProfileSection";
 
 const VOICE_SCALE_KEYS = ["brashness", "aggression", "sophistication", "formality", "empathy", "introspection"] as const;
 
@@ -227,9 +228,10 @@ export const CharacterChapterTimeline = ({
           {/* ── Author Interpretation Tab ──────────────────────────── */}
           <TabsContent value="author">
             <Tabs defaultValue="basic" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 mb-4">
+              <TabsList className="grid w-full grid-cols-3 mb-4">
                 <TabsTrigger value="basic">Basic</TabsTrigger>
                 <TabsTrigger value="voice">Voice</TabsTrigger>
+                <TabsTrigger value="personality">Personality</TabsTrigger>
               </TabsList>
 
               <TabsContent value="basic" className="space-y-4">
@@ -310,6 +312,16 @@ export const CharacterChapterTimeline = ({
                     </div>
                   );
                 })}
+              </TabsContent>
+
+              <TabsContent value="personality">
+                {characterId ? (
+                  <EngineProfileSection characterId={characterId} />
+                ) : (
+                  <div className="text-center py-6 text-muted-foreground text-sm">
+                    Character ID not available.
+                  </div>
+                )}
               </TabsContent>
             </Tabs>
           </TabsContent>

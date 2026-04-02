@@ -21,6 +21,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import CharacterComparisonView from "./CharacterComparisonView";
 import { CharacterChapterTimeline } from "@/components/author/manuscripts/CharacterChapterTimeline";
 import { ConsistencyChecker } from "./ConsistencyChecker";
+import EngineProfileSection from "./EngineProfileSection";
 
 const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstances = [] }) => {
   const { toast } = useToast();
@@ -588,6 +589,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
         {character && effectiveChapters.length > 0 ? (
           <CharacterChapterTimeline
             characterName={formData.name || character?.name || ''}
+            characterId={character?.id}
             chapters={effectiveChapters}
             chapterData={effectiveChapterData}
             consistencyFlags={timelineFlags}
@@ -713,10 +715,21 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                   <TabsList className="flex w-full flex-wrap h-auto gap-1 p-1">
                     <TabsTrigger value="basic" className="flex-1 min-w-[80px]">Basic</TabsTrigger>
                     <TabsTrigger value="voice" className="flex-1 min-w-[80px]">Voice</TabsTrigger>
+                    <TabsTrigger value="personality" className="flex-1 min-w-[80px]">Personality</TabsTrigger>
                   </TabsList>
 
                   {/* All the existing tab content - kept from earlier in file */}
                   {/* This would need the full Basic/Voice/Style/etc tabs content */}
+
+                  <TabsContent value="personality">
+                    {character?.id ? (
+                      <EngineProfileSection characterId={character.id} />
+                    ) : (
+                      <div className="text-center py-6 text-muted-foreground text-sm">
+                        Save the character first to set personality data.
+                      </div>
+                    )}
+                  </TabsContent>
                 </Tabs>
 
                 <div className="flex justify-end gap-2 mt-6 pt-4 border-t">
