@@ -29,7 +29,7 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
 
   useEffect(() => {
     fetchCharacters();
-  }, [userId]);
+  }, [userId, projectId]);
 
   const fetchCharacters = async () => {
     // Fetch all UNIQUE characters (including blocked ones)
