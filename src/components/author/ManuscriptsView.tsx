@@ -128,10 +128,27 @@ const ManuscriptsView = ({
         variant: "destructive",
       });
     } else {
-      setManuscripts(data || []);
+      // Detect and clean up stale analysis_progress (stuck between 1-99, updated > 5 min ago)
+      const STALE_THRESHOLD = 5 * 60 * 1000;
+      const now = Date.now();
+      const cleaned = (data || []).map(m => {
+        if (
+          m.analysis_progress !== null &&
+          m.analysis_progress > 0 &&
+          m.analysis_progress < 100 &&
+          m.updated_at &&
+          (now - new Date(m.updated_at).getTime() > STALE_THRESHOLD)
+        ) {
+          // Reset stale progress in DB (fire and forget)
+          supabase.from("manuscripts").update({ analysis_progress: 0 }).eq("id", m.id);
+          return { ...m, analysis_progress: 0 };
+        }
+        return m;
+      });
+      setManuscripts(cleaned);
       // Keep analysis dialog in sync with latest data
       if (showAnalysis && selectedManuscript) {
-        const updated = (data || []).find((m) => m.id === selectedManuscript.id);
+        const updated = cleaned.find((m) => m.id === selectedManuscript.id);
         if (updated) setSelectedManuscript(updated);
       }
     }

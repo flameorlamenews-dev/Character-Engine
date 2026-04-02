@@ -40,7 +40,9 @@ const ManuscriptCard = ({
   const isStaleProcessing = isProcessing && manuscript.updated_at && 
     (Date.now() - new Date(manuscript.updated_at).getTime() > 5 * 60 * 1000);
   const analysisProgress = manuscript.analysis_progress || 0;
-  const isThisAnalyzing = analysisProgress > 0 && analysisProgress < 100;
+  const isStaleAnalysis = analysisProgress > 0 && analysisProgress < 100 && manuscript.updated_at &&
+    (Date.now() - new Date(manuscript.updated_at).getTime() > 5 * 60 * 1000);
+  const isThisAnalyzing = analysisProgress > 0 && analysisProgress < 100 && !isStaleAnalysis;
   const showProcessingProgress = isProcessing && processingProgress > 0 && processingProgress < 100;
   
   // This card should be blocked if ANY analysis is running but THIS card is not the one being analyzed
