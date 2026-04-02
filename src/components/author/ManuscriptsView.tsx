@@ -128,18 +128,15 @@ const ManuscriptsView = ({
         variant: "destructive",
       });
     } else {
-      // Detect and clean up stale analysis_progress (stuck between 1-99, updated > 5 min ago)
-      const STALE_THRESHOLD = 5 * 60 * 1000;
-      const now = Date.now();
+      // Clean up stale analysis_progress only if user didn't initiate analysis this session
       const cleaned = (data || []).map(m => {
         if (
+          !analyzingManuscriptId &&
           m.analysis_progress !== null &&
           m.analysis_progress > 0 &&
-          m.analysis_progress < 100 &&
-          m.updated_at &&
-          (now - new Date(m.updated_at).getTime() > STALE_THRESHOLD)
+          m.analysis_progress < 100
         ) {
-          // Reset stale progress in DB (fire and forget)
+          // No active analysis this session — reset stuck progress
           supabase.from("manuscripts").update({ analysis_progress: 0 }).eq("id", m.id);
           return { ...m, analysis_progress: 0 };
         }
