@@ -13,7 +13,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPause, onStop }: TopBarProps) {
-  const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode, setCharacter, userId, projectId } = useSession();
+  const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode, setCharacter, setBook, userId, projectId } = useSession();
   const [showAlgorithm, setShowAlgorithm] = useState(false);
   const [characterList, setCharacterList] = useState<Array<{ id: string; name: string }>>([]);
   const [loadingCharacter, setLoadingCharacter] = useState(false);
@@ -32,8 +32,11 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
     if (loadingCharacter) return;
     setLoadingCharacter(true);
     try {
-      const loaded = await loadCharacterForEngine(characterId);
-      if (loaded) setCharacter(loaded);
+      const result = await loadCharacterForEngine(characterId);
+      if (result) {
+        setCharacter(result.character);
+        setBook(result.book);
+      }
     } catch (err) {
       console.error('Failed to load character:', err);
     } finally {

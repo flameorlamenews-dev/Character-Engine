@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
-import type { Character, Relationship, InfluenceVariable } from '@/types/session';
+import type { Character, Book, Chapter, Relationship, InfluenceVariable } from '@/types/session';
 import type { EmotionTimeline, Score75, Surge, SurgeTrigger } from '@/types/emotions';
 import type { CorePersonality, TemperamentGrid, MoralStructure, MoralDriver, GeneralTraits, DesireEntry, ConditionalTrait } from '@/types/personality';
 import type { EmotionType } from '@/theme/colors';
@@ -22,7 +22,7 @@ export async function fetchCharacterList(userId: string, projectId?: string) {
  * Pulls from all engine tables (001_initial_schema) using the character ID.
  * Returns null if character not found.
  */
-export async function loadCharacterForEngine(characterId: string): Promise<Character | null> {
+export async function loadCharacterForEngine(characterId: string): Promise<{ character: Character; book: Book } | null> {
   const [
     charResult,
     tempResult,
@@ -37,7 +37,7 @@ export async function loadCharacterForEngine(characterId: string): Promise<Chara
     relResult,
     influenceResult,
   ] = await Promise.all([
-    (supabase as any).from('characters').select('id, name').eq('id', characterId).single(),
+    (supabase as any).from('characters').select('id, name, project_id').eq('id', characterId).single(),
     (supabase as any).from('temperament_grids').select('*').eq('character_id', characterId).maybeSingle(),
     (supabase as any).from('emotional_baselines').select('*').eq('character_id', characterId).maybeSingle(),
     (supabase as any).from('moral_structures').select('*').eq('character_id', characterId).maybeSingle(),
@@ -94,7 +94,10 @@ export async function loadCharacterForEngine(characterId: string): Promise<Chara
 
   const influenceVariables = buildInfluenceVariables(influenceResult.data);
 
-  return {
+  // Build book from manuscripts in the character's project
+  const book = await buildBookFromProject(charData.project_id);
+
+  const character: Character = {
     id: charData.id,
     name: charData.name,
     avatarColor: '#3b6cbf',
@@ -103,6 +106,8 @@ export async function loadCharacterForEngine(characterId: string): Promise<Chara
     relationships,
     influenceVariables,
   };
+
+  return { character, book };
 }
 
 // ─── Helpers ─────────────────────────────────────────────────
@@ -227,6 +232,41 @@ function buildEmotionTimelines(
       silenceBlocks,
     };
   });
+}
+
+async function buildBookFromProject(projectId: string | null): Promise<Book> {
+  if (!projectId) return { id: '', title: 'Untitled', chapters: [] };
+
+  // Fetch manuscripts for this project — each manuscript is a chapter
+  const { data: manuscripts } = await (supabase as any)
+    .from('manuscripts')
+    .select('id, title, chapter_number, chapter_title')
+    .eq('project_id', projectId)
+    .order('chapter_number', { ascending: true });
+
+  if (!manuscripts || manuscripts.length === 0) {
+    return { id: projectId, title: 'Untitled', chapters: [] };
+  }
+
+  // Fetch project name
+  const { data: project } = await (supabase as any)
+    .from('projects')
+    .select('name')
+    .eq('id', projectId)
+    .maybeSingle();
+
+  const chapters: Chapter[] = manuscripts.map((m: any, i: number) => ({
+    index: i,
+    title: m.chapter_title || m.title || `Chapter ${m.chapter_number || i + 1}`,
+    characterPresent: true,
+    sceneCount: 1,
+  }));
+
+  return {
+    id: projectId,
+    title: project?.name || 'Untitled',
+    chapters,
+  };
 }
 
 function buildInfluenceVariables(data: any): InfluenceVariable[] {
