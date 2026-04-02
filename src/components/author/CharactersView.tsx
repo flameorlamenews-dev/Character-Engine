@@ -51,10 +51,14 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
 
     const banned = new Set(['voice','key','brief','voice scales','key personality','brief description','notes','voice signature']);
     const filtered = (chars || []).filter((c) => {
-      const n = (c.name || '').trim();
+      let n = (c.name || '').trim();
+      // Strip colon-prefixed parsing artifacts (e.g. ": Praew" or "Character: Praew") but keep the name
+      if (n.includes(':')) {
+        n = n.split(':').pop()?.trim() || '';
+        c.name = n; // fix the name in-place
+      }
       if (!n) return false;
       if (banned.has(n.toLowerCase())) return false;
-      if (n.includes(':')) return false;
       const lower = n.toLowerCase();
       // Filter out common parsing artifacts
       if (lower.startsWith('here is a comprehensive') || 

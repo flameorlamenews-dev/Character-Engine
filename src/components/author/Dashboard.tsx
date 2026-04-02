@@ -187,7 +187,7 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
       </header>
 
       <main className="container mx-auto px-4 py-12">
-        {activeView === "manuscripts" && (
+        <div style={{ display: activeView === "manuscripts" ? "block" : "none" }}>
           <ManuscriptsView
             userId={session.user.id}
             projectId={projectId}
@@ -198,9 +198,13 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
             onAnalysisDialogClose={handleAnalysisDialogClose}
             openAnalysisForManuscriptId={analysisDialogOpen ? (completedManuscriptId || analyzingManuscriptId) : null}
           />
-        )}
-        {activeView === "characters" && <CharactersView userId={session.user.id} projectId={projectId} />}
-        {activeView === "glossary" && <GlossaryManager userId={session.user.id} projectId={projectId} />}
+        </div>
+        <div style={{ display: activeView === "characters" ? "block" : "none" }}>
+          <CharactersView userId={session.user.id} projectId={projectId} />
+        </div>
+        <div style={{ display: activeView === "glossary" ? "block" : "none" }}>
+          <GlossaryManager userId={session.user.id} projectId={projectId} />
+        </div>
       </main>
 
       {/* Persistent Status Indicator */}
