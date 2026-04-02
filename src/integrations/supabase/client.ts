@@ -196,13 +196,18 @@ export const supabase = new Proxy(realSupabase, {
                   existingContext || undefined
                 );
 
+                console.log('Engine analysis returned', engineResult.characters.length, 'characters:', engineResult.characters.map(c => c.name));
                 await realSupabase.from('manuscripts').update({ analysis_progress: 80 }).eq('id', body.manuscriptId);
 
                 // Save engine data per character
                 const chapterIndex = (manuscript.chapter_number || 1) - 1;
                 for (const engineChar of engineResult.characters) {
-                  const charId = characterNameToId.get(engineChar.name);
-                  if (!charId) continue;
+                  const charId = characterNameToId.get(engineChar.name)
+                    || [...characterNameToId.entries()].find(([k]) => k.toLowerCase() === engineChar.name?.toLowerCase())?.[1];
+                  if (!charId) {
+                    console.warn('Engine analysis: no character ID found for', engineChar.name);
+                    continue;
+                  }
 
                   // Foundation tables (first analysis or personality shift)
                   if (engineChar.temperament) {

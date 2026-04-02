@@ -131,7 +131,7 @@ const ManuscriptsView = ({
       // Clean up stale analysis_progress only if user didn't initiate analysis this session
       const cleaned = (data || []).map(m => {
         if (
-          !analyzingManuscriptId &&
+          !isAnalyzingRef.current &&
           m.analysis_progress !== null &&
           m.analysis_progress > 0 &&
           m.analysis_progress < 100
