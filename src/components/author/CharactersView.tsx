@@ -49,8 +49,6 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
       return;
     }
 
-    // Debug: log all character names from DB before filtering
-    console.log('[CharactersView] Raw from DB:', (chars || []).map(c => ({ name: c.name, id: c.id, blocked: c.blocked, project_id: c.project_id })));
 
     const banned = new Set(['voice','key','brief','voice scales','key personality','brief description','notes','voice signature']);
     const filtered = (chars || []).filter((c) => {
@@ -72,8 +70,6 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
           lower.startsWith('comprehensive')) return false;
       return true;
     });
-
-    console.log('[CharactersView] After filter:', filtered.map(c => ({ name: c.name, id: c.id, blocked: c.blocked })));
 
     // Build timelines in BULK to avoid N+1 queries
     const ids = filtered.map((c) => c.id);
