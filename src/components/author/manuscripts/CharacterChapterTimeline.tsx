@@ -3,8 +3,11 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Slider } from "@/components/ui/slider";
 import { Brain, MessageSquare, Users } from "lucide-react";
 import CharacterComparisonView from "@/components/author/characters/CharacterComparisonView";
+
+const VOICE_SCALE_KEYS = ["brashness", "aggression", "sophistication", "formality", "empathy", "introspection"] as const;
 
 interface CharacterChapterTimelineProps {
   characterName: string;
@@ -203,89 +206,93 @@ export const CharacterChapterTimeline = ({
           </TabsContent>
 
           {/* ── Author Interpretation Tab ──────────────────────────── */}
-          <TabsContent value="author" className="space-y-4">
-            {authorData?.formData && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Author Profile</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-2">
-                  {authorData.formData.role && (
-                    <p className="text-sm"><span className="font-medium">Role:</span> {authorData.formData.role}</p>
-                  )}
-                  {authorData.formData.name && (
-                    <p className="text-sm"><span className="font-medium">Name:</span> {authorData.formData.name}</p>
-                  )}
-                </CardContent>
-              </Card>
-            )}
+          <TabsContent value="author">
+            <Tabs defaultValue="basic" className="w-full">
+              <TabsList className="grid w-full grid-cols-2 mb-4">
+                <TabsTrigger value="basic">Basic</TabsTrigger>
+                <TabsTrigger value="voice">Voice</TabsTrigger>
+              </TabsList>
 
-            {authorData?.traits && authorData.traits.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Author-Defined Traits</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
-                    {authorData.traits.map((t: any, i: number) => (
-                      <li key={i}>{typeof t === "string" ? t : t.trait}</li>
-                    ))}
-                  </ul>
-                </CardContent>
-              </Card>
-            )}
+              <TabsContent value="basic" className="space-y-4">
+                {authorData?.formData && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-base">Author Profile</CardTitle>
+                    </CardHeader>
+                    <CardContent className="space-y-2">
+                      {authorData.formData.role && (
+                        <p className="text-sm"><span className="font-medium">Role:</span> {authorData.formData.role}</p>
+                      )}
+                      {authorData.formData.name && (
+                        <p className="text-sm"><span className="font-medium">Name:</span> {authorData.formData.name}</p>
+                      )}
+                    </CardContent>
+                  </Card>
+                )}
 
-            {authorData?.mottos && authorData.mottos.length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Character Mottos</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-2">
-                    {authorData.mottos.map((m: any, i: number) => (
-                      <p key={i} className="text-sm italic text-muted-foreground border-l-2 border-primary/40 pl-3">
-                        "{typeof m === 'string' ? m : m.motto}"
-                      </p>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            )}
+                {authorData?.traits && authorData.traits.length > 0 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-base">Author-Defined Traits</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <ul className="list-disc list-inside text-sm space-y-1 text-muted-foreground">
+                        {authorData.traits.map((t: any, i: number) => (
+                          <li key={i}>{typeof t === "string" ? t : t.trait}</li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                )}
 
-            {authorData?.voiceScales && Object.keys(authorData.voiceScales).length > 0 && (
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Author Voice Scales</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {Object.entries(authorData.voiceScales)
-                    .filter(([_, v]) => v != null)
-                    .map(([key, value]: [string, any]) => {
-                      const numValue = Number(value);
-                      const label = key.charAt(0).toUpperCase() + key.slice(1).replace(/_/g, ' ');
-                      return (
-                        <div key={key} className="space-y-1">
-                          <div className="flex justify-between text-xs">
-                            <span className="font-medium">{label}</span>
-                            <span>{numValue}/10</span>
-                          </div>
-                          <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                            <div className="h-full bg-primary transition-all rounded-full" style={{ width: `${numValue * 10}%` }} />
-                          </div>
-                        </div>
-                      );
-                    })}
-                </CardContent>
-              </Card>
-            )}
+                {authorData?.mottos && authorData.mottos.length > 0 && (
+                  <Card>
+                    <CardHeader>
+                      <CardTitle className="text-base">Character Mottos</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <div className="space-y-2">
+                        {authorData.mottos.map((m: any, i: number) => (
+                          <p key={i} className="text-sm italic text-muted-foreground border-l-2 border-primary/40 pl-3">
+                            "{typeof m === 'string' ? m : m.motto}"
+                          </p>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
 
-            {(!authorData || (!authorData.traits?.length && !authorData.mottos?.length && !authorData.voiceScales)) && (
-              <Card>
-                <CardContent className="py-8 text-center text-muted-foreground">
-                  No author interpretation data set yet. Edit the character to add traits, mottos, and voice scales.
-                </CardContent>
-              </Card>
-            )}
+                {(!authorData || (!authorData.traits?.length && !authorData.mottos?.length)) && (
+                  <Card>
+                    <CardContent className="py-8 text-center text-muted-foreground">
+                      No author interpretation data set yet. Edit the character to add traits and mottos.
+                    </CardContent>
+                  </Card>
+                )}
+              </TabsContent>
+
+              <TabsContent value="voice" className="space-y-3">
+                {VOICE_SCALE_KEYS.map((key) => {
+                  const value = Number(authorData?.voiceScales?.[key] ?? 5);
+                  const label = key.charAt(0).toUpperCase() + key.slice(1);
+                  return (
+                    <div key={key} className="p-4 bg-muted/50 rounded-lg space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="font-medium text-sm">{label}</span>
+                        <span className="text-sm font-medium">{value}/10</span>
+                      </div>
+                      <Slider
+                        value={[value]}
+                        min={0}
+                        max={10}
+                        step={1}
+                        onValueChange={([v]) => onVoiceScaleChange?.(key, v)}
+                      />
+                    </div>
+                  );
+                })}
+              </TabsContent>
+            </Tabs>
           </TabsContent>
 
           {/* ── Comparison Tab ─────────────────────────────────────── */}
@@ -351,7 +358,7 @@ export const CharacterChapterTimeline = ({
                     <div className="space-y-2">
                       {selectedData.externalDialogue.map((q: string, i: number) => (
                         <div key={i} className="p-3 bg-muted/50 rounded-lg">
-                          <p className="text-sm italic text-muted-foreground">"{q}"</p>
+                          <p className="text-sm text-muted-foreground">"{q}"</p>
                         </div>
                       ))}
                     </div>
@@ -375,13 +382,13 @@ export const CharacterChapterTimeline = ({
                 )}
                 {selectedData.viewsOfOthers && (
                   <div className="space-y-1">
-                    <h4 className="font-semibold text-sm">How {characterName} Sees Others</h4>
+                    <h4 className="font-semibold text-sm">Their View of Others</h4>
                     <p className="text-sm text-muted-foreground whitespace-pre-line">{selectedData.viewsOfOthers}</p>
                   </div>
                 )}
                 {selectedData.viewsByOthers && (
                   <div className="space-y-1">
-                    <h4 className="font-semibold text-sm">How Others See {characterName}</h4>
+                    <h4 className="font-semibold text-sm">How Others See Them</h4>
                     <p className="text-sm text-muted-foreground whitespace-pre-line">{selectedData.viewsByOthers}</p>
                   </div>
                 )}
