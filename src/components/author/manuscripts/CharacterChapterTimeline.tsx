@@ -178,6 +178,24 @@ export const CharacterChapterTimeline = ({
               </div>
             )}
 
+            {/* Mottos */}
+            {aiData?.mottos && aiData.mottos.length > 0 && (
+              <Card>
+                <CardHeader>
+                  <CardTitle className="text-base">Character Mottos</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="space-y-2">
+                    {aiData.mottos.map((m: any, i: number) => (
+                      <p key={i} className="text-sm italic text-muted-foreground border-l-2 border-primary/40 pl-3">
+                        "{typeof m === 'string' ? m : m.motto}"
+                      </p>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            )}
+
             {/* Dialogue Patterns */}
             {selectedData.dialoguePatterns && selectedData.dialoguePatterns.length > 0 && (
               <div className="space-y-1">
@@ -304,15 +322,6 @@ export const CharacterChapterTimeline = ({
               }}
               authorData={authorData}
               feedback={feedback}
-              timelineChapters={chapters.map(ch => ({ number: ch.number, title: ch.title }))}
-              timelineChapterData={(() => {
-                const byNumber: Record<number, any> = {};
-                for (const ch of chapters) {
-                  const d = chapterData[ch.id];
-                  if (d && !d._notAnalyzed) byNumber[ch.number] = d;
-                }
-                return byNumber;
-              })()}
             />
           </TabsContent>
 
