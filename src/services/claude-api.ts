@@ -63,10 +63,13 @@ export async function analyzeManuscript(
     emotionalState: string;
     dialoguePatterns: string[];
     relationships: string;
-    firstImpressions?: string;
+    speechPattern: string;
+    viewsOfOthers: string;
+    viewsByOthers: string;
+    internalDialogue: string[];
+    externalDialogue: string[];
   }>;
   glossaryTerms: Array<{ word: string; definition: string; wordType: string }>;
-  consistencyNotes: string;
 }> {
   const systemPrompt = `You are a literary character analyst. You read manuscript chapters and extract detailed character data. Respond in valid JSON only — no markdown, no code fences.`;
 
@@ -91,19 +94,26 @@ Respond with this exact JSON structure:
       "emotionalState": "How they feel at the end of this chapter",
       "dialoguePatterns": ["pattern1", "pattern2"],
       "relationships": "Key relationships shown in this chapter",
-      "firstImpressions": "Only for NEW characters — reader's first impression"
+      "speechPattern": "Distinctive speech style — cadence, vocabulary level, verbal tics, formality",
+      "viewsOfOthers": "How this character views other characters in this chapter",
+      "viewsByOthers": "How other characters view/perceive this character in this chapter",
+      "internalDialogue": ["Exact or near-exact internal thoughts from the text"],
+      "externalDialogue": ["Exact or near-exact spoken lines from the text"]
     }
   ],
   "glossaryTerms": [
     { "word": "InventedTerm", "definition": "What it means", "wordType": "noun/verb/adj/place/creature" }
-  ],
-  "consistencyNotes": "Any consistency observations about characters compared to known data"
+  ]
 }
 
 RULES:
 - Only include characters who have dialogue or significant actions in this chapter
 - Traits should be personality traits observable from behavior, not physical descriptions
 - Dialogue patterns should describe HOW they speak, not WHAT they say
+- speechPattern: describe their distinctive voice (cadence, vocabulary, verbal tics)
+- viewsOfOthers/viewsByOthers: summarize perceptions shown in this chapter
+- internalDialogue: 2-5 key internal thoughts (exact quotes preferred)
+- externalDialogue: 2-5 key spoken lines (exact quotes preferred)
 - Glossary terms should only include invented/world-specific words, not common English`;
 
   const responseText = await callClaude(systemPrompt, userMessage, 8000);
@@ -192,7 +202,7 @@ export interface EngineCharacterData {
 }
 
 export async function analyzeManuscriptEngine(
-  chapterText: string,
+  characterContext: string,
   chapterNumber: number,
   chapterTitle: string,
   characterNames: string[],
@@ -208,15 +218,15 @@ This is Chapter ${chapterNumber} (NOT the first). Engine data already exists.
 ${existingContext ? `Existing personality context:\n${existingContext}` : ''}
 DO NOT include foundation fields (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders) UNLESS this chapter shows a significant personality shift. If included, values represent the UPDATED state.`;
 
-  const userMessage = `Analyze these characters from Chapter ${chapterNumber}: "${chapterTitle}" and produce Character Engine data.
+  const userMessage = `Produce Character Engine data for Chapter ${chapterNumber}: "${chapterTitle}".
 
 Characters to profile (use these exact names): ${characterNames.join(', ')}
 ${foundationBlock}
 
 You MUST always include: emotion_drift, surges, and relationships for this chapter.
 
-TEXT:
-${chapterText.substring(0, 50000)}
+CHARACTER CONTEXT FROM LITERARY ANALYSIS:
+${characterContext}
 
 Respond with this exact JSON structure:
 {
@@ -291,7 +301,7 @@ RULES:
 - conditional_traits: 1-4 situation-triggered behaviors
 - Base all scores on observable behavior in the text`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 16000);
+  const responseText = await callClaude(systemPrompt, userMessage, 8000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

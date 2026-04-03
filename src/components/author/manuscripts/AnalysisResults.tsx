@@ -48,7 +48,7 @@ interface AnalysisResultsProps {
       examples?: string[];
     }>;
     summary?: string;
-    newCharacters?: Array<{ name: string; firstImpressions: string }>;
+    newCharacters?: Array<{ name: string; description: string }>;
     recurringCharacters?: Array<{ name: string; evolution: string }>;
     // Legacy format support
     detectedCharacters?: Array<{
@@ -310,7 +310,7 @@ const AnalysisResults = ({ analysis }: AnalysisResultsProps) => {
                 {analysis.newCharacters.map((char, idx) => (
                   <div key={idx} className="pb-4 border-b border-border last:border-b-0 last:pb-0">
                     <h4 className="text-base font-semibold mb-2 text-primary">{char.name}</h4>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{char.firstImpressions}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{char.description}</p>
                   </div>
                 ))}
               </CardContent>

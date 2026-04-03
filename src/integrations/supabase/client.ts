@@ -119,10 +119,16 @@ export const supabase = new Proxy(realSupabase, {
                       character_id: characterId,
                       manuscript_id: body.manuscriptId,
                       chapter_number: manuscript.chapter_number,
+                      user_id: body.userId || manuscript.user_id,
                       emotional_state: char.emotionalState,
                       traits: char.traits,
                       dialogue_patterns: char.dialoguePatterns,
                       relationships: char.relationships,
+                      analysis_text: char.speechPattern || null,
+                      views_of_others: char.viewsOfOthers || null,
+                      views_by_others: char.viewsByOthers || null,
+                      internal_dialogue: char.internalDialogue || [],
+                      external_dialogue: char.externalDialogue || [],
                       source_type: 'ai',
                     });
 
@@ -187,8 +193,13 @@ export const supabase = new Proxy(realSupabase, {
                   }
                 }
 
+                // Build condensed context from Call #1 results instead of raw chapter text
+                const condensedContext = analysis.characters.map(c =>
+                  `CHARACTER: ${c.name} (${c.role})\nDescription: ${c.description}\nTraits: ${c.traits.join(', ')}\nEmotional state: ${c.emotionalState}\nRelationships: ${c.relationships}\nSpeech pattern: ${c.speechPattern || 'N/A'}\nViews of others: ${c.viewsOfOthers || 'N/A'}\nViewed by others: ${c.viewsByOthers || 'N/A'}\nInternal dialogue: ${(c.internalDialogue || []).join(' | ') || 'N/A'}\nExternal dialogue: ${(c.externalDialogue || []).join(' | ') || 'N/A'}`
+                ).join('\n\n');
+
                 const engineResult = await analyzeManuscriptEngine(
-                  manuscript.content || '',
+                  condensedContext,
                   manuscript.chapter_number || 0,
                   manuscript.title || `Chapter ${manuscript.chapter_number}`,
                   [...characterNameToId.keys()],
@@ -302,11 +313,10 @@ export const supabase = new Proxy(realSupabase, {
                   analysis_progress: 100,
                   analysis_results: {
                     summary: analysis.summary,
-                    characterImpressions: analysis.characters.map(c => `${c.name}: ${c.firstImpressions || c.description}`).join('\n\n'),
-                    consistencyAnalysis: analysis.consistencyNotes,
+                    characterImpressions: analysis.characters.map(c => `${c.name}: ${c.description}`).join('\n\n'),
                     newCharacters: analysis.characters
                       .filter(c => !charNames.includes(c.name))
-                      .map(c => ({ name: c.name, firstImpressions: c.firstImpressions || c.description })),
+                      .map(c => ({ name: c.name, description: c.description })),
                     recurringCharacters: analysis.characters
                       .filter(c => charNames.includes(c.name))
                       .map(c => ({ name: c.name, evolution: c.emotionalState })),
