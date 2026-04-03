@@ -1,5 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
-import { analyzeManuscript, generateCharacterText, hasClaudeKey } from '../../services/claude-api';
+import { analyzeManuscript, analyzeManuscriptEngine, generateCharacterText, hasClaudeKey } from '../../services/claude-api';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
@@ -70,7 +70,8 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 50 })
                 .eq('id', body.manuscriptId);
 
-              // Save characters to database
+              // Save characters to database and build name→id map for engine
+              const characterNameToId = new Map<string, string>();
               for (const char of analysis.characters) {
                 // Check if character already exists
                 const { data: existing } = await realSupabase
@@ -110,6 +111,7 @@ export const supabase = new Proxy(realSupabase, {
                 }
 
                 if (characterId) {
+                  characterNameToId.set(char.name, characterId);
                   // Save timeline entry
                   await realSupabase
                     .from('character_timeline_entries')
@@ -117,10 +119,16 @@ export const supabase = new Proxy(realSupabase, {
                       character_id: characterId,
                       manuscript_id: body.manuscriptId,
                       chapter_number: manuscript.chapter_number,
+                      user_id: body.userId || manuscript.user_id,
                       emotional_state: char.emotionalState,
                       traits: char.traits,
                       dialogue_patterns: char.dialoguePatterns,
                       relationships: char.relationships,
+                      analysis_text: char.speechPattern || null,
+                      views_of_others: char.viewsOfOthers || null,
+                      views_by_others: char.viewsByOthers || null,
+                      internal_dialogue: char.internalDialogue || [],
+                      external_dialogue: char.externalDialogue || [],
                       source_type: 'ai',
                     });
 
@@ -162,6 +170,142 @@ export const supabase = new Proxy(realSupabase, {
                 }
               }
 
+              // ── Engine Analysis (second Claude call) ──────────────
+              try {
+                await realSupabase.from('manuscripts').update({ analysis_progress: 60 }).eq('id', body.manuscriptId);
+
+                // Check if this is the first engine analysis for this project
+                const charIds = [...characterNameToId.values()];
+                const { data: existingEngine } = charIds.length > 0
+                  ? await realSupabase.from('temperament_grids').select('character_id').in('character_id', charIds).limit(1)
+                  : { data: [] };
+                const isFirstAnalysis = !existingEngine || existingEngine.length === 0;
+
+                // Build existing context for subsequent chapters
+                let existingContext = '';
+                if (!isFirstAnalysis && charIds.length > 0) {
+                  const { data: baselines } = await realSupabase.from('emotional_baselines').select('*').in('character_id', charIds);
+                  if (baselines) {
+                    existingContext = baselines.map((b: any) => {
+                      const name = [...characterNameToId.entries()].find(([, id]) => id === b.character_id)?.[0];
+                      return name ? `${name}: joy=${b.joy} sadness=${b.sadness} anger=${b.anger} fear=${b.fear} trust=${b.trust} anticipation=${b.anticipation}` : '';
+                    }).filter(Boolean).join('\n');
+                  }
+                }
+
+                // Build condensed context from Call #1 results instead of raw chapter text
+                const condensedContext = analysis.characters.map(c =>
+                  `CHARACTER: ${c.name} (${c.role})\nDescription: ${c.description}\nTraits: ${c.traits.join(', ')}\nEmotional state: ${c.emotionalState}\nRelationships: ${c.relationships}\nSpeech pattern: ${c.speechPattern || 'N/A'}\nViews of others: ${c.viewsOfOthers || 'N/A'}\nViewed by others: ${c.viewsByOthers || 'N/A'}\nInternal dialogue: ${(c.internalDialogue || []).join(' | ') || 'N/A'}\nExternal dialogue: ${(c.externalDialogue || []).join(' | ') || 'N/A'}`
+                ).join('\n\n');
+
+                const engineResult = await analyzeManuscriptEngine(
+                  condensedContext,
+                  manuscript.chapter_number || 0,
+                  manuscript.title || `Chapter ${manuscript.chapter_number}`,
+                  [...characterNameToId.keys()],
+                  isFirstAnalysis,
+                  existingContext || undefined
+                );
+
+                console.log('Engine analysis returned', engineResult.characters.length, 'characters:', engineResult.characters.map(c => c.name));
+                await realSupabase.from('manuscripts').update({ analysis_progress: 80 }).eq('id', body.manuscriptId);
+
+                // Save engine data per character
+                const chapterIndex = (manuscript.chapter_number || 1) - 1;
+                for (const engineChar of engineResult.characters) {
+                  const charId = characterNameToId.get(engineChar.name)
+                    || [...characterNameToId.entries()].find(([k]) => k.toLowerCase() === engineChar.name?.toLowerCase())?.[1];
+                  if (!charId) {
+                    console.warn('Engine analysis: no character ID found for', engineChar.name);
+                    continue;
+                  }
+
+                  // Foundation tables (first analysis or personality shift)
+                  if (engineChar.temperament) {
+                    await realSupabase.from('temperament_grids').upsert({
+                      character_id: charId, ...engineChar.temperament,
+                    }, { onConflict: 'character_id' });
+                  }
+                  if (engineChar.emotional_baseline) {
+                    await realSupabase.from('emotional_baselines').upsert({
+                      character_id: charId, ...engineChar.emotional_baseline,
+                    }, { onConflict: 'character_id' });
+                  }
+                  if (engineChar.moral_structure) {
+                    await realSupabase.from('moral_structures').upsert({
+                      character_id: charId, ...engineChar.moral_structure,
+                    }, { onConflict: 'character_id' });
+                  }
+                  if (engineChar.general_traits) {
+                    await realSupabase.from('general_traits').upsert({
+                      character_id: charId, ...engineChar.general_traits,
+                    }, { onConflict: 'character_id' });
+                  }
+                  if (engineChar.influence_sliders) {
+                    await realSupabase.from('influence_sliders').upsert({
+                      character_id: charId, ...engineChar.influence_sliders,
+                    }, { onConflict: 'character_id' });
+                  }
+                  if (engineChar.desires && engineChar.desires.length > 0) {
+                    await realSupabase.from('desires').delete().eq('character_id', charId);
+                    await realSupabase.from('desires').insert(
+                      engineChar.desires.map(d => ({ character_id: charId, name: d.name, score: d.score, rank: d.rank }))
+                    );
+                  }
+                  if (engineChar.conditional_traits && engineChar.conditional_traits.length > 0) {
+                    await realSupabase.from('conditional_traits').delete().eq('character_id', charId);
+                    await realSupabase.from('conditional_traits').insert(
+                      engineChar.conditional_traits.map(t => ({
+                        character_id: charId, trait_label: t.trait_label, trigger_condition: t.trigger_condition,
+                        target_scope: t.target_scope, intensity_score: t.intensity_score, override_strength: t.override_strength,
+                      }))
+                    );
+                  }
+
+                  // Per-chapter: emotion drift
+                  if (engineChar.emotion_drift) {
+                    for (const drift of engineChar.emotion_drift) {
+                      await realSupabase.from('emotion_drift').upsert({
+                        character_id: charId, emotion_type: drift.emotion_type,
+                        chapter_index: chapterIndex, value: drift.value,
+                      }, { onConflict: 'character_id,emotion_type,chapter_index' });
+                    }
+                  }
+
+                  // Per-chapter: surges (delete old + insert new)
+                  if (engineChar.surges && engineChar.surges.length > 0) {
+                    await realSupabase.from('surges').delete()
+                      .eq('character_id', charId).eq('chapter_index', chapterIndex);
+                    await realSupabase.from('surges').insert(
+                      engineChar.surges.map(s => ({
+                        character_id: charId, chapter_index: chapterIndex,
+                        emotion_type: s.emotion_type, scene_position: s.scene_position,
+                        peak_intensity: s.peak_intensity, decay_rate: s.decay_rate, duration: s.duration,
+                        event_type: s.event_type, trigger_subject: s.trigger_subject,
+                        trigger_source: s.trigger_source, trigger_domain: s.trigger_domain,
+                        stakes: s.stakes, immediacy: s.immediacy, certainty: s.certainty,
+                        description: s.description,
+                      }))
+                    );
+                  }
+
+                  // Relationships (replace all for this character)
+                  if (engineChar.relationships && engineChar.relationships.length > 0) {
+                    await realSupabase.from('relationships').delete().eq('character_id', charId);
+                    await realSupabase.from('relationships').insert(
+                      engineChar.relationships.map(r => ({
+                        character_id: charId, target_name: r.target_name,
+                        trust: r.trust, threat: r.threat, admiration: r.admiration,
+                        envy: r.envy, suspicion: r.suspicion, perception_care: r.perception_care,
+                      }))
+                    );
+                  }
+                }
+              } catch (engineErr) {
+                console.error('Engine analysis failed (non-blocking):', engineErr);
+                // Engine analysis failure is non-blocking — author data is already saved
+              }
+
               // Save analysis results and mark complete
               await realSupabase
                 .from('manuscripts')
@@ -169,11 +313,10 @@ export const supabase = new Proxy(realSupabase, {
                   analysis_progress: 100,
                   analysis_results: {
                     summary: analysis.summary,
-                    characterImpressions: analysis.characters.map(c => `${c.name}: ${c.firstImpressions || c.description}`).join('\n\n'),
-                    consistencyAnalysis: analysis.consistencyNotes,
+                    characterImpressions: analysis.characters.map(c => `${c.name}: ${c.description}`).join('\n\n'),
                     newCharacters: analysis.characters
                       .filter(c => !charNames.includes(c.name))
-                      .map(c => ({ name: c.name, firstImpressions: c.firstImpressions || c.description })),
+                      .map(c => ({ name: c.name, description: c.description })),
                     recurringCharacters: analysis.characters
                       .filter(c => charNames.includes(c.name))
                       .map(c => ({ name: c.name, evolution: c.emotionalState })),
