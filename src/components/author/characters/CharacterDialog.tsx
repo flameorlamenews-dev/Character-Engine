@@ -238,19 +238,14 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
         const profileText = entry.profile_text || '';
         const analysisText = entry.analysis_text || '';
         
-        const isGarbage = 
-          profileText.toLowerCase().includes('character appears in') ||
-          profileText.toLowerCase().includes('character detected in') ||
-          profileText.toLowerCase().includes('this character is not present') ||
-          profileText.toLowerCase().includes('no dialogue or direct mention') ||
-          profileText.toLowerCase().includes('no dialogue or direct actions') ||
-          analysisText.toLowerCase().includes('character appears in') ||
-          analysisText.toLowerCase().includes('character detected in') ||
-          analysisText.toLowerCase().includes('this character is not present') ||
-          analysisText.toLowerCase().includes('no dialogue or direct mention') ||
-          analysisText.toLowerCase().includes('no dialogue or direct actions') ||
-          (profileText.toLowerCase().includes('does not speak') && analysisText.length < 50) ||
-          (profileText.length < 20 && analysisText.length < 20);
+        // Only filter entries with explicit placeholder/garbage text — NOT short or empty fields
+        const garbagePhrases = [
+          'character appears in', 'character detected in',
+          'this character is not present', 'no dialogue or direct mention',
+          'no dialogue or direct actions',
+        ];
+        const combined = (profileText + ' ' + analysisText).toLowerCase();
+        const isGarbage = garbagePhrases.some(phrase => combined.includes(phrase));
         
         if (isGarbage) {
           console.log(`Filtering out garbage timeline entry for chapter ${entry.chapter_number}`);

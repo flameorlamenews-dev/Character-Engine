@@ -238,8 +238,9 @@ const ManuscriptsView = ({
     const { data: char } = await charQuery.maybeSingle();
 
     if (char) {
-      // Build timeline instances for this character (aggregate appearances across multiple tables)
-      const [traits, scales, mottos, lex] = await Promise.all([
+      // Build timeline instances from character_timeline_entries (the primary per-chapter data source)
+      const [timeline, traits, scales, mottos, lex] = await Promise.all([
+        supabase.from("character_timeline_entries").select("manuscript_id").eq("character_id", char.id),
         supabase.from("character_traits").select("manuscript_id").eq("character_id", char.id),
         supabase.from("character_voice_scales").select("manuscript_id").eq("character_id", char.id),
         supabase.from("character_mottos").select("manuscript_id").eq("character_id", char.id),
@@ -249,6 +250,7 @@ const ManuscriptsView = ({
       const manuscriptIds = [
         ...new Set(
           [
+            ...(timeline.data || []),
             ...(traits.data || []),
             ...(scales.data || []),
             ...(mottos.data || []),

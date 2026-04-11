@@ -222,29 +222,34 @@ export const supabase = new Proxy(realSupabase, {
 
                   // Foundation tables (first analysis or personality shift)
                   if (engineChar.temperament) {
-                    await realSupabase.from('temperament_grids').upsert({
+                    const { error: tErr } = await realSupabase.from('temperament_grids').upsert({
                       character_id: charId, ...engineChar.temperament,
                     }, { onConflict: 'character_id' });
+                    if (tErr) console.error('Engine save temperament_grids failed:', tErr.message);
                   }
                   if (engineChar.emotional_baseline) {
-                    await realSupabase.from('emotional_baselines').upsert({
+                    const { error: bErr } = await realSupabase.from('emotional_baselines').upsert({
                       character_id: charId, ...engineChar.emotional_baseline,
                     }, { onConflict: 'character_id' });
+                    if (bErr) console.error('Engine save emotional_baselines failed:', bErr.message);
                   }
                   if (engineChar.moral_structure) {
-                    await realSupabase.from('moral_structures').upsert({
+                    const { error: mErr } = await realSupabase.from('moral_structures').upsert({
                       character_id: charId, ...engineChar.moral_structure,
                     }, { onConflict: 'character_id' });
+                    if (mErr) console.error('Engine save moral_structures failed:', mErr.message);
                   }
                   if (engineChar.general_traits) {
-                    await realSupabase.from('general_traits').upsert({
+                    const { error: gErr } = await realSupabase.from('general_traits').upsert({
                       character_id: charId, ...engineChar.general_traits,
                     }, { onConflict: 'character_id' });
+                    if (gErr) console.error('Engine save general_traits failed:', gErr.message);
                   }
                   if (engineChar.influence_sliders) {
-                    await realSupabase.from('influence_sliders').upsert({
+                    const { error: iErr } = await realSupabase.from('influence_sliders').upsert({
                       character_id: charId, ...engineChar.influence_sliders,
                     }, { onConflict: 'character_id' });
+                    if (iErr) console.error('Engine save influence_sliders failed:', iErr.message);
                   }
                   if (engineChar.desires && engineChar.desires.length > 0) {
                     await realSupabase.from('desires').delete().eq('character_id', charId);
