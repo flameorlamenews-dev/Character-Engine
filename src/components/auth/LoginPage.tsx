@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { supabaseAuth } from '@/integrations/supabase/client';
 
 const hasSupabase = !!import.meta.env.VITE_SUPABASE_URL;
@@ -77,8 +78,6 @@ function SimpleLoginForm() {
     </form>
   );
 }
-
-import { useState } from 'react';
 
 export function LoginPage() {
   if (!hasSupabase) {
