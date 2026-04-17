@@ -14,34 +14,54 @@ export function hasClaudeKey(): boolean {
   return !!CLAUDE_API_KEY;
 }
 
+const CLAUDE_MODEL = 'claude-sonnet-4-5';
+
 async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096): Promise<string> {
   if (!CLAUDE_API_KEY) {
     throw new Error('Claude API key not configured. Add VITE_CLAUDE_API_KEY to your .env file.');
   }
 
-  const response = await fetch(CLAUDE_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': CLAUDE_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: maxTokens,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
-    }),
-  });
+  // Retry on transient HTTP errors (5xx, 429) with exponential backoff. This
+  // protects against the occasional Claude-side flake that would otherwise
+  // fail a full chapter analysis and leave the manuscript at progress = -1.
+  const MAX_ATTEMPTS = 3;
+  let lastError: Error | null = null;
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS; attempt++) {
+    try {
+      const response = await fetch(CLAUDE_API_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': CLAUDE_API_KEY,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: CLAUDE_MODEL,
+          max_tokens: maxTokens,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: userMessage }],
+        }),
+      });
 
-  if (!response.ok) {
-    const error = await response.json().catch(() => ({ error: { message: response.statusText } }));
-    throw new Error(`Claude API error: ${error.error?.message || response.statusText}`);
+      if (response.ok) {
+        const data = await response.json();
+        return data.content?.[0]?.text || '';
+      }
+
+      const err = await response.json().catch(() => ({ error: { message: response.statusText } }));
+      const retryable = response.status === 429 || response.status >= 500;
+      lastError = new Error(`Claude API error (${response.status}): ${err.error?.message || response.statusText}`);
+      if (!retryable || attempt === MAX_ATTEMPTS) throw lastError;
+    } catch (e: any) {
+      // Network failures (TypeError from fetch) should also retry.
+      lastError = e;
+      if (attempt === MAX_ATTEMPTS) throw e;
+    }
+    // Exponential backoff: 1s, 2s
+    await new Promise(r => setTimeout(r, 1000 * attempt));
   }
-
-  const data = await response.json();
-  return data.content?.[0]?.text || '';
+  throw lastError || new Error('Claude API failed with no error');
 }
 
 /**
@@ -116,7 +136,7 @@ RULES:
 - externalDialogue: 2-5 key spoken lines (exact quotes preferred)
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  const responseText = await callClaude(systemPrompt, userMessage, 16000);
 
   try {
     // Try to parse the response as JSON, handling potential markdown wrapping
@@ -301,7 +321,7 @@ RULES:
 - conditional_traits: 1-4 situation-triggered behaviors
 - Base all scores on observable behavior in the text`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  const responseText = await callClaude(systemPrompt, userMessage, 16000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

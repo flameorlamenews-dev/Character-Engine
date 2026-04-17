@@ -193,7 +193,7 @@ export function calculateEmotions(
         // Cap per-stimulant delta at 50
         const cappedDelta = Math.min(50, Math.abs(finalDelta)) * Math.sign(finalDelta);
         if (Math.abs(cappedDelta) < Math.abs(finalDelta)) {
-          breakdown.push(`    Capped: ${finalDelta.toFixed(2)} → ${cappedDelta.toFixed(2)} (max 40 per stimulant)`);
+          breakdown.push(`    Capped: ${finalDelta.toFixed(2)} → ${cappedDelta.toFixed(2)} (max 50 per stimulant)`);
         }
 
         // Apply (collapse = negative)

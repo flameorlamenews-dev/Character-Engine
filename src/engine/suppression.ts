@@ -49,7 +49,10 @@ export const SUPPRESSION_RULES: SuppressionRule[] = [
   // Anticipation — no suppression (future-looking, coexists)
 ];
 
-/** Threshold: suppression only kicks in when dominant emotion is above this */
+/** Threshold: suppression kicks in when the dominant emotion's POST-delta
+ *  value (current + this-chapter's delta) reaches this on the 0-75 scale.
+ *  Using post-delta means a sudden spike (fear=20 → 55) will suppress joy
+ *  within the same chapter, which matches the narrative intuition.         */
 const SUPPRESSION_THRESHOLD = 50;
 
 /**

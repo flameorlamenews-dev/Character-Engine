@@ -38,9 +38,15 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
       const result = await loadCharacterForEngine(characterId);
       if (result) {
         setCharacterAndBook(result.character, result.book);
+      } else {
+        // loadCharacterForEngine returns null when the character can't be
+        // found (deleted / wrong project). Surface it so the user doesn't
+        // stare at an empty engine wondering what happened.
+        alert('Could not load character. It may have been deleted or the engine data is missing. Check the Author dashboard.');
       }
-    } catch (err) {
+    } catch (err: any) {
       console.error('Failed to load character:', err);
+      alert(`Failed to load character: ${err?.message || 'unknown error'}`);
     } finally {
       setLoadingCharacter(false);
     }

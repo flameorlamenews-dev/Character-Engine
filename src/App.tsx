@@ -13,13 +13,41 @@ function AuthSync({ authSession }: { authSession: any }) {
   useEffect(() => {
     if (!authSession?.user?.id) return;
     const userId = authSession.user.id;
+    let cancelled = false;
 
-    // Fetch the user's project and sync to session context
-    (supabase as any).from('projects').select('id').eq('user_id', userId).then(({ data }: any) => {
-      if (data && data.length > 0) {
-        setUserContext(userId, data[0].id);
+    // Fetch or create the user's project, then sync to session context.
+    // Previously, if the user had no projects yet, setUserContext was never
+    // called and the Producer/Player TopBar was stuck with userId=null even
+    // after AuthorLayout later created a project.
+    (async () => {
+      const { data: projects } = await (supabase as any)
+        .from('projects').select('id').eq('user_id', userId);
+      if (cancelled) return;
+
+      if (projects && projects.length > 0) {
+        setUserContext(userId, projects[0].id);
+        return;
       }
-    });
+
+      // No project yet — create a default one so every downstream view has
+      // something to filter by. AuthorLayout also guards against missing
+      // projects but it won't run until the user switches to Author view.
+      const { data: newProject } = await (supabase as any)
+        .from('projects')
+        .insert({ name: 'My Project', description: 'Default project', user_id: userId })
+        .select('id')
+        .single();
+      if (cancelled) return;
+      if (newProject?.id) {
+        setUserContext(userId, newProject.id);
+      } else {
+        // Last-resort: set userId with empty projectId so TopBar at least
+        // knows who's logged in.
+        setUserContext(userId, '');
+      }
+    })();
+
+    return () => { cancelled = true; };
   }, [authSession?.user?.id]);
 
   return null;

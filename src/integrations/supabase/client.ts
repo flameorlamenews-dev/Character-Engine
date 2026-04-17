@@ -70,22 +70,30 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 50 })
                 .eq('id', body.manuscriptId);
 
-              // Save characters to database and build name→id map for engine
+              // Save characters to database and build name→id map for engine.
+              // Name-matching is case-insensitive + whitespace-trimmed to stop
+              // Claude's casing drift (e.g. "John" vs "john ") from producing
+              // duplicate character rows.
               const characterNameToId = new Map<string, string>();
               for (const char of analysis.characters) {
-                // Check if character already exists
+                const cleanName = (char.name || '').trim();
+                if (!cleanName) continue;
+
+                // Case-insensitive lookup within this project
                 const { data: existing } = await realSupabase
                   .from('characters')
-                  .select('id')
-                  .eq('name', char.name)
+                  .select('id, manuscript_id')
+                  .ilike('name', cleanName)
                   .eq('project_id', manuscript.project_id)
                   .maybeSingle();
 
-                let characterId: string;
+                let characterId: string | undefined;
                 if (existing) {
                   characterId = existing.id;
-                  // Update existing character
-                  await realSupabase
+                  // Update existing character. Preserve the originating
+                  // manuscript_id — it records which chapter first introduced
+                  // the character and is used by delete/merge flows.
+                  const { error: updErr } = await realSupabase
                     .from('characters')
                     .update({
                       description: char.description,
@@ -93,29 +101,38 @@ export const supabase = new Proxy(realSupabase, {
                       source_type: 'ai',
                     })
                     .eq('id', characterId);
+                  if (updErr) console.error('Update character failed:', cleanName, updErr.message);
                 } else {
-                  // Create new character
-                  const { data: newChar } = await realSupabase
+                  // Create new character, tying it to the manuscript that
+                  // first introduced it so cascade-delete/merge flows work.
+                  const { data: newChar, error: insErr } = await realSupabase
                     .from('characters')
                     .insert({
-                      name: char.name,
+                      name: cleanName,
                       description: char.description,
                       role: char.role,
                       user_id: body.userId || manuscript.user_id,
                       project_id: manuscript.project_id,
+                      manuscript_id: body.manuscriptId,
                       source_type: 'ai',
                     })
                     .select('id')
                     .single();
+                  if (insErr) console.error('Insert character failed:', cleanName, insErr.message);
                   characterId = newChar?.id;
                 }
 
                 if (characterId) {
-                  characterNameToId.set(char.name, characterId);
-                  // Save timeline entry
-                  await realSupabase
+                  // Use lower-case key so the engine-analysis pass can resolve
+                  // names case-insensitively without a second fallback.
+                  characterNameToId.set(cleanName.toLowerCase(), characterId);
+
+                  // Timeline entry — UPSERT on (character_id, manuscript_id,
+                  // chapter_number) so re-analyzing a chapter REPLACES rather
+                  // than appends. Relies on the unique index added in 006.
+                  const { error: timelineErr } = await realSupabase
                     .from('character_timeline_entries')
-                    .insert({
+                    .upsert({
                       character_id: characterId,
                       manuscript_id: body.manuscriptId,
                       chapter_number: manuscript.chapter_number,
@@ -130,47 +147,77 @@ export const supabase = new Proxy(realSupabase, {
                       internal_dialogue: char.internalDialogue || [],
                       external_dialogue: char.externalDialogue || [],
                       source_type: 'ai',
-                    });
+                      updated_at: new Date().toISOString(),
+                    }, { onConflict: 'character_id,manuscript_id,chapter_number' });
+                  if (timelineErr) console.error('Timeline entry upsert failed:', cleanName, timelineErr.message);
 
-                  // Save traits
-                  for (const trait of char.traits) {
-                    await realSupabase
+                  // Traits — delete-then-insert per (character, manuscript) so
+                  // re-analysis replaces the trait set for THIS chapter
+                  // without touching traits from other chapters.
+                  await realSupabase
+                    .from('character_traits')
+                    .delete()
+                    .eq('character_id', characterId)
+                    .eq('manuscript_id', body.manuscriptId);
+                  if (char.traits && char.traits.length > 0) {
+                    // De-dupe traits within the same chapter (Claude sometimes repeats)
+                    const uniq = Array.from(new Set(char.traits.map(t => t.trim()).filter(Boolean)));
+                    const { error: trErr } = await realSupabase
                       .from('character_traits')
-                      .insert({
+                      .insert(uniq.map(trait => ({
                         character_id: characterId,
                         manuscript_id: body.manuscriptId,
                         trait,
                         source_type: 'ai',
-                      });
+                      })));
+                    if (trErr) console.error('Insert traits failed:', cleanName, trErr.message);
                   }
                 }
               }
 
-              // Save glossary terms
+              // Save glossary terms — case-insensitive dedupe within a project.
+              // For terms that already exist, append the current chapter to
+              // appears_in so the UI can show every chapter a term is used in.
+              const currentChapterNum = manuscript.chapter_number ?? 0;
               for (const term of analysis.glossaryTerms) {
+                const cleanWord = (term.word || '').trim();
+                if (!cleanWord) continue;
+
                 const { data: existingTerm } = await realSupabase
                   .from('world_glossary')
-                  .select('id')
-                  .eq('word', term.word)
+                  .select('id, appears_in')
+                  .ilike('word', cleanWord)
                   .eq('project_id', manuscript.project_id)
                   .maybeSingle();
 
-                if (!existingTerm) {
-                  await realSupabase
+                if (existingTerm) {
+                  const existingAppears: number[] = existingTerm.appears_in || [];
+                  if (!existingAppears.includes(currentChapterNum)) {
+                    await realSupabase
+                      .from('world_glossary')
+                      .update({ appears_in: [...existingAppears, currentChapterNum].sort((a, b) => a - b) })
+                      .eq('id', existingTerm.id);
+                  }
+                } else {
+                  const { error: glossErr } = await realSupabase
                     .from('world_glossary')
                     .insert({
-                      word: term.word,
+                      word: cleanWord,
                       definition: term.definition,
                       word_type: term.wordType,
                       project_id: manuscript.project_id,
                       user_id: body.userId || manuscript.user_id,
                       manuscript_id: body.manuscriptId,
                       source_type: 'ai',
+                      appears_in: [currentChapterNum],
                     });
+                  if (glossErr) console.error('Glossary insert failed:', cleanWord, glossErr.message);
                 }
               }
 
               // ── Engine Analysis (second Claude call) ──────────────
+              let engineStatus: 'ok' | 'failed' | 'skipped' = 'ok';
+              let engineError: string | undefined;
               try {
                 await realSupabase.from('manuscripts').update({ analysis_progress: 60 }).eq('id', body.manuscriptId);
 
@@ -210,11 +257,19 @@ export const supabase = new Proxy(realSupabase, {
                 console.log('Engine analysis returned', engineResult.characters.length, 'characters:', engineResult.characters.map(c => c.name));
                 await realSupabase.from('manuscripts').update({ analysis_progress: 80 }).eq('id', body.manuscriptId);
 
-                // Save engine data per character
-                const chapterIndex = (manuscript.chapter_number || 1) - 1;
+                // Save engine data per character. The name→id map was built
+                // with lowercased keys so we do the same lookup here.
+                // chapter_number is 1-indexed in the UI and DB; the engine
+                // stores chapter_index (0-indexed). A null chapter_number
+                // shouldn't happen (ManuscriptDialog enforces 0-200) but we
+                // default to 0 so a bad input still lands deterministically
+                // in the first slot rather than scattering across chapters.
+                const chapterIndex = manuscript.chapter_number != null
+                  ? manuscript.chapter_number - 1
+                  : 0;
                 for (const engineChar of engineResult.characters) {
-                  const charId = characterNameToId.get(engineChar.name)
-                    || [...characterNameToId.entries()].find(([k]) => k.toLowerCase() === engineChar.name?.toLowerCase())?.[1];
+                  const key = (engineChar.name || '').trim().toLowerCase();
+                  const charId = characterNameToId.get(key);
                   if (!charId) {
                     console.warn('Engine analysis: no character ID found for', engineChar.name);
                     continue;
@@ -306,9 +361,14 @@ export const supabase = new Proxy(realSupabase, {
                     );
                   }
                 }
-              } catch (engineErr) {
-                console.error('Engine analysis failed (non-blocking):', engineErr);
-                // Engine analysis failure is non-blocking — author data is already saved
+              } catch (engineErr: any) {
+                engineStatus = 'failed';
+                engineError = engineErr?.message || String(engineErr);
+                console.error('Engine analysis failed (non-blocking):', engineError);
+                // Author data is already saved. We surface the failure via
+                // analysis_results.engineStatus so the UI can warn the user
+                // that the Producer/Player view won't have full personality
+                // data for this chapter.
               }
 
               // Save analysis results and mark complete
@@ -325,11 +385,13 @@ export const supabase = new Proxy(realSupabase, {
                     recurringCharacters: analysis.characters
                       .filter(c => charNames.includes(c.name))
                       .map(c => ({ name: c.name, evolution: c.emotionalState })),
+                    engineStatus,
+                    engineError,
                   },
                 })
                 .eq('id', body.manuscriptId);
 
-              return { data: { success: true }, error: null };
+              return { data: { success: true, engineStatus }, error: null };
             } catch (err: any) {
               console.error('Analysis failed:', err);
               await realSupabase

@@ -301,7 +301,11 @@ const ManuscriptsView = ({
 
         if (charError) throw charError;
 
-        // Delete character-related data
+        // Delete character-related data. character_timeline_entries is the
+        // primary per-chapter analysis store — if we don't remove it, timeline
+        // rows orphan and the CharacterDialog shows ghost entries for the
+        // deleted chapter.
+        await supabase.from("character_timeline_entries").delete().eq("manuscript_id", manuscriptToDelete.id);
         await supabase.from("character_traits").delete().eq("manuscript_id", manuscriptToDelete.id);
         await supabase.from("character_voice_scales").delete().eq("manuscript_id", manuscriptToDelete.id);
         await supabase.from("character_lexicon").delete().eq("manuscript_id", manuscriptToDelete.id);

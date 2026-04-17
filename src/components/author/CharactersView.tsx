@@ -283,8 +283,31 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
       const keepId = keepProfile.id;
       const deleteId = deleteProfile.id;
 
-      // Update all related tables to point to keep profile
+      // Update all related tables to point to keep profile. Engine tables
+      // (temperament_grids, emotional_baselines, etc.) have character_id FKs
+      // too — if we skip them, the kept profile loses the merged character's
+      // personality data to the Producer/Player view.
+      //
+      // Foundation tables use UNIQUE(character_id) so we can't blindly UPDATE
+      // when the keep-profile already has a row — we DELETE the duplicate
+      // instead, preferring the kept profile's existing foundation data.
+      const foundationTables = [
+        'temperament_grids', 'emotional_baselines', 'moral_structures',
+        'general_traits', 'influence_sliders',
+      ];
+      for (const tbl of foundationTables) {
+        // Does the keep profile already have a row?
+        const { data: keepRow } = await supabase.from(tbl).select('character_id').eq('character_id', keepId).maybeSingle();
+        if (keepRow) {
+          // Discard the delete profile's foundation — keeper wins.
+          await supabase.from(tbl).delete().eq('character_id', deleteId);
+        } else {
+          await supabase.from(tbl).update({ character_id: keepId }).eq('character_id', deleteId);
+        }
+      }
+
       await Promise.all([
+        // Author tables (safe to UPDATE — no UNIQUE on character_id alone)
         supabase.from("character_traits").update({ character_id: keepId }).eq("character_id", deleteId),
         supabase.from("character_mottos").update({ character_id: keepId }).eq("character_id", deleteId),
         supabase.from("character_voice_scales").update({ character_id: keepId }).eq("character_id", deleteId),
@@ -295,6 +318,18 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
         supabase.from("character_conflict_profile").update({ character_id: keepId }).eq("character_id", deleteId),
         supabase.from("character_voice_feedback").update({ character_id: keepId }).eq("character_id", deleteId),
         supabase.from("character_timeline_entries").update({ character_id: keepId }).eq("character_id", deleteId),
+        // Engine per-chapter tables
+        supabase.from("desires").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("conditional_traits").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("emotion_drift").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("surges").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("silence_blocks").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("trait_eq_points").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("relationships").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("influence_traits").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("lingering_emotions").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("desire_pressure").update({ character_id: keepId }).eq("character_id", deleteId),
+        supabase.from("habit_formation").update({ character_id: keepId }).eq("character_id", deleteId),
       ]);
 
       // Delete the profile

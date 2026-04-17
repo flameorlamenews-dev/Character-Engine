@@ -52,7 +52,13 @@ export async function loadCharacterForEngine(characterId: string): Promise<{ cha
   ]);
 
   const charData = charResult.data;
-  if (!charData) return null;
+  if (!charData) {
+    console.error('loadCharacterForEngine: character not found', characterId, charResult.error?.message);
+    return null;
+  }
+  if (!charData.project_id) {
+    console.warn('loadCharacterForEngine: character has no project_id — chapter list will be empty', characterId);
+  }
 
   const temperament = buildTemperament(tempResult.data);
   const emotionalBaseline = buildBaseline(baselineResult.data);
@@ -82,14 +88,16 @@ export async function loadCharacterForEngine(characterId: string): Promise<{ cha
     silenceResult.data || [],
   );
 
+  // Missing relationship scores read as neutral (DEFAULT=37) rather than 0,
+  // which on the 0-75 Score75 scale would imply "extremely negative".
   const relationships: Relationship[] = (relResult.data || []).map((r: any) => ({
     targetName: r.target_name || 'Unknown',
-    trust: (r.trust ?? 0) as Score75,
+    trust: (r.trust ?? DEFAULT) as Score75,
     threat: (r.threat ?? 0) as Score75,
     admiration: (r.admiration ?? 0) as Score75,
     envy: (r.envy ?? 0) as Score75,
     suspicion: (r.suspicion ?? 0) as Score75,
-    perceptionCare: (r.perception_care ?? 0) as Score75,
+    perceptionCare: (r.perception_care ?? DEFAULT) as Score75,
   }));
 
   const influenceVariables = buildInfluenceVariables(influenceResult.data);

@@ -19,7 +19,7 @@ interface ChannelRackProps {
 function getIntensityAtPosition(
   emotion: EmotionType,
   position: number,
-  character: { emotionTimelines: { emotionType: string; baseline: number; driftLine: number[]; surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number }[] }[] }
+  character: { emotionTimelines: { emotionType: string; baseline: number; driftLine: number[]; surges: { chapterIndex: number; scenePosition: number; peakIntensity: number; duration: number; decayRate?: number }[] }[] }
 ): number {
   const timeline = character.emotionTimelines.find((t) => t.emotionType === emotion);
   if (!timeline) return 0;
@@ -31,8 +31,14 @@ function getIntensityAtPosition(
   let intensity = baseline;
   for (const surge of timeline.surges) {
     if (surge.chapterIndex !== chapterIndex) continue;
+    // decayRate 0..1: higher = faster return to baseline after the peak.
+    // Split the surge envelope so ramp-up is always 30% of duration and
+    // decay occupies (1 - 0.3*decayRate) * duration on the far side. This
+    // way a surge with decayRate=0.9 snaps back, decayRate=0.1 lingers.
+    const decayRate = Math.max(0, Math.min(1, surge.decayRate ?? 0.3));
+    const decayFraction = 1 - decayRate * 0.7; // [0.3, 1.0]
     const surgeStart = surge.scenePosition - surge.duration * 0.3;
-    const surgeEnd = surge.scenePosition + surge.duration * 0.7;
+    const surgeEnd = surge.scenePosition + surge.duration * decayFraction;
     if (scenePos >= surgeStart && scenePos <= surgeEnd) {
       if (scenePos <= surge.scenePosition) {
         const t = (scenePos - surgeStart) / (surge.scenePosition - surgeStart);
