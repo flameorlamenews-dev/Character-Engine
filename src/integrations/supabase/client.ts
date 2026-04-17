@@ -559,10 +559,21 @@ export const supabase = new Proxy(realSupabase, {
                     .eq('character_id', charId)
                     .order('chapter_number', { ascending: true });
 
+                  // Only include rows that actually contain dialogue. A
+                  // stray empty signature would still weigh into the
+                  // canonical aggregate (Math.max(1, ...) in the aggregator
+                  // gives it weight of 1 even at 0 tokens), skewing rates.
+                  // Prologues written as chapter_number=0 must become
+                  // chapterIndex=0, not -1.
                   const perChapterRows = (allPerChapter || [])
-                    .filter((r: any) => r.voice_scales && typeof r.voice_scales === 'object' && r.voice_scales.dialogue_token_count !== undefined)
+                    .filter((r: any) =>
+                      r.voice_scales &&
+                      typeof r.voice_scales === 'object' &&
+                      typeof r.voice_scales.dialogue_token_count === 'number' &&
+                      r.voice_scales.dialogue_token_count > 0,
+                    )
                     .map((r: any) => ({
-                      chapterIndex: (r.chapter_number ?? 1) - 1,
+                      chapterIndex: Math.max(0, (r.chapter_number ?? 1) - 1),
                       signature: r.voice_scales as SpeechSignature,
                     }));
 

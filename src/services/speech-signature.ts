@@ -74,9 +74,15 @@ function unionByFrequency(
 export function aggregateSignature(rows: PerChapterSignature[]): SpeechSignature {
   if (!rows || rows.length === 0) return emptySignature();
 
-  const latestChapter = rows.reduce((max, r) => Math.max(max, r.chapterIndex), 0);
-  const weighted = rows.map(r => {
-    const tokens = Math.max(1, r.signature.dialogue_token_count || 0);
+  // Reject rows with no dialogue tokens up front. A zero-token row getting
+  // weight 1 would quietly tug the canonical averages toward empty chapters
+  // — we'd rather skip than fudge.
+  const real = rows.filter(r => (r.signature?.dialogue_token_count ?? 0) > 0);
+  if (real.length === 0) return emptySignature();
+
+  const latestChapter = real.reduce((max, r) => Math.max(max, r.chapterIndex), 0);
+  const weighted = real.map(r => {
+    const tokens = r.signature.dialogue_token_count || 0;
     const weight = tokens * recencyFactor(latestChapter, r.chapterIndex);
     return { row: r, weight };
   });
@@ -201,7 +207,17 @@ function mergeEmotionalShifts(
 }
 
 /** Canonical signature keeps the most recent 5 signature lines,
- *  deduped. Older lines bubble up only if recent chapters had none. */
+ *  deduped. Older lines bubble up only if recent chapters had none.
+ *  Dedup is punctuation- and whitespace-insensitive so "I'm fine." and
+ *  "I'm fine!" don't both burn a slot. */
+function normalizeLine(s: string): string {
+  return s
+    .toLowerCase()
+    .replace(/[.,!?;:—–\-"'“”‘’]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function pickBestLines(
   rows: Array<{ lines: string[]; weight: number; chapter: number }>,
 ): string[] {
@@ -211,8 +227,10 @@ function pickBestLines(
   for (const r of sorted) {
     for (const line of r.lines || []) {
       const clean = line.trim();
-      if (!clean || seen.has(clean.toLowerCase())) continue;
-      seen.add(clean.toLowerCase());
+      if (!clean) continue;
+      const norm = normalizeLine(clean);
+      if (!norm || seen.has(norm)) continue;
+      seen.add(norm);
       out.push(clean);
       if (out.length >= 8) return out;
     }
