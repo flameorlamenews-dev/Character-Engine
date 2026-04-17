@@ -155,12 +155,23 @@ function buildSmoothFilledPaths(
   const { paths } = buildSmoothData(driftLine, surges, silenceBlocks, zoom, totalWidth, laneHeight, layout);
   return paths.map((p) => {
     if (!p) return '';
-    // Extract first and last x from the path
+    // Extract first and last x from the path. SVG paths emitted by
+    // buildSmoothData always contain a leading M and at least one more
+    // command — pull the numeric coords and bail if we can't find a
+    // sensible pair, rather than handing NaN to the filled path.
     const coords = p.match(/[\d.]+/g);
     if (!coords || coords.length < 4) return '';
     const firstX = parseFloat(coords[0]);
-    const lastCoords = p.split(/[CML]\s*/).filter(Boolean).pop()?.trim().split(/\s+/);
-    const lastX = lastCoords ? parseFloat(lastCoords[lastCoords.length - 2] || lastCoords[0]) : totalWidth;
+    if (!Number.isFinite(firstX)) return '';
+
+    const lastSegment = p.split(/[CML]\s*/).filter(Boolean).pop()?.trim().split(/\s+/) ?? [];
+    // The last command's final X is at index length-2 (paired with Y at
+    // length-1). Fall back to the first coord if the segment is too short.
+    const candidate = lastSegment.length >= 2
+      ? lastSegment[lastSegment.length - 2]
+      : (lastSegment[0] ?? '');
+    const parsedLast = parseFloat(candidate);
+    const lastX = Number.isFinite(parsedLast) ? parsedLast : totalWidth;
     return `${p} L ${lastX} ${laneHeight} L ${firstX} ${laneHeight} Z`;
   });
 }

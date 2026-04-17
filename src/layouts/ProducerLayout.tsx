@@ -49,10 +49,14 @@ export function ProducerLayout() {
       lastTimeRef.current = timestamp;
 
       setPlayheadPosition((prev) => {
+        // A 0-chapter book would make totalChapters - 0.01 = -0.01, which
+        // would make the playhead jump to a negative position and trigger
+        // a seek error. Clamp the end position to a non-negative value.
+        const endPos = Math.max(0, totalChapters - 0.01);
         const next = prev + delta * PLAYBACK_SPEED;
-        if (next >= totalChapters - 0.01) {
+        if (next >= endPos) {
           setIsPlaying(false);
-          return totalChapters - 0.01;
+          return endPos;
         }
         return next;
       });

@@ -43,10 +43,13 @@ export const GlossaryManager = ({ userId, projectId }: { userId: string; project
 
   useEffect(() => {
     fetchEntries();
-    // Poll every 10s to pick up new AI-generated terms
+    // Poll every 10s to pick up new AI-generated terms. Include projectId
+    // in deps so switching projects re-fetches instead of showing the
+    // previous project's glossary until the next poll.
     const interval = setInterval(fetchEntries, 10000);
     return () => clearInterval(interval);
-  }, [userId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userId, projectId]);
 
   const fetchEntries = async () => {
     const { data, error } = await supabase
