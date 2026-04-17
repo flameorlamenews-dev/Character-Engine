@@ -1,11 +1,48 @@
 import { createClient } from '@supabase/supabase-js';
-import { analyzeManuscript, analyzeManuscriptEngine, generateCharacterText, hasClaudeKey } from '../../services/claude-api';
+import { analyzeManuscript, analyzeManuscriptEngine, analyzeSpeechPatterns, generateCharacterText, hasClaudeKey } from '../../services/claude-api';
+import { computeDeterministicStats } from '../../services/speech-stats';
+import { aggregateSignature } from '../../services/speech-signature';
+import { emptySignature, type SpeechSignature } from '../../types/speech';
 
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 
 if (!supabaseUrl || !supabaseAnonKey) {
   console.warn('Supabase credentials not found in .env — database features will not work.');
+}
+
+// Small helpers used by the speech pipeline.
+function clamp(n: any, lo: number, hi: number): number {
+  const x = Number(n);
+  if (!Number.isFinite(x)) return lo;
+  return Math.max(lo, Math.min(hi, x));
+}
+
+function mergeUnique(...lists: string[][]): string[];
+function mergeUnique(a: string[], b: string[], topN: number): string[];
+function mergeUnique(...args: any[]): string[] {
+  let lists: string[][];
+  let topN: number | undefined;
+  if (args.length === 3 && Array.isArray(args[0]) && Array.isArray(args[1]) && typeof args[2] === 'number') {
+    lists = [args[0], args[1]];
+    topN = args[2];
+  } else {
+    lists = args as string[][];
+  }
+  const seen = new Set<string>();
+  const out: string[] = [];
+  for (const list of lists) {
+    for (const item of list || []) {
+      const clean = (item || '').trim();
+      if (!clean) continue;
+      const key = clean.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push(clean);
+      if (topN !== undefined && out.length >= topN) return out;
+    }
+  }
+  return out;
 }
 
 // Create the real Supabase client for database operations
@@ -377,6 +414,144 @@ export const supabase = new Proxy(realSupabase, {
                 // data for this chapter.
               }
 
+              // ── Speech Pattern Analysis (Call #3) ──────────────────
+              // Combines deterministic client-side stats with a qualitative
+              // Claude pass to produce a per-chapter SpeechSignature for
+              // every character. The canonical signature on characters.*
+              // is then re-aggregated from all this character's per-chapter
+              // signatures.
+              let speechStatus: 'ok' | 'failed' | 'skipped' = 'ok';
+              let speechError: string | undefined;
+              try {
+                await realSupabase.from('manuscripts').update({ analysis_progress: 90 }).eq('id', body.manuscriptId);
+
+                // Baseline tokens = every OTHER character's dialogue in
+                // this chapter, used by TF-IDF to find signature words.
+                const allTokens: Record<string, string[]> = {};
+                for (const c of analysis.characters) {
+                  const nameKey = (c.name || '').trim().toLowerCase();
+                  if (!nameKey) continue;
+                  const lines = [...(c.externalDialogue || []), ...(c.internalDialogue || [])];
+                  allTokens[nameKey] = lines
+                    .join(' ')
+                    .toLowerCase()
+                    .match(/[a-zA-Z][a-zA-Z'-]*/g) || [];
+                }
+
+                // Try the qualitative Claude pass first. If it fails we
+                // still save deterministic stats so the UI has something.
+                let claudeFragments: Array<any> = [];
+                try {
+                  const speechResult = await analyzeSpeechPatterns(
+                    manuscript.content || '',
+                    manuscript.chapter_number || 0,
+                    manuscript.title || `Chapter ${manuscript.chapter_number}`,
+                    analysis.characters.map(c => c.name).filter(Boolean),
+                  );
+                  claudeFragments = speechResult.characters || [];
+                } catch (qualErr: any) {
+                  speechStatus = 'failed';
+                  speechError = qualErr?.message || String(qualErr);
+                  console.warn('Speech Call #3 (qualitative) failed; continuing with deterministic stats only:', speechError);
+                }
+
+                for (const c of analysis.characters) {
+                  const nameKey = (c.name || '').trim().toLowerCase();
+                  const charId = characterNameToId.get(nameKey);
+                  if (!charId) continue;
+
+                  // Build baseline = every OTHER speaker's tokens
+                  const baseline: string[] = [];
+                  for (const [k, toks] of Object.entries(allTokens)) {
+                    if (k !== nameKey) baseline.push(...toks);
+                  }
+
+                  const det = computeDeterministicStats({
+                    external: c.externalDialogue || [],
+                    internal: c.internalDialogue || [],
+                    baselineTokens: baseline,
+                  });
+
+                  // Merge the Claude fragment for this character (if any)
+                  const frag = claudeFragments.find(
+                    (f: any) => (f?.name || '').trim().toLowerCase() === nameKey,
+                  ) || {};
+
+                  const perChapter: SpeechSignature = {
+                    ...emptySignature(),
+                    ...det,
+                    // Claude fills these qualitative fields
+                    vocabulary_tier: frag.vocabulary_tier || det.vocabulary_tier || 'mixed',
+                    forbidden_words: Array.isArray(frag.forbidden_words) ? frag.forbidden_words.slice(0, 10) : [],
+                    dialect_markers: Array.isArray(frag.dialect_markers) ? frag.dialect_markers.slice(0, 8) : [],
+                    verbal_tics: mergeUnique(det.verbal_tics || [], frag.verbal_tics || [], 10),
+                    register_by_audience: {
+                      family: frag.register_by_audience?.family || '',
+                      friend: frag.register_by_audience?.friend || '',
+                      rival: frag.register_by_audience?.rival || '',
+                      authority: frag.register_by_audience?.authority || '',
+                      stranger: frag.register_by_audience?.stranger || '',
+                    },
+                    emotional_register_shifts: {
+                      joy: frag.emotional_register_shifts?.joy || '',
+                      sadness: frag.emotional_register_shifts?.sadness || '',
+                      anger: frag.emotional_register_shifts?.anger || '',
+                      fear: frag.emotional_register_shifts?.fear || '',
+                      disgust: frag.emotional_register_shifts?.disgust || '',
+                      surprise: frag.emotional_register_shifts?.surprise || '',
+                      trust: frag.emotional_register_shifts?.trust || '',
+                      anticipation: frag.emotional_register_shifts?.anticipation || '',
+                    },
+                    signature_lines: (Array.isArray(frag.signature_lines) ? frag.signature_lines : [])
+                      .slice(0, 10)
+                      .map((s: string) => (s || '').trim())
+                      .filter(Boolean),
+                    clause_complexity: clamp(frag.clause_complexity, 0, 100),
+                    imperatives: clamp(frag.imperatives, 0, 100),
+                    metaphor_density: clamp(frag.metaphor_density, 0, 100),
+                    chapter_number: manuscript.chapter_number ?? undefined,
+                  };
+
+                  // Save per-chapter signature into voice_scales JSONB.
+                  const { error: vsErr } = await realSupabase
+                    .from('character_timeline_entries')
+                    .update({ voice_scales: perChapter as any })
+                    .eq('character_id', charId)
+                    .eq('manuscript_id', body.manuscriptId)
+                    .eq('chapter_number', manuscript.chapter_number);
+                  if (vsErr) console.error('Speech: per-chapter save failed for', c.name, vsErr.message);
+
+                  // Re-aggregate canonical from all of this character's
+                  // per-chapter signatures (including the one we just wrote).
+                  const { data: allPerChapter } = await realSupabase
+                    .from('character_timeline_entries')
+                    .select('chapter_number, voice_scales')
+                    .eq('character_id', charId)
+                    .order('chapter_number', { ascending: true });
+
+                  const perChapterRows = (allPerChapter || [])
+                    .filter((r: any) => r.voice_scales && typeof r.voice_scales === 'object' && r.voice_scales.dialogue_token_count !== undefined)
+                    .map((r: any) => ({
+                      chapterIndex: (r.chapter_number ?? 1) - 1,
+                      signature: r.voice_scales as SpeechSignature,
+                    }));
+
+                  const canonical = aggregateSignature(perChapterRows);
+                  const { error: canErr } = await realSupabase
+                    .from('characters')
+                    .update({
+                      speech_signature: canonical as any,
+                      speech_canonical_updated_at: new Date().toISOString(),
+                    })
+                    .eq('id', charId);
+                  if (canErr) console.error('Speech: canonical save failed for', c.name, canErr.message);
+                }
+              } catch (speechErr: any) {
+                speechStatus = 'failed';
+                speechError = speechError || speechErr?.message || String(speechErr);
+                console.error('Speech analysis failed (non-blocking):', speechError);
+              }
+
               // Save analysis results and mark complete
               await realSupabase
                 .from('manuscripts')
@@ -393,11 +568,13 @@ export const supabase = new Proxy(realSupabase, {
                       .map(c => ({ name: c.name, evolution: c.emotionalState })),
                     engineStatus,
                     engineError,
+                    speechStatus,
+                    speechError,
                   },
                 })
                 .eq('id', body.manuscriptId);
 
-              return { data: { success: true, engineStatus }, error: null };
+              return { data: { success: true, engineStatus, speechStatus }, error: null };
             } catch (err: any) {
               console.error('Analysis failed:', err);
               await realSupabase
@@ -413,7 +590,8 @@ export const supabase = new Proxy(realSupabase, {
               return { data: null, error: { message: 'Claude API key not configured' } };
             }
             try {
-              // Fetch character data
+              // Fetch character data — including the canonical speech
+              // signature aggregated from every analyzed chapter.
               const { data: character } = await realSupabase
                 .from('characters')
                 .select('*')
@@ -429,36 +607,69 @@ export const supabase = new Proxy(realSupabase, {
                 .select('trait')
                 .eq('character_id', body.characterId);
 
-              // Pull the most recent timeline entry for per-chapter voice
-              // context — speech pattern, internal/external dialogue, and
-              // emotional state. Without this Claude falls back to a thin
-              // global prompt and the generated text drifts toward a
-              // neutral voice rather than the character's latest register.
-              const { data: recentTimeline } = await realSupabase
+              // Pull the appropriate per-chapter timeline entry — use the
+              // requested chapter if body.chapterNumber is set, otherwise
+              // the most recent analyzed chapter.
+              let perChapterQuery = realSupabase
                 .from('character_timeline_entries')
-                .select('analysis_text, emotional_state, dialogue_patterns, internal_dialogue, external_dialogue, chapter_number')
-                .eq('character_id', body.characterId)
-                .order('chapter_number', { ascending: false })
-                .limit(1)
-                .maybeSingle();
+                .select('analysis_text, emotional_state, dialogue_patterns, internal_dialogue, external_dialogue, chapter_number, voice_scales')
+                .eq('character_id', body.characterId);
+              if (typeof body.chapterNumber === 'number') {
+                perChapterQuery = perChapterQuery.eq('chapter_number', body.chapterNumber).limit(1);
+              } else {
+                perChapterQuery = perChapterQuery.order('chapter_number', { ascending: false }).limit(1);
+              }
+              const { data: perChapterRows } = await perChapterQuery;
+              const recentTimeline = (perChapterRows && perChapterRows[0]) || null;
 
-              const voiceContext = recentTimeline
-                ? [
-                    recentTimeline.analysis_text ? `Speech pattern: ${recentTimeline.analysis_text}` : '',
-                    recentTimeline.dialogue_patterns && recentTimeline.dialogue_patterns.length
-                      ? `Dialogue patterns: ${recentTimeline.dialogue_patterns.join('; ')}`
-                      : '',
-                    recentTimeline.internal_dialogue && recentTimeline.internal_dialogue.length
-                      ? `Sample internal thoughts: ${recentTimeline.internal_dialogue.slice(0, 3).join(' | ')}`
-                      : '',
-                    recentTimeline.external_dialogue && recentTimeline.external_dialogue.length
-                      ? `Sample spoken lines: ${recentTimeline.external_dialogue.slice(0, 3).join(' | ')}`
-                      : '',
-                  ].filter(Boolean).join('\n')
-                : '';
+              // Build the combined voice context block. The canonical
+              // signature describes who they ARE; per-chapter signature
+              // describes who they SOUND LIKE right now.
+              const canonical: SpeechSignature | null =
+                (character.speech_signature as SpeechSignature | null) ?? null;
+              const perChapter: SpeechSignature | null =
+                (recentTimeline?.voice_scales as SpeechSignature | null) ?? null;
 
-              const enrichedDescription = voiceContext
-                ? `${character.description || ''}\n\nCanonical voice reference (from most recent analyzed chapter):\n${voiceContext}`
+              const voiceLines: string[] = [];
+              if (canonical && canonical.dialogue_token_count > 0) {
+                voiceLines.push('CANONICAL VOICE FINGERPRINT (aggregated across the whole book):');
+                voiceLines.push(`- Vocabulary tier: ${canonical.vocabulary_tier}`);
+                voiceLines.push(`- Avg sentence length: ${canonical.sentence_length_distribution.mean} words (p25=${canonical.sentence_length_distribution.p25}, p75=${canonical.sentence_length_distribution.p75})`);
+                voiceLines.push(`- Structure bias: ${canonical.sentence_structure_bias}`);
+                voiceLines.push(`- Contractions: ${canonical.contractions}%  |  Dropped g's: ${canonical.dropped_gs}%`);
+                voiceLines.push(`- Rhetorical questions: ${canonical.rhetorical_questions}/100  |  Hedges: ${canonical.hedges}/100  |  Intensifiers: ${canonical.intensifiers}/100`);
+                voiceLines.push(`- Profanity per 1000 words: ${canonical.profanity_frequency}`);
+                if (canonical.signature_words.length) voiceLines.push(`- Signature words to favor: ${canonical.signature_words.slice(0, 10).join(', ')}`);
+                if (canonical.forbidden_words.length) voiceLines.push(`- Forbidden words (do NOT use): ${canonical.forbidden_words.join(', ')}`);
+                if (canonical.verbal_tics.length) voiceLines.push(`- Verbal tics (pepper in sparingly): ${canonical.verbal_tics.join(', ')}`);
+                if (canonical.dialect_markers.length) voiceLines.push(`- Dialect markers: ${canonical.dialect_markers.join(', ')}`);
+                if (canonical.signature_lines.length) {
+                  voiceLines.push('- Match the RHYTHM of these canonical lines (do not copy verbatim):');
+                  for (const line of canonical.signature_lines.slice(0, 5)) voiceLines.push(`    "${line}"`);
+                }
+              }
+              if (perChapter && perChapter.dialogue_token_count > 0 && perChapter.chapter_number !== undefined) {
+                voiceLines.push('');
+                voiceLines.push(`CHAPTER ${perChapter.chapter_number} VOICE (how they sound right now):`);
+                voiceLines.push(`- Avg sentence length here: ${perChapter.sentence_length_distribution.mean} words`);
+                voiceLines.push(`- Contractions this chapter: ${perChapter.contractions}%`);
+                if (perChapter.verbal_tics.length) voiceLines.push(`- Active tics: ${perChapter.verbal_tics.join(', ')}`);
+                if (perChapter.signature_lines.length) {
+                  voiceLines.push('- Chapter-specific canon lines:');
+                  for (const line of perChapter.signature_lines.slice(0, 3)) voiceLines.push(`    "${line}"`);
+                }
+              }
+              // Legacy fallback: if no signature exists yet, use the old
+              // timeline-entry text fields so the feature degrades cleanly
+              // for pre-migration data.
+              if (voiceLines.length === 0 && recentTimeline) {
+                if (recentTimeline.analysis_text) voiceLines.push(`Speech pattern: ${recentTimeline.analysis_text}`);
+                if (recentTimeline.dialogue_patterns?.length) voiceLines.push(`Dialogue patterns: ${recentTimeline.dialogue_patterns.join('; ')}`);
+                if (recentTimeline.external_dialogue?.length) voiceLines.push(`Sample spoken lines: ${recentTimeline.external_dialogue.slice(0, 3).join(' | ')}`);
+              }
+
+              const enrichedDescription = voiceLines.length > 0
+                ? `${character.description || ''}\n\n${voiceLines.join('\n')}`
                 : character.description || '';
 
               const text = await generateCharacterText(

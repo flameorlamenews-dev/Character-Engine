@@ -221,6 +221,112 @@ export interface EngineCharacterData {
   }>;
 }
 
+// ============================================
+// SPEECH PATTERN ANALYSIS — Call #3
+// ============================================
+// Runs after the literary (Call #1) and engine (Call #2) passes.
+// Input: the raw chapter text plus the speaker→dialogue mapping Call #1
+// already produced. Output: one QUALITATIVE SpeechSignature per character
+// (Claude fills register_by_audience, forbidden_words, verbal nuance,
+// emotional register shifts, and 5-10 signature_lines). The numeric
+// fields that can be measured deterministically (sentence length, TTR,
+// punctuation rates) are computed client-side by speech-stats.ts — we
+// don't ask Claude to count things.
+
+export interface ClaudeSpeechFragment {
+  name: string;
+  vocabulary_tier?: 'academic' | 'formal' | 'colloquial' | 'street' | 'mixed';
+  forbidden_words?: string[];
+  dialect_markers?: string[];
+  verbal_tics?: string[];
+  register_by_audience?: {
+    family?: string; friend?: string; rival?: string;
+    authority?: string; stranger?: string;
+  };
+  emotional_register_shifts?: {
+    joy?: string; sadness?: string; anger?: string; fear?: string;
+    disgust?: string; surprise?: string; trust?: string; anticipation?: string;
+  };
+  signature_lines?: string[];
+  /** Qualitative scores 0-100 for fields that need semantic judgement. */
+  clause_complexity?: number;
+  imperatives?: number;
+  metaphor_density?: number;
+}
+
+export async function analyzeSpeechPatterns(
+  chapterText: string,
+  chapterNumber: number,
+  chapterTitle: string,
+  characterNames: string[],
+): Promise<{ characters: ClaudeSpeechFragment[] }> {
+  if (characterNames.length === 0) return { characters: [] };
+
+  const systemPrompt = `You are a linguistic fingerprinting engine. For each named character you
+analyze HOW they speak — not what happens. Produce structured data only.
+Respond in valid JSON — no markdown, no code fences.`;
+
+  const userMessage = `Chapter ${chapterNumber}: "${chapterTitle}"
+
+Analyze the speech fingerprint of each character below using their dialogue
+and internal thoughts in this chapter.
+
+CHARACTERS: ${characterNames.join(', ')}
+
+TEXT (truncated to 40000 chars if longer):
+${chapterText.substring(0, 40000)}
+
+Return JSON with this exact shape:
+{
+  "characters": [
+    {
+      "name": "Exact Character Name",
+      "vocabulary_tier": "academic | formal | colloquial | street | mixed",
+      "forbidden_words": ["words they notably never use", "<= 8 items"],
+      "dialect_markers": ["regional or class markers", "<= 6 items"],
+      "verbal_tics": ["recurring phrases they actually say in this chapter", "<= 8 items"],
+      "register_by_audience": {
+        "family": "one-line description or empty string if unknown",
+        "friend": "one-line description or empty string",
+        "rival": "one-line description or empty string",
+        "authority": "one-line description or empty string",
+        "stranger": "one-line description or empty string"
+      },
+      "emotional_register_shifts": {
+        "joy": "how their voice changes when joyful (one short sentence) or ''",
+        "sadness": "...",
+        "anger": "...",
+        "fear": "...",
+        "disgust": "...",
+        "surprise": "...",
+        "trust": "...",
+        "anticipation": "..."
+      },
+      "signature_lines": ["5-10 verbatim quotes most distilling their voice in THIS chapter"],
+      "clause_complexity": 0-100,
+      "imperatives": 0-100,
+      "metaphor_density": 0-100
+    }
+  ]
+}
+
+RULES:
+- signature_lines MUST be verbatim quotes from the text, not paraphrase.
+- Use "" when you don't have enough evidence for a field rather than guessing.
+- forbidden_words only include if obviously avoided (e.g. a formal character who never swears) — empty list if uncertain.
+- Keep arrays SHORT. Quality over quantity.
+- Base everything on the text, not general knowledge.`;
+
+  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  try {
+    const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+    return JSON.parse(cleaned);
+  } catch (e) {
+    console.error('Failed to parse speech analysis response:', responseText.substring(0, 500));
+    return { characters: [] };
+  }
+}
+
 export async function analyzeManuscriptEngine(
   characterContext: string,
   chapterNumber: number,

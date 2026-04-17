@@ -22,6 +22,8 @@ import CharacterComparisonView from "./CharacterComparisonView";
 import { CharacterChapterTimeline } from "@/components/author/manuscripts/CharacterChapterTimeline";
 import { ConsistencyChecker } from "./ConsistencyChecker";
 import EngineProfileSection from "./EngineProfileSection";
+import SpeechSignaturePanel from "./SpeechSignaturePanel";
+import type { SpeechSignature } from "@/types/speech";
 
 const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstances = [] }) => {
   const { toast } = useToast();
@@ -36,6 +38,12 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
   const [timelineChapterData, setTimelineChapterData] = useState<Record<string, any>>({});
   const [timelineFlags, setTimelineFlags] = useState<string[]>([]);
   const [characterAnalysisText, setCharacterAnalysisText] = useState<string | undefined>(undefined);
+
+  // Canonical voice fingerprint — aggregated across every analyzed chapter.
+  // Lives on characters.speech_signature (migration 006/007). null if the
+  // character has not been analyzed yet OR was analyzed before speech
+  // replication existed.
+  const [canonicalSignature, setCanonicalSignature] = useState<SpeechSignature | null>(null);
 
   // Build chapters by MERGING timeline entries + timelineInstances (so chapters
   // without timeline data still appear, e.g. chapter 0 / Prologue)
@@ -143,6 +151,38 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
       setSelectedInstance(null);
     }
   }, [character, open, timelineInstances]);
+
+  // Fetch the canonical speech signature whenever the dialog opens for a
+  // character. Stored as JSONB on characters.speech_signature.
+  useEffect(() => {
+    if (!character?.id || !open) {
+      setCanonicalSignature(null);
+      return;
+    }
+    let cancelled = false;
+    (async () => {
+      const { data, error } = await supabase
+        .from('characters')
+        .select('speech_signature')
+        .eq('id', character.id)
+        .maybeSingle();
+      if (cancelled) return;
+      if (error) {
+        console.error('Failed to load speech_signature:', error.message);
+        setCanonicalSignature(null);
+        return;
+      }
+      const sig = data?.speech_signature;
+      // Only treat it as real data if the aggregation saw at least one
+      // token; otherwise the panel shows the empty-state card.
+      if (sig && typeof sig === 'object' && typeof (sig as any).dialogue_token_count === 'number') {
+        setCanonicalSignature(sig as SpeechSignature);
+      } else {
+        setCanonicalSignature(null);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [character?.id, open]);
 
   // Reload data when selected instance changes
   useEffect(() => {
@@ -578,6 +618,35 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
           <p className="text-sm text-muted-foreground mb-4">
             Chapter-by-chapter profile and evolution
           </p>
+        )}
+
+        {/* Speech signature panel — rendered for any existing character.
+            Draws from characters.speech_signature (canonical) and, when a
+            chapter-scoped voice_scales exists in the selected instance's
+            timeline data, the per-chapter snapshot. */}
+        {character && (
+          <div className="mb-6">
+            <SpeechSignaturePanel
+              canonical={canonicalSignature}
+              perChapter={(() => {
+                const key = selectedInstance?.manuscript?.id
+                  ? `${selectedInstance.manuscript.id}_${selectedInstance.manuscript.chapter_number ?? 0}`
+                  : null;
+                const vs = key ? timelineChapterData[key]?.voiceScales : null;
+                // Only treat voiceScales as a SpeechSignature if it was
+                // written by the speech pipeline (has dialogue_token_count).
+                if (vs && typeof vs === 'object' && typeof vs.dialogue_token_count === 'number') {
+                  return vs as SpeechSignature;
+                }
+                return null;
+              })()}
+              perChapterLabel={
+                selectedInstance?.manuscript?.chapter_number !== undefined
+                  ? `Chapter ${selectedInstance.manuscript.chapter_number} snapshot`
+                  : undefined
+              }
+            />
+          </div>
         )}
 
         {/* Main structure for existing characters with chapter timeline */}
