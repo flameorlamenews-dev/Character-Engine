@@ -194,12 +194,42 @@ function countMatches(tokens: string[], set: Set<string>): number {
 }
 
 function countContractions(text: string): number {
-  // Crude: count apostrophes inside a word (don't, you're, I'll).
-  return (text.match(/\b[a-zA-Z]+'[a-zA-Z]+\b/g) || []).length;
+  // Count actual apostrophized contractions (don't, you're, I'll, can't,
+  // ain't). Excludes possessives like "Sarah's hat" by restricting to
+  // known contraction endings.
+  const matches = text.match(/\b[a-zA-Z]+'(?:t|s|re|ve|ll|d|m|en)\b/gi) || [];
+  // "'s" is ambiguous (possessive vs "is"/"has"). Count half-weight so
+  // we don't over-estimate the contraction rate.
+  let count = 0;
+  for (const m of matches) {
+    count += m.toLowerCase().endsWith("'s") ? 0.5 : 1;
+  }
+  return Math.round(count);
 }
+
+// Common -ing words that are NOT present-progressive verbs. We subtract
+// these from the dropped-g denominator so the percentage reflects real
+// verb endings instead of every word that happens to end in "-ing".
+const NON_VERB_ING = new Set([
+  'king', 'ring', 'thing', 'bring', 'string', 'spring', 'wing', 'sing',
+  'sting', 'swing', 'cling', 'fling', 'sling', 'ping', 'zing', 'wring',
+  'anything', 'everything', 'nothing', 'something', 'morning', 'evening',
+  'darling', 'ceiling', 'feeling', 'meaning', 'ending', 'beginning',
+  'warning', 'offering', 'suffering', 'longing', 'during', 'willing',
+  'being', 'seeing', 'saying',
+]);
 
 function countDroppedGs(text: string): number {
   return (text.match(/\b\w+in'/g) || []).length;
+}
+
+function countIngSites(text: string): number {
+  const matches = text.toLowerCase().match(/\b\w+ing\b/gi) || [];
+  let sites = 0;
+  for (const m of matches) {
+    if (!NON_VERB_ING.has(m.toLowerCase())) sites++;
+  }
+  return sites;
 }
 
 function countSelfRefs(tokens: string[]): number {
@@ -281,9 +311,19 @@ export function computeDeterministicStats(input: ComputeInput): Partial<SpeechSi
   // "dropped_gs" are expressed as a PERCENT of candidate sites rather than
   // a per-1000-word rate.
   const clampPct = (n: number) => Math.max(0, Math.min(100, n));
-  const contractionSites = (allText.match(/\b[a-zA-Z]+\s(not|is|am|are|have|will|would|had)\b/gi) || []).length + contractionCount;
+  // Contraction sites = the uncontracted forms that COULD have been
+  // contracted (do/does/did/cannot/can not/is not/are not/have not/will
+  // not/would not/had not + pronoun/noun + is/am/are/have/will/would/had).
+  // Matches things like "do not", "I am", "cannot", "they are". This is
+  // still a heuristic — pronunciation-level accuracy is the Claude pass's
+  // job — but it's better than the old "word + space + aux" pattern that
+  // missed negations.
+  const uncontractedAux = (allText.match(
+    /\b(do\s+not|does\s+not|did\s+not|cannot|can\s+not|will\s+not|would\s+not|had\s+not|is\s+not|are\s+not|am\s+not|have\s+not|has\s+not|could\s+not|should\s+not|must\s+not|shall\s+not|i\s+am|you\s+are|they\s+are|we\s+are|he\s+is|she\s+is|it\s+is|i\s+have|you\s+have|they\s+have|we\s+have|i\s+will|you\s+will|they\s+will|we\s+will|i\s+would|you\s+would|they\s+would|we\s+would)\b/gi,
+  ) || []).length;
+  const contractionSites = uncontractedAux + contractionCount;
   const contractionPct = contractionSites > 0 ? (contractionCount / contractionSites) * 100 : 0;
-  const ingSites = (allText.match(/\b\w+ing\b/gi) || []).length + droppedGCount;
+  const ingSites = countIngSites(allText) + droppedGCount;
   const droppedGPct = ingSites > 0 ? (droppedGCount / ingSites) * 100 : 0;
 
   const questionRate = clampPct(punct.question / 5);

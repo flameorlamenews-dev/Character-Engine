@@ -317,7 +317,9 @@ RULES:
 - Keep arrays SHORT. Quality over quantity.
 - Base everything on the text, not general knowledge.`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  // 12000 tokens covers a chapter with 6-8 characters each returning
+  // ~10 signature lines + register + emotional shifts without truncation.
+  const responseText = await callClaude(systemPrompt, userMessage, 12000);
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);

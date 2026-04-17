@@ -422,7 +422,14 @@ export const supabase = new Proxy(realSupabase, {
               // signatures.
               let speechStatus: 'ok' | 'failed' | 'skipped' = 'ok';
               let speechError: string | undefined;
+              const hasCharactersForSpeech = !!(analysis.characters && analysis.characters.length > 0);
+              if (!hasCharactersForSpeech) {
+                // Nothing to profile — record accurately as 'skipped' rather
+                // than reporting speechStatus='ok' as if a successful pass ran.
+                speechStatus = 'skipped';
+              }
               try {
+                if (!hasCharactersForSpeech) throw new Error('__speech_skipped__');
                 await realSupabase.from('manuscripts').update({ analysis_progress: 90 }).eq('id', body.manuscriptId);
 
                 // Baseline tokens = every OTHER character's dialogue in
@@ -471,6 +478,12 @@ export const supabase = new Proxy(realSupabase, {
                     internal: c.internalDialogue || [],
                     baselineTokens: baseline,
                   });
+
+                  // If the character has no dialogue at all in this chapter,
+                  // skip writing a signature for them. An empty signature
+                  // row would pollute the canonical aggregation and waste
+                  // a Claude merge.
+                  if (!det.dialogue_token_count || det.dialogue_token_count === 0) continue;
 
                   // Merge the Claude fragment for this character (if any)
                   const frag = claudeFragments.find(
@@ -547,9 +560,14 @@ export const supabase = new Proxy(realSupabase, {
                   if (canErr) console.error('Speech: canonical save failed for', c.name, canErr.message);
                 }
               } catch (speechErr: any) {
-                speechStatus = 'failed';
-                speechError = speechError || speechErr?.message || String(speechErr);
-                console.error('Speech analysis failed (non-blocking):', speechError);
+                if (speechErr?.message === '__speech_skipped__') {
+                  // Intentional skip — no characters to profile.
+                  // speechStatus is already 'skipped' from above.
+                } else {
+                  speechStatus = 'failed';
+                  speechError = speechError || speechErr?.message || String(speechErr);
+                  console.error('Speech analysis failed (non-blocking):', speechError);
+                }
               }
 
               // Save analysis results and mark complete
@@ -648,7 +666,12 @@ export const supabase = new Proxy(realSupabase, {
                   for (const line of canonical.signature_lines.slice(0, 5)) voiceLines.push(`    "${line}"`);
                 }
               }
-              if (perChapter && perChapter.dialogue_token_count > 0 && perChapter.chapter_number !== undefined) {
+              if (
+                perChapter &&
+                perChapter.dialogue_token_count > 0 &&
+                typeof perChapter.chapter_number === 'number' &&
+                Number.isFinite(perChapter.chapter_number)
+              ) {
                 voiceLines.push('');
                 voiceLines.push(`CHAPTER ${perChapter.chapter_number} VOICE (how they sound right now):`);
                 voiceLines.push(`- Avg sentence length here: ${perChapter.sentence_length_distribution.mean} words`);
