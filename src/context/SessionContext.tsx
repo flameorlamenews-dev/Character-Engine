@@ -56,12 +56,19 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const setUserContext = (uid: string, pid: string) => {
     setUserId((prev) => {
       if (prev !== uid) {
-        // Reset session when user changes
+        // Reset session AND project when the logged-in user changes. If we
+        // don't reset projectId, the next fetch filters by the previous
+        // user's project and the dropdown shows either nothing or data
+        // from the wrong account.
         setSession(defaultSession);
+        setProjectId(pid);
+      } else {
+        // Same user — just refresh projectId (AuthorLayout may have just
+        // created one).
+        setProjectId(pid);
       }
       return uid;
     });
-    setProjectId(pid);
   };
 
   return (

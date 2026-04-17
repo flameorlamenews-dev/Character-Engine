@@ -448,7 +448,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
 
       toast({
         title: "Chapter replaced",
-        description: "All AI-extracted data removed. New analysis will begin shortly.",
+        description: "All AI-extracted data removed. Click Analyze on the chapter card to regenerate character data.",
       });
 
       setFile(null);

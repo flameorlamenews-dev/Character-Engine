@@ -130,18 +130,24 @@ export const supabase = new Proxy(realSupabase, {
                   // Timeline entry — UPSERT on (character_id, manuscript_id,
                   // chapter_number) so re-analyzing a chapter REPLACES rather
                   // than appends. Relies on the unique index added in 006.
+                  // profile_text and chapter_title are populated so the
+                  // CharacterDialog and per-chapter profile UI have data to
+                  // show instead of blank strings.
                   const { error: timelineErr } = await realSupabase
                     .from('character_timeline_entries')
                     .upsert({
                       character_id: characterId,
                       manuscript_id: body.manuscriptId,
                       chapter_number: manuscript.chapter_number,
+                      chapter_title: manuscript.chapter_title || manuscript.title || null,
                       user_id: body.userId || manuscript.user_id,
                       emotional_state: char.emotionalState,
                       traits: char.traits,
                       dialogue_patterns: char.dialoguePatterns,
                       relationships: char.relationships,
+                      profile_text: char.description || null,
                       analysis_text: char.speechPattern || null,
+                      master_summary: char.emotionalState || null,
                       views_of_others: char.viewsOfOthers || null,
                       views_by_others: char.viewsByOthers || null,
                       internal_dialogue: char.internalDialogue || [],
@@ -423,13 +429,45 @@ export const supabase = new Proxy(realSupabase, {
                 .select('trait')
                 .eq('character_id', body.characterId);
 
+              // Pull the most recent timeline entry for per-chapter voice
+              // context — speech pattern, internal/external dialogue, and
+              // emotional state. Without this Claude falls back to a thin
+              // global prompt and the generated text drifts toward a
+              // neutral voice rather than the character's latest register.
+              const { data: recentTimeline } = await realSupabase
+                .from('character_timeline_entries')
+                .select('analysis_text, emotional_state, dialogue_patterns, internal_dialogue, external_dialogue, chapter_number')
+                .eq('character_id', body.characterId)
+                .order('chapter_number', { ascending: false })
+                .limit(1)
+                .maybeSingle();
+
+              const voiceContext = recentTimeline
+                ? [
+                    recentTimeline.analysis_text ? `Speech pattern: ${recentTimeline.analysis_text}` : '',
+                    recentTimeline.dialogue_patterns && recentTimeline.dialogue_patterns.length
+                      ? `Dialogue patterns: ${recentTimeline.dialogue_patterns.join('; ')}`
+                      : '',
+                    recentTimeline.internal_dialogue && recentTimeline.internal_dialogue.length
+                      ? `Sample internal thoughts: ${recentTimeline.internal_dialogue.slice(0, 3).join(' | ')}`
+                      : '',
+                    recentTimeline.external_dialogue && recentTimeline.external_dialogue.length
+                      ? `Sample spoken lines: ${recentTimeline.external_dialogue.slice(0, 3).join(' | ')}`
+                      : '',
+                  ].filter(Boolean).join('\n')
+                : '';
+
+              const enrichedDescription = voiceContext
+                ? `${character.description || ''}\n\nCanonical voice reference (from most recent analyzed chapter):\n${voiceContext}`
+                : character.description || '';
+
               const text = await generateCharacterText(
                 character.name,
-                character.description || '',
+                enrichedDescription,
                 (traits || []).map((t: any) => t.trait),
                 body.prompt || '',
                 body.audience,
-                body.emotionalState,
+                body.emotionalState || recentTimeline?.emotional_state,
                 body.situation
               );
 

@@ -197,6 +197,20 @@ const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisP
           <p className="text-sm font-medium">Analysis complete! Check the Summary tab for full results.</p>
         </div>
       )}
+
+      {progress === -1 && (
+        <div className="flex items-start gap-3 p-4 bg-destructive/10 rounded-md border border-destructive/30">
+          <XCircle className="h-5 w-5 text-destructive shrink-0" />
+          <div className="flex-1">
+            <p className="text-sm font-medium text-destructive">Analysis failed.</p>
+            <p className="text-xs text-muted-foreground mt-1">
+              Something went wrong while analyzing this chapter — often a Claude API
+              timeout or an invalid JSON response. You can retry from the manuscript card,
+              or check the browser console for details.
+            </p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
