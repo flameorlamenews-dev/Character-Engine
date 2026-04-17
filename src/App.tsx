@@ -20,29 +20,55 @@ function AuthSync({ authSession }: { authSession: any }) {
     // called and the Producer/Player TopBar was stuck with userId=null even
     // after AuthorLayout later created a project.
     (async () => {
-      const { data: projects } = await (supabase as any)
-        .from('projects').select('id').eq('user_id', userId);
-      if (cancelled) return;
+      try {
+        const { data: projects } = await (supabase as any)
+          .from('projects').select('id').eq('user_id', userId);
+        if (cancelled) return;
 
-      if (projects && projects.length > 0) {
-        setUserContext(userId, projects[0].id);
-        return;
-      }
+        if (projects && projects.length > 0) {
+          setUserContext(userId, projects[0].id);
+          return;
+        }
 
-      // No project yet — create a default one so every downstream view has
-      // something to filter by. AuthorLayout also guards against missing
-      // projects but it won't run until the user switches to Author view.
-      const { data: newProject } = await (supabase as any)
-        .from('projects')
-        .insert({ name: 'My Project', description: 'Default project', user_id: userId })
-        .select('id')
-        .single();
-      if (cancelled) return;
-      if (newProject?.id) {
-        setUserContext(userId, newProject.id);
-      } else {
-        // Last-resort: set userId with empty projectId so TopBar at least
-        // knows who's logged in.
+        // No project yet. Before we insert one, make sure the profiles row
+        // exists — projects.user_id is an FK to profiles(id), and if the
+        // Postgres signup trigger hasn't run yet the insert would blow up
+        // with a constraint violation.
+        const { data: profile } = await (supabase as any)
+          .from('profiles').select('id').eq('id', userId).maybeSingle();
+        if (cancelled) return;
+        if (!profile) {
+          const email = authSession?.user?.email || '';
+          await (supabase as any).from('profiles').insert({
+            id: userId, email, full_name: '',
+          });
+          if (cancelled) return;
+        }
+
+        // Create the default project. Use maybeSingle so an unexpected zero
+        // rows (e.g. RLS blocked the insert) surfaces cleanly instead of
+        // throwing from .single() and crashing the whole auth flow.
+        const { data: newProject, error: insertErr } = await (supabase as any)
+          .from('projects')
+          .insert({ name: 'My Project', description: 'Default project', user_id: userId })
+          .select('id')
+          .maybeSingle();
+        if (cancelled) return;
+        if (insertErr) {
+          console.error('AuthSync: default-project insert failed', insertErr.message);
+          setUserContext(userId, '');
+          return;
+        }
+        if (newProject?.id) {
+          setUserContext(userId, newProject.id);
+        } else {
+          // Last-resort: set userId with empty projectId so TopBar at least
+          // knows who's logged in. AuthorLayout will try to recover.
+          setUserContext(userId, '');
+        }
+      } catch (err: any) {
+        if (cancelled) return;
+        console.error('AuthSync bootstrap failed:', err?.message || err);
         setUserContext(userId, '');
       }
     })();

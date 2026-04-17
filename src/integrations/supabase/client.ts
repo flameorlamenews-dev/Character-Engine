@@ -107,6 +107,20 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 50 })
                 .eq('id', body.manuscriptId);
 
+              // Dedupe Claude's character list by lowercased/trimmed name
+              // BEFORE processing. Occasionally Claude returns the same
+              // character twice (e.g. "John" + "John") and the second pass
+              // would overwrite our Map entries and drop the first row's
+              // timeline/trait data.
+              const seenNameKeys = new Set<string>();
+              analysis.characters = (analysis.characters || []).filter((c: any) => {
+                const key = (c?.name || '').trim().toLowerCase();
+                if (!key) return false;
+                if (seenNameKeys.has(key)) return false;
+                seenNameKeys.add(key);
+                return true;
+              });
+
               // Save characters to database and build name→id map for engine.
               // Name-matching is case-insensitive + whitespace-trimmed to stop
               // Claude's casing drift (e.g. "John" vs "john ") from producing
@@ -302,14 +316,17 @@ export const supabase = new Proxy(realSupabase, {
 
                 // Save engine data per character. The name→id map was built
                 // with lowercased keys so we do the same lookup here.
-                // chapter_number is 1-indexed in the UI and DB; the engine
-                // stores chapter_index (0-indexed). A null chapter_number
-                // shouldn't happen (ManuscriptDialog enforces 0-200) but we
-                // default to 0 so a bad input still lands deterministically
-                // in the first slot rather than scattering across chapters.
-                const chapterIndex = manuscript.chapter_number != null
-                  ? manuscript.chapter_number - 1
-                  : 0;
+                // chapter_number is 1-indexed in the UI/DB; the engine stores
+                // chapter_index (0-indexed). A prologue uploaded as
+                // chapter_number=0 (allowed by ManuscriptDialog) would produce
+                // -1 without the Math.max, corrupting array-indexed surges
+                // and drift lookups. We clamp to 0 and let the book layout
+                // differentiate prologue from ch1 by chapter_number on the
+                // manuscripts row itself.
+                const chapterIndex = Math.max(
+                  0,
+                  manuscript.chapter_number != null ? manuscript.chapter_number - 1 : 0,
+                );
                 for (const engineChar of engineResult.characters) {
                   const key = (engineChar.name || '').trim().toLowerCase();
                   const charId = characterNameToId.get(key);
@@ -565,7 +582,11 @@ export const supabase = new Proxy(realSupabase, {
                   // speechStatus is already 'skipped' from above.
                 } else {
                   speechStatus = 'failed';
-                  speechError = speechError || speechErr?.message || String(speechErr);
+                  // Preserve whichever error surfaced last; if qualitative
+                  // Claude pass already set speechError, append the later
+                  // pipeline error instead of dropping it silently.
+                  const aggErr = speechErr?.message || String(speechErr);
+                  speechError = speechError ? `${speechError}; then: ${aggErr}` : aggErr;
                   console.error('Speech analysis failed (non-blocking):', speechError);
                 }
               }

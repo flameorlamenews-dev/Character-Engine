@@ -66,12 +66,18 @@ CREATE UNIQUE INDEX IF NOT EXISTS character_traits_unique
 -- ── world_glossary: one row per (project, word) ──
 -- Collapses "same term, multiple chapters" duplicates. Before deleting the
 -- dupes we MERGE their appears_in arrays into the surviving row so no
--- chapter attribution is lost.
+-- chapter attribution is lost. NULL appears_in values are filtered out
+-- of the union and the final result defaults to an empty array rather
+-- than NULL (downstream filters expect an array).
 WITH merged AS (
   SELECT project_id, LOWER(word) AS lw,
-         (SELECT ARRAY_AGG(DISTINCT x ORDER BY x)
-            FROM UNNEST(COALESCE(array_agg(appears_in), ARRAY[]::int[][])) AS arr,
-                 UNNEST(arr) AS x) AS combined
+         COALESCE(
+           (SELECT ARRAY_AGG(DISTINCT x ORDER BY x)
+              FROM UNNEST(COALESCE(array_agg(appears_in) FILTER (WHERE appears_in IS NOT NULL), ARRAY[]::int[][])) AS arr,
+                   UNNEST(arr) AS x
+             WHERE x IS NOT NULL),
+           ARRAY[]::int[]
+         ) AS combined
   FROM world_glossary
   GROUP BY project_id, LOWER(word)
   HAVING COUNT(*) > 1

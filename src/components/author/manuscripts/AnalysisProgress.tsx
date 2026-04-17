@@ -87,7 +87,7 @@ const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisP
       if (data?.reader_reactions && Array.isArray(data.reader_reactions)) {
         const reactionList = data.reader_reactions as unknown as ReaderReaction[];
         setReactions(reactionList);
-        
+
         // Auto-scroll to bottom after reactions update (skip first two and final)
         setTimeout(() => {
           if (bottomRef.current && reactionList.length > 2 && progress < 100) {
@@ -98,6 +98,13 @@ const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisP
     };
 
     fetchReactions();
+
+    // If the analysis is already in a terminal state, skip setting up the
+    // poller and the realtime subscription — they'd just burn cycles and
+    // DB quota while the dialog is open.
+    if (progress === 100 || progress === -1) {
+      return;
+    }
 
     // Poll every 3 seconds to catch reactions as they appear
     const pollId = setInterval(() => {
@@ -135,7 +142,7 @@ const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisP
       clearInterval(pollId);
       supabase.removeChannel(channel);
     };
-  }, [manuscriptId]);
+  }, [manuscriptId, progress]);
 
   return (
     <div className="space-y-6 py-4">

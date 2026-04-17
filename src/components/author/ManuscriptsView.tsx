@@ -301,20 +301,23 @@ const ManuscriptsView = ({
 
         if (charError) throw charError;
 
-        // Delete character-related data. character_timeline_entries is the
-        // primary per-chapter analysis store — if we don't remove it, timeline
-        // rows orphan and the CharacterDialog shows ghost entries for the
-        // deleted chapter.
-        await supabase.from("character_timeline_entries").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_traits").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_voice_scales").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_lexicon").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_mottos").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_emotion_map").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_audience_mods").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_conflict_profile").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_style_rules").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_voice_feedback").delete().eq("manuscript_id", manuscriptToDelete.id);
+        // Delete character-related data. Run in parallel — these are all
+        // independent tables and the previous sequential awaits took seconds
+        // for manuscripts with heavy chapter data, freezing the UI.
+        // character_timeline_entries must be removed or its per-chapter rows
+        // orphan and the CharacterDialog shows ghosts for the deleted chapter.
+        await Promise.all([
+          supabase.from("character_timeline_entries").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_traits").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_voice_scales").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_lexicon").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_mottos").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_emotion_map").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_audience_mods").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_conflict_profile").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_style_rules").delete().eq("manuscript_id", manuscriptToDelete.id),
+          supabase.from("character_voice_feedback").delete().eq("manuscript_id", manuscriptToDelete.id),
+        ]);
         
         // Handle locked glossary entries - only update appears_in, don't delete
         const { data: lockedGlossary } = await supabase
