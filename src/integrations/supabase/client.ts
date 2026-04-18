@@ -316,13 +316,12 @@ export const supabase = new Proxy(realSupabase, {
 
                 // Save engine data per character. The name→id map was built
                 // with lowercased keys so we do the same lookup here.
-                // chapter_number is 1-indexed in the UI/DB; the engine stores
-                // chapter_index (0-indexed). A prologue uploaded as
-                // chapter_number=0 (allowed by ManuscriptDialog) would produce
-                // -1 without the Math.max, corrupting array-indexed surges
-                // and drift lookups. We clamp to 0 and let the book layout
-                // differentiate prologue from ch1 by chapter_number on the
-                // manuscripts row itself.
+                // chapter_number is 1-indexed (ManuscriptDialog enforces
+                // 1-200); the engine stores chapter_index as 0-indexed.
+                // Math.max(0, ...) stays as a defense against any legacy
+                // chapter_number=0 rows that may exist from before the
+                // validation was tightened — those get clamped into slot 0
+                // rather than producing a negative index.
                 const chapterIndex = Math.max(
                   0,
                   manuscript.chapter_number != null ? manuscript.chapter_number - 1 : 0,

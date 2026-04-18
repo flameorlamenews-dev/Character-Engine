@@ -51,7 +51,7 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
   // Check if chapter exists in real-time
   useEffect(() => {
     const checkChapterExists = async () => {
-      if (!chapterNumber || isNaN(parseInt(chapterNumber)) || parseInt(chapterNumber) < 0 || parseInt(chapterNumber) > 200) {
+      if (!chapterNumber || isNaN(parseInt(chapterNumber)) || parseInt(chapterNumber) < 1 || parseInt(chapterNumber) > 200) {
         setChapterExists(false);
         return;
       }
@@ -156,10 +156,10 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
       return;
     }
 
-    if (!chapterNumber || isNaN(parseInt(chapterNumber)) || parseInt(chapterNumber) < 0 || parseInt(chapterNumber) > 200) {
+    if (!chapterNumber || isNaN(parseInt(chapterNumber)) || parseInt(chapterNumber) < 1 || parseInt(chapterNumber) > 200) {
       toast({
         title: "Chapter number required",
-        description: "Please enter a valid chapter number (0-200).",
+        description: "Please enter a valid chapter number (1-200). For a prologue, use chapter 1 with 'Prologue' in the title.",
         variant: "destructive",
       });
       return;
@@ -515,11 +515,11 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
               <Input
                 id="chapterNumber"
                 type="number"
-                min="0"
+                min="1"
                 max="200"
                 value={chapterNumber}
                 onChange={(e) => setChapterNumber(e.target.value)}
-                placeholder="Enter chapter number (e.g., 0, 1, 2...)"
+                placeholder="Enter chapter number (1, 2, 3...) — for a prologue use 1 with 'Prologue' in the title"
                 className={chapterExists ? "border-destructive text-destructive focus-visible:ring-destructive" : ""}
                 required
               />
