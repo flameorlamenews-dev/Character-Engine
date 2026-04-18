@@ -1,9 +1,13 @@
 # Character Engine — Agent Operating Instructions
 
-## Pre-push QA loop (MANDATORY)
+## The "diagnostic check" (pre-push QA loop — MANDATORY)
 
-Before `git push` runs in this repo, Claude MUST complete a bug-finding QA
-loop. A successful build alone is not sufficient. The loop:
+When the user says "run a diagnostic check" or "diagnostic", they mean
+this procedure. It also runs automatically before every `git push` in
+this repo. A successful build alone is NOT sufficient to push — the
+diagnostic check must complete with convergence first.
+
+Steps:
 
 1. **Run two QA agents in parallel** (single message, two Agent tool calls
    with `subagent_type: "Explore"`). Split the scope across them — e.g.
