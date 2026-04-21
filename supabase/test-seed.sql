@@ -9,22 +9,26 @@
 
 DO $$
 DECLARE
-  test_user_id    UUID := '00000000-0000-0000-0000-000000000001';
-  test_project_id UUID := '00000000-0000-0000-0000-000000000002';
-  test_char_id    UUID := '00000000-0000-0000-0000-00000000000a';
+  test_user_id       UUID := '00000000-0000-0000-0000-000000000001';
+  test_project_id    UUID := '00000000-0000-0000-0000-000000000002';
+  test_manuscript_id UUID := '00000000-0000-0000-0000-000000000003';
+  test_char_id       UUID := '00000000-0000-0000-0000-00000000000a';
 BEGIN
-  -- Clean up any prior run
+  -- Clean up any prior run (child-first to respect FKs)
   DELETE FROM character_timeline_entries WHERE character_id = test_char_id;
   DELETE FROM characters                 WHERE id = test_char_id;
+  DELETE FROM manuscripts                WHERE id = test_manuscript_id;
   DELETE FROM projects                   WHERE id = test_project_id;
   DELETE FROM profiles                   WHERE id = test_user_id;
 
   -- Minimal parents so FKs hold
   INSERT INTO profiles (id) VALUES (test_user_id);
   INSERT INTO projects (id, user_id, name) VALUES (test_project_id, test_user_id, 'Book Buddy Test');
-  INSERT INTO characters (id, user_id, project_id, name, description, role, source_type)
+  INSERT INTO manuscripts (id, user_id, project_id, title, content)
+  VALUES (test_manuscript_id, test_user_id, test_project_id, 'Book Buddy Test Manuscript', 'Test content.');
+  INSERT INTO characters (id, user_id, project_id, manuscript_id, name, description, role, source_type)
   VALUES (
-    test_char_id, test_user_id, test_project_id,
+    test_char_id, test_user_id, test_project_id, test_manuscript_id,
     'Victor Frankenstein (test)',
     'Test character row for migration 006 verification.',
     'protagonist', 'ai'
@@ -32,13 +36,13 @@ BEGIN
 
   -- The row the Book Buddy Worker will read.
   INSERT INTO character_timeline_entries (
-    character_id, user_id, chapter_number,
+    character_id, user_id, manuscript_id, chapter_number,
     emotional_state, traits, dialogue_patterns, relationships,
     internal_dialogue, external_dialogue,
     knowledge_at_chapter, notable_actions, reader_tone,
     source_type
   ) VALUES (
-    test_char_id, test_user_id, 5,
+    test_char_id, test_user_id, test_manuscript_id, 5,
     'Obsessive and sleep-deprived, haunted by the scale of what he is attempting.',
     ARRAY['ambitious', 'secretive', 'self-isolating'],
     ARRAY['formal, Romantic-era cadence', 'breaks into awed exclamation when discussing science'],
