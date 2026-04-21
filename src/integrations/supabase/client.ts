@@ -51,17 +51,38 @@ export const supabase = new Proxy(realSupabase, {
               // Get existing characters for context
               const { data: existingChars } = await realSupabase
                 .from('characters')
-                .select('name')
+                .select('id, name')
                 .eq('project_id', manuscript.project_id);
 
               const charNames = (existingChars || []).map((c: any) => c.name);
+
+              // Fetch the most recent knowledge_at_chapter per existing character
+              // from chapters before the one being analyzed — so the analyzer can
+              // carry cumulative spoiler-safe knowledge forward.
+              const priorKnowledge: Record<string, string> = {};
+              const currentChapter = manuscript.chapter_number || 0;
+              for (const existingChar of existingChars || []) {
+                const { data: priorEntry } = await realSupabase
+                  .from('character_timeline_entries')
+                  .select('knowledge_at_chapter, chapter_number')
+                  .eq('character_id', existingChar.id)
+                  .lt('chapter_number', currentChapter)
+                  .not('knowledge_at_chapter', 'is', null)
+                  .order('chapter_number', { ascending: false })
+                  .limit(1)
+                  .maybeSingle();
+                if (priorEntry?.knowledge_at_chapter) {
+                  priorKnowledge[existingChar.name] = priorEntry.knowledge_at_chapter;
+                }
+              }
 
               // Call Claude to analyze
               const analysis = await analyzeManuscript(
                 manuscript.content || '',
                 manuscript.chapter_number || 0,
                 manuscript.title || `Chapter ${manuscript.chapter_number}`,
-                charNames
+                charNames,
+                priorKnowledge
               );
 
               // Update progress
@@ -129,6 +150,9 @@ export const supabase = new Proxy(realSupabase, {
                       views_by_others: char.viewsByOthers || null,
                       internal_dialogue: char.internalDialogue || [],
                       external_dialogue: char.externalDialogue || [],
+                      knowledge_at_chapter: char.knowledgeAtChapter || null,
+                      notable_actions: char.notableActions || null,
+                      reader_tone: char.readerTone || null,
                       source_type: 'ai',
                     });
 
