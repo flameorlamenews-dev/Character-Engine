@@ -48,11 +48,24 @@ async function callClaude(systemPrompt: string, userMessage: string, maxTokens: 
  * Analyze a manuscript chapter — extract characters, traits, dialogue, glossary terms.
  * This replaces the Supabase edge function "ai-analyze-manuscript".
  */
+export interface NotableAction {
+  action: string;
+  trigger: string;
+}
+
+export interface ReaderTone {
+  openingLineOptions: string[];
+  wouldAnswerOpenly: string;
+  wouldDeflectAbout: string;
+  wouldLieAbout: string;
+}
+
 export async function analyzeManuscript(
   chapterText: string,
   chapterNumber: number,
   chapterTitle: string,
-  existingCharacters: string[] = []
+  existingCharacters: string[] = [],
+  priorKnowledge: Record<string, string> = {}
 ): Promise<{
   summary: string;
   characters: Array<{
@@ -68,16 +81,30 @@ export async function analyzeManuscript(
     viewsByOthers: string;
     internalDialogue: string[];
     externalDialogue: string[];
+    knowledgeAtChapter: string;
+    notableActions: NotableAction[];
+    readerTone: ReaderTone;
   }>;
   glossaryTerms: Array<{ word: string; definition: string; wordType: string }>;
 }> {
-  const systemPrompt = `You are a literary character analyst. You read manuscript chapters and extract detailed character data. Respond in valid JSON only — no markdown, no code fences.`;
+  const systemPrompt = `You are a literary character analyst. You read manuscript chapters and extract detailed character data for a downstream live-chat system where readers speak with these characters. Respond in valid JSON only — no markdown, no code fences.`;
+
+  const priorKnowledgeBlock = Object.keys(priorKnowledge).length > 0
+    ? `KNOWLEDGE CARRIED FORWARD FROM PRIOR CHAPTERS (per character):
+${Object.entries(priorKnowledge)
+  .map(([name, knowledge]) => `- ${name}: ${knowledge || '(none yet)'}`)
+  .join('\n')}
+
+For each character with prior knowledge, your knowledgeAtChapter output MUST include everything carried forward PLUS anything newly revealed in this chapter. Output the FULL cumulative state — not just the delta.`
+    : 'This is the first knowledge extraction for these characters. Their knowledgeAtChapter starts fresh from this chapter.';
 
   const userMessage = `Analyze this manuscript chapter and extract character data.
 
 Chapter ${chapterNumber}: "${chapterTitle}"
 
 ${existingCharacters.length > 0 ? `Known characters from previous chapters: ${existingCharacters.join(', ')}` : 'This is the first chapter being analyzed.'}
+
+${priorKnowledgeBlock}
 
 TEXT:
 ${chapterText.substring(0, 50000)}
@@ -97,8 +124,22 @@ Respond with this exact JSON structure:
       "speechPattern": "Distinctive speech style — cadence, vocabulary level, verbal tics, formality",
       "viewsOfOthers": "How this character views other characters in this chapter",
       "viewsByOthers": "How other characters view/perceive this character in this chapter",
-      "internalDialogue": ["Exact or near-exact internal thoughts from the text"],
-      "externalDialogue": ["Exact or near-exact spoken lines from the text"]
+      "internalDialogue": ["Near-verbatim internal thoughts from the text"],
+      "externalDialogue": ["Near-verbatim spoken lines from the text"],
+      "knowledgeAtChapter": "knows: X, Y, Z. suspects: A, B. unaware of: C. — FULL cumulative state through the end of THIS chapter, including everything carried forward from prior chapters.",
+      "notableActions": [
+        { "action": "Specific one-off behavior observed in this chapter", "trigger": "what prompted it" }
+      ],
+      "readerTone": {
+        "openingLineOptions": [
+          "An opener in this character's voice if a stranger asked 'tell me about yourself'",
+          "A second natural opener",
+          "A third"
+        ],
+        "wouldAnswerOpenly": "comma-separated topics this character would discuss openly with a reader",
+        "wouldDeflectAbout": "comma-separated topics they'd redirect away from",
+        "wouldLieAbout": "comma-separated topics they'd outright lie about"
+      }
     }
   ],
   "glossaryTerms": [
@@ -112,11 +153,14 @@ RULES:
 - Dialogue patterns should describe HOW they speak, not WHAT they say
 - speechPattern: describe their distinctive voice (cadence, vocabulary, verbal tics)
 - viewsOfOthers/viewsByOthers: summarize perceptions shown in this chapter
-- internalDialogue: 2-5 key internal thoughts (exact quotes preferred)
-- externalDialogue: 2-5 key spoken lines (exact quotes preferred)
+- internalDialogue: up to 8-12 near-verbatim thoughts from the text. If the character is silent or has fewer observable thoughts, include only what actually exists. Never fabricate.
+- externalDialogue: up to 8-12 near-verbatim spoken lines. If the character is silent or absent, return an empty array. Never fabricate.
+- knowledgeAtChapter: SPOILER-SAFE — must reflect ONLY what the text has established through this chapter. Do not peek forward. Output the FULL cumulative state ("knows: ... suspects: ... unaware of: ..."), combining prior-chapter knowledge with what is newly revealed in this chapter. Each row is meant to be self-contained.
+- notableActions: ONLY one-off physical/behavioral actions unique to THIS chapter that give it its specific texture. Examples: "paces the library floor for an hour before bed," "burns the letter without reading past the first line." Do NOT include emotional-spike events (those belong elsewhere) and do NOT include recurring patterns seen across multiple chapters (those belong elsewhere).
+- readerTone: how this character would address a READER of their story (not another in-fiction character). Provide 3 distinct opening-line options in their voice, plus topics they would answer openly, deflect from, or lie about if a reader asked. This may evolve chapter to chapter as the character changes.
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  const responseText = await callClaude(systemPrompt, userMessage, 12000);
 
   try {
     // Try to parse the response as JSON, handling potential markdown wrapping
