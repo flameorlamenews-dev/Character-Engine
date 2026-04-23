@@ -300,11 +300,7 @@ export const supabase = new Proxy(realSupabase, {
                 const chapterIndex = (manuscript.chapter_number || 1) - 1;
                 const manuscriptId = body.manuscriptId;
 
-                // Process all characters in parallel; within each character, independent
-                // writes also run in parallel via Promise.all (delete-then-insert pairs stay
-                // sequential to preserve replace-semantics). This keeps the writer loop to
-                // ~5s instead of ~60s of sequential DB round-trips.
-                await Promise.all(engineResult.characters.map(async (engineChar) => {
+                for (const engineChar of engineResult.characters) {
                   const charId = characterNameToId.get(engineChar.name)
                     || [...characterNameToId.entries()].find(([k]) => k.toLowerCase() === engineChar.name?.toLowerCase())?.[1];
                   if (!charId) {
@@ -314,88 +310,84 @@ export const supabase = new Proxy(realSupabase, {
                       chapter: manuscript.chapter_number,
                       message: 'no character ID found',
                     });
-                    return;
+                    continue;
                   }
                   const name = engineChar.name;
 
+                  // Pull Pass 1 dialogue to compute sentence-length stats (engine 008 columns)
                   const pass1Char = analysis.characters.find(c => c.name === engineChar.name)
                     || analysis.characters.find(c => c.name?.toLowerCase() === engineChar.name?.toLowerCase());
                   const sentenceStats = computeSentenceStats(pass1Char?.externalDialogue);
 
-                  const replace = (
-                    label: string,
-                    deleteFn: () => PromiseLike<{ error: any }>,
-                    insertFn: () => PromiseLike<{ error: any }>,
-                  ): Promise<void> =>
-                    write(`${label}.delete`, name, deleteFn).then(() => write(`${label}.insert`, name, insertFn));
-
-                  const tasks: Array<Promise<void>> = [];
-
                   // ── Foundation psychology tables ──
                   if (engineChar.temperament) {
-                    tasks.push(write('temperament_grids', name, () =>
+                    await write('temperament_grids', name, () =>
                       realSupabase.from('temperament_grids').upsert(
                         { character_id: charId, ...engineChar.temperament } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.emotional_baseline) {
-                    tasks.push(write('emotional_baselines', name, () =>
+                    await write('emotional_baselines', name, () =>
                       realSupabase.from('emotional_baselines').upsert(
                         { character_id: charId, ...engineChar.emotional_baseline } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.moral_structure) {
-                    tasks.push(write('moral_structures', name, () =>
+                    await write('moral_structures', name, () =>
                       realSupabase.from('moral_structures').upsert(
                         { character_id: charId, ...engineChar.moral_structure } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.general_traits) {
-                    tasks.push(write('general_traits', name, () =>
+                    await write('general_traits', name, () =>
                       realSupabase.from('general_traits').upsert(
                         { character_id: charId, ...engineChar.general_traits } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.influence_sliders) {
-                    tasks.push(write('influence_sliders', name, () =>
+                    await write('influence_sliders', name, () =>
                       realSupabase.from('influence_sliders').upsert(
                         { character_id: charId, ...engineChar.influence_sliders } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.desires && engineChar.desires.length > 0) {
-                    tasks.push(replace('desires',
-                      () => realSupabase.from('desires').delete().eq('character_id', charId),
-                      () => realSupabase.from('desires').insert(
+                    await write('desires.delete', name, () =>
+                      realSupabase.from('desires').delete().eq('character_id', charId)
+                    );
+                    await write('desires.insert', name, () =>
+                      realSupabase.from('desires').insert(
                         engineChar.desires!.map(d => ({ character_id: charId, name: d.name, score: d.score, rank: d.rank }))
-                      ),
-                    ));
+                      )
+                    );
                   }
                   if (engineChar.conditional_traits && engineChar.conditional_traits.length > 0) {
-                    tasks.push(replace('conditional_traits',
-                      () => realSupabase.from('conditional_traits').delete().eq('character_id', charId),
-                      () => realSupabase.from('conditional_traits').insert(
+                    await write('conditional_traits.delete', name, () =>
+                      realSupabase.from('conditional_traits').delete().eq('character_id', charId)
+                    );
+                    await write('conditional_traits.insert', name, () =>
+                      realSupabase.from('conditional_traits').insert(
                         engineChar.conditional_traits!.map(t => ({
                           character_id: charId, trait_label: t.trait_label, trigger_condition: t.trigger_condition,
                           target_scope: t.target_scope, intensity_score: t.intensity_score, override_strength: t.override_strength,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
 
                   // ── Voice layer (engine 008 target tables — audio Claude consumes these) ──
                   if (engineChar.voice_scales) {
                     // engine 008 columns: 11 integer sliders, 0-75 scale
-                    tasks.push(write('character_voice_scales', name, () =>
+                    await write('character_voice_scales', name, () =>
                       realSupabase.from('character_voice_scales').upsert(
                         {
                           character_id: charId,
@@ -405,14 +397,14 @@ export const supabase = new Proxy(realSupabase, {
                         } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.style_rules) {
                     // engine 008 columns: sentence_rhythm/lexical_range/cadence/emphasis_method/
                     //   forbidden_patterns/world_term_rules/punctuation_habits (text), plus new:
                     //   avg/stddev/max_sentence_length_words, profanity_level, profanity_vocabulary
                     const sr = engineChar.style_rules;
-                    tasks.push(write('character_style_rules', name, () =>
+                    await write('character_style_rules', name, () =>
                       realSupabase.from('character_style_rules').upsert(
                         {
                           character_id: charId,
@@ -431,10 +423,10 @@ export const supabase = new Proxy(realSupabase, {
                         } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   } else if (sentenceStats.avg_sentence_length_words !== null) {
                     // Non-foundation chapter, but fresh dialogue — refresh sentence stats only.
-                    tasks.push(write('character_style_rules.stats', name, () =>
+                    await write('character_style_rules.stats', name, () =>
                       realSupabase.from('character_style_rules').upsert(
                         {
                           character_id: charId,
@@ -444,11 +436,11 @@ export const supabase = new Proxy(realSupabase, {
                         } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.conflict_profile) {
                     // engine 008 columns: conflict_strategy, morality_axis (text), truth_bias (0-75 int)
-                    tasks.push(write('character_conflict_profile', name, () =>
+                    await write('character_conflict_profile', name, () =>
                       realSupabase.from('character_conflict_profile').upsert(
                         {
                           character_id: charId,
@@ -458,25 +450,29 @@ export const supabase = new Proxy(realSupabase, {
                         } as any,
                         { onConflict: 'character_id' }
                       )
-                    ));
+                    );
                   }
                   if (engineChar.mottos && engineChar.mottos.length > 0) {
-                    tasks.push(replace('character_mottos',
-                      () => realSupabase.from('character_mottos').delete().eq('character_id', charId).eq('source_type', 'ai'),
-                      () => realSupabase.from('character_mottos').insert(
+                    await write('character_mottos.delete', name, () =>
+                      realSupabase.from('character_mottos').delete().eq('character_id', charId).eq('source_type', 'ai')
+                    );
+                    await write('character_mottos.insert', name, () =>
+                      realSupabase.from('character_mottos').insert(
                         engineChar.mottos!.map(m => ({
                           character_id: charId,
                           manuscript_id: manuscriptId,
                           motto: m,
                           source_type: 'ai',
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
                   if (engineChar.lexicon && engineChar.lexicon.length > 0) {
-                    tasks.push(replace('character_lexicon',
-                      () => realSupabase.from('character_lexicon').delete().eq('character_id', charId).eq('source_type', 'ai'),
-                      () => realSupabase.from('character_lexicon').insert(
+                    await write('character_lexicon.delete', name, () =>
+                      realSupabase.from('character_lexicon').delete().eq('character_id', charId).eq('source_type', 'ai')
+                    );
+                    await write('character_lexicon.insert', name, () =>
+                      realSupabase.from('character_lexicon').insert(
                         engineChar.lexicon!.map(l => ({
                           character_id: charId,
                           manuscript_id: manuscriptId,
@@ -484,14 +480,16 @@ export const supabase = new Proxy(realSupabase, {
                           meaning: l.meaning,
                           source_type: 'ai',
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
                   if (engineChar.audience_mods && engineChar.audience_mods.length > 0) {
                     // engine 008: brevity/deference/defiance/warmth 0-75
-                    tasks.push(replace('character_audience_mods',
-                      () => realSupabase.from('character_audience_mods').delete().eq('character_id', charId).eq('source_type', 'ai'),
-                      () => realSupabase.from('character_audience_mods').insert(
+                    await write('character_audience_mods.delete', name, () =>
+                      realSupabase.from('character_audience_mods').delete().eq('character_id', charId).eq('source_type', 'ai')
+                    );
+                    await write('character_audience_mods.insert', name, () =>
+                      realSupabase.from('character_audience_mods').insert(
                         engineChar.audience_mods!.map(a => ({
                           character_id: charId,
                           manuscript_id: manuscriptId,
@@ -502,13 +500,15 @@ export const supabase = new Proxy(realSupabase, {
                           defiance: a.defiance,
                           warmth: a.warmth,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
                   if (engineChar.emotion_map && engineChar.emotion_map.length > 0) {
-                    tasks.push(replace('character_emotion_map',
-                      () => realSupabase.from('character_emotion_map').delete().eq('character_id', charId).eq('source_type', 'ai'),
-                      () => realSupabase.from('character_emotion_map').insert(
+                    await write('character_emotion_map.delete', name, () =>
+                      realSupabase.from('character_emotion_map').delete().eq('character_id', charId).eq('source_type', 'ai')
+                    );
+                    await write('character_emotion_map.insert', name, () =>
+                      realSupabase.from('character_emotion_map').insert(
                         engineChar.emotion_map!.map(e => ({
                           character_id: charId,
                           manuscript_id: manuscriptId,
@@ -516,27 +516,29 @@ export const supabase = new Proxy(realSupabase, {
                           trigger: e.trigger,
                           voice_shift: e.voice_shift,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
 
-                  // ── Per-chapter: emotion drift (8 upserts, fire in parallel) ──
+                  // ── Per-chapter: emotion drift ──
                   if (engineChar.emotion_drift) {
-                    tasks.push(Promise.all(engineChar.emotion_drift.map(drift =>
-                      write('emotion_drift', name, () =>
+                    for (const drift of engineChar.emotion_drift) {
+                      await write('emotion_drift', name, () =>
                         realSupabase.from('emotion_drift').upsert(
                           { character_id: charId, emotion_type: drift.emotion_type, chapter_index: chapterIndex, value: drift.value },
                           { onConflict: 'character_id,emotion_type,chapter_index' }
                         )
-                      )
-                    )).then(() => {}));
+                      );
+                    }
                   }
 
                   // ── Per-chapter: surges (replace for this chapter) ──
                   if (engineChar.surges && engineChar.surges.length > 0) {
-                    tasks.push(replace('surges',
-                      () => realSupabase.from('surges').delete().eq('character_id', charId).eq('chapter_index', chapterIndex),
-                      () => realSupabase.from('surges').insert(
+                    await write('surges.delete', name, () =>
+                      realSupabase.from('surges').delete().eq('character_id', charId).eq('chapter_index', chapterIndex)
+                    );
+                    await write('surges.insert', name, () =>
+                      realSupabase.from('surges').insert(
                         engineChar.surges.map(s => ({
                           character_id: charId, chapter_index: chapterIndex,
                           emotion_type: s.emotion_type, scene_position: s.scene_position,
@@ -546,29 +548,33 @@ export const supabase = new Proxy(realSupabase, {
                           stakes: s.stakes, immediacy: s.immediacy, certainty: s.certainty,
                           description: s.description,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
 
                   // ── Relationships (replace all for this character) ──
                   if (engineChar.relationships && engineChar.relationships.length > 0) {
-                    tasks.push(replace('relationships',
-                      () => realSupabase.from('relationships').delete().eq('character_id', charId),
-                      () => realSupabase.from('relationships').insert(
+                    await write('relationships.delete', name, () =>
+                      realSupabase.from('relationships').delete().eq('character_id', charId)
+                    );
+                    await write('relationships.insert', name, () =>
+                      realSupabase.from('relationships').insert(
                         engineChar.relationships.map(r => ({
                           character_id: charId, target_name: r.target_name,
                           trust: r.trust, threat: r.threat, admiration: r.admiration,
                           envy: r.envy, suspicion: r.suspicion, perception_care: r.perception_care,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
 
                   // ── Per-manuscript: verbal tics (engine 008 target) ──
                   if (engineChar.verbal_tics && engineChar.verbal_tics.length > 0) {
-                    tasks.push(replace('character_verbal_tics',
-                      () => realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId),
-                      () => realSupabase.from('character_verbal_tics').insert(
+                    await write('character_verbal_tics.delete', name, () =>
+                      realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId)
+                    );
+                    await write('character_verbal_tics.insert', name, () =>
+                      realSupabase.from('character_verbal_tics').insert(
                         engineChar.verbal_tics!.map(t => ({
                           character_id: charId,
                           manuscript_id: manuscriptId,
@@ -577,12 +583,10 @@ export const supabase = new Proxy(realSupabase, {
                           context: t.context,
                           frequency_hint: t.frequency_hint,
                         }))
-                      ),
-                    ));
+                      )
+                    );
                   }
-
-                  await Promise.all(tasks);
-                }));
+                }
               }
 
               // Persist (or clear) error accumulator — observability replaces silent try/catch
