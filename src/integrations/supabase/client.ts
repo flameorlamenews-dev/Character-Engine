@@ -3,6 +3,47 @@ import { analyzeManuscript, analyzeManuscriptEngine, generateCharacterText, hasC
 
 type EngineError = { table: string; character: string; chapter?: number; message: string };
 
+// Coerce Claude's frequency_hint output to the CHECK-constraint-accepted
+// string labels. Claude occasionally emits integers (1/2/3) or verbose
+// strings ("medium", "high-frequency"). DB rejects anything outside
+// ('low','med','high') with a 400. Returns null when unresolvable.
+function coerceFrequencyHint(v: any): 'low' | 'med' | 'high' | null {
+  if (v === 'low' || v === 'med' || v === 'high') return v;
+  if (typeof v === 'number') {
+    if (v <= 1) return 'low';
+    if (v === 2) return 'med';
+    return 'high';
+  }
+  if (typeof v === 'string') {
+    const l = v.trim().toLowerCase();
+    if (l.startsWith('low')) return 'low';
+    if (l.startsWith('med')) return 'med';
+    if (l.startsWith('high')) return 'high';
+  }
+  return null;
+}
+
+// Same defensive coercion for character_style_rules.profanity_level CHECK
+// constraint ('none','mild','moderate','heavy'). Claude sometimes uses
+// "medium" for moderate or "strong" for heavy.
+function coerceProfanityLevel(v: any): 'none' | 'mild' | 'moderate' | 'heavy' | null {
+  if (v === 'none' || v === 'mild' || v === 'moderate' || v === 'heavy') return v;
+  if (typeof v === 'string') {
+    const l = v.trim().toLowerCase();
+    if (l.includes('none') || l === 'clean') return 'none';
+    if (l.includes('mild')) return 'mild';
+    if (l.includes('moderate') || l.includes('medium')) return 'moderate';
+    if (l.includes('heavy') || l.includes('strong') || l.includes('high')) return 'heavy';
+  }
+  if (typeof v === 'number') {
+    if (v <= 0) return 'none';
+    if (v === 1) return 'mild';
+    if (v === 2) return 'moderate';
+    return 'heavy';
+  }
+  return null;
+}
+
 // Sentence-length statistics from a character's externalDialogue samples.
 // Returns nulls when insufficient data — writer treats nulls as "leave column empty."
 function computeSentenceStats(externalDialogue: string[] | undefined | null): {
@@ -244,7 +285,16 @@ export const supabase = new Proxy(realSupabase, {
               const { data: existingEngine } = charIds.length > 0
                 ? await realSupabase.from('temperament_grids').select('character_id').in('character_id', charIds).limit(1)
                 : { data: [] };
-              const isFirstAnalysis = !existingEngine || existingEngine.length === 0;
+              // Separate voice-first-analysis detection: if character_voice_scales is empty
+              // for these characters, the voice writer has never run — force foundation
+              // voice fields even if psych tables are populated (e.g. Drop 1 ran but
+              // Drop 2's voice writer hasn't yet).
+              const { data: existingVoice } = charIds.length > 0
+                ? await realSupabase.from('character_voice_scales').select('character_id').in('character_id', charIds).limit(1)
+                : { data: [] };
+              const isFirstPsychAnalysis = !existingEngine || existingEngine.length === 0;
+              const isFirstVoiceAnalysis = !existingVoice || existingVoice.length === 0;
+              const isFirstAnalysis = isFirstPsychAnalysis || isFirstVoiceAnalysis;
 
               let existingContext = '';
               if (!isFirstAnalysis && charIds.length > 0) {
@@ -425,8 +475,8 @@ export const supabase = new Proxy(realSupabase, {
                           emphasis_method: sr.emphasis_method,
                           forbidden_patterns: sr.forbidden_patterns,
                           world_term_rules: sr.world_term_rules,
-                          profanity_level: sr.profanity_level,
-                          profanity_vocabulary: sr.profanity_vocabulary,
+                          profanity_level: coerceProfanityLevel(sr.profanity_level),
+                          profanity_vocabulary: Array.isArray(sr.profanity_vocabulary) ? sr.profanity_vocabulary : [],
                           ...sentenceStats,
                         } as any,
                         { onConflict: 'character_id' }
@@ -565,20 +615,27 @@ export const supabase = new Proxy(realSupabase, {
                   }
 
                   // ── Per-manuscript: verbal tics (engine 008 target) ──
+                  // Filter to tics with valid frequency_hint after coercion; drop any
+                  // that can't be mapped to 'low'/'med'/'high' rather than 400-ing the DB.
                   if (engineChar.verbal_tics && engineChar.verbal_tics.length > 0) {
-                    tasks.push(replace('character_verbal_tics',
-                      () => realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId),
-                      () => realSupabase.from('character_verbal_tics').insert(
-                        engineChar.verbal_tics!.map(t => ({
-                          character_id: charId,
-                          manuscript_id: manuscriptId,
-                          source_type: 'ai',
-                          phrase: t.phrase,
-                          context: t.context,
-                          frequency_hint: t.frequency_hint,
-                        }))
-                      ),
-                    ));
+                    const validTics = engineChar.verbal_tics
+                      .map(t => ({ ...t, frequency_hint: coerceFrequencyHint(t.frequency_hint) }))
+                      .filter(t => t.phrase && t.frequency_hint);
+                    if (validTics.length > 0) {
+                      tasks.push(replace('character_verbal_tics',
+                        () => realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId),
+                        () => realSupabase.from('character_verbal_tics').insert(
+                          validTics.map(t => ({
+                            character_id: charId,
+                            manuscript_id: manuscriptId,
+                            source_type: 'ai',
+                            phrase: t.phrase,
+                            context: t.context,
+                            frequency_hint: t.frequency_hint,
+                          }))
+                        ),
+                      ));
+                    }
                   }
 
                   await Promise.all(tasks);
