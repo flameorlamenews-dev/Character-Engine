@@ -420,13 +420,13 @@ RULES:
 - conditional_traits: 1-4 situation-triggered behaviors
 - voice_scales: all 11 integer 0-75 sliders describing how this character SOUNDS, not what they believe
 - style_rules: concrete voice-writing instructions. Each text field is 1 sentence. forbidden_patterns lists things this character would NEVER say/do in their voice. world_term_rules describes how they handle in-world nouns. Leave any field null only if the text gives no evidence.
-- profanity_level: MUST be the literal string "none", "mild", "moderate", or "heavy" (quoted string, not a number, not "medium" or "strong"). Based on observed dialogue. profanity_vocabulary: array of specific words used; empty array if none observed.
+- profanity_level: one of none/mild/moderate/heavy based on observed dialogue. profanity_vocabulary: specific words used; empty array if none observed.
 - conflict_profile: how they HANDLE friction — strategy in prose, morality_axis (duty/care/honor/self-interest/etc.) in prose, truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest)
 - mottos: 2-5 distilled phrases that capture their core operating beliefs. These are stable, not chapter-scoped. Drawn from dialogue or behavior, not invented.
 - lexicon: 2-8 character-specific phrases or in-story terms they use distinctively, each with meaning
 - audience_mods: 2-5 entries for audience types (stranger/child/authority/ally/rival/loved_one/enemy) — how their voice shifts. Sliders 0-75.
 - emotion_map: 2-5 entries mapping an emotion trigger to a concrete voice_shift description
-- verbal_tics: recurring fillers, exclamations, greetings, catchphrases that aren't mottos (mottos are moral/operating beliefs; tics are linguistic habit). Empty array if this chapter has fewer than 3 dialogue samples for this character — DO NOT fabricate tics from one-off lines. frequency_hint MUST be the literal string "low", "med", or "high" (quoted string, not a number, not "medium" or "high-frequency").
+- verbal_tics: recurring fillers, exclamations, greetings, catchphrases that aren't mottos (mottos are moral/operating beliefs; tics are linguistic habit). Empty array if this chapter has fewer than 3 dialogue samples for this character — DO NOT fabricate tics from one-off lines.
 - Base all scores and voice descriptions on observable behavior and dialogue in the text. Never fabricate.`;
 
   const responseText = await callClaude(systemPrompt, userMessage, 14000);
