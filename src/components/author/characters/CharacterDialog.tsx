@@ -79,6 +79,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
     };
     styleRules: any;
     lexicon: any[];
+    verbalTics: any[];
     audienceMods: any[];
     conflictProfile: any;
     emotionMap: any[];
@@ -89,6 +90,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
     voiceScales: {},
     styleRules: {},
     lexicon: [],
+    verbalTics: [],
     audienceMods: [],
     conflictProfile: {},
     emotionMap: [],
@@ -121,14 +123,15 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
   const [traitInput, setTraitInput] = useState("");
   const [mottoInput, setMottoInput] = useState("");
 
-  // Voice scales (11 scales)
+  // Voice scales — canonical engine scale is 0-75 (midpoint 37 = moderate).
+  // Audio Claude locked this in migration 008 header. UI displays 0-75 everywhere.
   const [voiceScales, setVoiceScales] = useState({
-    brashness: 5,
-    aggression: 5,
-    sophistication: 5,
-    formality: 5,
-    empathy: 5,
-    introspection: 5,
+    brashness: 37,
+    aggression: 37,
+    sophistication: 37,
+    formality: 37,
+    empathy: 37,
+    introspection: 37,
   });
 
 
@@ -387,13 +390,14 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
       .eq("source_type", "author")
       .maybeSingle();
     if (authorScalesData) {
+      // 0-75 canonical scale; fall back to midpoint 37 when a column is null.
       setVoiceScales({
-        brashness: authorScalesData.brashness || 5,
-        aggression: authorScalesData.aggression || 5,
-        sophistication: authorScalesData.sophistication || 5,
-        formality: authorScalesData.formality || 5,
-        empathy: authorScalesData.empathy || 5,
-        introspection: authorScalesData.introspection || 5,
+        brashness: authorScalesData.brashness ?? 37,
+        aggression: authorScalesData.aggression ?? 37,
+        sophistication: authorScalesData.sophistication ?? 37,
+        formality: authorScalesData.formality ?? 37,
+        empathy: authorScalesData.empathy ?? 37,
+        introspection: authorScalesData.introspection ?? 37,
       });
     }
 
@@ -416,36 +420,35 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
     
 
 
-    // Load AI style rules for display only
-    const { data: aiStyleData } = await supabase
-      .from("character_style_rules")
-      .select("*")
-      .eq("character_id", selectedInstance.id)
-      .eq("source_type", "ai")
-      .maybeSingle();
+    // Load AI style rules + 5 previously-unread voice-layer tables in parallel.
+    // All filtered to source_type='ai' — Drop 2 writer populates these.
+    const [
+      { data: aiStyleData },
+      { data: aiLexiconData },
+      { data: aiTicsData },
+      { data: aiAudienceData },
+      { data: aiEmotionMapData },
+      { data: aiConflictData },
+    ] = await Promise.all([
+      supabase.from("character_style_rules").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai").maybeSingle(),
+      supabase.from("character_lexicon").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai"),
+      supabase.from("character_verbal_tics").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai"),
+      supabase.from("character_audience_mods").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai"),
+      supabase.from("character_emotion_map").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai"),
+      supabase.from("character_conflict_profile").select("*").eq("character_id", selectedInstance.id).eq("source_type", "ai").maybeSingle(),
+    ]);
 
-    // Build AI voice scales: prefer timeline entry data (per-chapter) over character_voice_scales table (overall)
-    // This ensures Comparison tab shows the same scales as AI Interpretation tab
-    const timelineVoiceScales = (() => {
-      // Find the first timeline chapter data with voice_scales for this manuscript
-      const timelineEntries = Object.values(timelineChapterData);
-      if (timelineEntries.length > 0) {
-        const entryWithScales = timelineEntries.find(
-          (e: any) => e.voiceScales && Object.keys(e.voiceScales).length > 0
-        );
-        if (entryWithScales?.voiceScales) return entryWithScales.voiceScales;
-      }
-      return null;
-    })();
-
-    const aiVoiceScalesSource = timelineVoiceScales || (aiScalesData ? {
+    // Build AI voice scales: prefer character_voice_scales table (canonical 0-75 from Drop 2)
+    // over legacy timeline JSONB (0-10 scale, written only by older Pass 1 interface).
+    // Timeline JSONB values would display as tiny numbers against the 0-75 UI — skip them.
+    const aiVoiceScalesSource = aiScalesData ? {
       brashness: aiScalesData.brashness,
       aggression: aiScalesData.aggression,
       sophistication: aiScalesData.sophistication,
       formality: aiScalesData.formality,
       empathy: aiScalesData.empathy,
       introspection: aiScalesData.introspection,
-    } : {});
+    } : {};
 
     // Populate AI data for comparison
     setAiData({
@@ -454,10 +457,11 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
       mottos: aiMottosData || [],
       voiceScales: aiVoiceScalesSource,
       styleRules: aiStyleData || {},
-      lexicon: [],
-      audienceMods: [],
-      conflictProfile: {},
-      emotionMap: [],
+      lexicon: aiLexiconData || [],
+      verbalTics: aiTicsData || [],
+      audienceMods: aiAudienceData || [],
+      conflictProfile: aiConflictData || {},
+      emotionMap: aiEmotionMapData || [],
     });
   };
 
@@ -466,12 +470,12 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
     setTraits([]);
     setMottos([]);
     setVoiceScales({
-      brashness: 5,
-      aggression: 5,
-      sophistication: 5,
-      formality: 5,
-      empathy: 5,
-      introspection: 5,
+      brashness: 37,
+      aggression: 37,
+      sophistication: 37,
+      formality: 37,
+      empathy: 37,
+      introspection: 37,
     });
   };
 
@@ -688,7 +692,198 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                               {aiData.styleRules.world_term_rules}
                             </div>
                           )}
+                          {aiData.styleRules.forbidden_patterns && (
+                            <div className="md:col-span-2">
+                              <span className="font-medium">Forbidden patterns:</span>{" "}
+                              {aiData.styleRules.forbidden_patterns}
+                            </div>
+                          )}
                         </div>
+
+                        {/* Profanity + sentence-length stats (engine 008 additions) */}
+                        {(aiData.styleRules.profanity_level
+                          || (aiData.styleRules.profanity_vocabulary && aiData.styleRules.profanity_vocabulary.length > 0)
+                          || aiData.styleRules.avg_sentence_length_words != null) && (
+                          <div className="mt-4 pt-4 border-t space-y-3">
+                            {aiData.styleRules.profanity_level && (
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="font-medium text-sm">Profanity:</span>
+                                <Badge
+                                  variant={
+                                    aiData.styleRules.profanity_level === "none"
+                                      ? "secondary"
+                                      : aiData.styleRules.profanity_level === "heavy"
+                                      ? "destructive"
+                                      : "default"
+                                  }
+                                >
+                                  {aiData.styleRules.profanity_level}
+                                </Badge>
+                                {aiData.styleRules.profanity_vocabulary && aiData.styleRules.profanity_vocabulary.length > 0 && (
+                                  <div className="flex flex-wrap gap-1 ml-2">
+                                    {aiData.styleRules.profanity_vocabulary.map((word: string, idx: number) => (
+                                      <Badge key={idx} variant="outline" className="text-xs">
+                                        {word}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                )}
+                              </div>
+                            )}
+                            {aiData.styleRules.avg_sentence_length_words != null && (
+                              <div className="text-xs text-muted-foreground">
+                                <span className="font-medium">Sentence stats (words):</span>{" "}
+                                avg {aiData.styleRules.avg_sentence_length_words}
+                                {aiData.styleRules.sentence_length_stddev != null && (
+                                  <> · σ {aiData.styleRules.sentence_length_stddev}</>
+                                )}
+                                {aiData.styleRules.max_sentence_length_words != null && (
+                                  <> · max {aiData.styleRules.max_sentence_length_words}</>
+                                )}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* ── Lexicon (engine 008) ── */}
+                  {aiData.lexicon && aiData.lexicon.length > 0 && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Lexicon</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 text-sm">
+                          {aiData.lexicon.map((l: any, idx: number) => (
+                            <li key={l.id ?? idx} className="border-l-2 border-primary/40 pl-3">
+                              <span className="font-medium">{l.phrase}</span>
+                              {l.meaning && (
+                                <span className="text-muted-foreground"> — {l.meaning}</span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* ── Verbal Tics (engine 008) ── */}
+                  {aiData.verbalTics && aiData.verbalTics.length > 0 && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Verbal Tics</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 text-sm">
+                          {aiData.verbalTics.map((t: any, idx: number) => (
+                            <li key={t.id ?? idx} className="flex items-start gap-2">
+                              <span className="font-medium">"{t.phrase}"</span>
+                              {t.frequency_hint && (
+                                <Badge variant="outline" className="text-xs">
+                                  {t.frequency_hint}
+                                </Badge>
+                              )}
+                              {t.context && (
+                                <span className="text-muted-foreground text-xs">— {t.context}</span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* ── Audience Mods (engine 008, 0-75 sliders) ── */}
+                  {aiData.audienceMods && aiData.audienceMods.length > 0 && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Audience Mods</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-4">
+                        {aiData.audienceMods.map((a: any, idx: number) => (
+                          <div key={a.id ?? idx} className="space-y-2">
+                            <div className="font-medium text-sm">{a.audience_tag}</div>
+                            {([
+                              ['brevity', 'Brevity'],
+                              ['deference', 'Deference'],
+                              ['defiance', 'Defiance'],
+                              ['warmth', 'Warmth'],
+                            ] as const).map(([key, label]) => {
+                              const v = a[key] ?? 37;
+                              return (
+                                <div key={key}>
+                                  <div className="flex justify-between text-xs mb-1">
+                                    <span className="text-muted-foreground">{label}</span>
+                                    <span className="font-medium">{v}/75</span>
+                                  </div>
+                                  <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                                    <div className="h-full bg-primary" style={{ width: `${(v / 75) * 100}%` }} />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        ))}
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* ── Emotion Map (engine 008) ── */}
+                  {aiData.emotionMap && aiData.emotionMap.length > 0 && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Emotion Map</CardTitle>
+                      </CardHeader>
+                      <CardContent>
+                        <ul className="space-y-2 text-sm">
+                          {aiData.emotionMap.map((e: any, idx: number) => (
+                            <li key={e.id ?? idx} className="border-l-2 border-primary/40 pl-3">
+                              <span className="font-medium">{e.trigger}</span>
+                              {e.voice_shift && (
+                                <span className="text-muted-foreground"> → {e.voice_shift}</span>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </CardContent>
+                    </Card>
+                  )}
+
+                  {/* ── Conflict Profile (engine 008) ── */}
+                  {aiData.conflictProfile && Object.keys(aiData.conflictProfile).length > 0 && (
+                    <Card>
+                      <CardHeader>
+                        <CardTitle>Conflict Profile</CardTitle>
+                      </CardHeader>
+                      <CardContent className="space-y-3 text-sm">
+                        {aiData.conflictProfile.conflict_strategy && (
+                          <div>
+                            <span className="font-medium">Strategy:</span>{" "}
+                            <span className="text-muted-foreground">{aiData.conflictProfile.conflict_strategy}</span>
+                          </div>
+                        )}
+                        {aiData.conflictProfile.morality_axis && (
+                          <div>
+                            <span className="font-medium">Morality axis:</span>{" "}
+                            <span className="text-muted-foreground">{aiData.conflictProfile.morality_axis}</span>
+                          </div>
+                        )}
+                        {aiData.conflictProfile.truth_bias != null && (
+                          <div>
+                            <div className="flex justify-between mb-1">
+                              <span className="font-medium">Truth bias</span>
+                              <span>{aiData.conflictProfile.truth_bias}/75</span>
+                            </div>
+                            <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                              <div className="h-full bg-primary" style={{ width: `${(aiData.conflictProfile.truth_bias / 75) * 100}%` }} />
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              0 = constant liar · 37 = situational · 75 = pathologically honest
+                            </div>
+                          </div>
+                        )}
                       </CardContent>
                     </Card>
                   )}

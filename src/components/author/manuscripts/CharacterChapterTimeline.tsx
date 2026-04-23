@@ -295,18 +295,20 @@ export const CharacterChapterTimeline = ({
 
               <TabsContent value="voice" className="space-y-3">
                 {VOICE_SCALE_KEYS.map((key) => {
-                  const value = Number(authorData?.voiceScales?.[key] ?? 5);
+                  // Canonical engine scale is 0-75 (locked by audio Claude, see migration 008 header).
+                  // Midpoint 37 = "moderate". Default to 37 when author hasn't set a value.
+                  const value = Number(authorData?.voiceScales?.[key] ?? 37);
                   const label = key.charAt(0).toUpperCase() + key.slice(1);
                   return (
                     <div key={key} className="p-4 bg-muted/50 rounded-lg space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="font-medium text-sm">{label}</span>
-                        <span className="text-sm font-medium">{value}/10</span>
+                        <span className="text-sm font-medium">{value}/75</span>
                       </div>
                       <Slider
                         value={[value]}
                         min={0}
-                        max={10}
+                        max={75}
                         step={1}
                         onValueChange={([v]) => onVoiceScaleChange?.(key, v)}
                       />
