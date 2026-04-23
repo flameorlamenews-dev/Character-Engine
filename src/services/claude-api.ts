@@ -84,8 +84,6 @@ export async function analyzeManuscript(
     knowledgeAtChapter: string;
     notableActions: NotableAction[];
     readerTone: ReaderTone;
-    activeHoursLocal: string;
-    activityPatternNote: string;
   }>;
   glossaryTerms: Array<{ word: string; definition: string; wordType: string }>;
 }> {
@@ -141,9 +139,7 @@ Respond with this exact JSON structure:
         "wouldAnswerOpenly": "comma-separated topics this character would discuss openly with a reader",
         "wouldDeflectAbout": "comma-separated topics they'd redirect away from",
         "wouldLieAbout": "comma-separated topics they'd outright lie about"
-      },
-      "activeHoursLocal": "22:00-04:00 or all-day",
-      "activityPatternNote": "Textural detail on their circadian pattern, if any"
+      }
     }
   ],
   "glossaryTerms": [
@@ -162,8 +158,6 @@ RULES:
 - knowledgeAtChapter: SPOILER-SAFE — must reflect ONLY what the text has established through this chapter. Do not peek forward. Output the FULL cumulative state ("knows: ... suspects: ... unaware of: ..."), combining prior-chapter knowledge with what is newly revealed in this chapter. Each row is meant to be self-contained.
 - notableActions: ONLY one-off physical/behavioral actions unique to THIS chapter that give it its specific texture. Examples: "paces the library floor for an hour before bed," "burns the letter without reading past the first line." Do NOT include emotional-spike events (those belong elsewhere) and do NOT include recurring patterns seen across multiple chapters (those belong elsewhere).
 - readerTone: how this character would address a READER of their story (not another in-fiction character). Provide 3 distinct opening-line options in their voice, plus topics they would answer openly, deflect from, or lie about if a reader asked. This may evolve chapter to chapter as the character changes.
-- activeHoursLocal: 24h range string when this character is most active/vivid if the text specifies (e.g. "22:00-04:00", "06:00-18:00"), else "all-day". This is a stable character trait — the SAME value across all chapters unless the manuscript explicitly shows a shift.
-- activityPatternNote: one-sentence textural detail ("nocturnal insomniac, sharpest after midnight", "dawn rider, fades by dusk"). Empty string if the manuscript is silent on circadian pattern. Never fabricate.
 - Glossary terms should only include invented/world-specific words, not common English`;
 
   const responseText = await callClaude(systemPrompt, userMessage, 12000);
@@ -237,35 +231,6 @@ export interface EngineCharacterData {
     moral_override: number; impression_susceptibility: number;
     mask_strength: number; personality_drift: number;
   };
-  voice_scales?: {
-    formality: number; aggression: number; brashness: number; empathy: number;
-    fid_level: number; humor_dryness: number; internal_external: number;
-    introspection: number; masking: number; sophistication: number;
-    subtext_density: number;
-  };
-  style_rules?: {
-    sentence_rhythm: string | null;
-    lexical_range: string | null;
-    cadence: string | null;
-    punctuation_habits: string | null;
-    emphasis_method: string | null;
-    forbidden_patterns: string | null;
-    world_term_rules: string | null;
-    profanity_level: 'none' | 'mild' | 'moderate' | 'heavy';
-    profanity_vocabulary: string[];
-  };
-  conflict_profile?: {
-    conflict_strategy: string | null;
-    morality_axis: string | null;
-    truth_bias: number;
-  };
-  mottos?: string[];
-  lexicon?: Array<{ phrase: string; meaning: string }>;
-  audience_mods?: Array<{
-    audience_tag: string; brevity: number;
-    deference: number; defiance: number; warmth: number;
-  }>;
-  emotion_map?: Array<{ trigger: string; voice_shift: string }>;
   emotion_drift: Array<{ emotion_type: string; value: number }>;
   surges: Array<{
     emotion_type: string; scene_position: number; peak_intensity: number;
@@ -277,9 +242,6 @@ export interface EngineCharacterData {
   relationships: Array<{
     target_name: string; trust: number; threat: number; admiration: number;
     envy: number; suspicion: number; perception_care: number;
-  }>;
-  verbal_tics?: Array<{
-    phrase: string; context: string; frequency_hint: 'low' | 'med' | 'high';
   }>;
 }
 
@@ -294,18 +256,18 @@ export async function analyzeManuscriptEngine(
   const systemPrompt = `You are a character psychometrics engine for fiction manuscripts. You read chapter text and produce numerical personality profiles. All scores use a 0-75 integer scale where: 0=none/absent, 12=very low, 25=low, 37=moderate/default, 50=high, 62=very high, 75=extreme/maximum. Respond in valid JSON only — no markdown, no code fences.`;
 
   const foundationBlock = isFirstAnalysis ? `
-This is the FIRST chapter analysis — produce FULL personality + voice foundations for each character.
-Include: temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders, voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map.` : `
+This is the FIRST chapter analysis — produce FULL personality foundations for each character.
+Include: temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders.` : `
 This is Chapter ${chapterNumber} (NOT the first). Engine data already exists.
 ${existingContext ? `Existing personality context:\n${existingContext}` : ''}
-DO NOT include foundation fields (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders, voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map) UNLESS this chapter shows a significant personality or voice shift. If included, values represent the UPDATED state.`;
+DO NOT include foundation fields (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders) UNLESS this chapter shows a significant personality shift. If included, values represent the UPDATED state.`;
 
   const userMessage = `Produce Character Engine data for Chapter ${chapterNumber}: "${chapterTitle}".
 
 Characters to profile (use these exact names): ${characterNames.join(', ')}
 ${foundationBlock}
 
-You MUST always include: emotion_drift, surges, relationships, and verbal_tics for this chapter.
+You MUST always include: emotion_drift, surges, and relationships for this chapter.
 
 CHARACTER CONTEXT FROM LITERARY ANALYSIS:
 ${characterContext}
@@ -341,41 +303,7 @@ Respond with this exact JSON structure:
       "influence_sliders": {
         "moral_override": 0, "impression_susceptibility": 37,
         "mask_strength": 0, "personality_drift": 0
-      },
-      "voice_scales": {
-        "formality": 37, "aggression": 37, "brashness": 37, "empathy": 37,
-        "fid_level": 37, "humor_dryness": 37, "internal_external": 37,
-        "introspection": 37, "masking": 37, "sophistication": 37, "subtext_density": 37
-      },
-      "style_rules": {
-        "sentence_rhythm": "short, percussive clauses — average 8 words, rarely over 15",
-        "lexical_range": "blue-collar, concrete nouns, almost no latinate vocabulary",
-        "cadence": "drops into silence when angry; bursts when excited",
-        "punctuation_habits": "sparse commas; em-dashes for self-interruption; ellipses rare",
-        "emphasis_method": "repetition, not italics",
-        "forbidden_patterns": "never uses 'moreover', 'thus', rhetorical questions, or metaphor",
-        "world_term_rules": "uses 'the Ring' not 'Nenya'; avoids Elvish names entirely",
-        "profanity_level": "mild",
-        "profanity_vocabulary": ["damn", "hell"]
-      },
-      "conflict_profile": {
-        "conflict_strategy": "confrontation via cold silence, rarely escalation",
-        "morality_axis": "duty-leaning but bends for loved ones",
-        "truth_bias": 55
-      },
-      "mottos": ["Never leave a friend behind.", "Hope is cheap; showing up is costly."],
-      "lexicon": [
-        { "phrase": "the old road", "meaning": "any path through familiar hardship" },
-        { "phrase": "keeping watch", "meaning": "vigilance as devotion, not duty" }
-      ],
-      "audience_mods": [
-        { "audience_tag": "stranger", "brevity": 55, "deference": 40, "defiance": 15, "warmth": 20 },
-        { "audience_tag": "child", "brevity": 20, "deference": 10, "defiance": 0, "warmth": 65 }
-      ],
-      "emotion_map": [
-        { "trigger": "anger", "voice_shift": "shorter sentences; drops contractions; flat affect" },
-        { "trigger": "grief", "voice_shift": "slows; long pauses; uses the dead person's name repeatedly" }
-      ],` : ''}
+      },` : ''}
       "emotion_drift": [
         { "emotion_type": "joy", "value": 35 },
         { "emotion_type": "sadness", "value": 20 },
@@ -397,10 +325,7 @@ Respond with this exact JSON structure:
         "target_name": "Other Character",
         "trust": 50, "threat": 10, "admiration": 30,
         "envy": 0, "suspicion": 15, "perception_care": 40
-      }],
-      "verbal_tics": [
-        { "phrase": "I reckon", "context": "uncertainty or softening a claim", "frequency_hint": "high" }
-      ]
+      }]
     }
   ]
 }
@@ -418,18 +343,9 @@ RULES:
 - relationships: only characters who interact in this chapter
 - desires: 3-7 ranked by importance
 - conditional_traits: 1-4 situation-triggered behaviors
-- voice_scales: all 11 integer 0-75 sliders describing how this character SOUNDS, not what they believe
-- style_rules: concrete voice-writing instructions. Each text field is 1 sentence. forbidden_patterns lists things this character would NEVER say/do in their voice. world_term_rules describes how they handle in-world nouns. Leave any field null only if the text gives no evidence.
-- profanity_level: one of none/mild/moderate/heavy based on observed dialogue. profanity_vocabulary: specific words used; empty array if none observed.
-- conflict_profile: how they HANDLE friction — strategy in prose, morality_axis (duty/care/honor/self-interest/etc.) in prose, truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest)
-- mottos: 2-5 distilled phrases that capture their core operating beliefs. These are stable, not chapter-scoped. Drawn from dialogue or behavior, not invented.
-- lexicon: 2-8 character-specific phrases or in-story terms they use distinctively, each with meaning
-- audience_mods: 2-5 entries for audience types (stranger/child/authority/ally/rival/loved_one/enemy) — how their voice shifts. Sliders 0-75.
-- emotion_map: 2-5 entries mapping an emotion trigger to a concrete voice_shift description
-- verbal_tics: recurring fillers, exclamations, greetings, catchphrases that aren't mottos (mottos are moral/operating beliefs; tics are linguistic habit). Empty array if this chapter has fewer than 3 dialogue samples for this character — DO NOT fabricate tics from one-off lines.
-- Base all scores and voice descriptions on observable behavior and dialogue in the text. Never fabricate.`;
+- Base all scores on observable behavior in the text`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 14000);
+  const responseText = await callClaude(systemPrompt, userMessage, 8000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();

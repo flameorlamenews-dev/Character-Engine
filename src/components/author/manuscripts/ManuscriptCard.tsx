@@ -1,7 +1,7 @@
 // @ts-nocheck
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Trash2, FileText, Sparkles, Eye, Loader2, BookOpen, AlertTriangle } from "lucide-react";
+import { Trash2, FileText, Sparkles, Eye, Loader2, BookOpen } from "lucide-react";
 import { format } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { toast } from "sonner";
@@ -16,7 +16,6 @@ interface ManuscriptCardProps {
     analysis_results: Record<string, unknown> | null;
     processing_progress: number | null;
     analysis_progress: number | null;
-    engine_errors?: Array<{ table: string; character: string; chapter?: number; message: string }> | null;
   };
   onDelete: (manuscriptOrId: any) => void;
   onAnalyze: (id: string) => void;
@@ -122,18 +121,6 @@ const ManuscriptCard = ({
               <Badge variant="secondary" className="gap-1">
                 <Sparkles className="h-3 w-3" />
                 Analyzed
-              </Badge>
-            )}
-            {!isProcessing && !isThisAnalyzing && manuscript.engine_errors && manuscript.engine_errors.length > 0 && (
-              <Badge
-                variant="destructive"
-                className="gap-1 cursor-help"
-                title={manuscript.engine_errors
-                  .map(e => `[${e.table}${e.character ? ` · ${e.character}` : ''}] ${e.message}`)
-                  .join('\n')}
-              >
-                <AlertTriangle className="h-3 w-3" />
-                {manuscript.engine_errors.length} engine error{manuscript.engine_errors.length === 1 ? '' : 's'}
               </Badge>
             )}
           </div>
