@@ -17,6 +17,15 @@ const CharacterComparisonView = ({
   // scales with domain: 3/10 ≈ 22/75 (~29% of range). Keep same proportional feel.
   const DIVERGENCE_THRESHOLD = 22;
 
+  // Clamp bar width to [0,100] % — DB has no CHECK constraint preventing
+  // out-of-range values; also guard against null/undefined/NaN from stringly
+  // typed columns which would render as "width:NaN%" (broken).
+  const pct = (v: unknown) => {
+    const n = Number(v);
+    if (!Number.isFinite(n)) return '0%';
+    return `${Math.max(0, Math.min(100, (n / 75) * 100))}%`;
+  };
+
   const compareSlider = (field, label, aiValue, authorValue) => {
     const difference = Math.abs(aiValue - authorValue);
 
@@ -34,7 +43,7 @@ const CharacterComparisonView = ({
             <span className="text-xs font-medium">{aiValue}/75</span>
           </div>
           <div className="h-2 bg-secondary rounded-full overflow-hidden">
-            <div className="h-full bg-primary transition-all" style={{ width: `${(aiValue / 75) * 100}%` }} />
+            <div className="h-full bg-primary transition-all" style={{ width: pct(aiValue) }} />
           </div>
         </div>
         <div>
@@ -43,7 +52,7 @@ const CharacterComparisonView = ({
             <span className="text-xs font-medium">{authorValue}/75</span>
           </div>
           <div className="h-2 bg-secondary rounded-full overflow-hidden">
-            <div className="h-full bg-primary transition-all" style={{ width: `${(authorValue / 75) * 100}%` }} />
+            <div className="h-full bg-primary transition-all" style={{ width: pct(authorValue) }} />
           </div>
         </div>
         {difference > DIVERGENCE_THRESHOLD && (

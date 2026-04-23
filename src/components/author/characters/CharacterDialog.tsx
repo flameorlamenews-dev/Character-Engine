@@ -164,6 +164,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
         voiceScales: {},
         styleRules: {},
         lexicon: [],
+        verbalTics: [],
         audienceMods: [],
         conflictProfile: {},
         emotionMap: [],
@@ -811,7 +812,10 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                               ['defiance', 'Defiance'],
                               ['warmth', 'Warmth'],
                             ] as const).map(([key, label]) => {
-                              const v = a[key] ?? 37;
+                              const raw = a[key] ?? 37;
+                              const n = Number(raw);
+                              const v = Number.isFinite(n) ? n : 37;
+                              const widthPct = `${Math.max(0, Math.min(100, (v / 75) * 100))}%`;
                               return (
                                 <div key={key}>
                                   <div className="flex justify-between text-xs mb-1">
@@ -819,7 +823,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                                     <span className="font-medium">{v}/75</span>
                                   </div>
                                   <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                                    <div className="h-full bg-primary" style={{ width: `${(v / 75) * 100}%` }} />
+                                    <div className="h-full bg-primary" style={{ width: widthPct }} />
                                   </div>
                                 </div>
                               );
@@ -870,20 +874,25 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                             <span className="text-muted-foreground">{aiData.conflictProfile.morality_axis}</span>
                           </div>
                         )}
-                        {aiData.conflictProfile.truth_bias != null && (
-                          <div>
-                            <div className="flex justify-between mb-1">
-                              <span className="font-medium">Truth bias</span>
-                              <span>{aiData.conflictProfile.truth_bias}/75</span>
+                        {aiData.conflictProfile.truth_bias != null && (() => {
+                          const tb = Number(aiData.conflictProfile.truth_bias);
+                          const safe = Number.isFinite(tb) ? tb : 37;
+                          const widthPct = `${Math.max(0, Math.min(100, (safe / 75) * 100))}%`;
+                          return (
+                            <div>
+                              <div className="flex justify-between mb-1">
+                                <span className="font-medium">Truth bias</span>
+                                <span>{safe}/75</span>
+                              </div>
+                              <div className="h-2 bg-secondary rounded-full overflow-hidden">
+                                <div className="h-full bg-primary" style={{ width: widthPct }} />
+                              </div>
+                              <div className="text-xs text-muted-foreground mt-1">
+                                0 = constant liar · 37 = situational · 75 = pathologically honest
+                              </div>
                             </div>
-                            <div className="h-2 bg-secondary rounded-full overflow-hidden">
-                              <div className="h-full bg-primary" style={{ width: `${(aiData.conflictProfile.truth_bias / 75) * 100}%` }} />
-                            </div>
-                            <div className="text-xs text-muted-foreground mt-1">
-                              0 = constant liar · 37 = situational · 75 = pathologically honest
-                            </div>
-                          </div>
-                        )}
+                          );
+                        })()}
                       </CardContent>
                     </Card>
                   )}

@@ -267,14 +267,21 @@ export const supabase = new Proxy(realSupabase, {
               await realSupabase.from('manuscripts').update({ analysis_progress: 60 }).eq('id', body.manuscriptId);
 
               const charIds = [...characterNameToId.values()];
+              // Per-character completeness check: if ANY character in this chapter is missing
+              // its foundation row, force foundation for the whole Pass 2 (so Claude re-emits
+              // for everyone, including characters that already have data — it's a small
+              // token overhead for consistency and simpler prompting). Without this check,
+              // a newly-appearing character gets default/missing voice data forever.
               const [psychExisting, voiceExisting] = charIds.length > 0
                 ? await Promise.all([
-                    realSupabase.from('temperament_grids').select('character_id').in('character_id', charIds).limit(1),
-                    realSupabase.from('character_voice_scales').select('character_id').in('character_id', charIds).limit(1),
+                    realSupabase.from('temperament_grids').select('character_id').in('character_id', charIds),
+                    realSupabase.from('character_voice_scales').select('character_id').in('character_id', charIds),
                   ])
                 : [{ data: [] }, { data: [] }];
-              const includePsychFoundation = !psychExisting.data || psychExisting.data.length === 0;
-              const includeVoiceFoundation = !voiceExisting.data || voiceExisting.data.length === 0;
+              const distinctPsychIds = new Set((psychExisting.data || []).map((r: any) => r.character_id));
+              const distinctVoiceIds = new Set((voiceExisting.data || []).map((r: any) => r.character_id));
+              const includePsychFoundation = distinctPsychIds.size < charIds.length;
+              const includeVoiceFoundation = distinctVoiceIds.size < charIds.length;
 
               let existingContext = '';
               if (!includePsychFoundation && charIds.length > 0) {
@@ -549,8 +556,9 @@ export const supabase = new Proxy(realSupabase, {
                       .map(t => ({ ...t, frequency_hint: coerceFrequencyHint(t.frequency_hint) }))
                       .filter(t => t.phrase && t.frequency_hint);
                     if (validTics.length > 0) {
+                      // Filter delete by source_type='ai' so future author-edited tics aren't wiped.
                       tasks.push(replace('character_verbal_tics',
-                        () => realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId),
+                        () => realSupabase.from('character_verbal_tics').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId).eq('source_type', 'ai'),
                         () => realSupabase.from('character_verbal_tics').insert(
                           validTics.map(t => ({
                             character_id: charId, manuscript_id: manuscriptId, source_type: 'ai',

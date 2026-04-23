@@ -292,7 +292,7 @@ export async function analyzeManuscriptEngine(
   includeVoiceFoundation: boolean,
   existingContext?: string
 ): Promise<{ characters: EngineCharacterData[] }> {
-  const systemPrompt = `You are a character psychometrics engine for fiction manuscripts. You read chapter text and produce numerical personality profiles. All scores use a 0-75 integer scale where: 0=none/absent, 12=very low, 25=low, 37=moderate/default, 50=high, 62=very high, 75=extreme/maximum. Respond in valid JSON only — no markdown, no code fences.`;
+  const systemPrompt = `You are a character psychometrics engine for fiction manuscripts. You read chapter text and produce numerical personality profiles. All scores use a 0-75 integer scale anchored as: 0=none/absent, 12=very low, 25=low, 37=midpoint (use ONLY when the text is genuinely silent on this trait), 50=high, 62=very high, 75=extreme/maximum. 37 is a scale anchor, not a "default" — real characters vary across the scale. Respond in valid JSON only — no markdown, no code fences.`;
 
   // Independent foundation flags: psych and voice layers are tracked separately
   // so re-analyses don't waste tokens re-emitting data that's already persisted.
@@ -307,40 +307,43 @@ ${includeVoiceFoundation
   ? 'Include FULL voice foundation (voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map).'
   : 'Voice foundation ALREADY EXISTS — DO NOT emit voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map unless this chapter shows a significant voice shift.'}`;
 
+  // NOTE: example values below are DELIBERATELY VARIED (not all 37) to prevent
+  // Claude from copying a placeholder default across every field. The schema rule
+  // below also explicitly forbids using 37 as a placeholder.
   const psychExample = includePsychFoundation ? `
       "temperament": {
-        "patience": 37, "impulsiveness": 37, "confrontational_tendency": 37,
-        "agreeableness": 37, "emotional_containment": 37, "risk_appetite": 37,
-        "curiosity": 37, "pride_sensitivity": 37, "shame_sensitivity": 37,
-        "empathy_baseline": 37, "dominance_vs_deference": 37, "adaptability_vs_rigidity": 37
+        "patience": 45, "impulsiveness": 25, "confrontational_tendency": 55,
+        "agreeableness": 30, "emotional_containment": 60, "risk_appetite": 40,
+        "curiosity": 65, "pride_sensitivity": 50, "shame_sensitivity": 35,
+        "empathy_baseline": 55, "dominance_vs_deference": 50, "adaptability_vs_rigidity": 45
       },
       "emotional_baseline": {
-        "joy": 37, "sadness": 37, "anger": 37, "fear": 37,
-        "disgust": 37, "surprise": 37, "trust": 37, "anticipation": 37
+        "joy": 40, "sadness": 30, "anger": 25, "fear": 35,
+        "disgust": 15, "surprise": 45, "trust": 55, "anticipation": 50
       },
       "moral_structure": {
-        "primary_driver": "fairness",
-        "moral_rigidity": 37, "guilt_sensitivity": 37, "justification_tendency": 37
+        "primary_driver": "loyalty",
+        "moral_rigidity": 55, "guilt_sensitivity": 65, "justification_tendency": 30
       },
       "general_traits": {
-        "stubbornness": 37, "warmth": 37, "skepticism": 37, "humor_style": 37,
-        "competitiveness": 37, "orderliness": 37, "compassion": 37, "reservedness": 37
+        "stubbornness": 60, "warmth": 45, "skepticism": 50, "humor_style": 25,
+        "competitiveness": 40, "orderliness": 35, "compassion": 55, "reservedness": 50
       },
-      "desires": [{ "name": "desire name", "score": 50, "rank": 1 }],
+      "desires": [{ "name": "protect my people", "score": 65, "rank": 1 }],
       "conditional_traits": [{
         "trait_label": "Trait Name", "trigger_condition": "when X happens",
         "target_scope": "who it applies to", "intensity_score": 60, "override_strength": 55
       }],
       "influence_sliders": {
-        "moral_override": 0, "impression_susceptibility": 37,
-        "mask_strength": 0, "personality_drift": 0
+        "moral_override": 10, "impression_susceptibility": 35,
+        "mask_strength": 45, "personality_drift": 15
       },` : '';
 
   const voiceExample = includeVoiceFoundation ? `
       "voice_scales": {
-        "formality": 37, "aggression": 37, "brashness": 37, "empathy": 37,
-        "fid_level": 37, "humor_dryness": 37, "internal_external": 37,
-        "introspection": 37, "masking": 37, "sophistication": 37, "subtext_density": 37
+        "formality": 40, "aggression": 30, "brashness": 45, "empathy": 55,
+        "fid_level": 25, "humor_dryness": 60, "internal_external": 35,
+        "introspection": 65, "masking": 50, "sophistication": 45, "subtext_density": 55
       },
       "style_rules": {
         "sentence_rhythm": "short, percussive clauses — average 8 words",
@@ -435,11 +438,14 @@ RULES:
 - audience_mods: 2-5 entries (stranger/child/authority/ally/rival/loved_one/enemy); all sliders 0-75
 - emotion_map: 2-5 trigger→voice_shift entries
 - verbal_tics: recurring fillers/exclamations/catchphrases (NOT mottos). frequency_hint MUST be literal "low", "med", or "high" (quoted string, NOT a number). Empty array if fewer than 3 dialogue samples — NEVER fabricate from one-off lines.
-- Base all scores and voice descriptions on observable behavior in the text. Never fabricate.`;
+- Base all scores and voice descriptions on observable behavior in the text. Never fabricate.
+- DIFFERENTIATION IS MANDATORY. Do NOT use 37 (or any single value) as a placeholder across every slider — uniform 37-everywhere makes characters indistinguishable and is INVALID output. Each integer field must reflect this specific character's observable behavior from the text and should VARY across the 0-75 range. Two characters legitimately having the same value on one trait is fine, but blanket defaults are rejected.
+- Voice prose fields (sentence_rhythm, cadence, lexical_range, cadence, etc.) must be SPECIFIC to this character — paraphrase actual dialogue patterns from the text. Generic descriptions like "moderate formality" are rejected; use observed evidence such as "clipped three-word sentences when stressed; full paragraphs when teaching".`;
 
-  // 32000 output tokens gives ample headroom for 10+ characters with full foundation;
-  // Sonnet 4 supports up to 64k. Previous 14k ceiling truncated multi-character responses.
-  const responseText = await callClaude(systemPrompt, userMessage, 32000);
+  // 20000 output tokens — content for 5-7 characters with full foundation is
+  // ~8-12k JSON tokens; 20k gives safe headroom. Trimmed from 32k to shorten
+  // Claude response latency. Do not raise without re-measuring real runs.
+  const responseText = await callClaude(systemPrompt, userMessage, 20000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
