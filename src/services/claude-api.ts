@@ -84,6 +84,8 @@ export async function analyzeManuscript(
     knowledgeAtChapter: string;
     notableActions: NotableAction[];
     readerTone: ReaderTone;
+    activeHoursLocal: string;
+    activityPatternNote: string;
   }>;
   glossaryTerms: Array<{ word: string; definition: string; wordType: string }>;
 }> {
@@ -139,7 +141,9 @@ Respond with this exact JSON structure:
         "wouldAnswerOpenly": "comma-separated topics this character would discuss openly with a reader",
         "wouldDeflectAbout": "comma-separated topics they'd redirect away from",
         "wouldLieAbout": "comma-separated topics they'd outright lie about"
-      }
+      },
+      "activeHoursLocal": "22:00-04:00 or all-day",
+      "activityPatternNote": "Textural detail on their circadian pattern, if any"
     }
   ],
   "glossaryTerms": [
@@ -158,6 +162,8 @@ RULES:
 - knowledgeAtChapter: SPOILER-SAFE — must reflect ONLY what the text has established through this chapter. Do not peek forward. Output the FULL cumulative state ("knows: ... suspects: ... unaware of: ..."), combining prior-chapter knowledge with what is newly revealed in this chapter. Each row is meant to be self-contained.
 - notableActions: ONLY one-off physical/behavioral actions unique to THIS chapter that give it its specific texture. Examples: "paces the library floor for an hour before bed," "burns the letter without reading past the first line." Do NOT include emotional-spike events (those belong elsewhere) and do NOT include recurring patterns seen across multiple chapters (those belong elsewhere).
 - readerTone: how this character would address a READER of their story (not another in-fiction character). Provide 3 distinct opening-line options in their voice, plus topics they would answer openly, deflect from, or lie about if a reader asked. This may evolve chapter to chapter as the character changes.
+- activeHoursLocal: 24h range string when the text specifies (e.g. "22:00-04:00", "06:00-18:00"), else exactly "all-day". Stable character trait — same across chapters unless the text explicitly shows a shift.
+- activityPatternNote: one short textural sentence ("nocturnal insomniac, sharpest after midnight"). Empty string if the text is silent. Never fabricate.
 - Glossary terms should only include invented/world-specific words, not common English`;
 
   const responseText = await callClaude(systemPrompt, userMessage, 12000);
@@ -231,6 +237,35 @@ export interface EngineCharacterData {
     moral_override: number; impression_susceptibility: number;
     mask_strength: number; personality_drift: number;
   };
+  voice_scales?: {
+    formality: number; aggression: number; brashness: number; empathy: number;
+    fid_level: number; humor_dryness: number; internal_external: number;
+    introspection: number; masking: number; sophistication: number;
+    subtext_density: number;
+  };
+  style_rules?: {
+    sentence_rhythm: string | null;
+    lexical_range: string | null;
+    cadence: string | null;
+    punctuation_habits: string | null;
+    emphasis_method: string | null;
+    forbidden_patterns: string | null;
+    world_term_rules: string | null;
+    profanity_level: 'none' | 'mild' | 'moderate' | 'heavy';
+    profanity_vocabulary: string[];
+  };
+  conflict_profile?: {
+    conflict_strategy: string | null;
+    morality_axis: string | null;
+    truth_bias: number;
+  };
+  mottos?: string[];
+  lexicon?: Array<{ phrase: string; meaning: string }>;
+  audience_mods?: Array<{
+    audience_tag: string; brevity: number;
+    deference: number; defiance: number; warmth: number;
+  }>;
+  emotion_map?: Array<{ trigger: string; voice_shift: string }>;
   emotion_drift: Array<{ emotion_type: string; value: number }>;
   surges: Array<{
     emotion_type: string; scene_position: number; peak_intensity: number;
@@ -243,6 +278,9 @@ export interface EngineCharacterData {
     target_name: string; trust: number; threat: number; admiration: number;
     envy: number; suspicion: number; perception_care: number;
   }>;
+  verbal_tics?: Array<{
+    phrase: string; context: string; frequency_hint: 'low' | 'med' | 'high';
+  }>;
 }
 
 export async function analyzeManuscriptEngine(
@@ -250,34 +288,27 @@ export async function analyzeManuscriptEngine(
   chapterNumber: number,
   chapterTitle: string,
   characterNames: string[],
-  isFirstAnalysis: boolean,
+  includePsychFoundation: boolean,
+  includeVoiceFoundation: boolean,
   existingContext?: string
 ): Promise<{ characters: EngineCharacterData[] }> {
   const systemPrompt = `You are a character psychometrics engine for fiction manuscripts. You read chapter text and produce numerical personality profiles. All scores use a 0-75 integer scale where: 0=none/absent, 12=very low, 25=low, 37=moderate/default, 50=high, 62=very high, 75=extreme/maximum. Respond in valid JSON only — no markdown, no code fences.`;
 
-  const foundationBlock = isFirstAnalysis ? `
-This is the FIRST chapter analysis — produce FULL personality foundations for each character.
-Include: temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders.` : `
-This is Chapter ${chapterNumber} (NOT the first). Engine data already exists.
-${existingContext ? `Existing personality context:\n${existingContext}` : ''}
-DO NOT include foundation fields (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders) UNLESS this chapter shows a significant personality shift. If included, values represent the UPDATED state.`;
+  // Independent foundation flags: psych and voice layers are tracked separately
+  // so re-analyses don't waste tokens re-emitting data that's already persisted.
+  const psychPresent = !includePsychFoundation && existingContext;
+  const foundationBlock = `
+${includePsychFoundation
+  ? 'Include FULL psychology foundation (temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders).'
+  : psychPresent
+    ? `Psychology foundation ALREADY EXISTS — DO NOT emit temperament, emotional_baseline, moral_structure, general_traits, desires, conditional_traits, influence_sliders unless this chapter shows a significant personality shift.\n${existingContext}`
+    : 'DO NOT emit psychology foundation fields.'}
+${includeVoiceFoundation
+  ? 'Include FULL voice foundation (voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map).'
+  : 'Voice foundation ALREADY EXISTS — DO NOT emit voice_scales, style_rules, conflict_profile, mottos, lexicon, audience_mods, emotion_map unless this chapter shows a significant voice shift.'}`;
 
-  const userMessage = `Produce Character Engine data for Chapter ${chapterNumber}: "${chapterTitle}".
-
-Characters to profile (use these exact names): ${characterNames.join(', ')}
-${foundationBlock}
-
-You MUST always include: emotion_drift, surges, and relationships for this chapter.
-
-CHARACTER CONTEXT FROM LITERARY ANALYSIS:
-${characterContext}
-
-Respond with this exact JSON structure:
-{
-  "characters": [
-    {
-      "name": "Exact Character Name",
-      ${isFirstAnalysis ? `"temperament": {
+  const psychExample = includePsychFoundation ? `
+      "temperament": {
         "patience": 37, "impulsiveness": 37, "confrontational_tendency": 37,
         "agreeableness": 37, "emotional_containment": 37, "risk_appetite": 37,
         "curiosity": 37, "pride_sensitivity": 37, "shame_sensitivity": 37,
@@ -303,7 +334,57 @@ Respond with this exact JSON structure:
       "influence_sliders": {
         "moral_override": 0, "impression_susceptibility": 37,
         "mask_strength": 0, "personality_drift": 0
-      },` : ''}
+      },` : '';
+
+  const voiceExample = includeVoiceFoundation ? `
+      "voice_scales": {
+        "formality": 37, "aggression": 37, "brashness": 37, "empathy": 37,
+        "fid_level": 37, "humor_dryness": 37, "internal_external": 37,
+        "introspection": 37, "masking": 37, "sophistication": 37, "subtext_density": 37
+      },
+      "style_rules": {
+        "sentence_rhythm": "short, percussive clauses — average 8 words",
+        "lexical_range": "blue-collar, concrete nouns, few latinate words",
+        "cadence": "drops into silence when angry; bursts when excited",
+        "punctuation_habits": "sparse commas; em-dashes for self-interruption",
+        "emphasis_method": "repetition, not italics",
+        "forbidden_patterns": "never uses 'moreover', 'thus', rhetorical questions",
+        "world_term_rules": "uses 'the Ring' not 'Nenya'",
+        "profanity_level": "mild",
+        "profanity_vocabulary": ["damn", "hell"]
+      },
+      "conflict_profile": {
+        "conflict_strategy": "confrontation via cold silence, rarely escalation",
+        "morality_axis": "duty-leaning but bends for loved ones",
+        "truth_bias": 55
+      },
+      "mottos": ["Never leave a friend behind.", "Hope is cheap; showing up is costly."],
+      "lexicon": [
+        { "phrase": "the old road", "meaning": "any path through familiar hardship" }
+      ],
+      "audience_mods": [
+        { "audience_tag": "stranger", "brevity": 55, "deference": 40, "defiance": 15, "warmth": 20 },
+        { "audience_tag": "child", "brevity": 20, "deference": 10, "defiance": 0, "warmth": 65 }
+      ],
+      "emotion_map": [
+        { "trigger": "anger", "voice_shift": "shorter sentences; drops contractions; flat affect" }
+      ],` : '';
+
+  const userMessage = `Produce Character Engine data for Chapter ${chapterNumber}: "${chapterTitle}".
+
+Characters to profile (use these EXACT names, and ONLY these — do not invent or include other characters): ${characterNames.join(', ')}
+${foundationBlock}
+
+You MUST always include: emotion_drift, surges, relationships, verbal_tics for this chapter.
+
+CHARACTER CONTEXT FROM LITERARY ANALYSIS:
+${characterContext}
+
+Respond with this exact JSON structure:
+{
+  "characters": [
+    {
+      "name": "Exact Character Name",${psychExample}${voiceExample}
       "emotion_drift": [
         { "emotion_type": "joy", "value": 35 },
         { "emotion_type": "sadness", "value": 20 },
@@ -325,7 +406,10 @@ Respond with this exact JSON structure:
         "target_name": "Other Character",
         "trust": 50, "threat": 10, "admiration": 30,
         "envy": 0, "suspicion": 15, "perception_care": 40
-      }]
+      }],
+      "verbal_tics": [
+        { "phrase": "I reckon", "context": "uncertainty or softening", "frequency_hint": "high" }
+      ]
     }
   ]
 }
@@ -343,9 +427,19 @@ RULES:
 - relationships: only characters who interact in this chapter
 - desires: 3-7 ranked by importance
 - conditional_traits: 1-4 situation-triggered behaviors
-- Base all scores on observable behavior in the text`;
+- voice_scales: 11 integer 0-75 sliders describing how this character SOUNDS
+- style_rules: one-sentence concrete voice-writing instructions per field. Use null when evidence is absent. profanity_level MUST be literal "none", "mild", "moderate", or "heavy" (quoted string, NOT a number, NOT "medium" or "strong"). profanity_vocabulary is an array of observed words (can be empty).
+- conflict_profile: how this character HANDLES friction. truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest).
+- mottos: 2-5 short phrases capturing core operating beliefs
+- lexicon: 2-8 character-specific phrases with meaning
+- audience_mods: 2-5 entries (stranger/child/authority/ally/rival/loved_one/enemy); all sliders 0-75
+- emotion_map: 2-5 trigger→voice_shift entries
+- verbal_tics: recurring fillers/exclamations/catchphrases (NOT mottos). frequency_hint MUST be literal "low", "med", or "high" (quoted string, NOT a number). Empty array if fewer than 3 dialogue samples — NEVER fabricate from one-off lines.
+- Base all scores and voice descriptions on observable behavior in the text. Never fabricate.`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  // 32000 output tokens gives ample headroom for 10+ characters with full foundation;
+  // Sonnet 4 supports up to 64k. Previous 14k ceiling truncated multi-character responses.
+  const responseText = await callClaude(systemPrompt, userMessage, 32000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
