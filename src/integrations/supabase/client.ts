@@ -108,20 +108,23 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 10 })
                 .eq('id', body.manuscriptId);
 
-              // Get existing characters for context
+              // Get existing characters for context. We keep this full set so the
+              // name→id map below can dedupe without a second round of queries.
               const { data: existingChars } = await realSupabase
                 .from('characters')
                 .select('id, name')
                 .eq('project_id', manuscript.project_id);
 
               const charNames = (existingChars || []).map((c: any) => c.name);
+              const existingByName = new Map<string, string>(
+                (existingChars || []).map((c: any) => [c.name.toLowerCase(), c.id])
+              );
 
-              // Fetch the most recent knowledge_at_chapter per existing character
-              // from chapters before the one being analyzed — so the analyzer can
-              // carry cumulative spoiler-safe knowledge forward.
-              const priorKnowledge: Record<string, string> = {};
+              // Prior-knowledge fetch: one row per existing character. Parallel to keep
+              // progress=10→50 phase short on high-latency DB connections.
               const currentChapter = manuscript.chapter_number || 0;
-              for (const existingChar of existingChars || []) {
+              const priorKnowledge: Record<string, string> = {};
+              await Promise.all((existingChars || []).map(async (existingChar: any) => {
                 const { data: priorEntry } = await realSupabase
                   .from('character_timeline_entries')
                   .select('knowledge_at_chapter, chapter_number')
@@ -134,7 +137,7 @@ export const supabase = new Proxy(realSupabase, {
                 if (priorEntry?.knowledge_at_chapter) {
                   priorKnowledge[existingChar.name] = priorEntry.knowledge_at_chapter;
                 }
-              }
+              }));
 
               // Call Claude to analyze
               const analysis = await analyzeManuscript(
@@ -151,24 +154,18 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 50 })
                 .eq('id', body.manuscriptId);
 
-              // Save characters to database and build name→id map for engine
+              // Save characters + timeline entries + traits in parallel across characters.
+              // Each character's sub-writes (timeline + all traits) also race in parallel.
+              // Uses the existingByName map instead of per-character check-exists queries.
               const characterNameToId = new Map<string, string>();
-              for (const char of analysis.characters) {
-                // Check if character already exists
-                const { data: existing } = await realSupabase
-                  .from('characters')
-                  .select('id')
-                  .eq('name', char.name)
-                  .eq('project_id', manuscript.project_id)
-                  .maybeSingle();
-
-                let characterId: string;
-                // active_hours_local is stable character trait — set on create only.
-                // activity_pattern_note can refine on update.
+              await Promise.all(analysis.characters.map(async (char) => {
                 const activeHoursLocal = char.activeHoursLocal || 'all-day';
                 const activityPatternNote = char.activityPatternNote || '';
-                if (existing) {
-                  characterId = existing.id;
+                const existingId = existingByName.get(char.name.toLowerCase());
+
+                let characterId: string;
+                if (existingId) {
+                  characterId = existingId;
                   await realSupabase
                     .from('characters')
                     .update({
@@ -196,47 +193,47 @@ export const supabase = new Proxy(realSupabase, {
                   characterId = newChar?.id;
                 }
 
-                if (characterId) {
-                  characterNameToId.set(char.name, characterId);
-                  // Save timeline entry
-                  await realSupabase
-                    .from('character_timeline_entries')
-                    .insert({
-                      character_id: characterId,
-                      manuscript_id: body.manuscriptId,
-                      chapter_number: manuscript.chapter_number,
-                      user_id: body.userId || manuscript.user_id,
-                      emotional_state: char.emotionalState,
-                      traits: char.traits,
-                      dialogue_patterns: char.dialoguePatterns,
-                      relationships: char.relationships,
-                      analysis_text: char.speechPattern || null,
-                      views_of_others: char.viewsOfOthers || null,
-                      views_by_others: char.viewsByOthers || null,
-                      internal_dialogue: char.internalDialogue || [],
-                      external_dialogue: char.externalDialogue || [],
-                      knowledge_at_chapter: char.knowledgeAtChapter || null,
-                      notable_actions: char.notableActions || null,
-                      reader_tone: char.readerTone || null,
-                      source_type: 'ai',
-                    });
+                if (!characterId) return;
+                characterNameToId.set(char.name, characterId);
 
-                  // Save traits
-                  for (const trait of char.traits) {
-                    await realSupabase
-                      .from('character_traits')
-                      .insert({
-                        character_id: characterId,
-                        manuscript_id: body.manuscriptId,
-                        trait,
-                        source_type: 'ai',
-                      });
-                  }
-                }
-              }
+                // Timeline entry + all trait inserts for this character — fire in parallel.
+                // Traits table has no unique constraint so bulk-inserting the array is
+                // one round-trip instead of N.
+                await Promise.all([
+                  realSupabase.from('character_timeline_entries').insert({
+                    character_id: characterId,
+                    manuscript_id: body.manuscriptId,
+                    chapter_number: manuscript.chapter_number,
+                    user_id: body.userId || manuscript.user_id,
+                    emotional_state: char.emotionalState,
+                    traits: char.traits,
+                    dialogue_patterns: char.dialoguePatterns,
+                    relationships: char.relationships,
+                    analysis_text: char.speechPattern || null,
+                    views_of_others: char.viewsOfOthers || null,
+                    views_by_others: char.viewsByOthers || null,
+                    internal_dialogue: char.internalDialogue || [],
+                    external_dialogue: char.externalDialogue || [],
+                    knowledge_at_chapter: char.knowledgeAtChapter || null,
+                    notable_actions: char.notableActions || null,
+                    reader_tone: char.readerTone || null,
+                    source_type: 'ai',
+                  }),
+                  char.traits.length > 0
+                    ? realSupabase.from('character_traits').insert(
+                        char.traits.map(trait => ({
+                          character_id: characterId,
+                          manuscript_id: body.manuscriptId,
+                          trait,
+                          source_type: 'ai',
+                        }))
+                      )
+                    : Promise.resolve(),
+                ]);
+              }));
 
-              // Save glossary terms
-              for (const term of analysis.glossaryTerms) {
+              // Glossary terms in parallel. Each check-exists + conditional insert races.
+              await Promise.all(analysis.glossaryTerms.map(async (term) => {
                 const { data: existingTerm } = await realSupabase
                   .from('world_glossary')
                   .select('id')
@@ -257,7 +254,7 @@ export const supabase = new Proxy(realSupabase, {
                       source_type: 'ai',
                     });
                 }
-              }
+              }));
 
               // ── Engine Analysis (Pass 2) ──────────────
               // Scope: ONLY the characters returned by Pass 1 (i.e. characters who actually
