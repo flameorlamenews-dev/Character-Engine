@@ -14,26 +14,44 @@ export function hasClaudeKey(): boolean {
   return !!CLAUDE_API_KEY;
 }
 
-async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096): Promise<string> {
+async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096, timeoutMs: number = 240000): Promise<string> {
   if (!CLAUDE_API_KEY) {
     throw new Error('Claude API key not configured. Add VITE_CLAUDE_API_KEY to your .env file.');
   }
 
-  const response = await fetch(CLAUDE_API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': CLAUDE_API_KEY,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: maxTokens,
-      system: systemPrompt,
-      messages: [{ role: 'user', content: userMessage }],
-    }),
-  });
+  // AbortController guard: if the Claude response hangs past timeoutMs, throw a clear
+  // error so the caller (writer) can capture it to engine_errors instead of blocking
+  // the UI at 60% forever. Default 4 min covers worst-case Sonnet generation; override
+  // per-call if a specific analysis is expected to take longer.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+
+  let response: Response;
+  try {
+    response = await fetch(CLAUDE_API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': CLAUDE_API_KEY,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true',
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: maxTokens,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userMessage }],
+      }),
+      signal: controller.signal,
+    });
+  } catch (err: any) {
+    if (err?.name === 'AbortError') {
+      throw new Error(`Claude API timeout after ${timeoutMs / 1000}s. Try reducing prompt size or retry.`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!response.ok) {
     const error = await response.json().catch(() => ({ error: { message: response.statusText } }));
@@ -420,35 +438,33 @@ Respond with this exact JSON structure:
 }
 
 RULES:
-- All numeric values must be integers 0-75 (except scene_position, decay_rate, duration which are 0.0-1.0, and stakes/immediacy/certainty which are 0-3)
-- primary_driver: protection, fairness, loyalty, autonomy, or order
-- emotion_type: joy, sadness, anger, fear, disgust, surprise, trust, or anticipation
-- event_type: threat, harm, loss, rejection, insult, betrayal, injustice, constraint, failure, obstacle, success, reward, connection, separation, humiliation, danger_cue, disgust_cue, surprise_reveal, reminder_cue, or moral_cue
-- trigger_subject: self, family, friend, rival, stranger, authority, group, principle, or object
-- trigger_source: self_caused, ally_caused, enemy_caused, authority_caused, or world_caused
-- trigger_domain: safety, belonging, status, autonomy, competence, morality, attachment, or future_security
-- emotion_drift: one entry per emotion (8 total) — where each emotion RESTS at end of this chapter
-- surges: only significant emotional peaks (1-5 per character per chapter, not every moment)
-- relationships: only characters who interact in this chapter
-- desires: 3-7 ranked by importance
-- conditional_traits: 1-4 situation-triggered behaviors
-- voice_scales: 11 integer 0-75 sliders describing how this character SOUNDS
-- style_rules: one-sentence concrete voice-writing instructions per field. Use null when evidence is absent. profanity_level MUST be literal "none", "mild", "moderate", or "heavy" (quoted string, NOT a number, NOT "medium" or "strong"). profanity_vocabulary: array of the ACTUAL observed words in their original form (e.g. ["damn", "shit", "fuck"]). Do NOT sanitize or self-censor — if a character swears, list what they actually said. If safety policies would block a literal word, still emit profanity_level accurately and include a neutral placeholder (e.g. "[expletive-F]") rather than omitting — the author needs to see frequency signal.
-- conflict_profile: how this character HANDLES friction. conflict_strategy MUST include AT LEAST ONE specific method (e.g. "escalates via public shaming", "de-escalates with humor", "cold silence then bail", "coalition-building"). Generic phrases like "avoids confrontation" are REJECTED — describe the actual tactic observed. morality_axis is concrete ("duty over family", "loyalty to the crew above law"). truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest).
-- mottos: 2-5 short phrases capturing core operating BELIEFS (values, moral principles). Mottos are stable across chapters. Spoken infrequently — once in a scene of high stakes. If a phrase is used as linguistic habit (3+ times per scene), it's a verbal_tic, not a motto.
-- lexicon: 2-8 character-specific phrases/in-world terms they use DISTINCTIVELY, each with meaning. Lexicon items recur 1-2 times per chapter and are unique to this character. If the same phrase is in mottos, do NOT duplicate here.
-- audience_mods: ONLY emit entries for audience types this character actually interacts with in this chapter (or has clearly established pattern for, from prior chapters if context provided). Do NOT fabricate audience behavior for untested types. Minimum 1 entry if any dialogue exists; max 5. Audience tags: stranger, child, authority, ally, rival, loved_one, enemy. All sliders 0-75.
-- emotion_map: 2-5 entries. trigger MUST be a specific circumstance or situation, NOT a bare emotion. REJECTED: "anger", "stress", "emotional situations". ACCEPTED: "when accused of lying", "when interrupted mid-sentence", "when a subordinate makes a mistake". voice_shift describes the OBSERVABLE change in delivery: sentence length, volume cues in prose, vocabulary shift, pacing.
-- verbal_tics: recurring fillers/exclamations/catchphrases unique to THIS character. Do NOT emit generic English fillers ("um", "like", "you know", "well", "so") unless one is obsessively overused (appearing in 5+ separate dialogue lines within this chapter). Prefer character-distinctive tics: "faith", "blast it", "as I live and breathe", "by the—". frequency_hint MUST be literal "low", "med", or "high" (quoted string, NOT a number). Empty array if fewer than 3 dialogue samples — NEVER fabricate from one-off lines.
-- CATEGORY DISCIPLINE: Mottos (beliefs, rare) ≠ Lexicon (distinctive phrases, regular) ≠ Verbal Tics (linguistic habit, frequent). A phrase belongs to ONE category only. If uncertain, assign by frequency within THIS chapter: 3+ occurrences → tic, 1-2 occurrences → lexicon, single high-stakes appearance expressing a belief → motto.
-- Base all scores and voice descriptions on observable behavior in the text. Never fabricate.
-- DIFFERENTIATION IS MANDATORY. Do NOT use 37 (or any single value) as a placeholder across every slider — uniform 37-everywhere makes characters indistinguishable and is INVALID output. Each integer field must reflect this specific character's observable behavior from the text and should VARY across the 0-75 range. Two characters legitimately having the same value on one trait is fine, but blanket defaults are rejected.
-- Voice prose fields (sentence_rhythm, cadence, lexical_range, etc.) must be SPECIFIC to this character — paraphrase actual dialogue patterns from the text. Generic descriptions like "moderate formality" are rejected; use observed evidence such as "clipped three-word sentences when stressed; full paragraphs when teaching".`;
+- Integers 0-75 unless noted. scene_position/decay_rate/duration are 0.0-1.0. stakes/immediacy/certainty are 0-3.
+- primary_driver: protection | fairness | loyalty | autonomy | order
+- emotion_type: joy | sadness | anger | fear | disgust | surprise | trust | anticipation
+- event_type: threat, harm, loss, rejection, insult, betrayal, injustice, constraint, failure, obstacle, success, reward, connection, separation, humiliation, danger_cue, disgust_cue, surprise_reveal, reminder_cue, moral_cue
+- trigger_subject: self | family | friend | rival | stranger | authority | group | principle | object
+- trigger_source: self_caused | ally_caused | enemy_caused | authority_caused | world_caused
+- trigger_domain: safety | belonging | status | autonomy | competence | morality | attachment | future_security
+- emotion_drift: one entry per emotion (8 total), resting value at end of chapter.
+- surges: 1-5 per character per chapter, only significant peaks.
+- relationships: only characters who interact in this chapter.
+- desires: 3-7 ranked; conditional_traits: 1-4 situation-triggered.
+- voice_scales: 11 integer 0-75 sliders. DIFFERENTIATE — do not emit 37 across every slider.
+- style_rules: concrete observed patterns per field (null if no evidence). profanity_level MUST be literal "none"|"mild"|"moderate"|"heavy" (quoted string, not number, not "medium"/"strong"). profanity_vocabulary: array of actually-observed words (can include real profanity — author needs accurate signal; if safety-blocked use "[expletive-F]" placeholder).
+- conflict_profile.conflict_strategy: include a specific METHOD ("escalates via public shaming", "cold silence then bail") — reject generic phrases like "avoids confrontation". morality_axis: concrete ("loyalty to the crew above law"). truth_bias 0-75.
+- mottos: 2-5 short phrases of CORE BELIEFS (rare, high-stakes use).
+- lexicon: 2-8 distinctive phrases/in-world terms (1-2x per chapter, character-unique). Do NOT duplicate mottos.
+- audience_mods: ONLY audiences this character actually addresses in this chapter; 1-5 entries; tags from {stranger, child, authority, ally, rival, loved_one, enemy}.
+- emotion_map: 2-5 entries. trigger MUST be a specific circumstance ("when accused of lying"), NOT a bare emotion ("anger"/"stress"). voice_shift describes observable delivery changes.
+- verbal_tics: character-distinctive fillers/catchphrases. EXCLUDE generic fillers ("um", "like", "you know") unless obsessively used (5+ dialogue lines per chapter). frequency_hint literal "low"|"med"|"high". Empty array if <3 dialogue samples — never fabricate.
+- CATEGORY: mottos (beliefs, rare) ≠ lexicon (distinctive phrases, regular) ≠ tics (linguistic habit, frequent). One phrase → one category.
+- All scores and prose must reflect observed text. Never fabricate.`;
 
-  // 20000 output tokens — content for 5-7 characters with full foundation is
-  // ~8-12k JSON tokens; 20k gives safe headroom. Trimmed from 32k to shorten
-  // Claude response latency. Do not raise without re-measuring real runs.
-  const responseText = await callClaude(systemPrompt, userMessage, 20000);
+  // 15000 output tokens — actual content for 5-7 characters with full foundation
+  // is ~8-10k JSON tokens. Shrinking from 20k to 15k caps upper-bound generation
+  // time (~50 tok/s) from ~400s to ~300s and usually finishes well before.
+  // 4-minute AbortController timeout in callClaude catches hangs past that.
+  const responseText = await callClaude(systemPrompt, userMessage, 15000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
