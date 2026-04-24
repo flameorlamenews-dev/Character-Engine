@@ -292,81 +292,97 @@ const ManuscriptsView = ({
   const handleDeleteConfirm = async (deleteAllData: boolean) => {
     if (!manuscriptToDelete) return;
 
+    const mid = manuscriptToDelete.id;
+    const chNum = manuscriptToDelete.chapter_number || 0;
+
     try {
-      if (deleteAllData) {
-        // Delete all associated data (characters, glossary, etc.)
-        const { error: charError } = await supabase
-          .from("characters")
-          .delete()
-          .eq("manuscript_id", manuscriptToDelete.id);
+      // Every per-chapter table has a FK to manuscripts(id) with default
+      // RESTRICT semantics, so the manuscript delete fails unless those rows
+      // are either removed or detached first. character_timeline_entries and
+      // analysis_queue are NOT NULL FKs — those silent blockers made delete
+      // appear to do nothing before the Toaster was mounted to surface the
+      // error. character_verbal_tics has ON DELETE CASCADE but we delete it
+      // explicitly for clarity.
+      //
+      // Per-chapter / chapter-specific rows are always wiped (they have no
+      // meaning without their chapter). Foundation tables (voice_scales,
+      // style_rules, conflict_profile) are character-global one-row-per-char
+      // — on "Keep Data" we just NULL their manuscript_id so the character's
+      // voice/style/conflict foundation survives the chapter deletion. On
+      // "Delete All Data" we delete those rows too.
+      const perChapterDeletes = [
+        supabase.from("character_timeline_entries").delete().eq("manuscript_id", mid),
+        supabase.from("character_traits").delete().eq("manuscript_id", mid),
+        supabase.from("character_mottos").delete().eq("manuscript_id", mid),
+        supabase.from("character_lexicon").delete().eq("manuscript_id", mid),
+        supabase.from("character_audience_mods").delete().eq("manuscript_id", mid),
+        supabase.from("character_emotion_map").delete().eq("manuscript_id", mid),
+        supabase.from("character_voice_feedback").delete().eq("manuscript_id", mid),
+        supabase.from("character_verbal_tics").delete().eq("manuscript_id", mid),
+        supabase.from("analysis_queue").delete().eq("manuscript_id", mid),
+      ];
 
-        if (charError) throw charError;
+      const foundationOps = deleteAllData
+        ? [
+            supabase.from("character_voice_scales").delete().eq("manuscript_id", mid),
+            supabase.from("character_style_rules").delete().eq("manuscript_id", mid),
+            supabase.from("character_conflict_profile").delete().eq("manuscript_id", mid),
+          ]
+        : [
+            supabase.from("character_voice_scales").update({ manuscript_id: null } as any).eq("manuscript_id", mid),
+            supabase.from("character_style_rules").update({ manuscript_id: null } as any).eq("manuscript_id", mid),
+            supabase.from("character_conflict_profile").update({ manuscript_id: null } as any).eq("manuscript_id", mid),
+          ];
 
-        // Delete character-related data
-        await supabase.from("character_traits").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_voice_scales").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_lexicon").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_mottos").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_emotion_map").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_audience_mods").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_conflict_profile").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_style_rules").delete().eq("manuscript_id", manuscriptToDelete.id);
-        await supabase.from("character_voice_feedback").delete().eq("manuscript_id", manuscriptToDelete.id);
-        
-        // Handle locked glossary entries - only update appears_in, don't delete
-        const { data: lockedGlossary } = await supabase
-          .from("world_glossary")
-          .select("id, appears_in")
-          .eq("manuscript_id", manuscriptToDelete.id)
-          .eq("locked", true);
-        
-        if (lockedGlossary) {
-          for (const entry of lockedGlossary) {
+      await Promise.all([...perChapterDeletes, ...foundationOps]);
+
+      // Glossary: drop this chapter from `appears_in` for every term. Then,
+      // on Delete All Data, also remove unlocked terms entirely.
+      const { data: glossary } = await supabase
+        .from("world_glossary")
+        .select("id, appears_in, locked")
+        .eq("manuscript_id", mid);
+
+      if (glossary && glossary.length > 0) {
+        await Promise.all(
+          glossary.map((entry: any) => {
             const updatedAppears = (entry.appears_in || []).filter(
-              (chNum: number) => chNum !== (manuscriptToDelete.chapter_number || 0)
+              (n: number) => n !== chNum
             );
-            await supabase
-              .from("world_glossary")
-              .update({ appears_in: updatedAppears })
-              .eq("id", entry.id);
-          }
-        }
-        
-        // Delete only unlocked glossary entries
-        await supabase.from("world_glossary").delete().eq("manuscript_id", manuscriptToDelete.id).eq("locked", false);
-      } else {
-        // Even if not deleting data, update appears_in for all glossary entries
-        const { data: allGlossary } = await supabase
-          .from("world_glossary")
-          .select("id, appears_in")
-          .eq("manuscript_id", manuscriptToDelete.id);
-        
-        if (allGlossary) {
-          for (const entry of allGlossary) {
-            const updatedAppears = (entry.appears_in || []).filter(
-              (chNum: number) => chNum !== (manuscriptToDelete.chapter_number || 0)
-            );
-            await supabase
-              .from("world_glossary")
-              .update({ appears_in: updatedAppears })
-              .eq("id", entry.id);
-          }
-        }
+            if (entry.locked || !deleteAllData) {
+              return supabase
+                .from("world_glossary")
+                .update({ appears_in: updatedAppears })
+                .eq("id", entry.id);
+            }
+            return supabase.from("world_glossary").delete().eq("id", entry.id);
+          })
+        );
       }
 
-      // Always delete the manuscript itself
-      const { error } = await supabase
-        .from("manuscripts")
-        .delete()
-        .eq("id", manuscriptToDelete.id);
+      // "Delete All Data" also wipes characters whose manuscript_id matches.
+      // The current writer doesn't set manuscript_id on characters (they're
+      // project-scoped by name), so this is a no-op in practice today but
+      // future-proofs the path if that scoping ever tightens.
+      if (deleteAllData) {
+        await supabase.from("characters").delete().eq("manuscript_id", mid);
+      }
 
+      const { error } = await supabase.from("manuscripts").delete().eq("id", mid);
       if (error) throw error;
+
+      // If the analysis dialog was open on this manuscript, close it — the
+      // row no longer exists and continuing to render its data is misleading.
+      if (selectedManuscript?.id === mid) {
+        setShowAnalysis(false);
+        setSelectedManuscript(null);
+      }
 
       toast({
         title: "Chapter deleted",
         description: deleteAllData
-          ? "The chapter and all associated data have been removed."
-          : "The chapter has been removed. Extracted data preserved.",
+          ? "The chapter and all chapter-scoped data were removed."
+          : "The chapter was removed. Character profiles, voice foundation, and glossary preserved.",
       });
 
       fetchManuscripts();
@@ -376,6 +392,9 @@ const ManuscriptsView = ({
         description: error.message,
         variant: "destructive",
       });
+      // Refresh anyway so the UI reflects whatever partial deletion landed
+      // — otherwise the user sees a misleadingly intact manuscript card.
+      fetchManuscripts();
     }
   };
 
