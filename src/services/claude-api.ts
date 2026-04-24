@@ -10,6 +10,16 @@
 const CLAUDE_API_KEY = import.meta.env.VITE_CLAUDE_API_KEY;
 const CLAUDE_API_URL = 'https://api.anthropic.com/v1/messages';
 
+// Surface a missing key at module load so the issue is visible in DevTools
+// before the user clicks Analyze. Without this, missing-key only shows as a
+// toast after-the-fact — which is easy to miss and masquerades as "0 tokens
+// used in X days" on the Anthropic dashboard.
+if (!CLAUDE_API_KEY) {
+  console.warn(
+    '[Character Engine] VITE_CLAUDE_API_KEY is not set — manuscript analysis will fail silently with "Claude API key not configured". Add it to .env (local) or your hosting dashboard (prod) and rebuild.'
+  );
+}
+
 export function hasClaudeKey(): boolean {
   return !!CLAUDE_API_KEY;
 }
@@ -37,7 +47,11 @@ async function callClaude(systemPrompt: string, userMessage: string, maxTokens: 
         'anthropic-dangerous-direct-browser-access': 'true',
       },
       body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
+        // Sonnet 4.6 — current stable tier for Character Engine analysis.
+        // Older IDs like claude-sonnet-4-20250514 may return 404 from the API
+        // after deprecation windows close, which would also produce the
+        // "zero Claude tokens used" symptom.
+        model: 'claude-sonnet-4-6',
         max_tokens: maxTokens,
         system: systemPrompt,
         messages: [{ role: 'user', content: userMessage }],

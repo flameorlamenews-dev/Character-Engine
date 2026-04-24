@@ -5,6 +5,7 @@ import { ProducerLayout } from './layouts/ProducerLayout';
 import { PlayerLayout } from './layouts/PlayerLayout';
 import { AuthorLayout } from './layouts/AuthorLayout';
 import { LoginPage } from './components/auth/LoginPage';
+import { Toaster } from './components/ui/sonner';
 import { supabase } from '@/integrations/supabase/client';
 
 function AuthSync({ authSession }: { authSession: any }) {
@@ -69,25 +70,30 @@ function App() {
     };
   }, []);
 
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-ce-body flex items-center justify-center">
-        <div className="text-ce-text-muted text-sm animate-pulse">Loading...</div>
-      </div>
-    );
-  }
-
-  if (!authSession) {
-    return <LoginPage />;
-  }
-
-  return (
+  // Toaster mounted ONCE outside the auth branches so it isn't unmounted on
+  // loading→login→authed transitions. Without this mount at all, every
+  // toast() call silently no-ops — which is what hid "Claude API key not
+  // configured" errors on Analyze.
+  const body = loading ? (
+    <div className="min-h-screen bg-ce-body flex items-center justify-center">
+      <div className="text-ce-text-muted text-sm animate-pulse">Loading...</div>
+    </div>
+  ) : !authSession ? (
+    <LoginPage />
+  ) : (
     <SessionProvider>
       <AuthSync authSession={authSession} />
       <InspectorProvider>
         <AppContent />
       </InspectorProvider>
     </SessionProvider>
+  );
+
+  return (
+    <>
+      {body}
+      <Toaster />
+    </>
   );
 }
 

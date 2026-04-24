@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { Plus, Loader2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { hasClaudeKey } from "@/services/claude-api";
 import { useToast } from "@/hooks/use-toast";
 import { toast as sonnerToast } from "sonner";
 import ManuscriptCard from "./manuscripts/ManuscriptCard";
@@ -389,6 +390,15 @@ const ManuscriptsView = ({
             </p>
           </div>
         </div>
+        {!hasClaudeKey() && (
+          <div className="rounded-md border border-red-500/40 bg-red-950/30 px-4 py-3 text-sm text-red-200">
+            <strong className="font-semibold">Analysis is disabled:</strong>{" "}
+            <span className="text-red-300">
+              VITE_CLAUDE_API_KEY is not set, so clicking Analyze will fail and consume zero Claude tokens. Add the key to{" "}
+              <code className="rounded bg-red-950/60 px-1">.env</code> (local) or your hosting environment variables, then redeploy.
+            </span>
+          </div>
+        )}
         <div className="flex justify-end gap-2">
           {(() => {
             const isAnyAnalyzing = manuscripts.some(

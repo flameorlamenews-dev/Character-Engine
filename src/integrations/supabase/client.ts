@@ -155,6 +155,31 @@ export const supabase = new Proxy(realSupabase, {
                 .update({ analysis_progress: 50 })
                 .eq('id', body.manuscriptId);
 
+              // Wipe prior AI rows for THIS manuscript across per-chapter tables,
+              // BEFORE writing the new analysis. Two failure modes this fixes:
+              //   1) Duplicate accumulation when re-analysing the same chapter
+              //      (pure .insert() used to append, not replace).
+              //   2) Stale rows for characters that dropped between analyses
+              //      (a per-character pre-delete only covers characters Claude
+              //      still returns; dropped characters kept their Pass 1 data).
+              // Runs AFTER Pass 1 Claude succeeds so a failed Claude call doesn't
+              // wipe the prior good analysis. Scoped to source_type='ai' so
+              // author-edited rows survive.
+              // NOT wiped here (by design): foundation tables — they hold
+              // one-row-per-character global state that must persist across
+              // chapters. relationships / emotion_drift / surges are also
+              // excluded — they either lack manuscript_id (schema debt) or are
+              // keyed by chapter_index (unique within a project).
+              await Promise.all([
+                realSupabase.from('character_timeline_entries').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_traits').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_mottos').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_lexicon').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_audience_mods').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_emotion_map').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+                realSupabase.from('character_verbal_tics').delete().eq('manuscript_id', body.manuscriptId).eq('source_type', 'ai'),
+              ]);
+
               // Save characters + timeline entries + traits in parallel across characters.
               // Each character's sub-writes (timeline + all traits) also race in parallel.
               // Uses the existingByName map instead of per-character check-exists queries.
@@ -197,9 +222,9 @@ export const supabase = new Proxy(realSupabase, {
                 if (!characterId) return;
                 characterNameToId.set(char.name, characterId);
 
-                // Timeline entry + all trait inserts for this character — fire in parallel.
-                // Traits table has no unique constraint so bulk-inserting the array is
-                // one round-trip instead of N.
+                // Re-analysis idempotency for timeline_entries + traits is
+                // already handled by the manuscript-level wipe above (pre-Pass-1
+                // writes). Just insert here.
                 await Promise.all([
                   realSupabase.from('character_timeline_entries').insert({
                     character_id: characterId,
@@ -512,9 +537,13 @@ export const supabase = new Proxy(realSupabase, {
                         { onConflict: 'character_id' }
                       )));
                   }
+                    // Per-chapter writes: scope delete by manuscript_id so re-analysing
+                  // chapter N only replaces its own rows — prior/later chapters of the
+                  // same character keep their data. Before this scope, a delete by
+                  // character_id alone wiped every chapter's mottos/lexicon/etc.
                   if (engineChar.mottos && engineChar.mottos.length > 0) {
                     tasks.push(replace('character_mottos',
-                      () => realSupabase.from('character_mottos').delete().eq('character_id', charId).eq('source_type', 'ai'),
+                      () => realSupabase.from('character_mottos').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId).eq('source_type', 'ai'),
                       () => realSupabase.from('character_mottos').insert(
                         engineChar.mottos!.map(m => ({
                           character_id: charId, manuscript_id: manuscriptId, motto: m, source_type: 'ai',
@@ -524,7 +553,7 @@ export const supabase = new Proxy(realSupabase, {
                   }
                   if (engineChar.lexicon && engineChar.lexicon.length > 0) {
                     tasks.push(replace('character_lexicon',
-                      () => realSupabase.from('character_lexicon').delete().eq('character_id', charId).eq('source_type', 'ai'),
+                      () => realSupabase.from('character_lexicon').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId).eq('source_type', 'ai'),
                       () => realSupabase.from('character_lexicon').insert(
                         engineChar.lexicon!.map(l => ({
                           character_id: charId, manuscript_id: manuscriptId, phrase: l.phrase, meaning: l.meaning, source_type: 'ai',
@@ -534,7 +563,7 @@ export const supabase = new Proxy(realSupabase, {
                   }
                   if (engineChar.audience_mods && engineChar.audience_mods.length > 0) {
                     tasks.push(replace('character_audience_mods',
-                      () => realSupabase.from('character_audience_mods').delete().eq('character_id', charId).eq('source_type', 'ai'),
+                      () => realSupabase.from('character_audience_mods').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId).eq('source_type', 'ai'),
                       () => realSupabase.from('character_audience_mods').insert(
                         engineChar.audience_mods!.map(a => ({
                           character_id: charId, manuscript_id: manuscriptId, source_type: 'ai',
@@ -546,7 +575,7 @@ export const supabase = new Proxy(realSupabase, {
                   }
                   if (engineChar.emotion_map && engineChar.emotion_map.length > 0) {
                     tasks.push(replace('character_emotion_map',
-                      () => realSupabase.from('character_emotion_map').delete().eq('character_id', charId).eq('source_type', 'ai'),
+                      () => realSupabase.from('character_emotion_map').delete().eq('character_id', charId).eq('manuscript_id', manuscriptId).eq('source_type', 'ai'),
                       () => realSupabase.from('character_emotion_map').insert(
                         engineChar.emotion_map!.map(e => ({
                           character_id: charId, manuscript_id: manuscriptId, source_type: 'ai',
