@@ -170,7 +170,7 @@ Respond with this exact JSON structure:
 }
 
 RULES:
-- Only include characters who have dialogue or significant actions in this chapter
+- ONLY include characters who APPEAR in THIS chapter's text. A character qualifies if they EITHER have at least one quoted line of dialogue in this chapter OR are the subject of a directly performed action verb in this chapter (e.g. "Praew opened the door"). Characters merely MENTIONED by name or referred to in passing ("they thought of Lin", "the captain had said earlier") do NOT qualify — exclude them. The "Known characters from previous chapters" list is provided as CONTEXT to help you keep names consistent; it is NOT a list of characters to analyze.
 - Traits should be personality traits observable from behavior, not physical descriptions
 - Dialogue patterns should describe HOW they speak, not WHAT they say
 - speechPattern: describe their distinctive voice (cadence, vocabulary, verbal tics)
@@ -182,6 +182,7 @@ RULES:
 - readerTone: how this character would address a READER of their story (not another in-fiction character). Provide 3 distinct opening-line options in their voice, plus topics they would answer openly, deflect from, or lie about if a reader asked. This may evolve chapter to chapter as the character changes.
 - activeHoursLocal: 24h range string when the text specifies (e.g. "22:00-04:00", "06:00-18:00"), else exactly "all-day". Stable character trait — same across chapters unless the text explicitly shows a shift.
 - activityPatternNote: one short textural sentence ("nocturnal insomniac, sharpest after midnight"). Empty string if the text is silent. Never fabricate.
+- role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
   const responseText = await callClaude(systemPrompt, userMessage, 12000);

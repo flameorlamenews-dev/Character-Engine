@@ -267,26 +267,55 @@ export const supabase = new Proxy(realSupabase, {
 
               await realSupabase.from('manuscripts').update({ analysis_progress: 60 }).eq('id', body.manuscriptId);
 
-              const charIds = [...characterNameToId.values()];
-              // Per-character completeness check: if ANY character in this chapter is missing
-              // its foundation row, force foundation for the whole Pass 2 (so Claude re-emits
-              // for everyone, including characters that already have data — it's a small
-              // token overhead for consistency and simpler prompting). Without this check,
-              // a newly-appearing character gets default/missing voice data forever.
-              const [psychExisting, voiceExisting] = charIds.length > 0
+              // Pass 2 scope = chapter characters with a major role.
+              // Minor roles (cameos, background figures) skip ALL of Pass 2 entirely —
+              // no foundation, no per-chapter dynamics. The reasoning: minor characters
+              // won't be chatted with, so spending Claude tokens extracting their voice
+              // profile or emotion drift is wasted. They still get the cheap Pass 1 row
+              // (character + timeline_entry + traits) so they appear in the manuscript
+              // view. Whitelist (not negative match) defends against Claude emitting
+              // unexpected role values like "background" or "Minor" (capitalized).
+              const MAJOR_ROLES = ['protagonist', 'antagonist', 'supporting'];
+              const isMajorRole = (role: any) =>
+                typeof role === 'string'
+                && MAJOR_ROLES.includes(role.toLowerCase().trim());
+              const majorCharacters = analysis.characters.filter(
+                (c: any) => isMajorRole(c.role)
+              );
+
+              // If every character in this chapter is minor, Pass 2 is skipped silently.
+              // Surface this to the user via engine_errors so they know voice/psych
+              // extraction didn't happen for this chapter (and can adjust if needed).
+              if (analysis.characters.length > 0 && majorCharacters.length === 0) {
+                engineErrors.push({
+                  table: 'role_filter',
+                  character: '',
+                  chapter: manuscript.chapter_number,
+                  message: `All ${analysis.characters.length} characters in this chapter were classified as "minor" by Pass 1. Pass 2 voice/psych extraction was skipped. If a character should be analyzed, edit them to set role manually.`,
+                });
+              }
+
+              // Foundation detection: scope to MAJOR character IDs only. Minors never get
+              // foundation (they skip Pass 2), so including them in the existence check
+              // would keep includeFoundation=true forever and waste Claude tokens
+              // re-emitting for majors on every analysis.
+              const majorCharIds = majorCharacters
+                .map((c: any) => characterNameToId.get(c.name))
+                .filter((id: any): id is string => typeof id === 'string');
+              const [psychExisting, voiceExisting] = majorCharIds.length > 0
                 ? await Promise.all([
-                    realSupabase.from('temperament_grids').select('character_id').in('character_id', charIds),
-                    realSupabase.from('character_voice_scales').select('character_id').in('character_id', charIds),
+                    realSupabase.from('temperament_grids').select('character_id').in('character_id', majorCharIds),
+                    realSupabase.from('character_voice_scales').select('character_id').in('character_id', majorCharIds),
                   ])
                 : [{ data: [] }, { data: [] }];
               const distinctPsychIds = new Set((psychExisting.data || []).map((r: any) => r.character_id));
               const distinctVoiceIds = new Set((voiceExisting.data || []).map((r: any) => r.character_id));
-              const includePsychFoundation = distinctPsychIds.size < charIds.length;
-              const includeVoiceFoundation = distinctVoiceIds.size < charIds.length;
+              const includePsychFoundation = distinctPsychIds.size < majorCharIds.length;
+              const includeVoiceFoundation = distinctVoiceIds.size < majorCharIds.length;
 
               let existingContext = '';
-              if (!includePsychFoundation && charIds.length > 0) {
-                const { data: baselines } = await realSupabase.from('emotional_baselines').select('*').in('character_id', charIds);
+              if (!includePsychFoundation && majorCharIds.length > 0) {
+                const { data: baselines } = await realSupabase.from('emotional_baselines').select('*').in('character_id', majorCharIds);
                 if (baselines) {
                   existingContext = baselines.map((b: any) => {
                     const name = [...characterNameToId.entries()].find(([, id]) => id === b.character_id)?.[0];
@@ -297,21 +326,30 @@ export const supabase = new Proxy(realSupabase, {
 
               // Forward Pass 1's circadian context into Pass 2 so voice extraction
               // can anchor shifts to when-the-character-is-active (e.g. "sharp after midnight").
-              const condensedContext = analysis.characters.map(c =>
+              const condensedContext = majorCharacters.map(c =>
                 `CHARACTER: ${c.name} (${c.role})\nDescription: ${c.description}\nTraits: ${c.traits.join(', ')}\nEmotional state: ${c.emotionalState}\nRelationships: ${c.relationships}\nSpeech pattern: ${c.speechPattern || 'N/A'}\nViews of others: ${c.viewsOfOthers || 'N/A'}\nViewed by others: ${c.viewsByOthers || 'N/A'}\nActive hours: ${c.activeHoursLocal || 'all-day'}\nActivity pattern: ${c.activityPatternNote || 'N/A'}\nInternal dialogue: ${(c.internalDialogue || []).join(' | ') || 'N/A'}\nExternal dialogue: ${(c.externalDialogue || []).join(' | ') || 'N/A'}`
               ).join('\n\n');
 
+              // Only major-role characters go to Pass 2 (voice/psych foundation extraction);
+              // minor cameos skip the expensive call. characterNameToId still holds all
+              // of them for the cheap per-chapter writes lower down.
+              const majorCharacterNames = majorCharacters
+                .map((c: any) => c.name)
+                .filter((n: string) => characterNameToId.has(n));
+
               let engineResult: Awaited<ReturnType<typeof analyzeManuscriptEngine>> | null = null;
               try {
-                engineResult = await analyzeManuscriptEngine(
-                  condensedContext,
-                  manuscript.chapter_number || 0,
-                  manuscript.title || `Chapter ${manuscript.chapter_number}`,
-                  [...characterNameToId.keys()],
-                  includePsychFoundation,
-                  includeVoiceFoundation,
-                  existingContext || undefined
-                );
+                engineResult = majorCharacterNames.length > 0
+                  ? await analyzeManuscriptEngine(
+                      condensedContext,
+                      manuscript.chapter_number || 0,
+                      manuscript.title || `Chapter ${manuscript.chapter_number}`,
+                      majorCharacterNames,
+                      includePsychFoundation,
+                      includeVoiceFoundation,
+                      existingContext || undefined
+                    )
+                  : { characters: [] };
               } catch (err: any) {
                 engineErrors.push({
                   table: 'analyzeManuscriptEngine',
