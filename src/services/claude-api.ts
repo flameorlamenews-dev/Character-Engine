@@ -357,8 +357,8 @@ ${includeVoiceFoundation
         "profanity_vocabulary": ["damn", "hell"]
       },
       "conflict_profile": {
-        "conflict_strategy": "confrontation via cold silence, rarely escalation",
-        "morality_axis": "duty-leaning but bends for loved ones",
+        "conflict_strategy": "escalates with cold silence and pointed sarcasm; never raises voice; walks out if pushed",
+        "morality_axis": "loyalty to sworn friends above civic duty; will break rules for the Fellowship",
         "truth_bias": 55
       },
       "mottos": ["Never leave a friend behind.", "Hope is cheap; showing up is costly."],
@@ -370,7 +370,9 @@ ${includeVoiceFoundation
         { "audience_tag": "child", "brevity": 20, "deference": 10, "defiance": 0, "warmth": 65 }
       ],
       "emotion_map": [
-        { "trigger": "anger", "voice_shift": "shorter sentences; drops contractions; flat affect" }
+        { "trigger": "when accused of betrayal by a friend", "voice_shift": "shorter sentences; drops contractions; long pauses before responses" },
+        { "trigger": "when a child is afraid", "voice_shift": "kneels into their register; uses softer vowels; repeats the child's name" },
+        { "trigger": "when outmaneuvered by a rival", "voice_shift": "flat affect; switches to proverbs; refuses to answer directly" }
       ],` : '';
 
   const userMessage = `Produce Character Engine data for Chapter ${chapterNumber}: "${chapterTitle}".
@@ -431,16 +433,17 @@ RULES:
 - desires: 3-7 ranked by importance
 - conditional_traits: 1-4 situation-triggered behaviors
 - voice_scales: 11 integer 0-75 sliders describing how this character SOUNDS
-- style_rules: one-sentence concrete voice-writing instructions per field. Use null when evidence is absent. profanity_level MUST be literal "none", "mild", "moderate", or "heavy" (quoted string, NOT a number, NOT "medium" or "strong"). profanity_vocabulary is an array of observed words (can be empty).
-- conflict_profile: how this character HANDLES friction. truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest).
-- mottos: 2-5 short phrases capturing core operating beliefs
-- lexicon: 2-8 character-specific phrases with meaning
-- audience_mods: 2-5 entries (stranger/child/authority/ally/rival/loved_one/enemy); all sliders 0-75
-- emotion_map: 2-5 trigger→voice_shift entries
-- verbal_tics: recurring fillers/exclamations/catchphrases (NOT mottos). frequency_hint MUST be literal "low", "med", or "high" (quoted string, NOT a number). Empty array if fewer than 3 dialogue samples — NEVER fabricate from one-off lines.
+- style_rules: one-sentence concrete voice-writing instructions per field. Use null when evidence is absent. profanity_level MUST be literal "none", "mild", "moderate", or "heavy" (quoted string, NOT a number, NOT "medium" or "strong"). profanity_vocabulary: array of the ACTUAL observed words in their original form (e.g. ["damn", "shit", "fuck"]). Do NOT sanitize or self-censor — if a character swears, list what they actually said. If safety policies would block a literal word, still emit profanity_level accurately and include a neutral placeholder (e.g. "[expletive-F]") rather than omitting — the author needs to see frequency signal.
+- conflict_profile: how this character HANDLES friction. conflict_strategy MUST include AT LEAST ONE specific method (e.g. "escalates via public shaming", "de-escalates with humor", "cold silence then bail", "coalition-building"). Generic phrases like "avoids confrontation" are REJECTED — describe the actual tactic observed. morality_axis is concrete ("duty over family", "loyalty to the crew above law"). truth_bias 0-75 (0=constant liar, 37=situational, 75=pathologically honest).
+- mottos: 2-5 short phrases capturing core operating BELIEFS (values, moral principles). Mottos are stable across chapters. Spoken infrequently — once in a scene of high stakes. If a phrase is used as linguistic habit (3+ times per scene), it's a verbal_tic, not a motto.
+- lexicon: 2-8 character-specific phrases/in-world terms they use DISTINCTIVELY, each with meaning. Lexicon items recur 1-2 times per chapter and are unique to this character. If the same phrase is in mottos, do NOT duplicate here.
+- audience_mods: ONLY emit entries for audience types this character actually interacts with in this chapter (or has clearly established pattern for, from prior chapters if context provided). Do NOT fabricate audience behavior for untested types. Minimum 1 entry if any dialogue exists; max 5. Audience tags: stranger, child, authority, ally, rival, loved_one, enemy. All sliders 0-75.
+- emotion_map: 2-5 entries. trigger MUST be a specific circumstance or situation, NOT a bare emotion. REJECTED: "anger", "stress", "emotional situations". ACCEPTED: "when accused of lying", "when interrupted mid-sentence", "when a subordinate makes a mistake". voice_shift describes the OBSERVABLE change in delivery: sentence length, volume cues in prose, vocabulary shift, pacing.
+- verbal_tics: recurring fillers/exclamations/catchphrases unique to THIS character. Do NOT emit generic English fillers ("um", "like", "you know", "well", "so") unless one is obsessively overused (appearing in 5+ separate dialogue lines within this chapter). Prefer character-distinctive tics: "faith", "blast it", "as I live and breathe", "by the—". frequency_hint MUST be literal "low", "med", or "high" (quoted string, NOT a number). Empty array if fewer than 3 dialogue samples — NEVER fabricate from one-off lines.
+- CATEGORY DISCIPLINE: Mottos (beliefs, rare) ≠ Lexicon (distinctive phrases, regular) ≠ Verbal Tics (linguistic habit, frequent). A phrase belongs to ONE category only. If uncertain, assign by frequency within THIS chapter: 3+ occurrences → tic, 1-2 occurrences → lexicon, single high-stakes appearance expressing a belief → motto.
 - Base all scores and voice descriptions on observable behavior in the text. Never fabricate.
 - DIFFERENTIATION IS MANDATORY. Do NOT use 37 (or any single value) as a placeholder across every slider — uniform 37-everywhere makes characters indistinguishable and is INVALID output. Each integer field must reflect this specific character's observable behavior from the text and should VARY across the 0-75 range. Two characters legitimately having the same value on one trait is fine, but blanket defaults are rejected.
-- Voice prose fields (sentence_rhythm, cadence, lexical_range, cadence, etc.) must be SPECIFIC to this character — paraphrase actual dialogue patterns from the text. Generic descriptions like "moderate formality" are rejected; use observed evidence such as "clipped three-word sentences when stressed; full paragraphs when teaching".`;
+- Voice prose fields (sentence_rhythm, cadence, lexical_range, etc.) must be SPECIFIC to this character — paraphrase actual dialogue patterns from the text. Generic descriptions like "moderate formality" are rejected; use observed evidence such as "clipped three-word sentences when stressed; full paragraphs when teaching".`;
 
   // 20000 output tokens — content for 5-7 characters with full foundation is
   // ~8-12k JSON tokens; 20k gives safe headroom. Trimmed from 32k to shorten

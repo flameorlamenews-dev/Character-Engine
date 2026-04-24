@@ -102,10 +102,11 @@ export const supabase = new Proxy(realSupabase, {
                 return { data: null, error: { message: 'Manuscript not found' } };
               }
 
-              // Update progress to show analysis started
+              // Update progress to show analysis started; also clear any stale
+              // engine_errors from a prior failed run so the UI badge resets.
               await realSupabase
                 .from('manuscripts')
-                .update({ analysis_progress: 10 })
+                .update({ analysis_progress: 10, engine_errors: null } as any)
                 .eq('id', body.manuscriptId);
 
               // Get existing characters for context. We keep this full set so the
@@ -294,8 +295,10 @@ export const supabase = new Proxy(realSupabase, {
                 }
               }
 
+              // Forward Pass 1's circadian context into Pass 2 so voice extraction
+              // can anchor shifts to when-the-character-is-active (e.g. "sharp after midnight").
               const condensedContext = analysis.characters.map(c =>
-                `CHARACTER: ${c.name} (${c.role})\nDescription: ${c.description}\nTraits: ${c.traits.join(', ')}\nEmotional state: ${c.emotionalState}\nRelationships: ${c.relationships}\nSpeech pattern: ${c.speechPattern || 'N/A'}\nViews of others: ${c.viewsOfOthers || 'N/A'}\nViewed by others: ${c.viewsByOthers || 'N/A'}\nInternal dialogue: ${(c.internalDialogue || []).join(' | ') || 'N/A'}\nExternal dialogue: ${(c.externalDialogue || []).join(' | ') || 'N/A'}`
+                `CHARACTER: ${c.name} (${c.role})\nDescription: ${c.description}\nTraits: ${c.traits.join(', ')}\nEmotional state: ${c.emotionalState}\nRelationships: ${c.relationships}\nSpeech pattern: ${c.speechPattern || 'N/A'}\nViews of others: ${c.viewsOfOthers || 'N/A'}\nViewed by others: ${c.viewsByOthers || 'N/A'}\nActive hours: ${c.activeHoursLocal || 'all-day'}\nActivity pattern: ${c.activityPatternNote || 'N/A'}\nInternal dialogue: ${(c.internalDialogue || []).join(' | ') || 'N/A'}\nExternal dialogue: ${(c.externalDialogue || []).join(' | ') || 'N/A'}`
               ).join('\n\n');
 
               let engineResult: Awaited<ReturnType<typeof analyzeManuscriptEngine>> | null = null;
@@ -355,8 +358,12 @@ export const supabase = new Proxy(realSupabase, {
                   }
                   const name = engineChar.name;
 
+                  // Normalize name matching: Claude occasionally emits names with
+                  // leading/trailing whitespace or mismatched casing relative to Pass 1.
+                  const normName = (s: string | undefined | null) => (s ?? '').trim().toLowerCase();
+                  const targetName = normName(engineChar.name);
                   const pass1Char = analysis.characters.find(c => c.name === engineChar.name)
-                    || analysis.characters.find(c => c.name?.toLowerCase() === engineChar.name?.toLowerCase());
+                    || analysis.characters.find(c => normName(c.name) === targetName);
                   const sentenceStats = computeSentenceStats(pass1Char?.externalDialogue);
 
                   const replace = (
@@ -573,17 +580,16 @@ export const supabase = new Proxy(realSupabase, {
                 }));
               }
 
-              // Persist (or clear) the per-table error accumulator. UI surfaces this as
-              // a red badge on the manuscript card when non-null.
-              await realSupabase.from('manuscripts').update({
-                engine_errors: engineErrors.length > 0 ? engineErrors : null,
-              } as any).eq('id', body.manuscriptId);
-
-              // Save analysis results and mark complete
+              // Atomic final write: combine engine_errors persist + analysis_progress=100
+              // + analysis_results into ONE update. Previously these were two sequential
+              // .update() calls — if the second one silently errored (returning {error}
+              // without throwing), the manuscript was left stuck at 80%. One update
+              // cannot half-apply.
               await realSupabase
                 .from('manuscripts')
                 .update({
                   analysis_progress: 100,
+                  engine_errors: engineErrors.length > 0 ? engineErrors : null,
                   analysis_results: {
                     summary: analysis.summary,
                     characterImpressions: analysis.characters.map(c => `${c.name}: ${c.description}`).join('\n\n'),
@@ -594,7 +600,7 @@ export const supabase = new Proxy(realSupabase, {
                       .filter(c => charNames.includes(c.name))
                       .map(c => ({ name: c.name, evolution: c.emotionalState })),
                   },
-                })
+                } as any)
                 .eq('id', body.manuscriptId);
 
               return { data: { success: true }, error: null };

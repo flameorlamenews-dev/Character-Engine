@@ -150,6 +150,7 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
   // Reload data when selected instance changes
   useEffect(() => {
     if (selectedInstance && open) {
+      setActiveTab("ai"); // reset to AI tab on character switch (prior tab may not apply)
       setFeedback(null);
       setTimelineChapters([]);
       setTimelineChapterData({});
@@ -749,119 +750,168 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                     </Card>
                   )}
 
-                  {/* ── Lexicon (engine 008) ── */}
-                  {aiData.lexicon && aiData.lexicon.length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Lexicon</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          {aiData.lexicon.map((l: any, idx: number) => (
-                            <li key={l.id ?? idx} className="border-l-2 border-primary/40 pl-3">
-                              <span className="font-medium">{l.phrase}</span>
-                              {l.meaning && (
-                                <span className="text-muted-foreground"> — {l.meaning}</span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  )}
+                  {/* ── Order: speech-forward first (Verbal Tics → Lexicon), then
+                       voice-under-pressure (Emotion Map → Audience Mods → Conflict Profile).
+                       Empty states render when any voice data exists for this character so
+                       the user never sees a "card vanished" confusion. ── */}
 
                   {/* ── Verbal Tics (engine 008) ── */}
-                  {aiData.verbalTics && aiData.verbalTics.length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Verbal Tics</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          {aiData.verbalTics.map((t: any, idx: number) => (
-                            <li key={t.id ?? idx} className="flex items-start gap-2">
-                              <span className="font-medium">"{t.phrase}"</span>
-                              {t.frequency_hint && (
-                                <Badge variant="outline" className="text-xs">
-                                  {t.frequency_hint}
-                                </Badge>
-                              )}
-                              {t.context && (
-                                <span className="text-muted-foreground text-xs">— {t.context}</span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  )}
+                  {(() => {
+                    const hasVoiceContext = (aiData.styleRules && Object.keys(aiData.styleRules).length > 0)
+                      || (aiData.verbalTics && aiData.verbalTics.length > 0);
+                    if (!hasVoiceContext) return null;
+                    return (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Verbal Tics</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {aiData.verbalTics && aiData.verbalTics.length > 0 ? (
+                            <ul className="space-y-2 text-sm">
+                              {aiData.verbalTics.map((t: any, idx: number) => (
+                                <li key={t.id ?? idx} className="flex items-start gap-2">
+                                  <span className="font-medium">"{t.phrase}"</span>
+                                  {t.frequency_hint && (
+                                    <Badge variant="outline" className="text-xs">
+                                      {t.frequency_hint}
+                                    </Badge>
+                                  )}
+                                  {t.context && (
+                                    <span className="text-muted-foreground text-xs">— {t.context}</span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-muted-foreground">No verbal tics extracted.</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    );
+                  })()}
 
-                  {/* ── Audience Mods (engine 008, 0-75 sliders) ── */}
-                  {aiData.audienceMods && aiData.audienceMods.length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Audience Mods</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-4">
-                        {aiData.audienceMods.map((a: any, idx: number) => (
-                          <div key={a.id ?? idx} className="space-y-2">
-                            <div className="font-medium text-sm">{a.audience_tag}</div>
-                            {([
-                              ['brevity', 'Brevity'],
-                              ['deference', 'Deference'],
-                              ['defiance', 'Defiance'],
-                              ['warmth', 'Warmth'],
-                            ] as const).map(([key, label]) => {
-                              const raw = a[key] ?? 37;
-                              const n = Number(raw);
-                              const v = Number.isFinite(n) ? n : 37;
-                              const widthPct = `${Math.max(0, Math.min(100, (v / 75) * 100))}%`;
-                              return (
-                                <div key={key}>
-                                  <div className="flex justify-between text-xs mb-1">
-                                    <span className="text-muted-foreground">{label}</span>
-                                    <span className="font-medium">{v}/75</span>
-                                  </div>
-                                  <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
-                                    <div className="h-full bg-primary" style={{ width: widthPct }} />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        ))}
-                      </CardContent>
-                    </Card>
-                  )}
+                  {/* ── Lexicon (engine 008) ── */}
+                  {(() => {
+                    const hasVoiceContext = (aiData.styleRules && Object.keys(aiData.styleRules).length > 0)
+                      || (aiData.lexicon && aiData.lexicon.length > 0);
+                    if (!hasVoiceContext) return null;
+                    return (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Lexicon</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {aiData.lexicon && aiData.lexicon.length > 0 ? (
+                            <ul className="space-y-2 text-sm">
+                              {aiData.lexicon.map((l: any, idx: number) => (
+                                <li key={l.id ?? idx} className="border-l-2 border-primary/40 pl-3">
+                                  <span className="font-medium">{l.phrase}</span>
+                                  {l.meaning && (
+                                    <span className="text-muted-foreground"> — {l.meaning}</span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-muted-foreground">No lexicon phrases found.</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    );
+                  })()}
 
                   {/* ── Emotion Map (engine 008) ── */}
-                  {aiData.emotionMap && aiData.emotionMap.length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Emotion Map</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <ul className="space-y-2 text-sm">
-                          {aiData.emotionMap.map((e: any, idx: number) => (
-                            <li key={e.id ?? idx} className="border-l-2 border-primary/40 pl-3">
-                              <span className="font-medium">{e.trigger}</span>
-                              {e.voice_shift && (
-                                <span className="text-muted-foreground"> → {e.voice_shift}</span>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
-                  )}
+                  {(() => {
+                    const hasVoiceContext = (aiData.styleRules && Object.keys(aiData.styleRules).length > 0)
+                      || (aiData.emotionMap && aiData.emotionMap.length > 0);
+                    if (!hasVoiceContext) return null;
+                    return (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Emotion Map</CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                          {aiData.emotionMap && aiData.emotionMap.length > 0 ? (
+                            <ul className="space-y-2 text-sm">
+                              {aiData.emotionMap.map((e: any, idx: number) => (
+                                <li key={e.id ?? idx} className="border-l-2 border-primary/40 pl-3">
+                                  <span className="font-medium">{e.trigger}</span>
+                                  {e.voice_shift && (
+                                    <span className="text-muted-foreground"> → {e.voice_shift}</span>
+                                  )}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-muted-foreground">No emotion-trigger mappings.</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    );
+                  })()}
+
+                  {/* ── Audience Mods (engine 008, 0-75 sliders) ── */}
+                  {(() => {
+                    const hasVoiceContext = (aiData.styleRules && Object.keys(aiData.styleRules).length > 0)
+                      || (aiData.audienceMods && aiData.audienceMods.length > 0);
+                    if (!hasVoiceContext) return null;
+                    return (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Audience Mods</CardTitle>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          {aiData.audienceMods && aiData.audienceMods.length > 0 ? (
+                            aiData.audienceMods.map((a: any, idx: number) => (
+                              <div key={a.id ?? idx} className="space-y-2">
+                                <div className="font-medium text-sm">{a.audience_tag}</div>
+                                {([
+                                  ['brevity', 'Brevity'],
+                                  ['deference', 'Deference'],
+                                  ['defiance', 'Defiance'],
+                                  ['warmth', 'Warmth'],
+                                ] as const).map(([key, label]) => {
+                                  const raw = a[key] ?? 37;
+                                  const n = Number(raw);
+                                  // Round on display: DB column is REAL, Claude emits integers,
+                                  // but defend against accidental float values leaking through.
+                                  const v = Number.isFinite(n) ? Math.round(n) : 37;
+                                  const widthPct = `${Math.max(0, Math.min(100, (v / 75) * 100))}%`;
+                                  return (
+                                    <div key={key}>
+                                      <div className="flex justify-between text-xs mb-1">
+                                        <span className="text-muted-foreground">{label}</span>
+                                        <span className="font-medium">{v}/75</span>
+                                      </div>
+                                      <div className="h-1.5 bg-secondary rounded-full overflow-hidden">
+                                        <div className="h-full bg-primary" style={{ width: widthPct }} />
+                                      </div>
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            ))
+                          ) : (
+                            <p className="text-sm text-muted-foreground">No audience-specific voice shifts.</p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    );
+                  })()}
 
                   {/* ── Conflict Profile (engine 008) ── */}
-                  {aiData.conflictProfile && Object.keys(aiData.conflictProfile).length > 0 && (
-                    <Card>
-                      <CardHeader>
-                        <CardTitle>Conflict Profile</CardTitle>
-                      </CardHeader>
-                      <CardContent className="space-y-3 text-sm">
+                  {(() => {
+                    const hasVoiceContext = (aiData.styleRules && Object.keys(aiData.styleRules).length > 0)
+                      || (aiData.conflictProfile && Object.keys(aiData.conflictProfile).length > 0);
+                    if (!hasVoiceContext) return null;
+                    const hasConflictData = aiData.conflictProfile && Object.keys(aiData.conflictProfile).length > 0;
+                    return (
+                      <Card>
+                        <CardHeader>
+                          <CardTitle>Conflict Profile</CardTitle>
+                        </CardHeader>
+                        {hasConflictData ? (
+                          <CardContent className="space-y-3 text-sm">
                         {aiData.conflictProfile.conflict_strategy && (
                           <div>
                             <span className="font-medium">Strategy:</span>{" "}
@@ -876,7 +926,8 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                         )}
                         {aiData.conflictProfile.truth_bias != null && (() => {
                           const tb = Number(aiData.conflictProfile.truth_bias);
-                          const safe = Number.isFinite(tb) ? tb : 37;
+                          // Round for display symmetry with other 0-75 sliders.
+                          const safe = Number.isFinite(tb) ? Math.round(tb) : 37;
                           const widthPct = `${Math.max(0, Math.min(100, (safe / 75) * 100))}%`;
                           return (
                             <div>
@@ -893,9 +944,15 @@ const CharacterDialog = ({ open, onOpenChange, character, userId, timelineInstan
                             </div>
                           );
                         })()}
-                      </CardContent>
-                    </Card>
-                  )}
+                          </CardContent>
+                        ) : (
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">No conflict profile extracted.</p>
+                          </CardContent>
+                        )}
+                      </Card>
+                    );
+                  })()}
                 </div>
               ) : (
                 <div className="text-center p-8 text-muted-foreground">
