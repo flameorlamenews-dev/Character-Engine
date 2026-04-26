@@ -18,7 +18,10 @@ function AuthSync({ authSession }: { authSession: any }) {
     // selection is the user's decision via the ProjectsPage landing.
     // Preserve any already-selected project if it belongs to this user.
     if (currentUserId === userId) return;
-    setUserContext(userId, null);
+    // undefined preserves whatever projectId localStorage hydrated. If the
+    // session is brand new (no localStorage value), projectId stays null
+    // and the user lands on ProjectsPage as expected.
+    setUserContext(userId, undefined);
     // Suppress lint: projectId intentionally not in deps — we only want this
     // to fire on auth change, not on user-driven project switches.
     // eslint-disable-next-line react-hooks/exhaustive-deps

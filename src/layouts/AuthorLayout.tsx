@@ -106,9 +106,13 @@ export function AuthorLayout() {
         fullName = existing.full_name || '';
       }
 
-      // Hand userId off to session context so the rest of the app can use it.
-      // projectId stays null until the user picks one on the ProjectsPage.
-      setUserContext(uid, null);
+      // Hand userId off to session context. Pass undefined for projectId so a
+      // hydrated value from localStorage (from a prior session) is preserved
+      // — without this, switching tabs and returning would null the projectId
+      // and kick the user out of their selected project. handleSelectProject
+      // and handleBackToProjects below pass explicit values when they need to
+      // change project.
+      setUserContext(uid, undefined);
 
       // First-login prompt: if full_name is empty, force the profile dialog
       // open. The dialog itself enforces required-mode dismiss-blocking.
