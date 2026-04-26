@@ -227,12 +227,15 @@ const ManuscriptsView = ({
   };
 
   const handleCharacterClick = async (characterName: string) => {
-    // Find character by name
+    // Find character by name. Exclude soft-merged sources — without this filter,
+    // a name shared between an active character and its merged duplicate makes
+    // .maybeSingle() throw "multiple rows" and the click silently fails.
     let charQuery = supabase
       .from("characters")
       .select("*")
       .eq("user_id", userId)
-      .ilike("name", characterName);
+      .ilike("name", characterName)
+      .is("merged_into", null);
     if (projectId) {
       charQuery = charQuery.eq("project_id", projectId);
     }
@@ -365,7 +368,14 @@ const ManuscriptsView = ({
       // project-scoped by name), so this is a no-op in practice today but
       // future-proofs the path if that scoping ever tightens.
       if (deleteAllData) {
-        await supabase.from("characters").delete().eq("manuscript_id", mid);
+        // Soft-merged sources are owned by the Merged tab — never auto-delete
+        // them here even on a "Delete All Data" manuscript wipe. Their data
+        // already lives under the merge target.
+        await supabase
+          .from("characters")
+          .delete()
+          .eq("manuscript_id", mid)
+          .is("merged_into", null);
       }
 
       const { error } = await supabase.from("manuscripts").delete().eq("id", mid);

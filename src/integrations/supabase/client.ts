@@ -111,10 +111,15 @@ export const supabase = new Proxy(realSupabase, {
 
               // Get existing characters for context. We keep this full set so the
               // name→id map below can dedupe without a second round of queries.
+              // Filter merged sources out — otherwise Pass 1 re-detects a soft-merged
+              // character by name and writes new child rows to a row that should
+              // be invisible. (Soft-merged sources stay in the table but are
+              // hidden from active views via merged_into IS NULL.)
               const { data: existingChars } = await realSupabase
                 .from('characters')
                 .select('id, name')
-                .eq('project_id', manuscript.project_id);
+                .eq('project_id', manuscript.project_id)
+                .is('merged_into', null);
 
               const charNames = (existingChars || []).map((c: any) => c.name);
               const existingByName = new Map<string, string>(

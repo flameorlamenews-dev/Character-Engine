@@ -25,6 +25,10 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
   const [secondMergeProfile, setSecondMergeProfile] = useState<any | null>(null);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [characterToDelete, setCharacterToDelete] = useState<any | null>(null);
+  // Per-character action lock so double-clicking Restore (or Delete) doesn't
+  // fire two RPCs and produce a misleading "not currently merged" toast on
+  // the second one.
+  const [busyCharacterId, setBusyCharacterId] = useState<string | null>(null);
   const { toast } = useToast();
 
   useEffect(() => {
@@ -279,38 +283,21 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
 
   const handleMergeConfirmed = async (keepProfile: any, deleteProfile: any) => {
     try {
-      // Merge all data from delete profile into keep profile
-      const keepId = keepProfile.id;
-      const deleteId = deleteProfile.id;
-
-      // Update all related tables to point to keep profile
-      await Promise.all([
-        supabase.from("character_traits").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_mottos").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_voice_scales").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_lexicon").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_audience_mods").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_emotion_map").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_style_rules").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_conflict_profile").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_voice_feedback").update({ character_id: keepId }).eq("character_id", deleteId),
-        supabase.from("character_timeline_entries").update({ character_id: keepId }).eq("character_id", deleteId),
-      ]);
-
-      // Delete the profile
-      const { error: deleteError } = await supabase
-        .from("characters")
-        .delete()
-        .eq("id", deleteId);
-
-      if (deleteError) throw deleteError;
+      // Atomic soft-merge via SQL function: row-locks the source, audits
+      // every child row reassignment, and sets characters.merged_into so
+      // the merge is reversible (see migration 010). Replaces the older
+      // destructive delete + per-table UPDATE pattern.
+      const { error } = await supabase.rpc('merge_characters', {
+        source: deleteProfile.id,
+        target: keepProfile.id,
+      });
+      if (error) throw error;
 
       toast({
         title: "Profiles merged",
-        description: `Successfully merged ${deleteProfile.name} into ${keepProfile.name}`,
+        description: `${deleteProfile.name} moved to your Merged tab. Restore from there anytime.`,
       });
 
-      // Reset merge state and refresh
       handleMergeCanceled();
       fetchCharacters();
     } catch (error: any) {
@@ -322,8 +309,97 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
     }
   };
 
-  const activeCharacters = characters?.filter(c => !c.blocked) || [];
-  const blockedCharacters = characters?.filter(c => c.blocked) || [];
+  const handleUnmerge = async (sourceCharacter: any) => {
+    if (busyCharacterId) return; // double-click / concurrent-action guard
+    const targetName = mergedTargetName(sourceCharacter);
+    const when = sourceCharacter.merged_at
+      ? new Date(sourceCharacter.merged_at).toLocaleDateString()
+      : null;
+    const confirmMsg = `Restore "${sourceCharacter.name}" as a separate character?\n\nData added to "${targetName}" since the merge${when ? ` on ${when}` : ''} stays with "${targetName}".`;
+    if (!window.confirm(confirmMsg)) return;
+    setBusyCharacterId(sourceCharacter.id);
+    try {
+      const { error } = await supabase.rpc('unmerge_character', {
+        source: sourceCharacter.id,
+      });
+      if (error) throw error;
+      toast({
+        title: "Character restored",
+        description: `${sourceCharacter.name} is back in your Active tab.`,
+      });
+      fetchCharacters();
+    } catch (error: any) {
+      toast({
+        title: "Error unmerging",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setBusyCharacterId(null);
+    }
+  };
+
+  const handleHardDelete = async (character: any) => {
+    if (busyCharacterId) return;
+    // Proactive check: refuse to delete a character that has merged-in
+    // sources. Migration 010's ON DELETE RESTRICT would also block it at the
+    // DB level, but a clear up-front message is friendlier than a 23503
+    // error toast. The user must unmerge those sources first.
+    const incoming = (characters || []).filter(
+      (c: any) => c.merged_into === character.id
+    );
+    if (incoming.length > 0) {
+      const names = incoming.map((c: any) => c.name).join(', ');
+      toast({
+        title: "Unmerge first",
+        description: `"${character.name}" has ${incoming.length} merged-in profile${incoming.length === 1 ? '' : 's'} (${names}). Restore them from the Merged tab before deleting.`,
+        variant: "destructive",
+      });
+      return;
+    }
+    const confirmMsg = `PERMANENTLY delete "${character.name}"?\n\nAll their voice profile, dialogue history, and analysis data will be removed. This cannot be undone.`;
+    if (!window.confirm(confirmMsg)) return;
+    setBusyCharacterId(character.id);
+    try {
+      // Migration 010 added ON DELETE CASCADE to all child FKs, so a single
+      // DELETE on characters cleans up every dependent row in one statement.
+      const { error } = await supabase.from('characters').delete().eq('id', character.id);
+      if (error) throw error;
+      toast({
+        title: "Character deleted",
+        description: `${character.name} has been permanently removed.`,
+      });
+      fetchCharacters();
+    } catch (error: any) {
+      toast({
+        title: "Error deleting character",
+        description: error.message,
+        variant: "destructive",
+      });
+    } finally {
+      setBusyCharacterId(null);
+    }
+  };
+
+  // Active = not blocked AND not merged. Blocked = blocked AND not merged.
+  // Merged = soft-merged into another character (visible only on its own tab).
+  const activeCharacters = characters?.filter(c => !c.blocked && !c.merged_into) || [];
+  const blockedCharacters = characters?.filter(c => c.blocked && !c.merged_into) || [];
+  const mergedCharacters = characters?.filter(c => c.merged_into) || [];
+
+  // Resolve "merged into X" label for a soft-merged character. Walks the chain
+  // in case A→B→C: shows the live ancestor's name so the user sees where the
+  // data actually lives now, not the immediate (also-merged) target.
+  const mergedTargetName = (sourceChar: any): string => {
+    const byId = new Map((characters || []).map((c: any) => [c.id, c]));
+    let cur = byId.get(sourceChar.merged_into);
+    let hops = 0;
+    while (cur && cur.merged_into && hops < 10) {
+      cur = byId.get(cur.merged_into);
+      hops++;
+    }
+    return cur?.name || '(unknown)';
+  };
 
   return (
     <div>
@@ -348,6 +424,13 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
           <TabsTrigger value="blocked">
             Blocked Profiles ({blockedCharacters.length})
           </TabsTrigger>
+          {/* Merged tab only renders when there's something to show — avoids
+              permanent (0) clutter for the 99% of users who never merge. */}
+          {mergedCharacters.length > 0 && (
+            <TabsTrigger value="merged">
+              Merged Profiles ({mergedCharacters.length})
+            </TabsTrigger>
+          )}
         </TabsList>
 
         <TabsContent value="active" className="mt-6">
@@ -373,6 +456,7 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
                   onUnblock={handleUnblock}
                   onGenerate={handleGenerate}
                   onMerge={handleMergeClick}
+                  onHardDelete={handleHardDelete}
                   mergeMode={mergeMode}
                   isFirstMergeProfile={firstMergeProfile?.id === character.id}
                   userId={userId}
@@ -387,8 +471,8 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
           <div className="bg-muted/30 border border-muted rounded-lg p-4 mb-6">
             <h3 className="font-semibold mb-2">About Blocked Profiles</h3>
             <p className="text-sm text-muted-foreground">
-              Blocked profiles are hidden from your active character list and will not be recreated during manuscript analysis. 
-              This prevents the AI from detecting and extracting these character names even if they appear in your text. 
+              Blocked profiles are hidden from your active character list and will not be recreated during manuscript analysis.
+              This prevents the AI from detecting and extracting these character names even if they appear in your text.
               Click the recycle button to unblock a profile and allow it to be recognized again.
             </p>
           </div>
@@ -416,6 +500,54 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
               ))}
             </div>
           )}
+        </TabsContent>
+
+        <TabsContent value="merged" className="mt-6">
+          <div className="bg-muted/30 border border-muted rounded-lg p-4 mb-6">
+            <h3 className="font-semibold mb-2">About Merged Profiles</h3>
+            <p className="text-sm text-muted-foreground">
+              Characters you've merged into another. Their data lives under
+              the target character now. Restoring brings the original back
+              with the data it had at merge time — anything added to the
+              target since stays with the target.
+            </p>
+            <p className="text-xs text-muted-foreground mt-2">
+              Merges from before this update were permanent and aren't shown here.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {mergedCharacters.map((character) => {
+              const targetName = mergedTargetName(character);
+              const when = character.merged_at
+                ? new Date(character.merged_at).toLocaleDateString()
+                : null;
+              return (
+                <div
+                  key={character.id}
+                  className="bg-card border rounded-lg p-4 flex flex-col justify-between"
+                >
+                  <div>
+                    <h4 className="text-lg font-serif font-semibold">
+                      {character.name}
+                    </h4>
+                    <p className="text-sm text-muted-foreground mt-1">
+                      Merged into <span className="font-medium">{targetName}</span>
+                      {when && <span className="text-xs"> · {when}</span>}
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() => handleUnmerge(character)}
+                    variant="outline"
+                    className="mt-4 w-full"
+                    disabled={busyCharacterId === character.id}
+                  >
+                    {busyCharacterId === character.id ? 'Restoring…' : 'Restore as separate character'}
+                  </Button>
+                </div>
+              );
+            })}
+          </div>
         </TabsContent>
       </Tabs>
 

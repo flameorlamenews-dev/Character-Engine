@@ -72,7 +72,9 @@ export function ProjectsPage({ userId, onSelectProject }: ProjectsPageProps) {
     const projectIds = list.map((p: any) => p.id);
     const [manuscriptsRes, charactersRes] = await Promise.all([
       (supabase as any).from('manuscripts').select('id, project_id').in('project_id', projectIds),
-      (supabase as any).from('characters').select('id, project_id').in('project_id', projectIds),
+      // Exclude soft-merged characters from the count — they're not active and
+      // shouldn't inflate the "N characters" badge on the project card.
+      (supabase as any).from('characters').select('id, project_id').in('project_id', projectIds).is('merged_into', null),
     ]);
     if (!mountedRef.current) return;
 

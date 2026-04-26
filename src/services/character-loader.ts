@@ -11,7 +11,13 @@ const DEFAULT: Score75 = 37 as Score75;
  * Fetch list of characters with profiles from the author dashboard.
  */
 export async function fetchCharacterList(userId: string, projectId?: string) {
-  let query = (supabase as any).from('characters').select('id, name').eq('user_id', userId);
+  // Exclude soft-merged characters — they shouldn't appear in TopBar/picker
+  // dropdowns since their data has been merged into another character.
+  let query = (supabase as any)
+    .from('characters')
+    .select('id, name')
+    .eq('user_id', userId)
+    .is('merged_into', null);
   if (projectId) query = query.eq('project_id', projectId);
   const { data } = await query.order('name');
   return (data || []) as { id: string; name: string }[];

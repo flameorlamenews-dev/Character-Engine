@@ -33,7 +33,8 @@ const MergeConfirmDialog = ({
           <AlertDialogTitle>Merge Character Profiles</AlertDialogTitle>
           <AlertDialogDescription>
             Choose which profile to keep. The other profile's data will be merged
-            into it, and the duplicate will be deleted.
+            into it and moved to your <strong>Merged Profiles</strong> tab. You
+            can restore the merged profile from there anytime.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="flex flex-col gap-2 py-4">

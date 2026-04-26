@@ -316,12 +316,15 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
       // "Delete All Data" action - First check what will be permanently deleted
       setLoading(true);
 
-      // Find characters that ONLY appear in this chapter
+      // Find characters that ONLY appear in this chapter. Exclude soft-merged
+      // sources — their data lives under the merge target now and they should
+      // only be removed via the explicit unmerge/delete UI in CharactersView.
       const { data: allCharacters } = await supabase
         .from("characters")
         .select("id, name, manuscript_id")
         .eq("user_id", userId)
-        .eq("source_type", "ai");
+        .eq("source_type", "ai")
+        .is("merged_into", null);
 
       const charsToDelete: Array<{ id: string; name: string }> = [];
       
@@ -395,12 +398,16 @@ const ManuscriptDialog = ({ open, onOpenChange, userId, projectId, onUploadStart
     setLossPreventionDialogOpen(false);
 
     try {
-      // Delete All Data: Remove all AI-extracted data for this chapter
+      // Delete All Data: Remove all AI-extracted data for this chapter.
+      // Skip soft-merged sources — they're owned by the Merged tab now;
+      // deleting them here would cascade-destroy audit rows and break
+      // unmerge for the user's bookkeeping.
       await supabase
         .from("characters")
         .delete()
         .eq("manuscript_id", existingChapter.id)
-        .eq("source_type", "ai");
+        .eq("source_type", "ai")
+        .is("merged_into", null);
 
       // Delete all related AI data
       await supabase.from("character_traits").delete().eq("manuscript_id", existingChapter.id).eq("source_type", "ai");
