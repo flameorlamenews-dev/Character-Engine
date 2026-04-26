@@ -139,7 +139,7 @@ export function ProfileSettingsDialog({
               id="first-name"
               value={firstName}
               onChange={(e) => setFirstName(e.target.value)}
-              placeholder="Stephon"
+              placeholder="Type your first name"
               autoFocus
               disabled={!initialLoadDone}
             />
@@ -150,7 +150,7 @@ export function ProfileSettingsDialog({
               id="last-name"
               value={lastName}
               onChange={(e) => setLastName(e.target.value)}
-              placeholder=""
+              placeholder="Type your last name (optional)"
               disabled={!initialLoadDone}
             />
           </div>
