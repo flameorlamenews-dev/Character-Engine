@@ -29,6 +29,11 @@ export function AuthorLayout() {
   // token is dropped before any setState, preventing user-A's profile read
   // from clobbering user-B's session after a fast user switch.
   const bootstrapTokenRef = useRef(0);
+  // Track the user id that the current bootstrap was run for, so spurious
+  // auth events (TOKEN_REFRESHED, USER_UPDATED) that fire on tab focus don't
+  // reset the dialog state and clobber whatever the user is typing into the
+  // profile form. Only an ACTUAL user change re-bootstraps.
+  const lastBootstrappedUidRef = useRef<string | null>(null);
 
   // Re-runs whenever the auth session changes so that user A → user B
   // switches in the same browser tab re-bootstrap the profile and reset
@@ -38,15 +43,24 @@ export function AuthorLayout() {
     let cancelled = false;
     const startBootstrap = (s: any) => {
       if (cancelled) return;
+      const newUid = s?.user?.id ?? null;
+      // Always update authSession so downstream consumers see the freshest
+      // token, but only re-bootstrap when the user actually changed. Token
+      // refreshes and metadata updates fire for the SAME user and must not
+      // disturb dialog state or form input.
       setAuthSession(s);
-      // Reset local gating state on every auth resolution so a user switch
-      // doesn't leak prior session's profileReady/needsProfile.
+      if (newUid === lastBootstrappedUidRef.current) {
+        return;
+      }
+      lastBootstrappedUidRef.current = newUid;
+      // Real user change (sign-in, sign-out, account switch). Reset local
+      // gating so prior session's profileReady/needsProfile doesn't leak.
       setProfileReady(false);
       setNeedsProfile(false);
       setProfileDialogOpen(false);
-      if (s?.user?.id) {
+      if (newUid) {
         const myToken = ++bootstrapTokenRef.current;
-        bootstrapProfile(s.user.id, s.user.email, myToken);
+        bootstrapProfile(newUid, s.user.email, myToken);
       } else {
         // Auth gone — invalidate any in-flight bootstrap.
         bootstrapTokenRef.current++;
