@@ -72,10 +72,16 @@ export function ProjectsPage({ userId, onSelectProject }: ProjectsPageProps) {
     const projectIds = list.map((p: any) => p.id);
     const [manuscriptsRes, charactersRes] = await Promise.all([
       (supabase as any).from('manuscripts').select('id, project_id').in('project_id', projectIds),
-      // Exclude soft-merged characters from the count — they're not active and
-      // shouldn't inflate the "N characters" badge on the project card.
-      (supabase as any).from('characters').select('id, project_id').in('project_id', projectIds).is('merged_into', null),
+      // Pull merged_into too so we can filter soft-merged characters out of
+      // the count in JS. Doing the filter in JS (instead of SQL via .is()
+      // makes the query resilient to migration 010 not being applied yet —
+      // pre-migration the column doesn't exist and a SQL filter would error
+      // and silently zero the count.
+      (supabase as any).from('characters').select('id, project_id, merged_into').in('project_id', projectIds),
     ]);
+    if (charactersRes.error) {
+      console.error('Characters count query failed:', charactersRes.error.message);
+    }
     if (!mountedRef.current) return;
 
     const chapterCounts: Record<string, number> = {};
@@ -84,6 +90,11 @@ export function ProjectsPage({ userId, onSelectProject }: ProjectsPageProps) {
       if (m.project_id) chapterCounts[m.project_id] = (chapterCounts[m.project_id] || 0) + 1;
     });
     (charactersRes.data || []).forEach((c: any) => {
+      // Skip soft-merged characters (when the column exists) — they're hidden
+      // in their own tab in the character view and shouldn't inflate counts.
+      // Pre-migration-010 the field is undefined and !undefined === true,
+      // so the count includes all characters as expected.
+      if (c.merged_into) return;
       if (c.project_id) characterCounts[c.project_id] = (characterCounts[c.project_id] || 0) + 1;
     });
 
