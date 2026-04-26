@@ -22,7 +22,7 @@ interface SessionContextValue {
   setCharacterAndBook: (character: Character, book: Book) => void;
   userId: string | null;
   projectId: string | null;
-  setUserContext: (userId: string, projectId: string) => void;
+  setUserContext: (userId: string, projectId: string | null) => void;
 }
 
 const SessionContext = createContext<SessionContextValue | null>(null);
@@ -53,7 +53,7 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const setCharacterAndBook = (character: Character, book: Book) =>
     setSession((s) => ({ ...s, character, book, currentChapter: 0 }));
 
-  const setUserContext = (uid: string, pid: string) => {
+  const setUserContext = (uid: string, pid: string | null) => {
     setUserId((prev) => {
       if (prev !== uid) {
         // Reset session when user changes
@@ -61,7 +61,10 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       }
       return uid;
     });
-    setProjectId(pid);
+    // null projectId returns the user to the projects landing page; a string
+    // value is the active project's UUID. Empty string is normalized to null
+    // so AuthorLayout's truthy check is unambiguous.
+    setProjectId(pid && pid.length > 0 ? pid : null);
   };
 
   return (

@@ -9,19 +9,23 @@ import { Toaster } from './components/ui/sonner';
 import { supabase } from '@/integrations/supabase/client';
 
 function AuthSync({ authSession }: { authSession: any }) {
-  const { setUserContext } = useSession();
+  const { setUserContext, userId: currentUserId, projectId } = useSession();
 
   useEffect(() => {
     if (!authSession?.user?.id) return;
     const userId = authSession.user.id;
-
-    // Fetch the user's project and sync to session context
-    (supabase as any).from('projects').select('id').eq('user_id', userId).then(({ data }: any) => {
-      if (data && data.length > 0) {
-        setUserContext(userId, data[0].id);
-      }
-    });
+    // Sync userId on auth change, but DO NOT auto-pick a project. Project
+    // selection is the user's decision via the ProjectsPage landing.
+    // Preserve any already-selected project if it belongs to this user.
+    if (currentUserId === userId) return;
+    setUserContext(userId, null);
+    // Suppress lint: projectId intentionally not in deps — we only want this
+    // to fire on auth change, not on user-driven project switches.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [authSession?.user?.id]);
+
+  // Reference to satisfy TS that projectId is read; never actually used here.
+  void projectId;
 
   return null;
 }

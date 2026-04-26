@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useSession } from '../../context/SessionContext';
 import { AlgorithmInfo } from '../shared/AlgorithmInfo';
 import { supabase } from '@/integrations/supabase/client';
@@ -10,14 +10,41 @@ interface TopBarProps {
   onPlay?: () => void;
   onPause?: () => void;
   onStop?: () => void;
+  // New optional handlers for the user menu. AuthorLayout passes both; the
+  // Producer/Player layouts don't, so the menu items hide when undefined.
+  onOpenProfile?: () => void;
+  onBackToProjects?: () => void;
 }
 
-export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPause, onStop }: TopBarProps) {
+export function TopBar({
+  isPlaying = false,
+  playheadPosition = 0,
+  onPlay,
+  onPause,
+  onStop,
+  onOpenProfile,
+  onBackToProjects,
+}: TopBarProps) {
   const { session, setCurrentChapter, setZoomLevel, setViewMode, setEditMode, setCharacterAndBook, userId, projectId } = useSession();
   const [showAlgorithm, setShowAlgorithm] = useState(false);
   const [characterList, setCharacterList] = useState<Array<{ id: string; name: string }>>([]);
   const [loadingCharacter, setLoadingCharacter] = useState(false);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement | null>(null);
   const { book, character, currentChapter, zoomLevel, viewMode, editMode } = session;
+
+  // Close the user menu on outside click. Listener is attached only while the
+  // menu is open to keep the cost negligible.
+  useEffect(() => {
+    if (!userMenuOpen) return;
+    const onDocClick = (e: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target as Node)) {
+        setUserMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', onDocClick);
+    return () => document.removeEventListener('mousedown', onDocClick);
+  }, [userMenuOpen]);
 
   const chapter = book.chapters[currentChapter];
 
@@ -225,14 +252,55 @@ export function TopBar({ isPlaying = false, playheadPosition = 0, onPlay, onPaus
         </button>
       </div>
 
-      {/* Logout */}
-      <button
-        onClick={() => (supabase as any).auth.signOut()}
-        className="px-2 py-1 rounded text-xs bg-ce-panel text-ce-text-muted border border-ce-border hover:text-red-400 hover:border-red-500/50 transition-colors"
-        title="Sign out"
-      >
-        Logout
-      </button>
+      {/* User menu — Profile / Switch book / Sign out. Replaces the bare
+          Logout button. Items render conditionally on whether the parent
+          layout passed the corresponding handler. */}
+      <div className="relative" ref={userMenuRef}>
+        <button
+          onClick={() => setUserMenuOpen((v) => !v)}
+          className="px-2 py-1 rounded text-xs bg-ce-panel text-ce-text-muted border border-ce-border hover:text-ce-text hover:border-ce-accent transition-colors flex items-center gap-1"
+          title="Account"
+          aria-haspopup="menu"
+          aria-expanded={userMenuOpen}
+        >
+          Account
+          <svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true">
+            <path d="M1 2 L4 6 L7 2" stroke="currentColor" strokeWidth="1.2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+        {userMenuOpen && (
+          <div
+            role="menu"
+            className="absolute right-0 top-full mt-1 w-44 bg-ce-panel-alt border border-ce-border rounded shadow-lg overflow-hidden z-50"
+          >
+            {onOpenProfile && (
+              <button
+                role="menuitem"
+                onClick={() => { setUserMenuOpen(false); onOpenProfile(); }}
+                className="w-full text-left px-3 py-2 text-xs text-ce-text hover:bg-ce-surface transition-colors"
+              >
+                Author name
+              </button>
+            )}
+            {onBackToProjects && (
+              <button
+                role="menuitem"
+                onClick={() => { setUserMenuOpen(false); onBackToProjects(); }}
+                className="w-full text-left px-3 py-2 text-xs text-ce-text hover:bg-ce-surface transition-colors border-t border-ce-border"
+              >
+                Switch book
+              </button>
+            )}
+            <button
+              role="menuitem"
+              onClick={() => { setUserMenuOpen(false); (supabase as any).auth.signOut(); }}
+              className="w-full text-left px-3 py-2 text-xs text-red-400 hover:bg-red-500/10 transition-colors border-t border-ce-border"
+            >
+              Sign out
+            </button>
+          </div>
+        )}
+      </div>
 
       {/* Algorithm Info Modal */}
       {showAlgorithm && <AlgorithmInfo onClose={() => setShowAlgorithm(false)} />}
