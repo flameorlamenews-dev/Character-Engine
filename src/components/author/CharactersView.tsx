@@ -424,13 +424,13 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
           <TabsTrigger value="blocked">
             Blocked Profiles ({blockedCharacters.length})
           </TabsTrigger>
-          {/* Merged tab only renders when there's something to show — avoids
-              permanent (0) clutter for the 99% of users who never merge. */}
-          {mergedCharacters.length > 0 && (
-            <TabsTrigger value="merged">
-              Merged Profiles ({mergedCharacters.length})
-            </TabsTrigger>
-          )}
+          {/* Merged tab is always visible so users can discover the Restore
+              flow even before they've merged anything. Earlier we hid it
+              when count was 0 to avoid clutter, but that made the unmerge
+              button unfindable. */}
+          <TabsTrigger value="merged">
+            Merged Profiles ({mergedCharacters.length})
+          </TabsTrigger>
         </TabsList>
 
         <TabsContent value="active" className="mt-6">
@@ -516,38 +516,48 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {mergedCharacters.map((character) => {
-              const targetName = mergedTargetName(character);
-              const when = character.merged_at
-                ? new Date(character.merged_at).toLocaleDateString()
-                : null;
-              return (
-                <div
-                  key={character.id}
-                  className="bg-card border rounded-lg p-4 flex flex-col justify-between"
-                >
-                  <div>
-                    <h4 className="text-lg font-serif font-semibold">
-                      {character.name}
-                    </h4>
-                    <p className="text-sm text-muted-foreground mt-1">
-                      Merged into <span className="font-medium">{targetName}</span>
-                      {when && <span className="text-xs"> · {when}</span>}
-                    </p>
-                  </div>
-                  <Button
-                    onClick={() => handleUnmerge(character)}
-                    variant="outline"
-                    className="mt-4 w-full"
-                    disabled={busyCharacterId === character.id}
+          {mergedCharacters.length === 0 ? (
+            <div className="text-center py-12 bg-card border rounded-lg">
+              <p className="text-muted-foreground mb-2">No merged characters yet.</p>
+              <p className="text-xs text-muted-foreground max-w-md mx-auto">
+                When you merge a duplicate character into another from the Active tab,
+                the merged copy will appear here with a Restore option.
+              </p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {mergedCharacters.map((character) => {
+                const targetName = mergedTargetName(character);
+                const when = character.merged_at
+                  ? new Date(character.merged_at).toLocaleDateString()
+                  : null;
+                return (
+                  <div
+                    key={character.id}
+                    className="bg-card border rounded-lg p-4 flex flex-col justify-between"
                   >
-                    {busyCharacterId === character.id ? 'Restoring…' : 'Restore as separate character'}
-                  </Button>
-                </div>
-              );
-            })}
-          </div>
+                    <div>
+                      <h4 className="text-lg font-serif font-semibold">
+                        {character.name}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mt-1">
+                        Merged into <span className="font-medium">{targetName}</span>
+                        {when && <span className="text-xs"> · {when}</span>}
+                      </p>
+                    </div>
+                    <Button
+                      onClick={() => handleUnmerge(character)}
+                      variant="outline"
+                      className="mt-4 w-full"
+                      disabled={busyCharacterId === character.id}
+                    >
+                      {busyCharacterId === character.id ? 'Restoring…' : 'Restore as separate character'}
+                    </Button>
+                  </div>
+                );
+              })}
+            </div>
+          )}
         </TabsContent>
       </Tabs>
 
