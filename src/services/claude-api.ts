@@ -199,16 +199,19 @@ RULES:
 - role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  // 8000 output tokens. Sonnet 4.6 generates at ~60-90 tok/s, so wall-clock
-  // ~110-130s for Pass 1 at this ceiling. Per-character output ~950 tokens
-  // (18 fields incl. internal/external dialogue arrays, readerTone, etc.) →
-  // 8000 covers ~7-8 typical characters. The previous retry-on-truncation
-  // safety net was DOUBLING wall-clock whenever it fired (extra full-size
-  // Claude call), so it's been removed. On the rare overflow where parse
-  // throws, the upstream invoke handler in client.ts catches and marks the
-  // manuscript failed (analysis_progress = -1); the user re-runs once.
-  // That's cheaper end-to-end than the retry firing on every busy chapter.
-  const responseText = await callClaude(systemPrompt, userMessage, 8000);
+  // 11000 output tokens. Sonnet 4.6 generates at ~60-90 tok/s → wall-clock
+  // ~120-185s for Pass 1 at this ceiling. Per-character output ~950 tokens
+  // (18 fields incl. internal/external dialogue arrays, readerTone, etc.).
+  // 11000 covers up to ~11 characters per chapter — safer than 8000 which
+  // truncated on chapters with 8+ majors (e.g. classroom / group scenes).
+  // Trade-off: ~30-50s slower per chapter than 8000, but predictable. The
+  // alternative (8000 + retry-on-truncation) was rejected because retries
+  // doubling wall-clock on busy chapters caused the prior 15-min runs.
+  // On the rare overflow at 11000, the JSON parse below throws; the
+  // upstream invoke handler in client.ts marks analysis_progress = -1, the
+  // chain (in ManuscriptsView) skips that chapter and continues to the
+  // next, and the user re-runs the failed one manually.
+  const responseText = await callClaude(systemPrompt, userMessage, 11000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
