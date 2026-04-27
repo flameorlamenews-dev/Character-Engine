@@ -109,10 +109,17 @@ const ManuscriptsView = ({
 
   // Controlled polling: refresh when analysis is running OR document is still processing
   useEffect(() => {
-    // Poll if we have an active analysis (progress between 1-99) or local state says analyzing
-    const hasActiveAnalysis = analyzingManuscriptId !== null && manuscripts.some(
-      m => m.analysis_progress !== null && m.analysis_progress > 0 && m.analysis_progress < 100
-    );
+    // Poll if any manuscript is mid-analysis (1-99) and recently touched —
+    // independent of analyzingManuscriptId, which is null after a refresh.
+    // The recency gate prevents polling on long-stuck rows from a crashed
+    // prior session; the staleness threshold matches the cleanup above.
+    const STALE_MS = 5 * 60 * 1000;
+    const now = Date.now();
+    const hasActiveAnalysis = manuscripts.some(m => {
+      if (m.analysis_progress === null || m.analysis_progress <= 0 || m.analysis_progress >= 100) return false;
+      const lastTouched = m.updated_at ? new Date(m.updated_at).getTime() : 0;
+      return now - lastTouched <= STALE_MS;
+    });
     
     // Also poll if any manuscript is still being processed (text extraction)
     const hasProcessingManuscript = manuscripts.some(
@@ -189,17 +196,38 @@ const ManuscriptsView = ({
         variant: "destructive",
       });
     } else {
-      // Clean up stale analysis_progress only if user didn't initiate analysis this session
+      // Clean up stale analysis_progress: a row is stuck if its progress is
+      // mid-flight (1-99) AND its updated_at hasn't moved in 5+ minutes.
+      // Previously this was gated on !isAnalyzingRef.current, which
+      // resets to false on every component remount (page refresh,
+      // navigate-away-and-back). That caused the cleanup to wipe genuinely
+      // in-flight rows whose analysis was running in the background, which
+      // is what produced "card shows Analyze with AI but character data is
+      // already populated" after a refresh during analysis. The 5-min
+      // staleness window matches the threshold used in
+      // ManuscriptCard.tsx:41-45.
+      //
+      // Critical for this to work: every progress UPDATE in client.ts must
+      // also bump updated_at, since manuscripts has no UPDATE trigger.
+      const STALE_MS = 5 * 60 * 1000;
+      const now = Date.now();
       const cleaned = (data || []).map(m => {
         if (
-          !isAnalyzingRef.current &&
           m.analysis_progress !== null &&
           m.analysis_progress > 0 &&
           m.analysis_progress < 100
         ) {
-          // No active analysis this session — reset stuck progress
-          supabase.from("manuscripts").update({ analysis_progress: 0 }).eq("id", m.id);
-          return { ...m, analysis_progress: 0 };
+          const lastTouched = m.updated_at ? new Date(m.updated_at).getTime() : 0;
+          const isStale = now - lastTouched > STALE_MS;
+          if (isStale) {
+            // Genuinely stuck — wipe to 0 so the user can re-trigger.
+            // Bump updated_at so the wiped row doesn't immediately re-qualify
+            // as stale on the next fetch (idempotency).
+            supabase.from("manuscripts")
+              .update({ analysis_progress: 0, updated_at: new Date().toISOString() } as any)
+              .eq("id", m.id);
+            return { ...m, analysis_progress: 0, updated_at: new Date().toISOString() };
+          }
         }
         return m;
       });
@@ -208,6 +236,30 @@ const ManuscriptsView = ({
       if (showAnalysis && selectedManuscript) {
         const updated = cleaned.find((m) => m.id === selectedManuscript.id);
         if (updated) setSelectedManuscript(updated);
+      }
+      // Re-arm the analyzing indicator from DB state. After a page refresh,
+      // analyzingManuscriptId resets to null but the proxy shim's writes may
+      // still be landing on an in-flight chapter. Without this, the polling
+      // completion detector (gated on analyzingManuscriptId) never fires, the
+      // 100/-1 transition is missed, and the user sees no indicator update.
+      // Only re-arm when the in-flight row has been touched recently —
+      // otherwise we'd light up the indicator for a long-stuck row that the
+      // staleness wipe above is about to clear.
+      if (!analyzingManuscriptId) {
+        const inflight = cleaned.find(m =>
+          m.analysis_progress !== null &&
+          m.analysis_progress > 0 &&
+          m.analysis_progress < 100 &&
+          m.updated_at &&
+          (now - new Date(m.updated_at).getTime() <= STALE_MS)
+        );
+        if (inflight) {
+          isAnalyzingRef.current = true;
+          setAnalyzingManuscriptId(inflight.id);
+          // Notify Dashboard's persistent indicator so the bottom-right badge
+          // re-arms immediately rather than waiting for the next user click.
+          onAnalysisStart?.(inflight.chapter_number, inflight.id);
+        }
       }
     }
     setIsLoadingManuscripts(false);

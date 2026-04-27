@@ -12,6 +12,7 @@ interface ManuscriptStatus {
   chapter_number: number | null;
   analysis_progress: number | null;
   analysis_results: any;
+  updated_at: string | null;
 }
 
 interface DashboardProps {
@@ -46,7 +47,7 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
   const fetchManuscriptStatuses = useCallback(async () => {
     const { data } = await supabase
       .from("manuscripts")
-      .select("id, chapter_number, analysis_progress, analysis_results")
+      .select("id, chapter_number, analysis_progress, analysis_results, updated_at")
       .eq("user_id", session.user.id)
       .eq("project_id", projectId)
       .order("chapter_number", { ascending: true });
@@ -65,6 +66,28 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
         } else if (ms && ms.analysis_progress === -1) {
           setAnalyzingChapter(null);
           setAnalyzingManuscriptIdState(null);
+        }
+      } else {
+        // Re-arm the indicator from DB state if any manuscript is in-flight
+        // and recently touched. analyzingManuscriptId is purely component
+        // state and resets to null on every page refresh; without this
+        // recovery, the bottom-right indicator stays silent for the entire
+        // remaining duration of the in-flight chapter, even though backend
+        // writes are still landing in the DB. The 5-min recency window
+        // matches ManuscriptsView's staleness wipe so we never re-arm a
+        // long-stuck row that's about to be cleared.
+        const STALE_MS = 5 * 60 * 1000;
+        const now = Date.now();
+        const inflight = data.find((m: any) =>
+          m.analysis_progress !== null &&
+          m.analysis_progress > 0 &&
+          m.analysis_progress < 100 &&
+          m.updated_at &&
+          (now - new Date(m.updated_at).getTime() <= STALE_MS)
+        );
+        if (inflight) {
+          setAnalyzingChapter(inflight.chapter_number);
+          setAnalyzingManuscriptIdState(inflight.id);
         }
       }
     }
