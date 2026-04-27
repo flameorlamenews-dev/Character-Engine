@@ -199,15 +199,37 @@ RULES:
 - role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  const responseText = await callClaude(systemPrompt, userMessage, 12000);
-
-  try {
-    // Try to parse the response as JSON, handling potential markdown wrapping
-    const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+  // 10000 output tokens. Sonnet 4.6 generates at ~60-90 tok/s per
+  // Anthropic spec, so the wall-clock cost is roughly proportional to
+  // max_tokens — asking for 12k vs 10k pinned the floor near ~3.7 min
+  // when actual responses are typically 5-9k tokens (~950 tokens per
+  // character × 6-7 typical chars + summary + glossary). 10000 still
+  // covers up to ~10 characters with full dialogue and tight glossaries.
+  //
+  // Truncation safety net: on the rare busy chapter that overflows, the
+  // initial parse throws and we re-issue at the original 12000 ceiling.
+  // The retry costs an extra Claude round-trip but guarantees we never
+  // silently lose Pass 1 data because of the optimization.
+  const tryParsePassOne = (text: string) => {
+    const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);
+  };
+
+  let responseText = await callClaude(systemPrompt, userMessage, 10000);
+  try {
+    return tryParsePassOne(responseText);
   } catch (e) {
-    console.error('Failed to parse Claude response:', responseText);
-    throw new Error('Claude returned invalid JSON. Please try again.');
+    console.warn(
+      '[engine] Pass 1 parse failed at max_tokens=10000 (likely truncation). Retrying at 12000.',
+      e
+    );
+    responseText = await callClaude(systemPrompt, userMessage, 12000);
+    try {
+      return tryParsePassOne(responseText);
+    } catch (e2) {
+      console.error('Failed to parse Claude Pass 1 response (retry also failed):', responseText.substring(0, 500));
+      throw new Error('Claude returned invalid JSON for Pass 1 after retry. Please try again.');
+    }
   }
 }
 
@@ -475,18 +497,56 @@ RULES:
 - CATEGORY: mottos (beliefs, rare) ≠ lexicon (distinctive phrases, regular) ≠ tics (linguistic habit, frequent). One phrase → one category.
 - All scores and prose must reflect observed text. Never fabricate.`;
 
-  // 15000 output tokens — actual content for 5-7 characters with full foundation
-  // is ~8-10k JSON tokens. Shrinking from 20k to 15k caps upper-bound generation
-  // time (~50 tok/s) from ~400s to ~300s and usually finishes well before.
-  // 4-minute AbortController timeout in callClaude catches hangs past that.
-  const responseText = await callClaude(systemPrompt, userMessage, 15000);
+  // Pass 2 output is dominated by what foundations are emitted:
+  //   - Per-chapter required (emotion_drift, surges, relationships,
+  //     verbal_tics): ~600 tokens per character. 6000 baseline covers up
+  //     to ~10 major characters comfortably.
+  //   - Psych foundation: ~600 tokens per character × ~6 majors + JSON
+  //     overhead ≈ 4500.
+  //   - Voice foundation: same shape, ~4500.
+  // Sizing max_tokens to what's actually requested cuts wall-clock
+  // proportionally — Sonnet 4.6 generates ~50-60 tok/s, so 6000 ≈ 110s
+  // (re-analysis with both foundations cached, the common case),
+  // 10500 ≈ 190s (one foundation needed), 15000 ≈ 275s (full first
+  // analysis, unchanged from prior behavior).
+  const passTwoMaxTokens =
+    6000
+    + (includePsychFoundation ? 4500 : 0)
+    + (includeVoiceFoundation ? 4500 : 0);
 
-  try {
-    const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
+  // Truncation safety net: if the dynamic ceiling underestimates a busy
+  // chapter, the JSON parse below would throw and previously the catch
+  // returned { characters: [] }, silently dropping the entire engine
+  // pass. That can never happen — losing Pass 2 data on a "fast" run
+  // would defeat the whole optimization. Instead, on parse failure we
+  // re-issue the call at the old 15000 ceiling and try again. The retry
+  // costs an extra Claude round-trip in the rare overflow case, but
+  // guarantees that reducing max_tokens never costs us data.
+  const tryParse = (text: string) => {
+    const cleaned = text.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
     return JSON.parse(cleaned);
+  };
+
+  let responseText = await callClaude(systemPrompt, userMessage, passTwoMaxTokens);
+  try {
+    return tryParse(responseText);
   } catch (e) {
-    console.error('Failed to parse engine analysis response:', responseText.substring(0, 500));
-    return { characters: [] };
+    console.warn(
+      `[engine] Pass 2 parse failed at max_tokens=${passTwoMaxTokens} (likely truncation). Retrying at 15000.`,
+      e
+    );
+    responseText = await callClaude(systemPrompt, userMessage, 15000);
+    try {
+      return tryParse(responseText);
+    } catch (e2) {
+      // Throw rather than returning empty characters. The upstream caller
+      // in client.ts catches engine errors into the engineErrors array and
+      // surfaces them via manuscripts.engine_errors. Returning empty would
+      // let the analysis silently mark progress=100 with zero engine data,
+      // and the user would have no signal that Pass 2 actually failed.
+      console.error('Failed to parse engine analysis response (retry also failed):', responseText.substring(0, 500));
+      throw new Error('Pass 2 returned invalid JSON after retry. Engine extraction skipped for this chapter.');
+    }
   }
 }
 
