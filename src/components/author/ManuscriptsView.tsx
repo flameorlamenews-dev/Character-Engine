@@ -130,56 +130,33 @@ const ManuscriptsView = ({
           console.log('✅ Analysis complete, clearing blocking');
           setAnalyzingManuscriptId(null);
           isAnalyzingRef.current = false;
-          // Auto-chain: trigger the next un-analyzed chapter (ascending order).
-          // 1s delay lets the cleared blocking state propagate so handleAnalyze's
-          // own guard doesn't false-positive on stale ref.
-          //
-          // The setTimeout callback re-checks chainActiveRef.current AND passes
-          // _fromChain=true to handleAnalyze. The ref check handles the race
-          // where the user clicks Stop after this setTimeout was already
-          // queued (handleStopChain also clears queuedChainTimeoutRef, but the
-          // ref check is the second line of defense). _fromChain=true tells
-          // handleAnalyze NOT to re-arm chainActive — without it, a stale
-          // queued setTimeout firing after Stop would re-activate the chain.
           if (chainActiveRef.current) {
-            const next = findNextChapterToAnalyze(analyzingMs.chapter_number ?? 0, manuscripts);
+            const next = triggerChainNext(analyzingMs.chapter_number ?? 0, manuscripts);
             if (next) {
               sonnerToast.info(
                 `Auto-analyzing Ch ${next.chapter_number ?? '?'}${next.title ? ` - ${next.title}` : ''}…`,
                 { duration: 3000 }
               );
-              queuedChainTimeoutRef.current = setTimeout(() => {
-                queuedChainTimeoutRef.current = null;
-                if (!chainActiveRef.current) return;
-                handleAnalyze(next.id, true);
-              }, 1000);
             } else {
-              setChain(false);
               sonnerToast.success('No more upcoming chapters to analyze.', { duration: 5000 });
             }
           }
         } else if (analyzingMs.analysis_progress === -1) {
-          // Analysis failed — clear blocking so user can retry
+          // Failure path here is mostly defensive — handleAnalyze's own error
+          // handler clears analyzingManuscriptId before the next poll runs,
+          // so this block usually never fires for a chained failure. Kept
+          // as a fallback for failures that bypass the invoke result path
+          // (e.g., progress=-1 written by some external process).
           console.log('❌ Analysis failed, clearing blocking');
           setAnalyzingManuscriptId(null);
           isAnalyzingRef.current = false;
-          // Auto-chain on failure: skip the failed chapter and continue. The
-          // alternative (auto-retry the same chapter) usually fails again on
-          // the same truncation, burning Claude tokens without progress.
           if (chainActiveRef.current) {
-            const next = findNextChapterToAnalyze(analyzingMs.chapter_number ?? 0, manuscripts);
+            const next = triggerChainNext(analyzingMs.chapter_number ?? 0, manuscripts);
             if (next) {
               sonnerToast.warning(
                 `Ch ${analyzingMs.chapter_number ?? '?'} failed; continuing to Ch ${next.chapter_number ?? '?'}…`,
                 { duration: 4000 }
               );
-              queuedChainTimeoutRef.current = setTimeout(() => {
-                queuedChainTimeoutRef.current = null;
-                if (!chainActiveRef.current) return;
-                handleAnalyze(next.id, true);
-              }, 1000);
-            } else {
-              setChain(false);
             }
           }
         }
@@ -254,6 +231,28 @@ const ManuscriptsView = ({
     return candidates.find(m => (m.chapter_number ?? 0) > justFinishedChapterNum) || null;
   };
 
+  // Queue the next chapter in the chain. Idempotent: if a chain transition
+  // is already queued, this is a no-op (prevents double-trigger when both
+  // the polling effect AND handleAnalyze's error path try to chain on the
+  // same failure). Caller is responsible for the user-facing toast since
+  // the wording differs between success ("Auto-analyzing…") and failure
+  // ("Ch X failed; continuing…").
+  const triggerChainNext = (justFinishedChapNum: number, msList: any[]): any | null => {
+    if (!chainActiveRef.current) return null;
+    if (queuedChainTimeoutRef.current !== null) return null;
+    const next = findNextChapterToAnalyze(justFinishedChapNum, msList);
+    if (!next) {
+      setChain(false);
+      return null;
+    }
+    queuedChainTimeoutRef.current = setTimeout(() => {
+      queuedChainTimeoutRef.current = null;
+      if (!chainActiveRef.current) return;
+      handleAnalyze(next.id, true);
+    }, 1000);
+    return next;
+  };
+
   const handleStopChain = () => {
     setChain(false);
     // Cancel any pending chain transition that was waiting for the 1s
@@ -322,6 +321,22 @@ const ManuscriptsView = ({
         });
         setAnalyzingManuscriptId(null);
         isAnalyzingRef.current = false; // Clear blocking on error
+        // Continue auto-chain past this failure. The polling effect's
+        // failure-chain block can't fire here because we just cleared
+        // analyzingManuscriptId — the next poll's `if (analyzingManuscriptId)`
+        // guard skips. So the chain has to continue from this synchronous
+        // path, otherwise a single bad chapter kills the whole chain.
+        if (chainActiveRef.current) {
+          const failedMs = manuscripts.find(m => m.id === manuscriptId);
+          const failedChapNum = failedMs?.chapter_number ?? 0;
+          const next = triggerChainNext(failedChapNum, manuscripts);
+          if (next) {
+            sonnerToast.warning(
+              `Ch ${failedChapNum} failed; continuing to Ch ${next.chapter_number ?? '?'}…`,
+              { duration: 4000 }
+            );
+          }
+        }
       } else {
         // Toast removed - persistent indicator handles this now
         
@@ -339,6 +354,19 @@ const ManuscriptsView = ({
       });
       setAnalyzingManuscriptId(null);
       isAnalyzingRef.current = false; // Clear blocking on error
+      // Continue chain past this failure (same reason as the error branch
+      // above — polling's failure-chain block won't fire).
+      if (chainActiveRef.current) {
+        const failedMs = manuscripts.find(m => m.id === manuscriptId);
+        const failedChapNum = failedMs?.chapter_number ?? 0;
+        const next = triggerChainNext(failedChapNum, manuscripts);
+        if (next) {
+          sonnerToast.warning(
+            `Ch ${failedChapNum} failed; continuing to Ch ${next.chapter_number ?? '?'}…`,
+            { duration: 4000 }
+          );
+        }
+      }
     }
   };
 
