@@ -337,7 +337,30 @@ const ManuscriptsView = ({
             supabase.from("character_conflict_profile").update({ manuscript_id: null } as any).eq("manuscript_id", mid),
           ];
 
-      await Promise.all([...perChapterDeletes, ...foundationOps]);
+      // Run all per-chapter operations and capture per-table errors. Without
+      // this, Promise.all completed "successfully" even when individual
+      // .delete() calls returned a {error} (Supabase doesn't throw on
+      // those — it returns the error in the response). The manuscript
+      // delete then proceeded, the toast said "Chapter deleted", and any
+      // failed child rows orphaned silently. Now we surface every failure
+      // with its table name so the user knows the cleanup wasn't complete.
+      const allOps = [...perChapterDeletes, ...foundationOps];
+      const opLabels = [
+        'character_timeline_entries', 'character_traits', 'character_mottos',
+        'character_lexicon', 'character_audience_mods', 'character_emotion_map',
+        'character_voice_feedback', 'character_verbal_tics', 'analysis_queue',
+        ...(deleteAllData
+          ? ['character_voice_scales', 'character_style_rules', 'character_conflict_profile']
+          : ['character_voice_scales (null manuscript_id)', 'character_style_rules (null manuscript_id)', 'character_conflict_profile (null manuscript_id)']),
+      ];
+      const opResults = await Promise.all(allOps);
+      const opFailures = opResults
+        .map((r: any, i: number) => ({ table: opLabels[i], error: r?.error }))
+        .filter(x => x.error);
+      if (opFailures.length > 0) {
+        const detail = opFailures.map(f => `${f.table}: ${f.error.message}`).join('; ');
+        throw new Error(`Per-chapter cleanup partially failed (${opFailures.length} table${opFailures.length === 1 ? '' : 's'}): ${detail}`);
+      }
 
       // Glossary: drop this chapter from `appears_in` for every term. Then,
       // on Delete All Data, also remove unlocked terms entirely.
@@ -371,11 +394,14 @@ const ManuscriptsView = ({
         // Soft-merged sources are owned by the Merged tab — never auto-delete
         // them here even on a "Delete All Data" manuscript wipe. Their data
         // already lives under the merge target.
-        await supabase
+        const { error: charsErr } = await supabase
           .from("characters")
           .delete()
           .eq("manuscript_id", mid)
           .is("merged_into", null);
+        if (charsErr) {
+          throw new Error(`character cleanup failed: ${charsErr.message}`);
+        }
       }
 
       const { error } = await supabase.from("manuscripts").delete().eq("id", mid);
@@ -405,6 +431,13 @@ const ManuscriptsView = ({
       // Refresh anyway so the UI reflects whatever partial deletion landed
       // — otherwise the user sees a misleadingly intact manuscript card.
       fetchManuscripts();
+    } finally {
+      // Close the dialog and clear the staged manuscript on BOTH success and
+      // failure paths. Without this, an error left the confirmation dialog
+      // stuck open behind the toast (forcing the user to click Cancel) and
+      // kept the previous target in state for the next delete attempt.
+      setDeleteDialogOpen(false);
+      setManuscriptToDelete(null);
     }
   };
 

@@ -224,6 +224,25 @@ const CharactersView = ({ userId, projectId }: { userId: string; projectId: stri
   const confirmDelete = async () => {
     if (!characterToDelete) return;
 
+    // Proactive incoming-merge check: characters.merged_into is ON DELETE
+    // RESTRICT (migration 010:35), so deleting a merge target with live
+    // sources would 23503 with a cryptic FK message. Mirror handleHardDelete's
+    // friendly "unmerge first" path so the user knows what to do.
+    const incoming = (characters || []).filter(
+      (c: any) => c.merged_into === characterToDelete.id
+    );
+    if (incoming.length > 0) {
+      const names = incoming.map((c: any) => c.name).join(', ');
+      toast({
+        title: "Unmerge first",
+        description: `"${characterToDelete.name}" has ${incoming.length} merged-in profile${incoming.length === 1 ? '' : 's'} (${names}). Restore them from the Merged tab before deleting.`,
+        variant: "destructive",
+      });
+      setDeleteDialogOpen(false);
+      setCharacterToDelete(null);
+      return;
+    }
+
     const { error } = await supabase
       .from("characters")
       .delete()

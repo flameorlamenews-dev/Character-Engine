@@ -120,19 +120,126 @@ export function ProjectsPage({ userId, onSelectProject }: ProjectsPageProps) {
   };
 
   const handleDelete = async (project: ProjectWithCounts) => {
+    // Double-click / parallel-project guard. setDeletingId only disables the
+    // specific row's button, but reads the React state on the next render —
+    // so a fast double-click on the same row, or a click on row B mid-delete
+    // of row A, can both fire handleDelete in parallel and cause overlapping
+    // cleanup writes. Cheap belt-and-suspenders.
+    if (deletingId) return;
     const confirmMsg = project.chapterCount > 0 || project.characterCount > 0
-      ? `Delete "${project.name}"? This will remove ${project.chapterCount} chapter(s) and ${project.characterCount} character(s) and cannot be undone.`
+      ? `Delete "${project.name}"?\n\nThis permanently removes ${project.chapterCount} chapter${project.chapterCount === 1 ? '' : 's'}, ${project.characterCount} character${project.characterCount === 1 ? '' : 's'}, all voice profiles, all dialogue history, all glossary terms, and all engine analysis. This cannot be undone.`
       : `Delete "${project.name}"? This cannot be undone.`;
     if (!window.confirm(confirmMsg)) return;
     setDeletingId(project.id);
-    const { error } = await (supabase as any).from('projects').delete().eq('id', project.id);
-    setDeletingId(null);
-    if (error) {
+    try {
+      // Migration 011 cascades projects → manuscripts/characters/glossary, but
+      // manuscript_id child FKs (character_timeline_entries, analysis_queue,
+      // per-chapter mottos/lexicon/etc.) deliberately do NOT cascade — that
+      // would break the per-chapter "Keep Data" semantic on individual chapter
+      // delete. So we have to clear those child rows ourselves before the
+      // project cascade fires, otherwise it 23503-blocks on manuscript delete.
+      const { data: projectManuscripts, error: msErr } = await (supabase as any)
+        .from('manuscripts')
+        .select('id')
+        .eq('project_id', project.id);
+      if (msErr) throw msErr;
+      const mids = (projectManuscripts || []).map((m: any) => m.id);
+
+      if (mids.length > 0) {
+        // Clear every manuscript_id child table in one shot (.in() across all
+        // chapters of this project). Track per-table errors so silent
+        // failures surface.
+        //
+        // world_glossary is included here because it has manuscript_id
+        // REFERENCES manuscripts(id) with NO ACTION (migration 002:269) and
+        // would 23503-block the manuscript delete otherwise. Project-scoped
+        // glossary rows (manuscript_id = NULL) are handled by the project
+        // CASCADE on world_glossary.project_id from migration 011.
+        const cleanupSpecs: Array<[string, any]> = [
+          ['character_timeline_entries', (supabase as any).from('character_timeline_entries').delete().in('manuscript_id', mids)],
+          ['analysis_queue', (supabase as any).from('analysis_queue').delete().in('manuscript_id', mids)],
+          ['character_traits', (supabase as any).from('character_traits').delete().in('manuscript_id', mids)],
+          ['character_mottos', (supabase as any).from('character_mottos').delete().in('manuscript_id', mids)],
+          ['character_lexicon', (supabase as any).from('character_lexicon').delete().in('manuscript_id', mids)],
+          ['character_audience_mods', (supabase as any).from('character_audience_mods').delete().in('manuscript_id', mids)],
+          ['character_emotion_map', (supabase as any).from('character_emotion_map').delete().in('manuscript_id', mids)],
+          ['character_voice_feedback', (supabase as any).from('character_voice_feedback').delete().in('manuscript_id', mids)],
+          ['character_verbal_tics', (supabase as any).from('character_verbal_tics').delete().in('manuscript_id', mids)],
+          ['world_glossary', (supabase as any).from('world_glossary').delete().in('manuscript_id', mids)],
+          // Foundation tables — project delete = nuke everything, so delete
+          // these too (vs. NULL on individual chapter delete with Keep Data).
+          ['character_voice_scales', (supabase as any).from('character_voice_scales').delete().in('manuscript_id', mids)],
+          ['character_style_rules', (supabase as any).from('character_style_rules').delete().in('manuscript_id', mids)],
+          ['character_conflict_profile', (supabase as any).from('character_conflict_profile').delete().in('manuscript_id', mids)],
+        ];
+        const cleanupResults = await Promise.all(cleanupSpecs.map(([, q]) => q));
+        const cleanupFailures = cleanupResults
+          .map((r: any, i: number) => ({ table: cleanupSpecs[i][0], error: r?.error }))
+          .filter((x: any) => x.error);
+        if (cleanupFailures.length > 0) {
+          const detail = cleanupFailures.map((f: any) => `${f.table}: ${f.error.message}`).join('; ');
+          throw new Error(`Pre-delete cleanup failed (${cleanupFailures.length} table${cleanupFailures.length === 1 ? '' : 's'}): ${detail}`);
+        }
+      }
+
+      // Break merged_into pointers BEFORE the cascade fires.
+      // characters.merged_into is ON DELETE RESTRICT (migration 010:35).
+      //
+      // Two sub-cases must be handled, so we issue two updates:
+      //   (a) Sources WITHIN this project pointing AT targets (anywhere) —
+      //       the source's pointer is irrelevant once the source is deleted,
+      //       but PG checks RESTRICT on a per-row basis during cascade and
+      //       order is non-deterministic, so null up-front.
+      //   (b) Sources OUTSIDE this project pointing AT targets WITHIN this
+      //       project — the cross-project source survives, but its pointer
+      //       to the about-to-be-deleted in-project target would RESTRICT
+      //       the cascade. Null those too. (Cross-project merges aren't a
+      //       documented user flow but the schema doesn't forbid them, so
+      //       defend against the case rather than crash.)
+      // Project delete = nuke everything inside; we accept that any external
+      // merge chains pointing in lose their pointer.
+      // Throw on select error — silently dropping it (.data?.map ?? []) would
+      // skip Pass B of the merged_into null-sweep below and leave external
+      // merge chains pointing at about-to-be-deleted in-project targets,
+      // which then RESTRICT-block the project cascade with a cryptic 23503.
+      const inProjectCharsRes = await (supabase as any)
+        .from('characters')
+        .select('id')
+        .eq('project_id', project.id);
+      if (inProjectCharsRes.error) throw inProjectCharsRes.error;
+      const inProjectCharIds = (inProjectCharsRes.data || []).map((c: any) => c.id);
+
+      const unmergeOps: Promise<any>[] = [
+        (supabase as any)
+          .from('characters')
+          .update({ merged_into: null, merged_at: null })
+          .eq('project_id', project.id)
+          .not('merged_into', 'is', null),
+      ];
+      if (inProjectCharIds.length > 0) {
+        unmergeOps.push(
+          (supabase as any)
+            .from('characters')
+            .update({ merged_into: null, merged_at: null })
+            .in('merged_into', inProjectCharIds)
+        );
+      }
+      const unmergeResults = await Promise.all(unmergeOps);
+      const unmergeErr = unmergeResults.find((r: any) => r?.error)?.error;
+      if (unmergeErr) throw unmergeErr;
+
+      // Now delete the project. Cascade handles manuscripts (children just
+      // cleared above), characters (CASCADE chain via migration 010 handles
+      // character_id child rows), and world_glossary.
+      const { error } = await (supabase as any).from('projects').delete().eq('id', project.id);
+      if (error) throw error;
+      toast.success(`Deleted "${project.name}"`);
+      loadProjects();
+    } catch (error: any) {
       toast.error('Delete failed: ' + error.message);
-      return;
+    } finally {
+      setDeletingId(null);
     }
-    toast.success(`Deleted "${project.name}"`);
-    loadProjects();
   };
 
   return (
