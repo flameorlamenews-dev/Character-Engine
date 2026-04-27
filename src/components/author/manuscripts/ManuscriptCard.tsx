@@ -74,7 +74,9 @@ const ManuscriptCard = ({
         <div className="flex justify-between items-start">
           <div className="flex items-center gap-2 flex-1">
             <FileText className="h-5 w-5 text-primary" />
-            <CardTitle className="text-xl">{manuscript.title}</CardTitle>
+            <CardTitle className="text-xl">
+              {manuscript.chapter_number ? `Ch ${manuscript.chapter_number} - ${manuscript.title}` : manuscript.title}
+            </CardTitle>
           </div>
           <Button
             variant="ghost"
