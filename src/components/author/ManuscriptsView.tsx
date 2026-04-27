@@ -462,27 +462,20 @@ const ManuscriptsView = ({
           </div>
         )}
         <div className="flex justify-end gap-2">
-          {(() => {
-            const isAnyAnalyzing = manuscripts.some(
-              m => m.analysis_progress !== null && m.analysis_progress > 0 && m.analysis_progress < 100
-            ) || analyzingManuscriptId !== null;
-            return (
-              <div onClick={() => {
-                if (isAnyAnalyzing) {
-                  sonnerToast.info("Please wait until the current analysis is complete before uploading a new chapter.", { duration: 4000 });
-                }
-              }}>
-                <Button
-                  onClick={() => !isAnyAnalyzing && setIsDialogOpen(true)}
-                  className={`gap-2 ${isAnyAnalyzing ? 'opacity-40 bg-muted text-muted-foreground pointer-events-none' : ''}`}
-                  size="lg"
-                >
-                  <Plus className="h-5 w-5" />
-                  Upload Manuscript
-                </Button>
-              </div>
-            );
-          })()}
+          {/* Upload is independent of analysis — it's just a manuscripts INSERT.
+              The previous gate here was UX-only (discouraging upload because
+              the user couldn't analyze yet); the actual analysis launch still
+              has its own concurrent-run guard via isAnalyzingRef.current at
+              the top of handleAnalyze, which is what stops a second analysis
+              from racing the first on character creation / foundation refetch. */}
+          <Button
+            onClick={() => setIsDialogOpen(true)}
+            className="gap-2"
+            size="lg"
+          >
+            <Plus className="h-5 w-5" />
+            Upload Manuscript
+          </Button>
         </div>
       </div>
 
