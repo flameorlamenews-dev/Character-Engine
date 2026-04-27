@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
-import { Plus, Loader2 } from "lucide-react";
+import { Plus, Loader2, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { hasClaudeKey } from "@/services/claude-api";
 import { useToast } from "@/hooks/use-toast";
@@ -48,6 +48,42 @@ const ManuscriptsView = ({
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [analyzingManuscriptId, setAnalyzingManuscriptId] = useState<string | null>(null);
   const isAnalyzingRef = useRef(false); // Synchronous blocking - prevents race conditions
+  // Auto-chain: once the user manually clicks Analyze on any chapter, every
+  // subsequent chapter (in ascending chapter_number order) auto-analyzes when
+  // the previous one finishes. Stops when no higher-numbered un-analyzed
+  // chapter remains, OR when the user clicks Stop Auto-Analysis. Lives only
+  // in component state — closing the tab breaks the chain (the analyzer is
+  // client-side via the Proxy shim), but in-flight chapter completes its DB
+  // writes; user just clicks Analyze again on resume.
+  //
+  // chainActiveRef mirrors chainActive for SYNCHRONOUS reads inside async
+  // callbacks (setTimeout). React state reads inside a setTimeout closure are
+  // stale — they reflect the value at the time the setTimeout was scheduled,
+  // not when it fires. So if the user clicks Stop after a chain transition
+  // setTimeout was already queued, a state-only check would still see
+  // chainActive=true and fire handleAnalyze anyway. The ref read is current.
+  const [chainActive, setChainActive] = useState(false);
+  const chainActiveRef = useRef(false);
+  const queuedChainTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Single helper so chainActive state and chainActiveRef can never drift.
+  const setChain = (active: boolean) => {
+    chainActiveRef.current = active;
+    setChainActive(active);
+  };
+
+  // Clear any queued chain transition if the component unmounts (route
+  // change, tab close). Without this, a setTimeout queued during the 1s
+  // settle window could fire on an unmounted component and trigger React
+  // setState warnings.
+  useEffect(() => {
+    return () => {
+      if (queuedChainTimeoutRef.current !== null) {
+        clearTimeout(queuedChainTimeoutRef.current);
+        queuedChainTimeoutRef.current = null;
+      }
+    };
+  }, []);
   const [selectedManuscript, setSelectedManuscript] = useState(null);
   const [showAnalysis, setShowAnalysis] = useState(false);
   const [dialogTab, setDialogTab] = useState<'manuscript' | 'analysis'>('manuscript');
@@ -94,11 +130,58 @@ const ManuscriptsView = ({
           console.log('✅ Analysis complete, clearing blocking');
           setAnalyzingManuscriptId(null);
           isAnalyzingRef.current = false;
+          // Auto-chain: trigger the next un-analyzed chapter (ascending order).
+          // 1s delay lets the cleared blocking state propagate so handleAnalyze's
+          // own guard doesn't false-positive on stale ref.
+          //
+          // The setTimeout callback re-checks chainActiveRef.current AND passes
+          // _fromChain=true to handleAnalyze. The ref check handles the race
+          // where the user clicks Stop after this setTimeout was already
+          // queued (handleStopChain also clears queuedChainTimeoutRef, but the
+          // ref check is the second line of defense). _fromChain=true tells
+          // handleAnalyze NOT to re-arm chainActive — without it, a stale
+          // queued setTimeout firing after Stop would re-activate the chain.
+          if (chainActiveRef.current) {
+            const next = findNextChapterToAnalyze(analyzingMs.chapter_number ?? 0, manuscripts);
+            if (next) {
+              sonnerToast.info(
+                `Auto-analyzing Ch ${next.chapter_number ?? '?'}${next.title ? ` - ${next.title}` : ''}…`,
+                { duration: 3000 }
+              );
+              queuedChainTimeoutRef.current = setTimeout(() => {
+                queuedChainTimeoutRef.current = null;
+                if (!chainActiveRef.current) return;
+                handleAnalyze(next.id, true);
+              }, 1000);
+            } else {
+              setChain(false);
+              sonnerToast.success('No more upcoming chapters to analyze.', { duration: 5000 });
+            }
+          }
         } else if (analyzingMs.analysis_progress === -1) {
           // Analysis failed — clear blocking so user can retry
           console.log('❌ Analysis failed, clearing blocking');
           setAnalyzingManuscriptId(null);
           isAnalyzingRef.current = false;
+          // Auto-chain on failure: skip the failed chapter and continue. The
+          // alternative (auto-retry the same chapter) usually fails again on
+          // the same truncation, burning Claude tokens without progress.
+          if (chainActiveRef.current) {
+            const next = findNextChapterToAnalyze(analyzingMs.chapter_number ?? 0, manuscripts);
+            if (next) {
+              sonnerToast.warning(
+                `Ch ${analyzingMs.chapter_number ?? '?'} failed; continuing to Ch ${next.chapter_number ?? '?'}…`,
+                { duration: 4000 }
+              );
+              queuedChainTimeoutRef.current = setTimeout(() => {
+                queuedChainTimeoutRef.current = null;
+                if (!chainActiveRef.current) return;
+                handleAnalyze(next.id, true);
+              }, 1000);
+            } else {
+              setChain(false);
+            }
+          }
         }
       }
     }
@@ -153,7 +236,46 @@ const ManuscriptsView = ({
     setIsLoadingManuscripts(false);
   };
 
-  const handleAnalyze = async (manuscriptId: string) => {
+  // Find the next un-analyzed chapter strictly above the just-finished one
+  // (ascending chapter_number). Skips chapters whose content is still being
+  // extracted. Returns null when nothing higher remains — the chain naturally
+  // ends. We deliberately don't fall back to lower-numbered un-analyzed
+  // chapters; the user can manually trigger those if they want.
+  const findNextChapterToAnalyze = (justFinishedChapterNum: number, msList: any[]): any | null => {
+    const candidates = msList
+      .filter(m =>
+        (m.analysis_progress ?? 0) === 0 &&
+        (m.processing_progress === null || m.processing_progress === undefined || m.processing_progress >= 100) &&
+        !m.content?.includes('Processing document') &&
+        !m.content?.includes('Extracting text') &&
+        !m.content?.includes('Downloading document')
+      )
+      .sort((a, b) => (a.chapter_number ?? 0) - (b.chapter_number ?? 0));
+    return candidates.find(m => (m.chapter_number ?? 0) > justFinishedChapterNum) || null;
+  };
+
+  const handleStopChain = () => {
+    setChain(false);
+    // Cancel any pending chain transition that was waiting for the 1s
+    // settle delay. Without this, a setTimeout queued before the user
+    // clicked Stop would still fire its callback — and although the
+    // callback now also checks chainActiveRef.current, cancelling
+    // outright is cleaner.
+    if (queuedChainTimeoutRef.current !== null) {
+      clearTimeout(queuedChainTimeoutRef.current);
+      queuedChainTimeoutRef.current = null;
+    }
+    sonnerToast.info('Auto-analysis stopped. The current chapter will still finish.', {
+      duration: 4000,
+    });
+  };
+
+  // _fromChain: true when this call is a chain continuation from the polling
+  // effect. Chain calls must NOT re-arm chainActive — if a stale setTimeout
+  // races with a Stop click and slips past the ref check, an unconditional
+  // re-arm would reactivate the chain against the user's intent. Manual
+  // clicks (default _fromChain=false) arm the chain.
+  const handleAnalyze = async (manuscriptId: string, _fromChain = false) => {
     // SYNCHRONOUS BLOCK: Check ref immediately before anything else
     if (isAnalyzingRef.current) {
       console.log('🚫 BLOCKED: Analysis already in progress');
@@ -162,7 +284,12 @@ const ManuscriptsView = ({
       });
       return;
     }
-    
+
+    if (!_fromChain) {
+      // Manual click — arm the chain so subsequent chapters auto-trigger.
+      setChain(true);
+    }
+
     // Set ref IMMEDIATELY (synchronous) to block any subsequent clicks
     isAnalyzingRef.current = true;
     console.log('✅ Starting analysis, blocking enabled');
@@ -462,6 +589,20 @@ const ManuscriptsView = ({
           </div>
         )}
         <div className="flex justify-end gap-2">
+          {/* Stop Auto-Analysis appears only while the chain is armed. Stops
+              future chapters from being auto-triggered; the in-flight chapter
+              still completes its DB writes. */}
+          {chainActive && (
+            <Button
+              onClick={handleStopChain}
+              variant="outline"
+              size="lg"
+              className="gap-2"
+            >
+              <X className="h-5 w-5" />
+              Stop Auto-Analysis
+            </Button>
+          )}
           {/* Upload is independent of analysis — it's just a manuscripts INSERT.
               The previous gate here was UX-only (discouraging upload because
               the user couldn't analyze yet); the actual analysis launch still
