@@ -12,6 +12,7 @@ interface ManuscriptStatus {
   chapter_number: number | null;
   analysis_progress: number | null;
   analysis_results: any;
+  updated_at: string | null;
 }
 
 interface DashboardProps {
@@ -46,7 +47,7 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
   const fetchManuscriptStatuses = useCallback(async () => {
     const { data } = await supabase
       .from("manuscripts")
-      .select("id, chapter_number, analysis_progress, analysis_results")
+      .select("id, chapter_number, analysis_progress, analysis_results, updated_at")
       .eq("user_id", session.user.id)
       .eq("project_id", projectId)
       .order("chapter_number", { ascending: true });
@@ -65,6 +66,27 @@ const Dashboard = ({ session, projectId, activeView: activeViewProp, onNavigate 
         } else if (ms && ms.analysis_progress === -1) {
           setAnalyzingChapter(null);
           setAnalyzingManuscriptIdState(null);
+        }
+      } else {
+        // Refresh-recovery: detect a backend analysis still running from before
+        // a page refresh / nav-away-and-back, and re-arm the indicator + polling.
+        // Without this, analyzingManuscriptId stays null after a refresh, the
+        // polling effect's guard short-circuits, and the bottom-right indicator
+        // goes silent — even though the backend (Claude proxy) is still writing
+        // chapter data. Recency check via updated_at distinguishes a live analysis
+        // from a stuck row left over from a crashed session.
+        const STALE_THRESHOLD_MS = 5 * 60 * 1000;
+        const now = Date.now();
+        const inflight = data.find((m: any) =>
+          m.analysis_progress !== null &&
+          m.analysis_progress > 0 &&
+          m.analysis_progress < 100 &&
+          m.updated_at &&
+          (now - new Date(m.updated_at).getTime()) < STALE_THRESHOLD_MS
+        );
+        if (inflight) {
+          setAnalyzingChapter(inflight.chapter_number);
+          setAnalyzingManuscriptIdState(inflight.id);
         }
       }
     }

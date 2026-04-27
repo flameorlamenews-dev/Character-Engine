@@ -104,9 +104,15 @@ export const supabase = new Proxy(realSupabase, {
 
               // Update progress to show analysis started; also clear any stale
               // engine_errors from a prior failed run so the UI badge resets.
+              // updated_at is explicitly bumped on every progress write so the
+              // staleness checks in ManuscriptCard + ManuscriptsView fetch +
+              // Dashboard bootstrap can tell "stuck" from "actively running".
+              // Without an UPDATE trigger on the table, .update() does NOT
+              // auto-bump updated_at, so the existing "is stale" logic was
+              // dead code until this was added.
               await realSupabase
                 .from('manuscripts')
-                .update({ analysis_progress: 10, engine_errors: null } as any)
+                .update({ analysis_progress: 10, engine_errors: null, updated_at: new Date().toISOString() } as any)
                 .eq('id', body.manuscriptId);
 
               // Get existing characters for context. We keep this full set so the
@@ -154,10 +160,10 @@ export const supabase = new Proxy(realSupabase, {
                 priorKnowledge
               );
 
-              // Update progress
+              // Update progress (bump updated_at so staleness checks see live activity)
               await realSupabase
                 .from('manuscripts')
-                .update({ analysis_progress: 50 })
+                .update({ analysis_progress: 50, updated_at: new Date().toISOString() } as any)
                 .eq('id', body.manuscriptId);
 
               // Wipe prior AI rows for THIS manuscript across per-chapter tables,
@@ -295,7 +301,7 @@ export const supabase = new Proxy(realSupabase, {
               // surfaces to manuscripts.engine_errors + the UI badge.
               const engineErrors: EngineError[] = [];
 
-              await realSupabase.from('manuscripts').update({ analysis_progress: 60 }).eq('id', body.manuscriptId);
+              await realSupabase.from('manuscripts').update({ analysis_progress: 60, updated_at: new Date().toISOString() } as any).eq('id', body.manuscriptId);
 
               // Pass 2 scope = chapter characters with a major role.
               // Minor roles (cameos, background figures) skip ALL of Pass 2 entirely —
@@ -391,7 +397,7 @@ export const supabase = new Proxy(realSupabase, {
 
               if (engineResult) {
                 console.log('Engine analysis returned', engineResult.characters.length, 'characters:', engineResult.characters.map(c => c.name));
-                await realSupabase.from('manuscripts').update({ analysis_progress: 80 }).eq('id', body.manuscriptId);
+                await realSupabase.from('manuscripts').update({ analysis_progress: 80, updated_at: new Date().toISOString() } as any).eq('id', body.manuscriptId);
 
                 const write = async (
                   table: string,
@@ -661,6 +667,7 @@ export const supabase = new Proxy(realSupabase, {
                 .from('manuscripts')
                 .update({
                   analysis_progress: 100,
+                  updated_at: new Date().toISOString(),
                   engine_errors: engineErrors.length > 0 ? engineErrors : null,
                   analysis_results: {
                     summary: analysis.summary,
@@ -680,7 +687,7 @@ export const supabase = new Proxy(realSupabase, {
               console.error('Analysis failed:', err);
               await realSupabase
                 .from('manuscripts')
-                .update({ analysis_progress: -1 })
+                .update({ analysis_progress: -1, updated_at: new Date().toISOString() } as any)
                 .eq('id', body.manuscriptId);
               return { data: null, error: { message: err.message } };
             }

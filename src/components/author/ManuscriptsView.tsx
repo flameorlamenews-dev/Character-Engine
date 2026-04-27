@@ -109,10 +109,20 @@ const ManuscriptsView = ({
 
   // Controlled polling: refresh when analysis is running OR document is still processing
   useEffect(() => {
-    // Poll if we have an active analysis (progress between 1-99) or local state says analyzing
-    const hasActiveAnalysis = analyzingManuscriptId !== null && manuscripts.some(
-      m => m.analysis_progress !== null && m.analysis_progress > 0 && m.analysis_progress < 100
-    );
+    // Poll if any manuscript shows recent in-flight progress (1-99 with a
+    // recent updated_at). Previously this was gated AND'd with a non-null
+    // analyzingManuscriptId, which meant after a page refresh — when local
+    // state resets to null but the backend is still writing — polling never
+    // started, the card stayed frozen at stale data, and the analysis dialog
+    // showed stale reactions. Recency check via updated_at distinguishes a
+    // live analysis from a row left stuck by a crashed previous session.
+    const STALE_THRESHOLD_MS = 5 * 60 * 1000;
+    const now = Date.now();
+    const hasActiveAnalysis = manuscripts.some(m => {
+      if (m.analysis_progress === null || m.analysis_progress <= 0 || m.analysis_progress >= 100) return false;
+      const lastTouchedMs = m.updated_at ? new Date(m.updated_at).getTime() : 0;
+      return lastTouchedMs > 0 && (now - lastTouchedMs) < STALE_THRESHOLD_MS;
+    });
     
     // Also poll if any manuscript is still being processed (text extraction)
     const hasProcessingManuscript = manuscripts.some(
@@ -189,16 +199,30 @@ const ManuscriptsView = ({
         variant: "destructive",
       });
     } else {
-      // Clean up stale analysis_progress only if user didn't initiate analysis this session
+      // Clean up stale analysis_progress ONLY when the row hasn't been touched
+      // by the backend in 5+ minutes. The previous version gated solely on
+      // !isAnalyzingRef.current, which is always false on a fresh component
+      // mount (refs reset on remount). That meant any page refresh / nav-away-
+      // and-back DURING an active analysis would wipe the in-progress flag to
+      // 0 — but Pass 1 had already written character_timeline_entries to disk.
+      // Result: manuscript card showed "Analyze with AI" while the character
+      // page already had chapter data. Now we trust updated_at: if the proxy
+      // bumped it within the last 5 minutes, the analysis is genuinely live
+      // and we leave it alone. Backend explicitly bumps updated_at on every
+      // progress write (see client.ts proxy).
+      const STALE_THRESHOLD_MS = 5 * 60 * 1000;
+      const now = Date.now();
       const cleaned = (data || []).map(m => {
-        if (
-          !isAnalyzingRef.current &&
+        const lastTouchedMs = m.updated_at ? new Date(m.updated_at).getTime() : 0;
+        const isStuck =
           m.analysis_progress !== null &&
           m.analysis_progress > 0 &&
-          m.analysis_progress < 100
-        ) {
-          // No active analysis this session — reset stuck progress
-          supabase.from("manuscripts").update({ analysis_progress: 0 }).eq("id", m.id);
+          m.analysis_progress < 100 &&
+          lastTouchedMs > 0 &&
+          (now - lastTouchedMs) > STALE_THRESHOLD_MS;
+        if (isStuck) {
+          // Genuinely stuck (no DB activity in 5 min) — reset so user can retry.
+          supabase.from("manuscripts").update({ analysis_progress: 0, updated_at: new Date().toISOString() } as any).eq("id", m.id);
           return { ...m, analysis_progress: 0 };
         }
         return m;
