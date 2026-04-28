@@ -24,7 +24,7 @@ export function hasClaudeKey(): boolean {
   return !!CLAUDE_API_KEY;
 }
 
-async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096, timeoutMs: number = 240000): Promise<string> {
+async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096, timeoutMs: number = 360000): Promise<string> {
   if (!CLAUDE_API_KEY) {
     throw new Error('Claude API key not configured. Add VITE_CLAUDE_API_KEY to your .env file.');
   }
