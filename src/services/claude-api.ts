@@ -73,7 +73,51 @@ async function callClaude(systemPrompt: string, userMessage: string, maxTokens: 
   }
 
   const data = await response.json();
-  return data.content?.[0]?.text || '';
+  const text = data.content?.[0]?.text || '';
+
+  // Diagnostic: log stop_reason and token usage on every call. Truncation
+  // can happen for THREE different reasons that look identical from the
+  // text alone, so we have to inspect the response shape to know which:
+  //
+  //   - stop_reason="end_turn"   → Claude finished naturally. If parse
+  //                                 fails, the model emitted malformed JSON
+  //                                 (different bug).
+  //   - stop_reason="max_tokens" → We hit the budget. Bump max_tokens.
+  //   - stop_reason="refusal"    → Streaming safety classifier intervened
+  //                                 mid-generation (Claude 4 feature). The
+  //                                 partial output was real prose but the
+  //                                 classifier cut it off. Bumping
+  //                                 max_tokens does NOT fix this — need to
+  //                                 identify what content tripped it.
+  //
+  // We emit a structured-ish console line so it's easy to grep in DevTools.
+  const stopReason = data.stop_reason;
+  const inputTokens = data.usage?.input_tokens;
+  const outputTokens = data.usage?.output_tokens;
+  console.log(
+    `[claude] stop_reason=${stopReason} input_tokens=${inputTokens} output_tokens=${outputTokens} max_tokens=${maxTokens}`
+  );
+
+  // Refusal: surface a clear error so the user (and us) immediately knows
+  // this is a content-moderation issue, NOT a token-budget issue. Bumping
+  // max_tokens is futile here.
+  if (stopReason === 'refusal') {
+    throw new Error(
+      `Claude refused to complete this response (safety classifier flagged the content mid-generation, output_tokens=${outputTokens}). This is NOT a max_tokens issue — bumping the budget will not help. The chapter content or the prompt likely triggered Anthropic's safety system. Try removing or rephrasing dark/violent passages and retry.`
+    );
+  }
+
+  // max_tokens: log a warning, but return the text. The caller's JSON.parse
+  // will throw if the response is genuinely truncated, and the existing
+  // error path in analyzeManuscript / analyzeManuscriptEngine will surface
+  // it. No need to throw here — keeps backward compat.
+  if (stopReason === 'max_tokens') {
+    console.warn(
+      `[claude] response hit max_tokens=${maxTokens} (output_tokens=${outputTokens}). If JSON.parse fails next, it's real budget truncation — bump max_tokens.`
+    );
+  }
+
+  return text;
 }
 
 /**
