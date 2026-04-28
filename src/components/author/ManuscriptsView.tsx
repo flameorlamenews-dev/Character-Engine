@@ -290,13 +290,27 @@ const ManuscriptsView = ({
   // the wording differs between success ("Auto-analyzing…") and failure
   // ("Ch X failed; continuing…").
   const triggerChainNext = (justFinishedChapNum: number, msList: any[]): any | null => {
-    if (!chainActiveRef.current) return null;
-    if (queuedChainTimeoutRef.current !== null) return null;
+    // Diagnostic snapshot of chain state at trigger time. If the chain
+    // silently dies, this line tells us exactly which gate rejected.
+    const unanalyzedCount = msList.filter(m => (m.analysis_progress ?? 0) === 0).length;
+    console.log(
+      `[chain] triggerChainNext: chainActive=${chainActiveRef.current} queued=${queuedChainTimeoutRef.current !== null} justFinishedChap=${justFinishedChapNum} totalMs=${msList.length} unanalyzedCount=${unanalyzedCount}`
+    );
+    if (!chainActiveRef.current) {
+      console.log('[chain] SKIP: chainActiveRef is false');
+      return null;
+    }
+    if (queuedChainTimeoutRef.current !== null) {
+      console.log('[chain] SKIP: queuedChainTimeoutRef already set');
+      return null;
+    }
     const next = findNextChapterToAnalyze(justFinishedChapNum, msList);
     if (!next) {
+      console.log(`[chain] no eligible next chapter > ${justFinishedChapNum}; ending chain`);
       setChain(false);
       return null;
     }
+    console.log(`[chain] queuing handleAnalyze for Ch ${next.chapter_number} (${next.id}) in 10s`);
     // 10-second pause between chained analyses. Two reasons:
     //
     //   1. Anthropic rate-limit windows: OTPM (output tokens per minute,
@@ -314,6 +328,7 @@ const ManuscriptsView = ({
     // chapter generation time.
     queuedChainTimeoutRef.current = setTimeout(() => {
       queuedChainTimeoutRef.current = null;
+      console.log(`[chain] setTimeout fired for Ch ${next.chapter_number}; chainActive=${chainActiveRef.current}`);
       if (!chainActiveRef.current) return;
       handleAnalyze(next.id, true);
     }, 10000);
