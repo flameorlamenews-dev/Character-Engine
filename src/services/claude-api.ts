@@ -24,7 +24,7 @@ export function hasClaudeKey(): boolean {
   return !!CLAUDE_API_KEY;
 }
 
-async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096, timeoutMs: number = 360000): Promise<string> {
+async function callClaude(systemPrompt: string, userMessage: string, maxTokens: number = 4096, timeoutMs: number = 720000): Promise<string> {
   if (!CLAUDE_API_KEY) {
     throw new Error('Claude API key not configured. Add VITE_CLAUDE_API_KEY to your .env file.');
   }
@@ -243,17 +243,21 @@ RULES:
 - role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  // 18000 output tokens. Production diagnostic confirmed Pass 1 emits
-  // 15,366 tokens for a typical busy chapter (8+ characters) with
-  // stop_reason=end_turn — i.e., Claude finished naturally just under
-  // the 16000 ceiling, with only 4% headroom. The next slightly-busier
-  // chapter would truncate. 18000 gives ~17% margin, which Claude only
-  // fills if the content actually requires it.
+  // 32000 output tokens — generous ceiling sized for 8000-word chapters
+  // with 15+ characters carrying full dialogue. Per-character output runs
+  // ~1300-1500 tokens; 20 chars × 1500 = 30000 + summary/glossary/wrapper
+  // (~1500) = ~31500. 32000 covers that worst case with safety margin.
   //
-  // Wall-clock: actual output drives generation time, not max_tokens.
-  // 15k actual output ≈ 250s. If a chapter genuinely needs 18k it'll
-  // take ~300s; under the 360s callClaude timeout.
-  const responseText = await callClaude(systemPrompt, userMessage, 18000);
+  // Production-measured baseline: a typical 8-character chapter generates
+  // ~15,366 output tokens (stop_reason=end_turn). 32000 only matters for
+  // unusually busy chapters; lighter chapters generate ~5-10k regardless.
+  // Wall-clock scales with ACTUAL output, not max_tokens — Claude only
+  // emits what's needed.
+  //
+  // Sonnet 4.6 supports up to 64k output natively; 32k is well within.
+  // At 60 tok/s the absolute worst case is ~533s = 8.9 min, comfortably
+  // under the 720s callClaude timeout.
+  const responseText = await callClaude(systemPrompt, userMessage, 32000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
@@ -528,20 +532,30 @@ RULES:
 - CATEGORY: mottos (beliefs, rare) ≠ lexicon (distinctive phrases, regular) ≠ tics (linguistic habit, frequent). One phrase → one category.
 - All scores and prose must reflect observed text. Never fabricate.`;
 
-  // Pass 2 dynamic ceiling. Production diagnostic showed re-analysis
-  // truncating at output_tokens=4999 / max_tokens=5000 with
-  // stop_reason=max_tokens — real budget overrun, not refusal. Per-char
-  // output for re-analysis (no foundation, just emotion_drift × 8 +
-  // surges + relationships + verbal_tics) is ~700-1000 tokens, so 7+
-  // characters comfortably overflowed 5000. Bumped baseline to 8000
-  // (covers ~10 majors at the upper end of per-char output). Foundation
-  // increments stay at 4000 each — those have not been observed to
-  // truncate yet, but if the per-char-with-foundation case starts
-  // hitting max_tokens the diagnostic will show it.
+  // Pass 2 dynamic ceiling sized to never truncate on any plausible
+  // chapter. Yields three tiers based on what foundations are needed:
+  //
+  //   - Re-analysis (foundations cached, common case): 20000
+  //     Per-char per-chapter (emotion_drift × 8 + surges + relationships
+  //     + verbal_tics) ≈ 700-1000 tokens. 20000 covers 20+ characters.
+  //   - One foundation needed: 28000
+  //     Per-char psych OR voice ≈ 800-1500 tokens. +8000 covers ~10 chars
+  //     of foundation extraction.
+  //   - First-time full (both foundations): 36000
+  //     Worst case for a 15-char chapter with full psych + voice + per-
+  //     chapter dynamics.
+  //
+  // All under Sonnet 4.6's 64k output cap. At 60 tok/s, 36000 worst-case
+  // ≈ 600s = 10 min — under the 720s callClaude timeout.
+  //
+  // Production-measured truncation point was 4999/5000, so 20000 baseline
+  // gives 4× headroom. Should never see a max_tokens stop_reason again
+  // for typical book content; if the diagnostic shows otherwise, the
+  // numbers and the data drive the next bump.
   const passTwoMaxTokens =
-    8000
-    + (includePsychFoundation ? 4000 : 0)
-    + (includeVoiceFoundation ? 4000 : 0);
+    20000
+    + (includePsychFoundation ? 8000 : 0)
+    + (includeVoiceFoundation ? 8000 : 0);
 
   const responseText = await callClaude(systemPrompt, userMessage, passTwoMaxTokens);
 

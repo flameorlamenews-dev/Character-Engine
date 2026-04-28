@@ -297,11 +297,26 @@ const ManuscriptsView = ({
       setChain(false);
       return null;
     }
+    // 10-second pause between chained analyses. Two reasons:
+    //
+    //   1. Anthropic rate-limit windows: OTPM (output tokens per minute,
+    //      8000 on Tier 1) and ITPM (input, 30000) are evaluated on a
+    //      rolling per-minute window. Back-to-back analyses with no gap
+    //      can trip a 429 even though each call individually stays under
+    //      the per-request cap. The pause lets the windows drain.
+    //
+    //   2. DB write tail: the just-finished analysis's final progress=100
+    //      write and any per-character writes still settling have time
+    //      to commit before the next chapter starts pulling state.
+    //
+    // 10s is a generous-but-not-painful default. For a 10-chapter chain,
+    // adds 90s of total wall-clock — negligible vs the 5-10 min per
+    // chapter generation time.
     queuedChainTimeoutRef.current = setTimeout(() => {
       queuedChainTimeoutRef.current = null;
       if (!chainActiveRef.current) return;
       handleAnalyze(next.id, true);
-    }, 1000);
+    }, 10000);
     return next;
   };
 
