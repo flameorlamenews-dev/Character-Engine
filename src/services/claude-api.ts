@@ -243,26 +243,17 @@ RULES:
 - role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  // 16000 output tokens. Per-character output runs ~1200-1400 tokens (revised
-  // upward from 950 — internalDialogue / externalDialogue 8-12 lines each
-  // plus knowledgeAtChapter, readerTone with 3 opening-line options, and
-  // notableActions are heavier than the earlier estimate). Plus summary,
-  // glossary, memorable_moments, JSON wrapper. 11000 was truncating on
-  // chapters with 7+ characters — observed in production. 16000 covers
-  // up to ~11 characters comfortably.
+  // 18000 output tokens. Production diagnostic confirmed Pass 1 emits
+  // 15,366 tokens for a typical busy chapter (8+ characters) with
+  // stop_reason=end_turn — i.e., Claude finished naturally just under
+  // the 16000 ceiling, with only 4% headroom. The next slightly-busier
+  // chapter would truncate. 18000 gives ~17% margin, which Claude only
+  // fills if the content actually requires it.
   //
-  // Wall-clock (Sonnet 4.6 at 60-90 tok/s):
-  //   - Light chapter (4-5 chars, ~6k actual): ~100s.
-  //   - Typical (7 chars, ~10k actual): ~167s.
-  //   - Busy (10 chars, ~14k actual): ~233s.
-  //   - Full ceiling (~16k tokens): ~267s.
-  // All well under the 360s AbortController in callClaude.
-  //
-  // No retry safety net (rejected earlier — retries doubled wall-clock when
-  // they fired). On the rare chapter that still overflows 16000, the JSON
-  // parse throws and the chain-skip logic in ManuscriptsView advances to
-  // the next chapter; user re-runs the failed one manually.
-  const responseText = await callClaude(systemPrompt, userMessage, 16000);
+  // Wall-clock: actual output drives generation time, not max_tokens.
+  // 15k actual output ≈ 250s. If a chapter genuinely needs 18k it'll
+  // take ~300s; under the 360s callClaude timeout.
+  const responseText = await callClaude(systemPrompt, userMessage, 18000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
@@ -537,25 +528,18 @@ RULES:
 - CATEGORY: mottos (beliefs, rare) ≠ lexicon (distinctive phrases, regular) ≠ tics (linguistic habit, frequent). One phrase → one category.
 - All scores and prose must reflect observed text. Never fabricate.`;
 
-  // Pass 2 output is dominated by what foundations are emitted.
-  //   - Per-chapter required (emotion_drift, surges, relationships,
-  //     verbal_tics): ~500-700 tokens per character.
-  //   - Psych foundation: ~600 tokens per character × ~6 majors ≈ 4000.
-  //   - Voice foundation: similar, ~4000.
-  // Sonnet 4.6 generates ~60-90 tok/s, so wall-clock is roughly
-  // proportional to max_tokens. Sizing to actual response shape:
-  //   - Re-analysis (foundations cached, common case): 5000 → ~80s
-  //   - One foundation needed: 9000 → ~130s
-  //   - First-time analysis (full): 13000 → ~190s
-  //
-  // The previous retry-on-truncation safety net DOUBLED wall-clock when
-  // it fired (extra full-size Claude call). It's been removed in favor
-  // of a clean throw — the upstream caller in client.ts catches Pass 2
-  // throws into engine_errors so the user sees a Pass 2 failure badge
-  // and can re-run once. That's cheaper than every busy chapter eating
-  // an extra 200+s for the retry.
+  // Pass 2 dynamic ceiling. Production diagnostic showed re-analysis
+  // truncating at output_tokens=4999 / max_tokens=5000 with
+  // stop_reason=max_tokens — real budget overrun, not refusal. Per-char
+  // output for re-analysis (no foundation, just emotion_drift × 8 +
+  // surges + relationships + verbal_tics) is ~700-1000 tokens, so 7+
+  // characters comfortably overflowed 5000. Bumped baseline to 8000
+  // (covers ~10 majors at the upper end of per-char output). Foundation
+  // increments stay at 4000 each — those have not been observed to
+  // truncate yet, but if the per-char-with-foundation case starts
+  // hitting max_tokens the diagnostic will show it.
   const passTwoMaxTokens =
-    5000
+    8000
     + (includePsychFoundation ? 4000 : 0)
     + (includeVoiceFoundation ? 4000 : 0);
 
