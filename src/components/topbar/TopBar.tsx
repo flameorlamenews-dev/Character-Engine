@@ -180,6 +180,19 @@ export function TopBar({
 
       <div className="flex-1" />
 
+      {/* Build version stamp — short git SHA injected at build time via
+          vite.config.ts. Lets the user (and us) verify at a glance which
+          commit is actually live in the browser without checking Vercel.
+          Click-to-copy convenience for sharing in bug reports. */}
+      <button
+        type="button"
+        onClick={() => navigator.clipboard?.writeText(import.meta.env.VITE_BUILD_VERSION || 'dev')}
+        className="font-mono text-[10px] text-ce-text-muted hover:text-ce-text px-1.5 py-0.5 rounded border border-ce-border/40 hover:border-ce-border transition-colors"
+        title="Build version (click to copy)"
+      >
+        build {import.meta.env.VITE_BUILD_VERSION || 'dev'}
+      </button>
+
       {/* Zoom */}
       <div className="flex items-center gap-2">
         <span className="text-xs text-ce-text-muted">Zoom</span>
