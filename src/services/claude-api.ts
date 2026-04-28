@@ -199,19 +199,26 @@ RULES:
 - role: classify accurately — "minor" for one-off cameos / background figures / characters with no agency in the chapter's events. The downstream engine will skip expensive voice-extraction for "minor" roles, so be honest: if the character could be cut from the chapter without losing the plot, they're "minor".
 - Glossary terms should only include invented/world-specific words, not common English`;
 
-  // 11000 output tokens. Sonnet 4.6 generates at ~60-90 tok/s → wall-clock
-  // ~120-185s for Pass 1 at this ceiling. Per-character output ~950 tokens
-  // (18 fields incl. internal/external dialogue arrays, readerTone, etc.).
-  // 11000 covers up to ~11 characters per chapter — safer than 8000 which
-  // truncated on chapters with 8+ majors (e.g. classroom / group scenes).
-  // Trade-off: ~30-50s slower per chapter than 8000, but predictable. The
-  // alternative (8000 + retry-on-truncation) was rejected because retries
-  // doubling wall-clock on busy chapters caused the prior 15-min runs.
-  // On the rare overflow at 11000, the JSON parse below throws; the
-  // upstream invoke handler in client.ts marks analysis_progress = -1, the
-  // chain (in ManuscriptsView) skips that chapter and continues to the
-  // next, and the user re-runs the failed one manually.
-  const responseText = await callClaude(systemPrompt, userMessage, 11000);
+  // 16000 output tokens. Per-character output runs ~1200-1400 tokens (revised
+  // upward from 950 — internalDialogue / externalDialogue 8-12 lines each
+  // plus knowledgeAtChapter, readerTone with 3 opening-line options, and
+  // notableActions are heavier than the earlier estimate). Plus summary,
+  // glossary, memorable_moments, JSON wrapper. 11000 was truncating on
+  // chapters with 7+ characters — observed in production. 16000 covers
+  // up to ~11 characters comfortably.
+  //
+  // Wall-clock (Sonnet 4.6 at 60-90 tok/s):
+  //   - Light chapter (4-5 chars, ~6k actual): ~100s.
+  //   - Typical (7 chars, ~10k actual): ~167s.
+  //   - Busy (10 chars, ~14k actual): ~233s.
+  //   - Full ceiling (~16k tokens): ~267s.
+  // All well under the 360s AbortController in callClaude.
+  //
+  // No retry safety net (rejected earlier — retries doubled wall-clock when
+  // they fired). On the rare chapter that still overflows 16000, the JSON
+  // parse throws and the chain-skip logic in ManuscriptsView advances to
+  // the next chapter; user re-runs the failed one manually.
+  const responseText = await callClaude(systemPrompt, userMessage, 16000);
 
   try {
     const cleaned = responseText.replace(/```json\n?/g, '').replace(/```\n?/g, '').trim();
