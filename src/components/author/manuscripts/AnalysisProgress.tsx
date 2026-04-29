@@ -10,6 +10,12 @@ interface AnalysisProgressProps {
   progress: number;
   manuscriptTitle: string;
   manuscriptId: string;
+  // Optional: parent supplies a callback that disarms the auto-chain so
+  // clicking Stop here also prevents the chain from auto-triggering the
+  // NEXT chapter. Without it, marking this manuscript as
+  // analysis_progress=100 looks identical to a successful completion to
+  // the polling effect and the chain advances anyway.
+  onUserStop?: () => void;
 }
 
 interface ReaderReaction {
@@ -39,7 +45,7 @@ const iconMap = {
   XCircle,
 };
 
-const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisProgressProps) => {
+const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId, onUserStop }: AnalysisProgressProps) => {
   const [reactions, setReactions] = useState<ReaderReaction[]>([]);
   const [isStopping, setIsStopping] = useState(false);
   const { toast } = useToast();
@@ -48,21 +54,27 @@ const AnalysisProgress = ({ progress, manuscriptTitle, manuscriptId }: AnalysisP
 
   const handleStop = async () => {
     setIsStopping(true);
+    // Disarm the auto-chain BEFORE writing progress=100. Order matters:
+    // if we wrote progress first, the polling effect's completion
+    // detector could fire on a stale chainActive=true and queue the
+    // next chapter before this callback runs.
+    onUserStop?.();
     try {
       await supabase
         .from('manuscripts')
-        .update({ 
+        .update({
           analysis_progress: 100,
+          updated_at: new Date().toISOString(),
           reader_reactions: [
             ...(reactions || []),
             { icon: 'XCircle', text: 'Analysis manually stopped by user', timestamp: Date.now() }
           ] as any
         })
         .eq('id', manuscriptId);
-      
+
       toast({
         title: "Analysis stopped",
-        description: "The analysis has been stopped. You can retry it anytime.",
+        description: "The analysis has been stopped. The auto-chain has also been disarmed — click Analyze again to resume.",
       });
     } catch (error: any) {
       toast({

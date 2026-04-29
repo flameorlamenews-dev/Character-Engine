@@ -425,8 +425,12 @@ const ManuscriptsView = ({
       setSelectedManuscript(resetCurrent);
       setManuscripts(prev => prev.map(m => m.id === manuscriptId ? resetCurrent : m));
       setDialogTab('analysis');
-      setShowAnalysis(true);
-      onAnalysisDialogOpen?.();
+      // Auto-opening the analysis dialog on every handleAnalyze call (manual
+      // click OR chain transition) was creating UX friction: with auto-chain
+      // running, the dialog would jump between chapters every ~5 minutes,
+      // covering the manuscripts grid and forcing the user to dismiss it
+      // each time. The dialog is still reachable on demand via the per-card
+      // "View Analysis" button (handleViewAnalysis below).
       onAnalysisStart?.(current.chapter_number, manuscriptId);
     }
 
@@ -885,10 +889,11 @@ const ManuscriptsView = ({
                     
                     <div className="flex-1 overflow-y-auto">
                       <TabsContent value="progress" className="w-full mt-0">
-                        <AnalysisProgress 
+                        <AnalysisProgress
                           progress={selectedManuscript.analysis_progress || 0}
                           manuscriptTitle={selectedManuscript.title}
                           manuscriptId={selectedManuscript.id}
+                          onUserStop={handleStopChain}
                         />
                       </TabsContent>
                       
