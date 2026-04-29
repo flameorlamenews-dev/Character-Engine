@@ -296,6 +296,25 @@ const ManuscriptsView = ({
     console.log(
       `[chain] triggerChainNext: chainActive=${chainActiveRef.current} queued=${queuedChainTimeoutRef.current !== null} justFinishedChap=${justFinishedChapNum} totalMs=${msList.length} unanalyzedCount=${unanalyzedCount}`
     );
+    // Per-chapter state dump so we can see whether "not analyzed" cards
+    // are at progress=null/0 (eligible for chain), progress=-1 (failed,
+    // currently skipped), progress=100 with no results (broken complete),
+    // or some other state. Only logged when the chain has nothing
+    // eligible — keeps the noise down on healthy runs.
+    if (unanalyzedCount === 0) {
+      console.log(
+        '[chain] manuscripts state dump:',
+        msList
+          .slice()
+          .sort((a, b) => (a.chapter_number ?? 0) - (b.chapter_number ?? 0))
+          .map(m => ({
+            ch: m.chapter_number,
+            progress: m.analysis_progress,
+            hasResults: !!(m.analysis_results && Object.keys(m.analysis_results || {}).length > 0),
+            updated_at: m.updated_at,
+          }))
+      );
+    }
     if (!chainActiveRef.current) {
       console.log('[chain] SKIP: chainActiveRef is false');
       return null;
