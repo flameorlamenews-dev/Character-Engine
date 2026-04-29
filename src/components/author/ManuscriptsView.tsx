@@ -270,15 +270,43 @@ const ManuscriptsView = ({
   // extracted. Returns null when nothing higher remains — the chain naturally
   // ends. We deliberately don't fall back to lower-numbered un-analyzed
   // chapters; the user can manually trigger those if they want.
+  //
+  // "Needs analysis" matches the ManuscriptCard's "Analyze with AI" button
+  // condition exactly: a chapter is eligible if it lacks analysis_results
+  // OR its progress isn't 100. That covers:
+  //   - Never-analyzed chapters (progress=null/0, no results).
+  //   - Failed chapters (progress=-1, no fresh results).
+  //   - Broken-complete state (progress=100 but analysis_results was wiped
+  //     or never populated — the card shows "Analyze with AI" while the
+  //     chain previously saw progress=100 and skipped).
+  // Mid-flight chapters (progress 1-99 with recent updated_at) are
+  // excluded — handleAnalyze's isAnalyzingRef guard would block anyway,
+  // but skipping cleanly avoids a noisy "already in progress" toast.
+  const chapterNeedsAnalysis = (m: any): boolean => {
+    if (
+      m.processing_progress !== null &&
+      m.processing_progress !== undefined &&
+      m.processing_progress < 100
+    ) return false;
+    if (m.content?.includes('Processing document')) return false;
+    if (m.content?.includes('Extracting text')) return false;
+    if (m.content?.includes('Downloading document')) return false;
+    // Currently mid-flight (recent activity) — skip to avoid double-trigger.
+    if (
+      m.analysis_progress !== null &&
+      m.analysis_progress > 0 &&
+      m.analysis_progress < 100 &&
+      m.updated_at &&
+      Date.now() - new Date(m.updated_at).getTime() <= 5 * 60 * 1000
+    ) return false;
+    const hasResults =
+      m.analysis_results && Object.keys(m.analysis_results || {}).length > 0;
+    return !hasResults || m.analysis_progress !== 100;
+  };
+
   const findNextChapterToAnalyze = (justFinishedChapterNum: number, msList: any[]): any | null => {
     const candidates = msList
-      .filter(m =>
-        (m.analysis_progress ?? 0) === 0 &&
-        (m.processing_progress === null || m.processing_progress === undefined || m.processing_progress >= 100) &&
-        !m.content?.includes('Processing document') &&
-        !m.content?.includes('Extracting text') &&
-        !m.content?.includes('Downloading document')
-      )
+      .filter(chapterNeedsAnalysis)
       .sort((a, b) => (a.chapter_number ?? 0) - (b.chapter_number ?? 0));
     return candidates.find(m => (m.chapter_number ?? 0) > justFinishedChapterNum) || null;
   };
@@ -290,30 +318,25 @@ const ManuscriptsView = ({
   // the wording differs between success ("Auto-analyzing…") and failure
   // ("Ch X failed; continuing…").
   const triggerChainNext = (justFinishedChapNum: number, msList: any[]): any | null => {
-    // Diagnostic snapshot of chain state at trigger time. If the chain
-    // silently dies, this line tells us exactly which gate rejected.
-    const unanalyzedCount = msList.filter(m => (m.analysis_progress ?? 0) === 0).length;
+    // Count using the same predicate the chain actually uses, so the
+    // diagnostic matches the filter and we don't get misleading
+    // "unanalyzedCount=0 but cards show un-analyzed" reports.
+    const eligibleCount = msList.filter(chapterNeedsAnalysis).length;
     console.log(
-      `[chain] triggerChainNext: chainActive=${chainActiveRef.current} queued=${queuedChainTimeoutRef.current !== null} justFinishedChap=${justFinishedChapNum} totalMs=${msList.length} unanalyzedCount=${unanalyzedCount}`
+      `[chain] triggerChainNext: chainActive=${chainActiveRef.current} queued=${queuedChainTimeoutRef.current !== null} justFinishedChap=${justFinishedChapNum} totalMs=${msList.length} eligibleCount=${eligibleCount}`
     );
-    // Per-chapter state dump so we can see whether "not analyzed" cards
-    // are at progress=null/0 (eligible for chain), progress=-1 (failed,
-    // currently skipped), progress=100 with no results (broken complete),
-    // or some other state. Only logged when the chain has nothing
-    // eligible — keeps the noise down on healthy runs.
-    if (unanalyzedCount === 0) {
-      console.log(
-        '[chain] manuscripts state dump:',
-        msList
-          .slice()
-          .sort((a, b) => (a.chapter_number ?? 0) - (b.chapter_number ?? 0))
-          .map(m => ({
-            ch: m.chapter_number,
-            progress: m.analysis_progress,
-            hasResults: !!(m.analysis_results && Object.keys(m.analysis_results || {}).length > 0),
-            updated_at: m.updated_at,
-          }))
-      );
+    // Per-chapter state dump when nothing eligible — JSON.stringify so the
+    // values aren't collapsed in DevTools.
+    if (eligibleCount === 0) {
+      const dump = msList
+        .slice()
+        .sort((a, b) => (a.chapter_number ?? 0) - (b.chapter_number ?? 0))
+        .map(m => ({
+          ch: m.chapter_number,
+          progress: m.analysis_progress,
+          hasResults: !!(m.analysis_results && Object.keys(m.analysis_results || {}).length > 0),
+        }));
+      console.log('[chain] state dump:', JSON.stringify(dump));
     }
     if (!chainActiveRef.current) {
       console.log('[chain] SKIP: chainActiveRef is false');
